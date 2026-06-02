@@ -1,0 +1,26 @@
+## Overview
+
+[mermaid, format="svg"]
+....
+include::./diagrams/bidi-transformation-graph.mmd[Workflow]
+....
+
+### The Process in Detail (The 3 Layers)
+
+#### 1. Extract Layer (The Parsers)
+
+* **Separation of Concerns:** Strictly separates the purely technical data extraction from the underlying business logic.
+* **`LchsXmlParser`:** Uses XPath to search for specific XML nodes, making it completely independent of missing XSD schemas.
+* **`EagleExcelParser`:** Rigidly parses row and column values directly from the Excel grid.
+
+#### 2. Transform Layer (The "Brain")
+
+* **Executable Blueprints:** This layer houses the **Pydantic classes**, which represent the conceptual LinkML YAML schemas as executable, validating code.
+* **Forward Mapping:** Translates complex ISO semantics (e.g., `Fixed`, `ConditionalTemporal`) into reduced EAGLE numerical values (3, 1) and aggregates coverage thresholds into single factors.
+* **Reverse Mapping (`@model_validator`):** Utilizes predefined rule logic to reconstruct semantically richer ISO concepts and coverage thresholds (via smart defaults) from the reduced EAGLE values.
+
+#### 3. Load Layer (The Generators)
+
+* **Data Ingestion:** Receives the fully transformed, error-free data objects directly from memory.
+* **`EagleExcelExporter`:** Writes the data into the exact cell coordinates of the designated EAGLE Matrix template.
+* **`LchsXmlGenerator`:** Programmatically constructs the hierarchical XML tree structure to ensure an error-free import back into the LChS software.

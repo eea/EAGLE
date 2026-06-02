@@ -1,0 +1,167 @@
+id: https://w3id.org/eagle-iso-mapping-corine
+name: eagle_lcml_crosswalk_corine
+description: "Complete LinkML model for the conceptual mapping of CORINE classes CLC112, CLC212 and CLC322"
+prefixes:
+  linkml: https://w3id.org/linkml/
+  skos: http://www.w3.org/2004/02/skos/core#
+  eagle: https://example.org/eagle-schema/
+  lcml: https://example.org/iso19144-2/
+default_prefix: eagle
+
+imports:
+  - linkml:types
+
+# ==========================================
+# 1. ENUMS (Vocabularies & Mapping)
+# ==========================================
+enums:
+  EagleMatrixValue:
+    description: "EAGLE Matrix Values for Land Cover Components"
+    permissible_values:
+      "1":
+        description: "Optional element (Conditional Temporal)"
+      "2":
+        description: "EITHER-OR relationship (Exclusive)"
+      "3":
+        description: "Mandatory element (Fixed)"
+
+  LcmlPresenceType:
+    description: "ISO 19144-2 Presence Types mapped to EAGLE Values"
+    permissible_values:
+      ConditionalTemporal:
+        annotations:
+          skos:exactMatch: "eagle:EagleMatrixValue#1"
+      Exclusive:
+        annotations:
+          skos:exactMatch: "eagle:EagleMatrixValue#2"
+      Fixed:
+        annotations:
+          skos:exactMatch: "eagle:EagleMatrixValue#3"
+      Precluded:
+        description: "Explicit exclusion (e.g., for rice/hops in CLC212)"
+
+  EagleLccType:
+    description: "Specific Land Cover Components (LCC)"
+    permissible_values:
+      SealedArtificialSurface:
+        annotations:
+          skos:broadMatch: "lcml:BuildUpSurface"
+      BioticVegetation:
+        annotations:
+          skos:exactMatch: "lcml:LC_Vegetation"
+      SpecificBuildings:
+        annotations:
+          skos:broadMatch: "lcml:LC_Building"
+      BareSoil:
+        annotations:
+          skos:exactMatch: "lcml:BareSoil"
+      HerbaceousVegetation:
+        annotations:
+          skos:exactMatch: "lcml:HerbaceousGrowthForms"
+      NaturalSurfaces:
+        annotations:
+          skos:exactMatch: "lcml:NaturalSurfaces"
+      Trees:
+        annotations:
+          skos:exactMatch: "lcml:Trees"
+      Shrubs:
+        annotations:
+          skos:exactMatch: "lcml:Shrubs"
+      Algae:
+        annotations:
+          skos:exactMatch: "lcml:Algae"
+      LichenMosses:
+        annotations:
+          skos:exactMatch: "lcml:LichenAndMosses"
+      Forbs:
+        annotations:
+          skos:exactMatch: "lcml:Forbs"
+      Graminoids:
+        annotations:
+          skos:exactMatch: "lcml:Graminoids"
+
+  LcmlIrrigationType:
+    description: "ISO 19144-2 Cultivated and Managed Vegetation Characteristic"
+    permissible_values:
+      Sprinkler:
+        description: "Specific irrigation type"
+      Manual:
+        description: "Manual irrigation"
+      Unspecified:
+        description: "Irrigation Applied, Method Unspecified"
+
+# ==========================================
+# 2. CLASSES (Data Structure & Rules)
+# ==========================================
+classes:
+  CorineClass:
+    description: "Base class for mapping a CORINE nomenclature"
+    attributes:
+      class_code:
+        range: string  # FIXED: was 'type'
+        required: true
+      class_name:
+        range: string  # FIXED: was 'type'
+        required: true
+      components:
+        range: LandCoverComponent
+        multivalued: true
+      characteristics:
+        range: LandCharacteristic
+        multivalued: true
+
+  LandCharacteristic:
+    description: "Land Characteristics (LCH)"
+    attributes:
+      characteristic_type:
+        range: string  # FIXED: was 'type'
+      irrigation_type:
+        range: LcmlIrrigationType
+      is_mappable_to_lcml:
+        range: boolean # FIXED: was 'type'
+
+  LandCoverComponent:
+    description: "LCC definition including smart default mapping"
+    attributes:
+      lcc_type:
+        range: EagleLccType
+        required: true
+      eagle_value:
+        range: EagleMatrixValue
+      presence_type:
+        range: LcmlPresenceType
+      eagle_factor:
+        range: string  # FIXED: was 'type'
+      coverage_min:
+        range: integer # FIXED: was 'type'
+      coverage_max:
+        range: integer # FIXED: was 'type'
+      floristic_aspects:
+        range: string  # FIXED: was 'type'
+        multivalued: true
+
+    # --- Smart Default Mapping (Rules) ---
+    rules:
+      - description: "Reconstruct coverage thresholds for CLC112 using factor 055"
+        preconditions:
+          slot_conditions:
+            eagle_factor:
+              equals_string: "055"
+        postconditions:
+          slot_conditions:
+            coverage_min:
+              equals_number: 30
+            coverage_max:
+              equals_number: 80
+
+      - description: "Reconstruct coverage thresholds for CLC212 using factor >75%"
+        preconditions:
+          slot_conditions:
+            eagle_factor:
+              equals_string: "075_plus"
+        postconditions:
+          slot_conditions:
+            coverage_min:
+              equals_number: 75
+            coverage_max:
+              equals_number: 100

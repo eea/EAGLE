@@ -1,0 +1,16 @@
+[project]
+name = "eagle-iso-mapper"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "linkml>=1.11.1",
+    "lxml>=6.1.1",
+    "openpyxl>=3.1.5",
+    "pyaml>=26.2.1",
+    "pydantic>=2.13.4",
+    "pydantic-settings>=2.14.1",
+    "pyyaml>=6.0.3",
+    "streamlit>=1.58.0",
+]

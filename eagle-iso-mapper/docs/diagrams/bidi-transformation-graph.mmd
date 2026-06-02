@@ -1,0 +1,21 @@
+graph TD
+    %% Styling Definitionen
+    classDef Pydantic fill:#f9f2f4,stroke:#d396a5,stroke-width:2px;
+    classDef InputOutput fill:#e1f5fe,stroke:#81d4fa,stroke-width:2px;
+    classDef Process fill:#f1f8e9,stroke:#aed581,stroke-width:2px;
+
+    subgraph Forward ["Pipeline 1: Forward (ISO LCML → EAGLE Matrix)"]
+        direction TB
+        XML_IN[/"LChS XML Export"/]:::InputOutput -->|"1. Extract"| PARSER_XML["LchsXmlParser"]:::Process
+        PARSER_XML -->|"Rohe XML-Knoten"| MODEL_FWD{"Pydantic Objektmodell<br>SemanticTransformer"}:::Pydantic
+        MODEL_FWD -->|"2. Transform: Validierte EAGLE-Objekte<br>(z.B. Min/Max → Faktor 55)"| EXPORT_XLS["EagleExcelExporter"]:::Process
+        EXPORT_XLS -->|"3. Load"| XLS_OUT[/"EAGLE Matrix Excel"/]:::InputOutput
+    end
+
+    subgraph Reverse ["Pipeline 2: Reverse (EAGLE Matrix → ISO LCML)"]
+        direction TB
+        XLS_IN[/"EAGLE Matrix Excel"/]:::InputOutput -->|"1. Extract"| PARSER_XLS["EagleExcelParser"]:::Process
+        PARSER_XLS -->|"Rohe Zeilen/Spalten"| MODEL_REV{"Pydantic Objektmodell<br>@model_validator"}:::Pydantic
+        MODEL_REV -->|"2. Transform: Rekonstruierte ISO-Objekte<br>(z.B. Faktor 55 → Min 30, Max 80)"| EXPORT_XML["LchsXmlGenerator"]:::Process
+        EXPORT_XML -->|"3. Load"| XML_OUT[/"LChS XML Reconstructed"/]:::InputOutput
+    end
