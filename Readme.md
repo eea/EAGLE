@@ -7,7 +7,7 @@
 ## 1. General Information & Context
 
 ### Motivation
-Land monitoring governance requires high semantic interoperability between national and international reporting standards. Translating land cover classification systems often suffers from manual interpretation errors, inconsistent nomenclature bookkeeping, and a lack of software-supported translation validation.
+Land monitoring governance requires high semantic interoperability between national and international reporting standards. Translating land cover classification systems often suffer from manual interpretation errors, inconsistent nomenclature bookkeeping, and a lack of software-supported translation validation.
 
 ### Context & Problem Statement
 This project bridges the gap between two primary spatial frameworks:
@@ -23,11 +23,10 @@ The core challenge lies in the translation rules. For instance, converting an EA
 This application provides a highly resilient, automated, bi-directional translation engine between EAGLE Excel matrices and ISO 19144-2 XML models. 
 
 ### Key Technical Pillars
-* **LinkML as the Single Source of Truth:** Data models are conceptually defined in a centralized semantic schema (`src/models/eagle-lcml-mapping.linkml.yaml`). Pydantic data classes are automatically generated on application startup, guaranteeing compile-time type safety across the transformation pipeline.
-* **Dynamic Robustness:** The translation engine is built defensively. It uses a flexible lookup dictionary (`mappings.yaml`) and fuzzy matching routines to handle inconsistent input data transparently without dropping valid objects.
+* **LinkML as the Single Source of Truth:** Data models are conceptually defined in a [centralized semantic schema](eagle-iso-mapper/src/model/eagle-lcml-mapping.linkml.yaml). Pydantic data classes are automatically generated on application startup, guaranteeing compile-time type safety across the transformation pipeline.
+* **Dynamic Robustness:** The translation engine is built defensively. It uses a flexible [lookup dictionary](eagle-iso-mapper/src/model/eagle-mapping.yaml) and fuzzy matching routines to handle inconsistent input data transparently without dropping valid objects.
 
-> 📘 **Detailed Workflow Documentation:** > For extensive technical specifications, execution pipelines, and generated AsciiDoc/PlantUML architecture diagrams, please refer to the main documentation suite located at:  
-> `docs/Readme.adoc`
+> 📘 **Detailed Workflow Documentation:** > For extensive technical specifications, execution pipelines, and generated AsciiDoc/PlantUML architecture diagrams, please refer to the [workflow documentation](eagle-iso-mapper/docs/Readme.adoc)
 
 ---
 
