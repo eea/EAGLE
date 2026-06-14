@@ -1,17 +1,9 @@
 import streamlit as st
-import xml.etree.ElementTree as ET
-import openpyxl
 import io
 import time
 
 from src.config import settings
-# Import the decoupled mapping logic
-from src.mapping.eagle_to_iso import run_eagle_to_iso_mapping
-from src.mapping.iso_to_eagle import run_iso_to_eagle_mapping
 from typing import Tuple, List
-
-import streamlit as st
-import time
 
 # Session State initialisieren
 if "log_messages" not in st.session_state:
@@ -59,6 +51,70 @@ app_logger = LiveLogger()
 
 # set up web page
 st.set_page_config(page_title="EAGLE / ISO Mapper", layout="wide")
+
+# --- CSS Tuning: hide Streamlit UI ---
+hide_st_style = """
+<style>
+/* Versteckt den kompletten Header (inkl. Menü und Standard-Lade-Indikator) */
+header {visibility: hidden;}
+
+/* Versteckt den Streamlit Footer ("Made with Streamlit") */
+footer {visibility: hidden;}
+
+/* Reduziert den riesigen weißen Leerraum oben und unten */
+.block-container {
+    padding-top: 0rem !important; 
+    padding-bottom: 1rem !important;
+}
+</style>
+"""
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
+# Splash
+# Wir prüfen, ob die App in dieser Session schon fertig geladen hat
+if "app_ready" not in st.session_state:
+
+    # 1. Wir reservieren den gesamten Bildschirm mit einem Platzhalter
+    splash_placeholder = st.empty()
+
+    # 2. Wir zeichnen den Splash-Screen in diesen Platzhalter
+    with splash_placeholder.container():
+        # Ein bisschen Luft nach oben
+        st.markdown("<div style='margin-top: 15vh;'></div>", unsafe_allow_html=True)
+
+        # 1. Logo zentriert anzeigen
+        # 'use_container_width=False' erlaubt dir, die Pixelbreite zu steuern,
+        # damit das Logo nicht den ganzen Bildschirm sprengt.
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            # Hier den Pfad zu deinem Logo (PNG/JPG/SVG)
+            st.image("images/project-logo_small.webp", use_container_width=False)
+        # 2. Text darunter
+        st.markdown("<h2 style='text-align: center; color: #333;'>LChS Transformation Engine</h2>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; color: #888;'>Initialisiere Systemressourcen...</p>", unsafe_allow_html=True)
+
+        # 3. Optional: Eine kleine Lade-Animation (macht es für den User 'echt')
+        with col2:
+            st.progress(50)
+
+        # 3. HIER FINDET DAS ECHTE LADEN STATT!
+        # Anstatt blind 2 Sekunden zu warten, importierst du hier erst deine schweren Module.
+        # Streamlit zeigt währenddessen den Splash-Screen an.
+        import openpyxl
+        import xml.etree.ElementTree as ET
+        # Import the decoupled mapping logic
+        from src.mapping.eagle_to_iso import run_eagle_to_iso_mapping
+        from src.mapping.iso_to_eagle import run_iso_to_eagle_mapping
+
+        time.sleep(1.2) # Ein kleiner Moment, damit man das Logo auch genießen kann
+
+        # 4. DIE MAGIE: Wir leeren den Platzhalter.
+    # Der Splash-Screen verschwindet sofort, OHNE dass die Seite neu lädt!
+    splash_placeholder.empty()
+
+    # Wir merken uns, dass wir fertig sind, damit der Splash bei Button-Klicks nicht wiederkommt
+    st.session_state.app_ready = True
+
 st.title("🦅 EAGLE ↔️ ISO 19144-2 Mapper")
 
 def clear_logs_and_data():
