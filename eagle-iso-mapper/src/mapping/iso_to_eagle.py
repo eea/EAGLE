@@ -18,12 +18,14 @@ class LchsXmlParser:
     """Parses raw data and applies semantic mapping to EAGLE.
     Supports both hierarchical (mock) and relational (official) LChS XML structures."""
 
-    def __init__(self, xml_bytes: bytes):
+    def __init__(self, xml_bytes: bytes, log=print):
         xml_str = xml_bytes.decode('utf-8', errors='ignore')
         # Remove namespaces for robust parsing
         xml_str = re.sub(r'\sxmlns="[^"]+"', '', xml_str, count=1)
         self.mappings = self._load_mappings()
         self.root = ET.fromstring(xml_str)
+
+        log("parsing LChS XML...")
 
         for elem in self.root.iter():
             if '}' in elem.tag:
@@ -72,14 +74,14 @@ class LchsXmlParser:
             return str(int((c_min + c_max) / 2))
         return None
 
-    def extract_classes(self, log_callback, use_fuzzy: bool, force_hierarchical: bool) -> List[CorineClass]:
+    def extract_classes(self, log, use_fuzzy: bool, force_hierarchical: bool) -> List[CorineClass]:
         # Logik: Wenn forced, dann hierarchisch, sonst Autodetect
         if force_hierarchical or (self.root.find('.//LegendClass') is not None and self.root.find('.//LC_Class') is None):
-            log_callback("ℹ️ Parsing in Hierarchical Mode...")
-            return self._extract_lchs_hierarchical(log_callback, use_fuzzy)
+            log("ℹ️ Parsing in Hierarchical Mode...")
+            return self._extract_lchs_hierarchical(log, use_fuzzy)
         else:
-            log_callback("ℹ️ Parsing in Relational Mode...")
-            return self._extract_lchs_relational(log_callback, use_fuzzy)
+            log("ℹ️ Parsing in Relational Mode...")
+            return self._extract_lchs_relational(log, use_fuzzy)
 
     def _fuzzy_match_enum(self, enum_class, search_str: str, use_fuzzy: bool):
         if not search_str: return None
@@ -93,8 +95,6 @@ class LchsXmlParser:
         if not use_fuzzy:
             return enum_class.get(search_str)
 
-        ##print("using fuzzy matching for " + search_str + " in " + enum_class.__name__ + " ...")
-
         # Cleanup: all lowercase, remove blanks, underscore, prefix LC_
         clean = search_str.lower().replace(" ", "").replace("lc_", "").replace("_", "")
 
@@ -107,20 +107,19 @@ class LchsXmlParser:
             clean.replace("ae", "a") # Für Algae/Alga
         }
 
-        ##print("  > variants: " + str(variants))
-        ##print("  > enum members: " + str(enum_class.__members__.keys()))
-
         for name, member in enum_class.__members__.items():
             if name.lower() in variants:
                 return member
         return None
 
-    def _extract_lchs_relational(self, log_callback, use_fuzzy: bool) -> List[CorineClass]:
+    def _extract_lchs_relational(self, log, use_fuzzy: bool) -> List[CorineClass]:
         """Parses the complex ID-linked relational structure from the official LChS Tool."""
         classes = {}
         class_to_hp = {}
         hp_to_stratum = {}
         stratum_to_props = {}
+
+        log("extracting classes from LChS XML structure... (relational mode)")
 
         # 1. Parse Classes
         for lc_class in self.root.findall('.//LC_Class'):
@@ -174,7 +173,7 @@ class LchsXmlParser:
                     'c_max': c_max
                 })
 
-        log_callback(f"Found Strata with properties: { {k: len(v) for k, v in stratum_to_props.items() if v} }")
+        log(f"Found Strata with properties: { {k: len(v) for k, v in stratum_to_props.items() if v} }")
 
         # 5. Assemble everything into Pydantic Objects
         # Map LChS internal BlockReferences to our EAGLE LinkML concepts
@@ -189,7 +188,7 @@ class LchsXmlParser:
 
         extracted = []
         for c_id, corine_class in classes.items():
-            log_callback(f"DEBUG: processing class {c_id} ({corine_class.class_code})")
+            log(f"processing class {c_id} ({corine_class.class_code})")
 
             for hp_id in class_to_hp.get(c_id, []):
                 for stratum_id in hp_to_stratum.get(hp_id, []):
@@ -208,12 +207,12 @@ class LchsXmlParser:
                             lcc_type = self._fuzzy_match_enum(EagleLccType, block_ref, use_fuzzy)
 
                         if not lcc_type:
-                            log_callback(f"⚠️️ Unmapped BlockReference '{block_ref}'. Skipping.")
+                            log(f"⚠️️ Unmapped BlockReference '{block_ref}'. Skipping.")
                             continue
 
                         presence = self._fuzzy_match_enum(LcmlPresenceType, presence_str, use_fuzzy)
                         if not presence:
-                            log_callback(f"⚠️ Unmapped PresenceType '{presence_str}'. Skipping.")
+                            log(f"⚠️ Unmapped PresenceType '{presence_str}'. Skipping.")
                             continue
 
                         eagle_val_str = self._map_eagle_value(presence_str)
@@ -237,7 +236,7 @@ class LchsXmlParser:
                             )
                             corine_class.components.append(comp)
                         except Exception as e:
-                            log_callback(f"⚠️ Error creating component {block_ref}: {e}")
+                            log(f"⚠️ Error creating component {block_ref}: {e}")
 
             # Deduplicate components (Relational XML often maps the same component multiple times)
             unique_comps = {}
@@ -251,9 +250,11 @@ class LchsXmlParser:
 
         return extracted
 
-    def _extract_lchs_hierarchical(self, log_callback, use_fuzzy: bool) -> List[CorineClass]:
+    def _extract_lchs_hierarchical(self, log, use_fuzzy: bool) -> List[CorineClass]:
         """Parses our simplified, generated XML."""
+        log("extracting classes from LChS XML structure... (hierarchical mode)")
         extracted_classes = []
+
         for legend_class in self.root.findall('.//LegendClass'):
             class_code = legend_class.find('Code')
             class_name = legend_class.find('Name')
@@ -262,8 +263,8 @@ class LchsXmlParser:
                 continue
 
             # Sanitize the class code: remove all spaces
-            clean_code = class_code_node.text.replace(" ", "").strip()
-            class_name = class_name_node.text.strip() if class_name_node.text else ""
+            clean_code = class_code.text.replace(" ", "").strip()
+            class_name = class_name.text.strip() if class_name.text else ""
 
             components = []
             for element in legend_class.findall('.//LC_Element'):
@@ -308,17 +309,18 @@ class LchsXmlParser:
 
 class EagleExcelExporter:
     """Writes the validated Pydantic models into the EAGLE Matrix Excel structure."""
-    def __init__(self):
+    def __init__(self, log=print):
         self.workbook = openpyxl.Workbook()
         self.sheet = self.workbook.active
         self.sheet.title = "EAGLE Matrix Barcoding"
         self._setup_headers()
+        self.log = log
 
     def _setup_headers(self):
         # Define ALL columns you want to export
         headers = [
-            "CORINE Code",
-            "Class Name",
+            "CORINE Code", "Class Name",
+            "Natural Surfaces (Value)", "Natural Surfaces (Factor)",
             "Sealed Artificial Surface (Value)", "Sealed Artificial Surface (Factor)",
             "Biotic Vegetation (Value)", "Biotic Vegetation (Factor)",
             "Trees (Value)", "Trees (Factor)",
@@ -342,6 +344,8 @@ class EagleExcelExporter:
             EagleLccType.Graminoids: (11, 12),
             EagleLccType.LichenMosses: (13, 14)
         }
+
+        self.log(f"Generating EAGLE matrix Excel for {len(eagle_classes)} EAGLE classes...")
 
         for e_class in eagle_classes:
             self.sheet.cell(row=row, column=1, value=e_class.class_code)
@@ -368,9 +372,10 @@ class EagleExcelExporter:
         return output.getvalue()
 
 
-def run_iso_to_eagle_mapping(xml_bytes: bytes, log_callback, use_fuzzy: bool = False, force_hierarchical: bool = False) -> bytes:
-    log_callback("Initializing robust LchsXmlParser...")
-    parser = LchsXmlParser(xml_bytes)
+def run_iso_to_eagle_mapping(xml_bytes: bytes, log_callback=print,
+                             use_fuzzy: bool = False, force_hierarchical: bool = False) -> bytes:
+    log_callback("Initialising LchsXmlParser...")
+    parser = LchsXmlParser(xml_bytes, log_callback)
 
     log_callback("Extracting and semantically mapping data...")
     validated_objects = parser.extract_classes(log_callback, use_fuzzy, force_hierarchical)
