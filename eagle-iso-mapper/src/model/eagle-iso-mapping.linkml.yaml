@@ -1,0 +1,206 @@
+id: https://w3id.org/eagle/iso-land-monitoring
+name: eagle_iso_land_monitoring
+description: >
+  LinkML schema modeling the EAGLE object-oriented land characterisation framework and mapping it to ISO 19144 (LCML/LUML/LCHML) metalanguage descriptors.
+imports:
+  - linkml:types
+prefixes:
+  eagle: https://dd.eionet.europa.eu/vocabulary/landcover/eagle/
+  iso: https://standards.isotc211.org/19144/
+  linkml: https://w3id.org/linkml/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_range: string
+
+# =====================================================================
+# CLASSES
+# =====================================================================
+classes:
+  LandUnit:
+    description: "Discrete spatial geometry (data instance or grid cell) holding land characterisation observations."
+    slots:
+      - id
+      - name
+      - geometry_type
+      - land_cover_components
+      - land_use_attributes
+      - land_characteristics
+
+  LandCoverComponent:
+    description: "Base biophysical surface element (EAGLE LCC) mapped to ISO 19144-2 LC_Element."
+    slots:
+      - uri
+      - label
+      - bcv_operator
+      - iso_presence_type
+      - min_cover
+      - max_cover
+      - stratum_id
+      - characteristics
+
+  AbioticComponent:
+    is_a: LandCoverComponent
+    description: "Artificial and natural non-vegetated surfaces."
+    slots:
+      - soil_sealing_degree
+      - surface_material
+
+  BioticComponent:
+    is_a: LandCoverComponent
+    description: "Woody, herbaceous, and other biological cover features."
+    slots:
+      - leaf_form
+      - foliage_persistence
+      - growth_form
+      - crown_cover_density
+
+  WaterComponent:
+    is_a: LandCoverComponent
+    description: "Liquid and solid water bodies."
+    slots:
+      - water_state
+      - salinity
+
+  LandUseAttribute:
+    description: "Socio-economic function or activity (EAGLE LUA / HILUCS) mapped to ISO 19144-3 LUML."
+    slots:
+      - uri
+      - label
+      - hilucs_code
+      - iso_function_type
+      - functional_relationship
+      - temporal_relationship
+
+  LandCharacteristic:
+    description: "Bio-physical parameter, spatial pattern, management practice, or status parameter (EAGLE LCH)."
+    slots:
+      - uri
+      - label
+      - characteristic_type
+      - numeric_value
+      - unit
+
+# =====================================================================
+# SLOTS (ATTRIBUTES)
+# =====================================================================
+slots:
+  id:
+    identifier: true
+    range: string
+  uri:
+    range: uri
+    description: "Persistent identifier from the Eionet Data Dictionary."
+  label:
+    range: string
+  geometry_type:
+    range: string
+    description: "Spatial representation type (e.g. Polygon, GridCell_1ha)."
+  bcv_operator:
+    range: BarCodeValueEnum
+    description: "EAGLE Bar Code Value assigned to the element."
+  iso_presence_type:
+    range: ISOPresenceEnum
+    description: "Equivalent ISO 19144-2 PresenceType."
+  min_cover:
+    range: integer
+    description: "Minimum percentage cover threshold (0-100%)."
+  max_cover:
+    range: integer
+    description: "Maximum percentage cover threshold (0-100%)."
+  stratum_id:
+    range: integer
+    description: "Vertical layer/stratum ID in ISO LCML."
+  land_cover_components:
+    range: LandCoverComponent
+    multivalued: true
+    inlined: true
+  land_use_attributes:
+    range: LandUseAttribute
+    multivalued: true
+    inlined: true
+  land_characteristics:
+    range: LandCharacteristic
+    multivalued: true
+    inlined: true
+  characteristics:
+    range: LandCharacteristic
+    multivalued: true
+  hilucs_code:
+    range: string
+  iso_function_type:
+    range: string
+  functional_relationship:
+    range: FunctionalRelationshipEnum
+  temporal_relationship:
+    range: TemporalRelationshipEnum
+  soil_sealing_degree:
+    range: integer
+  surface_material:
+    range: string
+  leaf_form:
+    range: string
+  foliage_persistence:
+    range: string
+  growth_form:
+    range: string
+  crown_cover_density:
+    range: integer
+  water_state:
+    range: string
+  salinity:
+    range: string
+  characteristic_type:
+    range: string
+  numeric_value:
+    range: float
+  unit:
+    range: string
+
+# =====================================================================
+# ENUMERATIONS
+# =====================================================================
+enums:
+  BarCodeValueEnum:
+    permissible_values:
+      BCV_0:
+        description: "Absent or irrelevant"
+      BCV_1:
+        description: "Optional / typical occurrence"
+      BCV_2:
+        description: "Selective mandatory (EITHER-OR)"
+      BCV_3:
+        description: "Cumulative mandatory (AND)"
+      BCV_4:
+        description: "Paired mandatory (at least two occur)"
+      BCV_5:
+        description: "Exclusive mandatory (ONLY-THIS-ONE)"
+      BCV_X:
+        description: "Explicitly excluded"
+
+  ISOPresenceEnum:
+    permissible_values:
+      Fixed:
+        description: "Mandatory presence (maps to BCV 3)"
+      Conditional:
+        description: "Conditional presence"
+      Optional:
+        description: "Optional presence (maps to BCV 1)"
+      Exclusive:
+        description: "Exclusive presence (maps to BCV 2 / BCV 5)"
+
+  FunctionalRelationshipEnum:
+    permissible_values:
+      Primary:
+        description: "Primary socio-economic function"
+      Secondary:
+        description: "Secondary function"
+      Dominant:
+        description: "Dominant use"
+
+  TemporalRelationshipEnum:
+    permissible_values:
+      Coexistant:
+        description: "Continuous simultaneous occurrence"
+      LinearTimeSequence:
+        description: "Sequential succession (e.g. crop rotation)"
+      Cyclic:
+        description: "Regular seasonal repetition"

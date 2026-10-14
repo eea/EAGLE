@@ -1,0 +1,98 @@
+# SSSOM Metadata
+mapping_set_id: https://w3id.org/eagle/iso-19144-crosswalk
+mapping_set_title: EAGLE Concept to ISO 19144 (LCML/LUML) Semantic Mapping
+mapping_set_version: 1.0.0
+mapping_date: '2026-10-14'
+mapping_provider: https://dd.eionet.europa.eu/vocabulary/landcover/eagle/
+license: https://creativecommons.org/licenses/by/4.0/
+prefixes:
+  eagle: https://dd.eionet.europa.eu/vocabulary/landcover/eagle/
+  iso: https://standards.isotc211.org/19144/
+  skos: http://www.w3.org/2004/02/skos/core#
+  semmatch: https://w3id.org/semapv/vocab/
+  orcid: https://orcid.org/
+mapping_justification: semmatch:ManualMappingCuration
+
+# Crosswalk Mappings
+mappings:
+  # -------------------------------------------------------------------------
+  # LAND COVER COMPONENTS (EAGLE LCC <-> ISO 19144-2 LCML)
+  # -------------------------------------------------------------------------
+  - subject_id: eagle:LCC-1_1_1
+    subject_label: Sealed Artificial Surfaces and Constructions
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_BuildUpSurface
+    object_label: Built Up Surface
+    mapping_justification: semmatch:ManualMappingCuration
+    comment: EAGLE sealed surface maps 1:1 to LCML built-up surface.
+
+  - subject_id: eagle:LCC-2
+    subject_label: Biotic, Vegetation
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Vegetation
+    object_label: Vegetation
+    mapping_justification: semmatch:ManualMappingCuration
+    comment: Top-level vegetation class match.
+
+  - subject_id: eagle:LCC-1_2_2_2
+    subject_label: Bare Soils
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Soil
+    object_label: Bare Soil
+    mapping_justification: semmatch:ManualMappingCuration
+
+  # -------------------------------------------------------------------------
+  # BAR CODE VALUES & OPERATORS (EAGLE BCV <-> ISO Presence Types)
+  # -------------------------------------------------------------------------
+  - subject_id: eagle:BCV-3
+    subject_label: Cumulative Mandatory (AND-Relation)
+    predicate_id: skos:broadMatch
+    object_id: iso:PresenceType_Fixed
+    object_label: Fixed Presence
+    mapping_justification: semmatch:LogicalReasoning
+    comment: BCV 3 mandates compulsory occurrence, mapping to ISO Fixed presence.
+
+  - subject_id: eagle:BCV-1
+    subject_label: Optional / Typical Occurrence
+    predicate_id: skos:broadMatch
+    object_id: iso:PresenceType_Conditional
+    object_label: Conditional Presence
+    mapping_justification: semmatch:LogicalReasoning
+
+  - subject_id: eagle:BCV-2
+    subject_label: Selective Mandatory (EITHER-OR)
+    predicate_id: skos:broadMatch
+    object_id: iso:PresenceType_Exclusive
+    object_label: Exclusive Presence
+    mapping_justification: semmatch:LogicalReasoning
+    comment: Disjunctive OR-relation maps to ISO Exclusive presence type.
+
+  # -------------------------------------------------------------------------
+  # LAND USE ATTRIBUTES (EAGLE LUA / HILUCS <-> ISO 19144-3 LUML)
+  # -------------------------------------------------------------------------
+  - subject_id: eagle:LUA-5_1
+    subject_label: Permanent Residential
+    predicate_id: skos:broadMatch
+    object_id: iso:LU_Residential
+    object_label: Residential Function
+    mapping_justification: semmatch:ManualMappingCuration
+    comment: HILUCS residential code described via LUML residential function.
+
+  # -------------------------------------------------------------------------
+  # LAND CHARACTERISTICS (EAGLE LCH <-> ISO Extensible Codelists)
+  # -------------------------------------------------------------------------
+  - subject_id: eagle:LCH-5_1_4_5
+    subject_label: Irrigation Applied
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_IrrigationType
+    object_label: Irrigation Type Codelist
+    mapping_justification: semmatch:ManualMappingCuration
+    comment: Maps 1:1 into ISO 19144-2 extensible irrigation codelist.
+
+  - subject_id: eagle:LCH-7_3_5
+    subject_label: Urban Context
+    predicate_id: skos:closeMatch
+    object_id: iso:LC_GeoType
+    object_label: Geographical Aspect Codelist
+    mapping_justification: semmatch:ManualMappingCuration
+    comment: Context characteristics mapped via LC_GeoType extensible codelist.

@@ -1,0 +1,53 @@
+{
+    "@context": {
+        "@vocab": "https://w3id.org/eagle/iso-land-monitoring/",
+        "eagle": "https://dd.eionet.europa.eu/vocabulary/landcover/eagle/",
+        "iso": "https://standards.isotc211.org/19144/",
+        "skos": "http://www.w3.org/2004/02/skos/core#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+    },
+    "@type": "LandUnit",
+    "id": "CLC112_DiscontinuousUrbanFabric",
+    "name": "CORINE 112: Discontinuous urban fabric (30-80% artificially sealed)", "geometry_type": "Polygon", "land_cover_components": [
+        {
+            "@type": "AbioticComponent",
+            "uri": "https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-1_1_1",
+            "label": "Sealed Artificial Surfaces and Constructions", "bcv_operator": "BCV_3", "iso_presence_type": "Fixed", "min_cover": 30, "max_cover": 80, "stratum_id": 1, "surface_material": "impervious_construction_material",
+            "skos:exactMatch": "iso:LC_BuildUpSurface"
+        },
+        {
+            "@type": "BioticComponent",
+            "uri": "https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-2",
+            "label": "Biotic, Vegetation", "bcv_operator": "BCV_3", "iso_presence_type": "Fixed", "min_cover": 10, "max_cover": 70, "stratum_id": 1,
+            "skos:exactMatch": "iso:LC_Vegetation"
+        },
+        {
+            "@type": "AbioticComponent",
+            "uri": "https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-1_2_2_2",
+            "label": "Bare Soils", "bcv_operator": "BCV_1", "iso_presence_type": "Conditional", "min_cover": 0, "max_cover": 20, "stratum_id": 1,
+            "skos:exactMatch": "iso:LC_Soil"
+        }
+    ], "land_use_attributes": [
+        {
+            "@type": "LandUseAttribute",
+            "uri": "https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LUA-5_1",
+            "label": "Permanent Residential", "hilucs_code": "5.1", "functional_relationship": "Primary", "temporal_relationship": "Coexistant"
+        },
+        {
+            "@type": "LandUseAttribute",
+            "uri": "https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LUA-5_2",
+            "label": "Residential Use With Other Compatible Uses", "hilucs_code": "5.2", "functional_relationship": "Secondary", "temporal_relationship": "Coexistant"
+        }
+    ], "land_characteristics": [
+        {
+            "@type": "LandCharacteristic",
+            "uri": "https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-7_3_5",
+            "label": "Urban Context", "characteristic_type": "GeographicalContext", "bcv_operator": "BCV_2"
+        },
+        {
+            "@type": "LandCharacteristic",
+            "uri": "https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-7_3_6",
+            "label": "Rural Context", "characteristic_type": "GeographicalContext", "bcv_operator": "BCV_2"
+        }
+    ]
+}

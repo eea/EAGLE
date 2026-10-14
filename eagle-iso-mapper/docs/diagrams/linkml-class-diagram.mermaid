@@ -1,0 +1,50 @@
+classDiagram
+  direction TB
+  class LandUnit {
+    +String id
+    +String name
+    +String geometry_type
+  }
+  class LandCoverComponent {
+    +URI uri
+    +String label
+    +BarCodeValueEnum bcv_operator
+    +ISOPresenceEnum iso_presence_type
+    +Integer min_cover
+    +Integer max_cover
+    +Integer stratum_id
+  }
+  class AbioticComponent {
+    +Integer soil_sealing_degree
+    +String surface_material
+  }
+  class BioticComponent {
+    +String leaf_form
+    +String foliage_persistence
+    +String growth_form
+    +Integer crown_cover_density
+  }
+  class WaterComponent {
+    +String water_state
+    +String salinity
+  }
+  class LandUseAttribute {
+    +URI uri
+    +String label
+    +String hilucs_code
+    +FunctionalRelationshipEnum functional_relationship
+    +TemporalRelationshipEnum temporal_relationship
+  }
+  class LandCharacteristic {
+    +URI uri
+    +String label
+    +String characteristic_type
+    +Float numeric_value
+    +String unit
+  }
+  LandCoverComponent <|-- BioticComponent : s1
+  LandCoverComponent <|-- WaterComponent
+  LandUnit *-- "1..*" LandCoverComponent : land_cover_components
+  LandUnit *-- "0..*" LandUseAttribute : land_use_attributes
+  LandUnit *-- "0..*" LandCharacteristic : land_characteristics
+  LandCoverComponent o-- "0..*" LandCharacteristic : characteristics
