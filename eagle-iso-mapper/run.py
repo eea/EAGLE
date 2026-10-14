@@ -3,6 +3,11 @@ import sys
 import subprocess
 from pathlib import Path
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 def generate_models():
     """
     Programmatically generates Pydantic models from the LinkML YAML.
@@ -14,7 +19,9 @@ def generate_models():
         print("❌ Error: LinkML is not installed. Please run 'uv add linkml'.")
         sys.exit(1)
 
-    yaml_path = Path("src/model/eagle-lcml-mapping.linkml.yaml")
+    from src.config import settings
+
+    yaml_path = settings.LINKML_MODEL_PATH
     output_path = Path("src/python/generated/eagle_iso_models.py")
 
     if not yaml_path.exists():

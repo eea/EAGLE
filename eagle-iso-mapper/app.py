@@ -1,9 +1,14 @@
 import streamlit as st
 import io
 import time
+from typing import Tuple, List
+import openpyxl
+import xml.etree.ElementTree as ET
+import yaml
 
 from src.config import settings
-from typing import Tuple, List
+from src.mapping.eagle_to_iso import run_eagle_to_iso_mapping
+from src.mapping.iso_to_eagle import run_iso_to_eagle_mapping
 
 # Session State initialisieren
 if "log_messages" not in st.session_state:
@@ -88,29 +93,19 @@ if "app_ready" not in st.session_state:
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
             # Hier den Pfad zu deinem Logo (PNG/JPG/SVG)
-            st.image("images/project-logo_small.webp", use_container_width=False)
+            st.image("images/project-logo_small.webp", use_container_width=False, width=200)
         # 2. Text darunter
         st.markdown("<h2 style='text-align: center; color: #333;'>LChS Transformation Engine</h2>", unsafe_allow_html=True)
         st.markdown("<p style='text-align: center; color: #888;'>Initialisiere Systemressourcen...</p>", unsafe_allow_html=True)
 
-        # 3. Optional: Eine kleine Lade-Animation (macht es für den User 'echt')
         with col2:
-            st.progress(50)
+            st.progress(100)
 
-        # 3. HIER FINDET DAS ECHTE LADEN STATT!
-        # Anstatt blind 2 Sekunden zu warten, importierst du hier erst deine schweren Module.
-        # Streamlit zeigt währenddessen den Splash-Screen an.
-        import openpyxl
-        import xml.etree.ElementTree as ET
-        # Import the decoupled mapping logic
-        from src.mapping.eagle_to_iso import run_eagle_to_iso_mapping
-        from src.mapping.iso_to_eagle import run_iso_to_eagle_mapping
-
-        time.sleep(1.2) # Ein kleiner Moment, damit man das Logo auch genießen kann
+        time.sleep(0.6)  # Display splash screen briefly during first startup
 
         # 4. DIE MAGIE: Wir leeren den Platzhalter.
-    # Der Splash-Screen verschwindet sofort, OHNE dass die Seite neu lädt!
-    splash_placeholder.empty()
+        # Der Splash-Screen verschwindet sofort, OHNE dass die Seite neu lädt!
+        splash_placeholder.empty()
 
     # Wir merken uns, dass wir fertig sind, damit der Splash bei Button-Klicks nicht wiederkommt
     st.session_state.app_ready = True
@@ -151,8 +146,24 @@ def validate_and_get_sheets(uploaded_file) -> Tuple[bool, List[str]]:
 
         app_logger.log(f"Extracting sheets...")
 
-        # 3. Filtere direkt die relevanten Sheets
-        clc_sheets = [sheet for sheet in wb.sheetnames if sheet.startswith("CLC")]
+        # 3. Filtere gezielt Sheets, die tatsächlich EAGLE Barcoding-Daten enthalten (erkennbar an 'Class Code')
+        clc_sheets = []
+        for sheet_name in wb.sheetnames:
+            ws = wb[sheet_name]
+            has_class_code = False
+            for row in ws.iter_rows(max_row=8, max_col=6, values_only=True):
+                if any("Class Code" in str(cell or '') for cell in row):
+                    has_class_code = True
+                    break
+            if has_class_code:
+                clc_sheets.append(sheet_name)
+
+        if not clc_sheets:
+            # Fallback falls anders strukturiert
+            clc_sheets = [s for s in wb.sheetnames if s.startswith("CLC")] or list(wb.sheetnames)
+        else:
+            # Bevorzuge Multiklassen- oder CLC-Sheets ganz oben im Dropdown
+            clc_sheets.sort(key=lambda s: (0 if "all" in s.lower() else (1 if s.startswith("CLC") else 2)))
 
         # 4. EXTREM WICHTIG: Lesekopf für den Haupt-Parser wieder zurücksetzen!
         uploaded_file.seek(0)
@@ -167,7 +178,7 @@ def validate_and_get_sheets(uploaded_file) -> Tuple[bool, List[str]]:
         return False, []
 
 # --- UI TABS ---
-tab1, tab2, tab3 = st.tabs(["📊 EAGLE ➔ ISO (Excel to XML)", "📄 ISO ➔ EAGLE (XML to Excel)", "⚙️ Mapping Config"])
+tab1, tab2, tab3 = st.tabs(["📊 EAGLE ➔ ISO (Excel to XML)", "📄 ISO ➔ EAGLE (XML to Excel)", "⚙️ Mapping & Schema Config"])
 
 # ==========================================
 # TAB 1: EAGLE TO ISO
@@ -201,10 +212,9 @@ with tab1:
 
     if st.button("Map to ISO", disabled=not is_valid, type="primary"):
         try:
-            # 3. Erste Live-Nachricht ausgeben
+            # Erste Live-Nachricht ausgeben
             app_logger.log("Loading EAGLE matrix source file...")
 
-            # Datei laden (dank unserer Seek-Logik sicher)
             wb = openpyxl.load_workbook(uploaded_excel, data_only=True)
 
             # Execute Mapping, passing the live logging function as a callback
@@ -252,7 +262,6 @@ with tab2:
     app_logger.set_container(log_iso)
 
     if st.button("Map to EAGLE", disabled=not is_valid, type="primary"):
-        # Übergabe der Checkbox-Werte
         result_bytes = run_iso_to_eagle_mapping(
             uploaded_xml.getvalue(),
             log_callback=app_logger.log,
@@ -266,34 +275,53 @@ with tab2:
         st.success("Done!")
 
 # ==========================================
-# TAB 3: ADMIN (YAML Viewer)
+# TAB 3: ADMIN (SSSOM & LinkML Viewer)
 # ==========================================
 with tab3:
-    # 1. MAPPING YAML (Editable)
-    st.subheader("Mapping Aliases (mappings.yaml)")
-    with open(settings.MAPPING_CONFIG_PATH, "r") as f:
-        current_yaml = f.read()
+    st.subheader("SSSOM Crosswalk Mapping (eagle_iso_sssom.yaml)")
+    st.markdown("Semantic mappings between EAGLE and ISO 19144 (LCML/LUML).")
 
-    new_yaml = st.code(current_yaml, language="yaml", height=380)
+    # Show SSSOM table summary
+    try:
+        from src.mapping.sssom_engine import sssom_resolver
+        if sssom_resolver.msdf is not None and not sssom_resolver.msdf.df.empty:
+            summary_cols = ["subject_id", "subject_label", "predicate_id", "object_id", "object_label"]
+            available_cols = [c for c in summary_cols if c in sssom_resolver.msdf.df.columns]
+            st.dataframe(sssom_resolver.msdf.df[available_cols], use_container_width=True, height=260)
+    except Exception as e:
+        st.warning(f"Could not render SSSOM summary table: {e}")
 
-    if st.button("Save Mapping Aliases"):
+    # SSSOM Raw YAML editor
+    import yaml
+    if settings.SSSOM_CONFIG_PATH.exists():
+        with open(settings.SSSOM_CONFIG_PATH, "r", encoding="utf-8") as f:
+            current_yaml = f.read()
+    else:
+        current_yaml = ""
+
+    new_yaml = st.text_area("Edit SSSOM YAML", value=current_yaml, height=300)
+
+    if st.button("Save SSSOM Crosswalk"):
         try:
             yaml.safe_load(new_yaml)
-            with open(settings.MAPPING_CONFIG_PATH, "w") as f:
+            with open(settings.SSSOM_CONFIG_PATH, "w", encoding="utf-8") as f:
                 f.write(new_yaml)
-            st.success("Saved!")
+            sssom_resolver.load()
+            st.success("SSSOM crosswalk updated and reloaded successfully!")
         except Exception as e:
-            st.error(f"Error: {e}")
+            st.error(f"Error saving SSSOM YAML: {e}")
 
-    # 2. LinkML schema (read-only)
-    st.subheader("LinkML Model (read-only)")
+    st.divider()
+
+    # LinkML Model viewer
+    st.subheader("LinkML Model (eagle-iso-mapping.linkml.yaml)")
     if settings.LINKML_MODEL_PATH.exists():
-        with open(settings.LINKML_MODEL_PATH, "r") as g:
+        with open(settings.LINKML_MODEL_PATH, "r", encoding="utf-8") as g:
             linkml_yaml = g.read()
     else:
-        linkml_yaml ="LinkML model file not found."
+        linkml_yaml = "LinkML model file not found."
 
-    st.code(linkml_yaml, language="yaml", height=200)
+    st.code(linkml_yaml, language="yaml", height=250)
 
 # ==========================================
 # GEMEINSAMER UNTERER BEREICH (Log & Download)

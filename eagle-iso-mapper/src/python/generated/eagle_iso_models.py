@@ -66,146 +66,224 @@ class LinkMLMeta(RootModel):
         return key in self.root
 
 
-linkml_meta = LinkMLMeta({'default_prefix': 'eagle',
-     'description': 'Complete LinkML model for the conceptual mapping of CORINE '
-                    'classes CLC112, CLC212 and CLC322',
-     'id': 'https://w3id.org/eagle-iso-mapping-corine',
+linkml_meta = LinkMLMeta({'default_prefix': 'https://w3id.org/eagle/iso-land-monitoring/',
+     'default_range': 'string',
+     'description': 'LinkML schema modeling the EAGLE object-oriented land '
+                    'characterisation framework and mapping it to ISO 19144 '
+                    '(LCML/LUML/LCHML) metalanguage descriptors.\n',
+     'id': 'https://w3id.org/eagle/iso-land-monitoring',
      'imports': ['linkml:types'],
-     'name': 'eagle_lcml_crosswalk_corine',
+     'name': 'eagle_iso_land_monitoring',
      'prefixes': {'eagle': {'prefix_prefix': 'eagle',
-                            'prefix_reference': 'https://example.org/eagle-schema/'},
-                  'lcml': {'prefix_prefix': 'lcml',
-                           'prefix_reference': 'https://example.org/iso19144-2/'},
+                            'prefix_reference': 'https://dd.eionet.europa.eu/vocabulary/landcover/eagle/'},
+                  'iso': {'prefix_prefix': 'iso',
+                          'prefix_reference': 'https://standards.isotc211.org/19144/'},
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
                   'skos': {'prefix_prefix': 'skos',
                            'prefix_reference': 'http://www.w3.org/2004/02/skos/core#'}},
-     'source_file': 'src\\model\\eagle-lcml-mapping.linkml.yaml'} )
+     'source_file': 'src\\model\\eagle-iso-mapping.linkml.yaml'} )
 
-class EagleMatrixValue(str, Enum):
+class BarCodeValueEnum(str, Enum):
+    BCV_0 = "BCV_0"
     """
-    EAGLE Matrix Values for Land Cover Components
+    Absent or irrelevant
     """
-    number_1 = "1"
+    BCV_1 = "BCV_1"
     """
-    Optional element (Conditional Temporal)
+    Optional / typical occurrence
     """
-    number_2 = "2"
+    BCV_2 = "BCV_2"
     """
-    EITHER-OR relationship (Exclusive)
+    Selective mandatory (EITHER-OR)
     """
-    number_3 = "3"
+    BCV_3 = "BCV_3"
     """
-    Mandatory element (Fixed)
+    Cumulative mandatory (AND)
+    """
+    BCV_4 = "BCV_4"
+    """
+    Paired mandatory (at least two occur)
+    """
+    BCV_5 = "BCV_5"
+    """
+    Exclusive mandatory (ONLY-THIS-ONE)
+    """
+    BCV_X = "BCV_X"
+    """
+    Explicitly excluded
     """
 
 
-class LcmlPresenceType(str, Enum):
-    """
-    ISO 19144-2 Presence Types mapped to EAGLE Values
-    """
-    ConditionalTemporal = "ConditionalTemporal"
-    Exclusive = "Exclusive"
+class ISOPresenceEnum(str, Enum):
     Fixed = "Fixed"
-    Precluded = "Precluded"
     """
-    Explicit exclusion (e.g., for rice/hops in CLC212)
+    Mandatory presence (maps to BCV 3)
     """
-
-
-class EagleLccType(str, Enum):
+    Conditional = "Conditional"
     """
-    Specific Land Cover Components (LCC)
+    Conditional presence
     """
-    SealedArtificialSurface = "SealedArtificialSurface"
-    BioticVegetation = "BioticVegetation"
-    SpecificBuildings = "SpecificBuildings"
-    BareSoil = "BareSoil"
-    HerbaceousVegetation = "HerbaceousVegetation"
-    NaturalSurfaces = "NaturalSurfaces"
-    Trees = "Trees"
-    Shrubs = "Shrubs"
-    Algae = "Algae"
-    LichenMosses = "LichenMosses"
-    Forbs = "Forbs"
-    Graminoids = "Graminoids"
-
-
-class LcmlIrrigationType(str, Enum):
+    Optional = "Optional"
     """
-    ISO 19144-2 Cultivated and Managed Vegetation Characteristic
+    Optional presence (maps to BCV 1)
     """
-    Sprinkler = "Sprinkler"
+    Exclusive = "Exclusive"
     """
-    Specific irrigation type
-    """
-    Manual = "Manual"
-    """
-    Manual irrigation
-    """
-    Unspecified = "Unspecified"
-    """
-    Irrigation Applied, Method Unspecified
+    Exclusive presence (maps to BCV 2 / BCV 5)
     """
 
 
-
-class CorineClass(ConfiguredBaseModel):
+class FunctionalRelationshipEnum(str, Enum):
+    Primary = "Primary"
     """
-    Base class for mapping a CORINE nomenclature
+    Primary socio-economic function
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/eagle-iso-mapping-corine'})
-
-    class_code: str = Field(default=..., json_schema_extra = { "linkml_meta": {'domain_of': ['CorineClass']} })
-    class_name: str = Field(default=..., json_schema_extra = { "linkml_meta": {'domain_of': ['CorineClass']} })
-    components: Optional[list[LandCoverComponent]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CorineClass']} })
-    characteristics: Optional[list[LandCharacteristic]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['CorineClass']} })
-
-
-class LandCharacteristic(ConfiguredBaseModel):
+    Secondary = "Secondary"
     """
-    Land Characteristics (LCH)
+    Secondary function
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/eagle-iso-mapping-corine'})
+    Dominant = "Dominant"
+    """
+    Dominant use
+    """
 
-    characteristic_type: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCharacteristic']} })
-    irrigation_type: Optional[LcmlIrrigationType] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCharacteristic']} })
-    is_mappable_to_lcml: Optional[bool] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCharacteristic']} })
+
+class TemporalRelationshipEnum(str, Enum):
+    Coexistant = "Coexistant"
+    """
+    Continuous simultaneous occurrence
+    """
+    LinearTimeSequence = "LinearTimeSequence"
+    """
+    Sequential succession (e.g. crop rotation)
+    """
+    Cyclic = "Cyclic"
+    """
+    Regular seasonal repetition
+    """
+
+
+
+class LandUnit(ConfiguredBaseModel):
+    """
+    Discrete spatial geometry (data instance or grid cell) holding land characterisation observations.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/eagle/iso-land-monitoring'})
+
+    id: str = Field(default=..., json_schema_extra = { "linkml_meta": {'domain_of': ['LandUnit']} })
+    name: Optional[str] = Field(default=None, description="""Human-readable name or designation of the land unit.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandUnit']} })
+    geometry_type: Optional[str] = Field(default=None, description="""Spatial representation type (e.g. Polygon, GridCell_1ha).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandUnit']} })
+    land_cover_components: Optional[list[LandCoverComponent]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandUnit']} })
+    land_use_attributes: Optional[list[LandUseAttribute]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandUnit']} })
+    land_characteristics: Optional[list[LandCharacteristic]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandUnit']} })
 
 
 class LandCoverComponent(ConfiguredBaseModel):
     """
-    LCC definition including smart default mapping
+    Base biophysical surface element (EAGLE LCC) mapped to ISO 19144-2 LC_Element.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/eagle-iso-mapping-corine',
-         'rules': [{'description': 'Reconstruct coverage thresholds for CLC112 using '
-                                   'factor 055',
-                    'postconditions': {'slot_conditions': {'coverage_max': {'equals_number': 80,
-                                                                            'name': 'coverage_max'},
-                                                           'coverage_min': {'equals_number': 30,
-                                                                            'name': 'coverage_min'}}},
-                    'preconditions': {'slot_conditions': {'eagle_factor': {'equals_string': '055',
-                                                                           'name': 'eagle_factor'}}}},
-                   {'description': 'Reconstruct coverage thresholds for CLC212 using '
-                                   'factor >75%',
-                    'postconditions': {'slot_conditions': {'coverage_max': {'equals_number': 100,
-                                                                            'name': 'coverage_max'},
-                                                           'coverage_min': {'equals_number': 75,
-                                                                            'name': 'coverage_min'}}},
-                    'preconditions': {'slot_conditions': {'eagle_factor': {'equals_string': '075_plus',
-                                                                           'name': 'eagle_factor'}}}}]})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/eagle/iso-land-monitoring'})
 
-    lcc_type: EagleLccType = Field(default=..., json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
-    eagle_value: Optional[EagleMatrixValue] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
-    presence_type: Optional[LcmlPresenceType] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
-    eagle_factor: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
-    coverage_min: Optional[int] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
-    coverage_max: Optional[int] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
-    floristic_aspects: Optional[list[str]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    uri: Optional[str] = Field(default=None, description="""Persistent identifier from the Eionet Data Dictionary.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    label: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    bcv_operator: Optional[BarCodeValueEnum] = Field(default=None, description="""EAGLE Bar Code Value assigned to the element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    iso_presence_type: Optional[ISOPresenceEnum] = Field(default=None, description="""Equivalent ISO 19144-2 PresenceType.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    min_cover: Optional[int] = Field(default=None, description="""Minimum percentage cover threshold (0-100%).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    max_cover: Optional[int] = Field(default=None, description="""Maximum percentage cover threshold (0-100%).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    stratum_id: Optional[int] = Field(default=None, description="""Vertical layer/stratum ID in ISO LCML.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    characteristics: Optional[list[LandCharacteristic]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+
+
+class AbioticComponent(LandCoverComponent):
+    """
+    Artificial and natural non-vegetated surfaces.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/eagle/iso-land-monitoring'})
+
+    soil_sealing_degree: Optional[int] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['AbioticComponent']} })
+    surface_material: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['AbioticComponent']} })
+    uri: Optional[str] = Field(default=None, description="""Persistent identifier from the Eionet Data Dictionary.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    label: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    bcv_operator: Optional[BarCodeValueEnum] = Field(default=None, description="""EAGLE Bar Code Value assigned to the element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    iso_presence_type: Optional[ISOPresenceEnum] = Field(default=None, description="""Equivalent ISO 19144-2 PresenceType.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    min_cover: Optional[int] = Field(default=None, description="""Minimum percentage cover threshold (0-100%).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    max_cover: Optional[int] = Field(default=None, description="""Maximum percentage cover threshold (0-100%).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    stratum_id: Optional[int] = Field(default=None, description="""Vertical layer/stratum ID in ISO LCML.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    characteristics: Optional[list[LandCharacteristic]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+
+
+class BioticComponent(LandCoverComponent):
+    """
+    Woody, herbaceous, and other biological cover features.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/eagle/iso-land-monitoring'})
+
+    leaf_form: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['BioticComponent']} })
+    foliage_persistence: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['BioticComponent']} })
+    growth_form: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['BioticComponent']} })
+    crown_cover_density: Optional[int] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['BioticComponent']} })
+    uri: Optional[str] = Field(default=None, description="""Persistent identifier from the Eionet Data Dictionary.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    label: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    bcv_operator: Optional[BarCodeValueEnum] = Field(default=None, description="""EAGLE Bar Code Value assigned to the element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    iso_presence_type: Optional[ISOPresenceEnum] = Field(default=None, description="""Equivalent ISO 19144-2 PresenceType.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    min_cover: Optional[int] = Field(default=None, description="""Minimum percentage cover threshold (0-100%).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    max_cover: Optional[int] = Field(default=None, description="""Maximum percentage cover threshold (0-100%).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    stratum_id: Optional[int] = Field(default=None, description="""Vertical layer/stratum ID in ISO LCML.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    characteristics: Optional[list[LandCharacteristic]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+
+
+class WaterComponent(LandCoverComponent):
+    """
+    Liquid and solid water bodies.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/eagle/iso-land-monitoring'})
+
+    water_state: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['WaterComponent']} })
+    salinity: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['WaterComponent']} })
+    uri: Optional[str] = Field(default=None, description="""Persistent identifier from the Eionet Data Dictionary.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    label: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    bcv_operator: Optional[BarCodeValueEnum] = Field(default=None, description="""EAGLE Bar Code Value assigned to the element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    iso_presence_type: Optional[ISOPresenceEnum] = Field(default=None, description="""Equivalent ISO 19144-2 PresenceType.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    min_cover: Optional[int] = Field(default=None, description="""Minimum percentage cover threshold (0-100%).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    max_cover: Optional[int] = Field(default=None, description="""Maximum percentage cover threshold (0-100%).""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    stratum_id: Optional[int] = Field(default=None, description="""Vertical layer/stratum ID in ISO LCML.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+    characteristics: Optional[list[LandCharacteristic]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent']} })
+
+
+class LandUseAttribute(ConfiguredBaseModel):
+    """
+    Socio-economic function or activity (EAGLE LUA / HILUCS) mapped to ISO 19144-3 LUML.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/eagle/iso-land-monitoring'})
+
+    uri: Optional[str] = Field(default=None, description="""Persistent identifier from the Eionet Data Dictionary.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    label: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    hilucs_code: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandUseAttribute']} })
+    iso_function_type: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandUseAttribute']} })
+    functional_relationship: Optional[FunctionalRelationshipEnum] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandUseAttribute']} })
+    temporal_relationship: Optional[TemporalRelationshipEnum] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandUseAttribute']} })
+
+
+class LandCharacteristic(ConfiguredBaseModel):
+    """
+    Bio-physical parameter, spatial pattern, management practice, or status parameter (EAGLE LCH).
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/eagle/iso-land-monitoring'})
+
+    uri: Optional[str] = Field(default=None, description="""Persistent identifier from the Eionet Data Dictionary.""", json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    label: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCoverComponent', 'LandUseAttribute', 'LandCharacteristic']} })
+    characteristic_type: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCharacteristic']} })
+    numeric_value: Optional[float] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCharacteristic']} })
+    unit: Optional[str] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['LandCharacteristic']} })
 
 
 # Model rebuild
 # see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
-CorineClass.model_rebuild()
-LandCharacteristic.model_rebuild()
+LandUnit.model_rebuild()
 LandCoverComponent.model_rebuild()
+AbioticComponent.model_rebuild()
+BioticComponent.model_rebuild()
+WaterComponent.model_rebuild()
+LandUseAttribute.model_rebuild()
+LandCharacteristic.model_rebuild()

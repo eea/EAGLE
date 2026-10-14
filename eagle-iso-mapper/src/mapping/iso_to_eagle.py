@@ -1,163 +1,112 @@
 import io
-import xml.etree.ElementTree as ET
-import openpyxl
-import os
 import re
-import yaml
-from typing import List
-from src.config import settings
+import xml.etree.ElementTree as ET
+from typing import List, Optional, Dict, Any, Tuple
+import openpyxl
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+
 from src.python.generated.eagle_iso_models import (
-    CorineClass,
+    LandUnit,
     LandCoverComponent,
-    LcmlPresenceType,
-    EagleLccType,
-    EagleMatrixValue
+    AbioticComponent,
+    BioticComponent,
+    WaterComponent,
+    LandUseAttribute,
+    LandCharacteristic,
+    BarCodeValueEnum,
+    ISOPresenceEnum,
+    FunctionalRelationshipEnum,
+    TemporalRelationshipEnum
 )
+from src.mapping.sssom_engine import sssom_resolver
+
 
 class LchsXmlParser:
-    """Parses raw data and applies semantic mapping to EAGLE.
-    Supports both hierarchical (mock) and relational (official) LChS XML structures."""
+    """
+    Parses LChS / ISO 19144 XML (relational or hierarchical) into validated LandUnit objects.
+    Uses SSSOM crosswalk for reverse mapping from ISO block references to EAGLE concepts.
+    """
 
-    def __init__(self, xml_bytes: bytes, log=print):
-        xml_str = xml_bytes.decode('utf-8', errors='ignore')
-        # Remove namespaces for robust parsing
+    def __init__(self, xml_bytes: bytes, log_callback=print):
+        self.log = log_callback
+        xml_str = xml_bytes.decode("utf-8", errors="ignore")
+        # Strip default xmlns to simplify XPath handling
         xml_str = re.sub(r'\sxmlns="[^"]+"', '', xml_str, count=1)
-        self.mappings = self._load_mappings()
         self.root = ET.fromstring(xml_str)
 
-        log("parsing LChS XML...")
-
+        # Remove XML namespaces from tags
         for elem in self.root.iter():
-            if '}' in elem.tag:
-                elem.tag = elem.tag.split('}', 1)[1]
-            if ':' in elem.tag:
-                elem.tag = elem.tag.split(':', 1)[1]
+            if "}" in elem.tag:
+                elem.tag = elem.tag.split("}", 1)[1]
+            if ":" in elem.tag:
+                elem.tag = elem.tag.split(":", 1)[1]
 
-    def _load_mappings(self):
-        if not settings.MAPPING_CONFIG_PATH.exists():
-            os.makedirs(settings.MAPPING_CONFIG_PATH.parent, exist_ok=True)
-            with open(settings.MAPPING_CONFIG_PATH, "w") as f:
-                yaml.dump({}, f)
-            return {}
-
-        with open(settings.MAPPING_CONFIG_PATH, "r") as f:
-            return yaml.safe_load(f) or {}
-
-    def _resolve_alias(self, search_str: str) -> str:
-        """checks if str is contained in any EAGLE alias mapping"""
-        for eagle_class, aliases in self.mappings.items():
-            if search_str in aliases or search_str == eagle_class:
-                return eagle_class
-        return search_str
-
-    def _map_eagle_value(self, presence_str: str):
-        """Translates ISO Presence Type to EAGLE Barcode."""
-        mapping = {
-            "Fixed": "3",
-            "Exclusive": "2",
-            "ConditionalTemporal": "1",
-            "Conditional Temporal": "1" # LChS uses a space here
-        }
-        for key, val in mapping.items():
-            if key.lower() in presence_str.lower():
-                return val
-        return None
-
-    def _map_eagle_factor(self, c_min, c_max):
-        """Translates ISO Min/Max back to EAGLE factor."""
-        if c_min == 30 and c_max == 80:
-            return "055"
-        if c_min is not None and c_max is not None:
-            # 0 to 100 is usually the default for "unspecified", avoid writing it as factor '50'
-            if c_min == 0 and c_max == 100:
-                return None
-            return str(int((c_min + c_max) / 2))
-        return None
-
-    def extract_classes(self, log, use_fuzzy: bool, force_hierarchical: bool) -> List[CorineClass]:
-        # Logik: Wenn forced, dann hierarchisch, sonst Autodetect
-        if force_hierarchical or (self.root.find('.//LegendClass') is not None and self.root.find('.//LC_Class') is None):
-            log("ℹ️ Parsing in Hierarchical Mode...")
-            return self._extract_lchs_hierarchical(log, use_fuzzy)
+    def extract_land_units(self, use_fuzzy: bool = True, force_hierarchical: bool = False) -> List[LandUnit]:
+        if force_hierarchical or (self.root.find(".//LegendClass") is not None and self.root.find(".//LC_Class") is None):
+            self.log("Parsing ISO XML in Hierarchical Mode...")
+            return self._extract_hierarchical(use_fuzzy)
         else:
-            log("ℹ️ Parsing in Relational Mode...")
-            return self._extract_lchs_relational(log, use_fuzzy)
+            self.log("Parsing ISO XML in Relational Mode (official LChS structure)...")
+            return self._extract_relational(use_fuzzy)
 
-    def _fuzzy_match_enum(self, enum_class, search_str: str, use_fuzzy: bool):
-        if not search_str: return None
-
-        # 1. Alias Check (YAML)
-        resolved = self._resolve_alias(search_str)
-        if resolved in enum_class.__members__:
-            return enum_class[resolved]
-
-        # 2. Fuzzy Matching
-        if not use_fuzzy:
-            return enum_class.get(search_str)
-
-        # Cleanup: all lowercase, remove blanks, underscore, prefix LC_
-        clean = search_str.lower().replace(" ", "").replace("lc_", "").replace("_", "")
-
-        # build a list of all variants to test against
-        # also include standard and Latin Plural forms
-        variants = {
-            clean,
-            clean + "s",
-            clean.rstrip("s"),
-            clean.replace("ae", "a") # Für Algae/Alga
-        }
-
-        for name, member in enum_class.__members__.items():
-            if name.lower() in variants:
-                return member
-        return None
-
-    def _extract_lchs_relational(self, log, use_fuzzy: bool) -> List[CorineClass]:
-        """Parses the complex ID-linked relational structure from the official LChS Tool."""
-        classes = {}
-        class_to_hp = {}
-        hp_to_stratum = {}
-        stratum_to_props = {}
-
-        log("extracting classes from LChS XML structure... (relational mode)")
+    def _extract_relational(self, use_fuzzy: bool) -> List[LandUnit]:
+        classes: Dict[str, Dict[str, Any]] = {}
+        class_to_hp: Dict[str, List[str]] = {}
+        hp_to_stratum: Dict[str, List[str]] = {}
+        stratum_to_props: Dict[str, List[Dict[str, Any]]] = {}
+        stratum_to_chars: Dict[str, List[Dict[str, Any]]] = {}
 
         # 1. Parse Classes
-        for lc_class in self.root.findall('.//LC_Class'):
-            c_id = lc_class.findtext('class_id')
-            c_code_raw = lc_class.findtext('class_map_code')
-            c_name = lc_class.findtext('class_name')
+        for lc_class in self.root.findall(".//LC_Class"):
+            c_id = lc_class.findtext("class_id")
+            c_code_raw = lc_class.findtext("class_map_code")
+            c_name = lc_class.findtext("class_name")
 
-            if c_id and c_code_raw and c_name:
-                c_id = c_id.strip() # Safety first!
-                clean_code = c_code_raw.replace(" ", "").strip()
-                classes[c_id] = CorineClass(class_code=clean_code, class_name=c_name.strip(), components=[])
-                class_to_hp[c_id] = []
+            if c_id and c_name:
+                c_id_clean = c_id.strip()
+                code_clean = (c_code_raw or f"C{c_id_clean}").replace(" ", "").strip()
+                classes[c_id_clean] = {
+                    "id": code_clean,
+                    "name": c_name.strip(),
+                    "land_cover_components": [],
+                    "land_use_attributes": [],
+                    "land_characteristics": []
+                }
+                class_to_hp[c_id_clean] = []
 
-        # 2. Parse Horizontal Patterns mapping
-        for hp in self.root.findall('.//LC_HorizontalPatterns'):
-            c_id = hp.findtext('class_id')
-            hp_id = hp.findtext('horizontal_pattern_id')
+        # 2. Horizontal Patterns
+        for hp in self.root.findall(".//LC_HorizontalPatterns"):
+            c_id = hp.findtext("class_id")
+            hp_id = hp.findtext("horizontal_pattern_id")
             if c_id and hp_id:
-                class_to_hp[c_id.strip()].append(hp_id.strip())
-                hp_to_stratum[hp_id.strip()] = []
+                c_key = c_id.strip()
+                hp_key = hp_id.strip()
+                if c_key in class_to_hp:
+                    class_to_hp[c_key].append(hp_key)
+                hp_to_stratum[hp_key] = []
 
-        # 3. Parse Strata mapping
-        for stratum in self.root.findall('.//LC_Strata'):
-            hp_id = stratum.findtext('HPID')
-            stratum_id = stratum.findtext('stratumID')
+        # 3. Strata
+        for stratum in self.root.findall(".//LC_Strata"):
+            hp_id = stratum.findtext("HPID")
+            stratum_id = stratum.findtext("stratumID")
             if hp_id and stratum_id:
-                hp_to_stratum[hp_id.strip()].append(stratum_id.strip())
-                stratum_to_props[stratum_id.strip()] = []
+                hp_key = hp_id.strip()
+                st_key = stratum_id.strip()
+                if hp_key in hp_to_stratum:
+                    hp_to_stratum[hp_key].append(st_key)
+                stratum_to_props[st_key] = []
+                stratum_to_chars[st_key] = []
 
-        # 4. Parse Properties
-        for prop in self.root.findall('.//LC_Properties'):
-            stratum_id = prop.findtext('StratumID')
-            if stratum_id and stratum_id.strip() in stratum_to_props:
-                block_ref = prop.findtext('BlockReference')
-                presence_str = prop.findtext('elementPresenceType')
+        # 4. Properties (LC_Properties)
+        for prop in self.root.findall(".//LC_Properties"):
+            stratum_id = prop.findtext("StratumID")
+            if stratum_id:
+                st_key = stratum_id.strip()
+                block_ref = prop.findtext("BlockReference")
+                presence_str = prop.findtext("elementPresenceType")
 
                 covers = []
-                for c in prop.findall('cover'):
+                for c in prop.findall("cover"):
                     try:
                         covers.append(int(float(c.text)))
                     except (ValueError, TypeError):
@@ -166,206 +115,322 @@ class LchsXmlParser:
                 c_min = covers[0] if len(covers) > 0 else None
                 c_max = covers[1] if len(covers) > 1 else c_min
 
-                stratum_to_props[stratum_id].append({
-                    'block_ref': block_ref,
-                    'presence_str': presence_str,
-                    'c_min': c_min,
-                    'c_max': c_max
+                if st_key not in stratum_to_props:
+                    stratum_to_props[st_key] = []
+
+                stratum_to_props[st_key].append({
+                    "block_ref": block_ref,
+                    "presence_str": presence_str,
+                    "c_min": c_min,
+                    "c_max": c_max
                 })
 
-        log(f"Found Strata with properties: { {k: len(v) for k, v in stratum_to_props.items() if v} }")
+        # 5. Characteristics (LC_Characteristics)
+        for char in self.root.findall(".//LC_Characteristics"):
+            stratum_id = char.findtext("StratumID")
+            if stratum_id:
+                st_key = stratum_id.strip()
+                if st_key not in stratum_to_chars:
+                    stratum_to_chars[st_key] = []
+                stratum_to_chars[st_key].append({
+                    "ref": char.findtext("CharacteristicReference"),
+                    "label": char.findtext("CharacteristicLabel"),
+                    "irrigation_type": char.findtext("irrigationType"),
+                    "species_name": char.findtext("speciesName")
+                })
 
-        # 5. Assemble everything into Pydantic Objects
-        # Map LChS internal BlockReferences to our EAGLE LinkML concepts
-        block_ref_mapping = {
-            "LC_BuiltUpSurface": EagleLccType.SealedArtificialSurface,
-            "LC_VegetationElement": EagleLccType.BioticVegetation,
-            "LC_Building": EagleLccType.SpecificBuildings,
-            "LC_BareSoil": EagleLccType.BareSoil,
-            "LC_Graminoid": EagleLccType.Graminoids,
-            "LC_NaturalSurfaceElement": EagleLccType.NaturalSurfaces
-        }
+        # 6. Map to LandUnit Pydantic objects using SSSOM
+        land_units: List[LandUnit] = []
+        for c_id, class_dict in classes.items():
+            self.log(f"Processing ISO class {c_id}: {class_dict['id']} ({class_dict['name']})")
 
-        extracted = []
-        for c_id, corine_class in classes.items():
-            log(f"processing class {c_id} ({corine_class.class_code})")
-
+            # Collect all strata belonging to this class
+            associated_strata = []
             for hp_id in class_to_hp.get(c_id, []):
-                for stratum_id in hp_to_stratum.get(hp_id, []):
-                    for prop in stratum_to_props.get(stratum_id, []):
+                associated_strata.extend(hp_to_stratum.get(hp_id, []))
 
-                        block_ref = prop['block_ref']
-                        presence_str = prop['presence_str']
-                        c_min = prop['c_min']
-                        c_max = prop['c_max']
+            # If no strata mapped explicitly, fallback to stratum_id == c_id
+            if not associated_strata and c_id in stratum_to_props:
+                associated_strata = [c_id]
 
-                        if not block_ref or not presence_str:
-                            continue
+            components: List[LandCoverComponent] = []
+            characteristics: List[LandCharacteristic] = []
+            seen_components = set()
 
-                        lcc_type = block_ref_mapping.get(block_ref)
-                        if not lcc_type:
-                            lcc_type = self._fuzzy_match_enum(EagleLccType, block_ref, use_fuzzy)
+            for st_id in associated_strata:
+                for prop in stratum_to_props.get(st_id, []):
+                    block_ref = prop.get("block_ref")
+                    presence_str = prop.get("presence_str")
+                    c_min = prop.get("c_min")
+                    c_max = prop.get("c_max")
 
-                        if not lcc_type:
-                            log(f"⚠️️ Unmapped BlockReference '{block_ref}'. Skipping.")
-                            continue
+                    if not block_ref or not presence_str:
+                        continue
 
-                        presence = self._fuzzy_match_enum(LcmlPresenceType, presence_str, use_fuzzy)
-                        if not presence:
-                            log(f"⚠️ Unmapped PresenceType '{presence_str}'. Skipping.")
-                            continue
+                    # SSSOM Reverse lookup
+                    sssom_match = sssom_resolver.resolve_iso_to_eagle(block_ref)
+                    eagle_code = sssom_match["subject_id"] if sssom_match else None
+                    eagle_label = sssom_match["subject_label"] if sssom_match else block_ref.replace("LC_", "")
 
-                        eagle_val_str = self._map_eagle_value(presence_str)
-                        if not eagle_val_str:
-                            # Typically happens on 'Precluded' values. We skip them for EAGLE.
-                            continue
+                    # Map presence type & barcode enum
+                    bcv_enum = sssom_resolver.map_presence_to_bcv(presence_str)
+                    iso_presence = sssom_resolver.map_bcv_to_presence(bcv_enum.value.replace("BCV_", ""))
 
-                        factor = self._map_eagle_factor(c_min, c_max)
+                    # Deduplicate components
+                    comp_key = (eagle_code or block_ref)
+                    if comp_key in seen_components:
+                        continue
+                    seen_components.add(comp_key)
 
-                        if c_min == 0 and c_max == 100:
-                            c_min, c_max = None, None
+                    is_abiotic = any(term in eagle_label.lower() for term in ["sealed", "surface", "soil", "rock", "construction", "building"])
+                    is_water = any(term in eagle_label.lower() for term in ["water", "snow", "ice"])
 
-                        try:
-                            comp = LandCoverComponent(
-                                lcc_type=lcc_type,
-                                presence_type=presence,
-                                eagle_value=EagleMatrixValue(eagle_val_str),
-                                eagle_factor=factor,
-                                coverage_min=c_min,
-                                coverage_max=c_max
-                            )
-                            corine_class.components.append(comp)
-                        except Exception as e:
-                            log(f"⚠️ Error creating component {block_ref}: {e}")
-
-            # Deduplicate components (Relational XML often maps the same component multiple times)
-            unique_comps = {}
-            for comp in corine_class.components:
-                comp_type = getattr(comp.lcc_type, 'name', str(comp.lcc_type))
-                if comp_type not in unique_comps or comp.eagle_factor is not None:
-                    unique_comps[comp_type] = comp
-
-            corine_class.components = list(unique_comps.values())
-            extracted.append(corine_class)
-
-        return extracted
-
-    def _extract_lchs_hierarchical(self, log, use_fuzzy: bool) -> List[CorineClass]:
-        """Parses our simplified, generated XML."""
-        log("extracting classes from LChS XML structure... (hierarchical mode)")
-        extracted_classes = []
-
-        for legend_class in self.root.findall('.//LegendClass'):
-            class_code = legend_class.find('Code')
-            class_name = legend_class.find('Name')
-
-            if class_code is None or class_name is None:
-                continue
-
-            # Sanitize the class code: remove all spaces
-            clean_code = class_code.text.replace(" ", "").strip()
-            class_name = class_name.text.strip() if class_name.text else ""
-
-            components = []
-            for element in legend_class.findall('.//LC_Element'):
-                try:
-                    type_str = element.get('type')
-                    lcc_type = self._fuzzy_match_enum(EagleLccType, type_str, use_fuzzy)
-                    if not lcc_type: continue
-
-                    presence_node = element.find('PresenceType')
-                    presence, eagle_val_str = None, None
-
-                    if presence_node is not None:
-                        presence = self._fuzzy_match_enum(LcmlPresenceType, presence_node.text, use_fuzzy)
-                        if presence:
-                            eagle_val_str = self._map_eagle_value(str(presence.value) if hasattr(presence, 'value') else str(presence))
-
-                    if not eagle_val_str: continue
-
-                    cov_min_node = element.find('CoverMin')
-                    cov_max_node = element.find('CoverMax')
-                    c_min = int(cov_min_node.text) if (cov_min_node is not None and cov_min_node.text) else None
-                    c_max = int(cov_max_node.text) if (cov_max_node is not None and cov_max_node.text) else None
-
-                    factor = self._map_eagle_factor(c_min, c_max)
-
-                    comp = LandCoverComponent(
-                        lcc_type=lcc_type, presence_type=presence, eagle_value=EagleMatrixValue(eagle_val_str),
-                        eagle_factor=factor, coverage_min=c_min, coverage_max=c_max
+                    comp_args = dict(
+                        uri=f"https://dd.eionet.europa.eu/vocabulary/landcover/eagle/{eagle_code.replace('eagle:', '')}" if eagle_code else None,
+                        label=eagle_label,
+                        bcv_operator=bcv_enum,
+                        iso_presence_type=iso_presence,
+                        min_cover=c_min,
+                        max_cover=c_max,
+                        stratum_id=int(st_id) if st_id.isdigit() else 1
                     )
+
+                    if is_abiotic:
+                        comp = AbioticComponent(**comp_args)
+                    elif is_water:
+                        comp = WaterComponent(**comp_args)
+                    else:
+                        comp = BioticComponent(**comp_args)
+
                     components.append(comp)
-                except Exception as e:
-                    pass
 
-            extracted_classes.append(CorineClass(
-                class_code=clean_code,
-                class_name=class_name,
-                components=components
-            ))
+                # Process Characteristics for this stratum
+                for char in stratum_to_chars.get(st_id, []):
+                    irr = char.get("irrigation_type")
+                    sp = char.get("species_name")
+                    if irr:
+                        characteristics.append(LandCharacteristic(
+                            label=f"Irrigation ({irr})",
+                            characteristic_type="Irrigation"
+                        ))
+                    if sp:
+                        characteristics.append(LandCharacteristic(
+                            label=f"Species: {sp}",
+                            characteristic_type="FloristicAspect"
+                        ))
 
-        return extracted_classes
+            unit = LandUnit(
+                id=class_dict["id"],
+                name=class_dict["name"],
+                geometry_type="Polygon",
+                land_cover_components=components,
+                land_use_attributes=[],
+                land_characteristics=characteristics
+            )
+            land_units.append(unit)
+
+        return land_units
+
+    def _extract_hierarchical(self, use_fuzzy: bool) -> List[LandUnit]:
+        land_units: List[LandUnit] = []
+        for legend_class in self.root.findall(".//LegendClass"):
+            code_elem = legend_class.find("Code")
+            name_elem = legend_class.find("Name")
+
+            clean_code = (code_elem.text or "Unknown").replace(" ", "").strip()
+            clean_name = (name_elem.text or clean_code).strip()
+
+            components: List[LandCoverComponent] = []
+            for element in legend_class.findall(".//LC_Element"):
+                type_str = element.get("type")
+                if not type_str:
+                    continue
+
+                presence_node = element.find("PresenceType")
+                presence_text = presence_node.text if presence_node is not None else "Fixed"
+
+                cov_min_node = element.find("CoverMin")
+                cov_max_node = element.find("CoverMax")
+                c_min = int(cov_min_node.text) if (cov_min_node is not None and cov_min_node.text) else None
+                c_max = int(cov_max_node.text) if (cov_max_node is not None and cov_max_node.text) else None
+
+                sssom_match = sssom_resolver.resolve_iso_to_eagle(type_str)
+                eagle_code = sssom_match["subject_id"] if sssom_match else None
+                eagle_label = sssom_match["subject_label"] if sssom_match else type_str
+
+                bcv_enum = sssom_resolver.map_presence_to_bcv(presence_text)
+                iso_presence = sssom_resolver.map_bcv_to_presence(bcv_enum.value.replace("BCV_", ""))
+
+                comp = LandCoverComponent(
+                    uri=f"https://dd.eionet.europa.eu/vocabulary/landcover/eagle/{eagle_code.replace('eagle:', '')}" if eagle_code else None,
+                    label=eagle_label,
+                    bcv_operator=bcv_enum,
+                    iso_presence_type=iso_presence,
+                    min_cover=c_min,
+                    max_cover=c_max,
+                    stratum_id=1
+                )
+                components.append(comp)
+
+            unit = LandUnit(
+                id=clean_code,
+                name=clean_name,
+                geometry_type="Polygon",
+                land_cover_components=components,
+                land_use_attributes=[],
+                land_characteristics=[]
+            )
+            land_units.append(unit)
+
+        return land_units
 
 
 class EagleExcelExporter:
-    """Writes the validated Pydantic models into the EAGLE Matrix Excel structure."""
-    def __init__(self, log=print):
+    """
+    Exports LandUnit objects into the official EAGLE Barcode Matrix Excel format.
+    Generates standard header, concept rows across LCC, LUA, and LCH, and fills Barcode/Factor values.
+    """
+
+    # Baseline EAGLE taxonomy concepts for standard matrix export
+    DEFAULT_TAXONOMY = [
+        # LCC Section
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-land-cover-components", "LCC", "Land Cover Components", 0, True),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-sealed-artificial-surfaces-and-constructions", "LCC-1_1_1", "Sealed Artificial Surfaces and Constructions", 3, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-specific-buildings", "LCC-1_1_1_1_2", "Specific Buildings", 5, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-natural-material-surfaces", "LCC-1_2", "Natural Material Surfaces", 2, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-bare-soils", "LCC-1_2_2_2", "Bare Soils", 4, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-biotic-vegetation", "LCC-2", "Biotic, Vegetation", 1, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-trees", "LCC-2_1_1", "Trees", 3, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-bushes-shrubs", "LCC-2_1_2", "Bushes, Shrubs", 3, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-herbaceous-vegetation", "LCC-2_2", "Herbaceous Vegetation", 2, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-graminoids", "LCC-2_2_1", "Graminoids, Grass-Like", 3, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-non-graminoids-forbs-ferns", "LCC-2_2_2", "Non-Graminoids, Forbs, Ferns", 3, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-lichens-mosses-algae", "LCC-2_4", "Lichens, Mosses, Algae", 3, False),
+        # LUA Section
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LUA-land-use-attributes", "LUA", "Land Use Attributes", 0, True),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LUA-commercial-crop-production", "LUA-1_1_1", "Commercial Crop Production", 3, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LUA-permanent-residential", "LUA-5_1", "Permanent Residential", 2, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LUA-residential-use-with-other-compatible-uses", "LUA-5_2", "Residential Use With Other Compatible Uses", 2, False),
+        # LCH Section
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-land-characteristics", "LCH", "Land Characteristics", 0, True),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-irrigation", "LCH-5_1_4_5", "Irrigation", 4, True),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-sprinkler-irrigation", "LCH-5_1_4_5_4", "Sprinkler Irrigation", 5, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-rice", "LCH-5_1_6_1_1_7", "Rice", 6, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-hops", "LCH-5_1_6_1_10_2", "Hops", 6, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-urban-context", "LCH-7_3_5", "Urban Context", 3, False),
+        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-rural-context", "LCH-7_3_6", "Rural Context", 3, False)
+    ]
+
+    def __init__(self, log_callback=print):
+        self.log = log_callback
         self.workbook = openpyxl.Workbook()
         self.sheet = self.workbook.active
-        self.sheet.title = "EAGLE Matrix Barcoding"
-        self._setup_headers()
-        self.log = log
+        self.sheet.title = "EAGLE Barcoding Matrix"
 
-    def _setup_headers(self):
-        # Define ALL columns you want to export
-        headers = [
-            "CORINE Code", "Class Name",
-            "Natural Surfaces (Value)", "Natural Surfaces (Factor)",
-            "Sealed Artificial Surface (Value)", "Sealed Artificial Surface (Factor)",
-            "Biotic Vegetation (Value)", "Biotic Vegetation (Factor)",
-            "Trees (Value)", "Trees (Factor)",
-            "Shrubs (Value)", "Shrubs (Factor)",
-            "Graminoids (Value)", "Graminoids (Factor)",
-            "LichenMosses (Value)", "LichenMosses (Factor)"
-        ]
-        for col_idx, header in enumerate(headers, 1):
-            cell = self.sheet.cell(row=1, column=col_idx, value=header)
-            cell.font = openpyxl.styles.Font(bold=True)
+    def generate(self, land_units: List[LandUnit]) -> bytes:
+        self.log(f"Generating EAGLE Barcode Excel for {len(land_units)} Land Units...")
 
-    def generate(self, eagle_classes: List[CorineClass]) -> bytes:
-        row = 2
+        # Setup standard styles
+        header_font = Font(name="Calibri", size=11, bold=True)
+        title_font = Font(name="Calibri", size=11, bold=True, color="FFFFFF")
+        title_fill = PatternFill(start_color="1F497D", end_color="1F497D", fill_type="solid")
+        section_fill = PatternFill(start_color="DCE6F1", end_color="DCE6F1", fill_type="solid")
 
-        # Map the Enum types to the respective Excel column pairs (Value, Factor)
-        col_mapping = {
-            EagleLccType.SealedArtificialSurface: (3, 4),
-            EagleLccType.BioticVegetation: (5, 6),
-            EagleLccType.Trees: (7, 8),
-            EagleLccType.Shrubs: (9, 10),
-            EagleLccType.Graminoids: (11, 12),
-            EagleLccType.LichenMosses: (13, 14)
-        }
+        # Row 1: Class Codes
+        self.sheet.cell(row=1, column=1, value='Class Code* (If continuous dataset, enter "0" as Class Code)').font = header_font
+        for idx, unit in enumerate(land_units):
+            col_barcode = 5 + idx * 2
+            self.sheet.cell(row=1, column=col_barcode, value=unit.id).font = header_font
 
-        self.log(f"Generating EAGLE matrix Excel for {len(eagle_classes)} EAGLE classes...")
+        # Row 2: Class Names
+        self.sheet.cell(row=2, column=1, value="Name*").font = header_font
+        for idx, unit in enumerate(land_units):
+            col_barcode = 5 + idx * 2
+            self.sheet.cell(row=2, column=col_barcode, value=unit.name).font = header_font
 
-        for e_class in eagle_classes:
-            self.sheet.cell(row=row, column=1, value=e_class.class_code)
-            self.sheet.cell(row=row, column=2, value=e_class.class_name)
+        # Row 3: EAGLE Compliant
+        self.sheet.cell(row=3, column=1, value='100% EAGLE Compliant* (Possible Values: "Yes" / "No")')
+        for idx, unit in enumerate(land_units):
+            col_barcode = 5 + idx * 2
+            self.sheet.cell(row=3, column=col_barcode, value="YES")
 
-            for comp in e_class.components:
-                comp_type_name = getattr(comp.lcc_type, 'name', str(comp.lcc_type))
+        # Row 4: Colour Code
+        self.sheet.cell(row=4, column=1, value="Colour Code (Possible values: only hex colour codes e.g. #87CEFA)")
 
-                for enum_key, cols in col_mapping.items():
-                    if comp_type_name == getattr(enum_key, 'name', str(enum_key)):
-                        val_col, factor_col = cols
+        # Row 5: Column Headers
+        col_headers = ["URI", "Code", "Label", "Level"]
+        for idx, unit in enumerate(land_units):
+            col_headers.extend(["Barcode", "Factor"])
 
-                        if comp.eagle_value:
-                            eagle_val = str(comp.eagle_value).replace("EagleMatrixValue.", "")
-                            self.sheet.cell(row=row, column=val_col, value=int(eagle_val))
+        for col_num, h_text in enumerate(col_headers, 1):
+            cell = self.sheet.cell(row=5, column=col_num, value=h_text)
+            cell.font = title_font
+            cell.fill = title_fill
 
-                        if comp.eagle_factor:
-                            self.sheet.cell(row=row, column=factor_col, value=str(comp.eagle_factor))
+        # Build dynamic taxonomy rows: baseline + any extra components found in LandUnits
+        taxonomy = list(self.DEFAULT_TAXONOMY)
+        existing_codes = set(item[1] for item in taxonomy)
+
+        for unit in land_units:
+            for comp in (unit.land_cover_components or []):
+                sssom_match = sssom_resolver.resolve_eagle_to_iso(comp.uri, comp.label)
+                code = sssom_match["subject_id"].replace("eagle:", "") if sssom_match else "LCC-Custom"
+                if code not in existing_codes:
+                    taxonomy.append((comp.uri or "", code, comp.label or code, 3, False))
+                    existing_codes.add(code)
+
+        # Write taxonomy rows and values
+        current_row = 6
+        for uri, code, label, level, is_heading in taxonomy:
+            self.sheet.cell(row=current_row, column=1, value=uri)
+            self.sheet.cell(row=current_row, column=2, value=code)
+            self.sheet.cell(row=current_row, column=3, value=label)
+            self.sheet.cell(row=current_row, column=4, value=level)
+
+            if is_heading:
+                for idx in range(len(land_units)):
+                    c_col = 5 + idx * 2
+                    cell = self.sheet.cell(row=current_row, column=c_col, value="SEGMENT HEADING")
+                    cell.font = Font(italic=True, color="555555")
+                current_row += 1
+                continue
+
+            # Populate barcode and factor for each LandUnit
+            for idx, unit in enumerate(land_units):
+                col_barcode = 5 + idx * 2
+                col_factor = col_barcode + 1
+
+                # Check if unit has a matching component
+                matched_comp = None
+                for comp in (unit.land_cover_components or []):
+                    sssom_match = sssom_resolver.resolve_eagle_to_iso(comp.uri, comp.label)
+                    comp_code = sssom_match["subject_id"].replace("eagle:", "") if sssom_match else None
+                    if comp_code == code or (comp.label and comp.label.lower() in label.lower()):
+                        matched_comp = comp
                         break
-            row += 1
+
+                if matched_comp:
+                    bcv_val = matched_comp.bcv_operator
+                    bcv_str = getattr(bcv_val, "value", str(bcv_val)).replace("BCV_", "") if bcv_val else "1"
+                    try:
+                        self.sheet.cell(row=current_row, column=col_barcode, value=int(bcv_str))
+                    except ValueError:
+                        self.sheet.cell(row=current_row, column=col_barcode, value=bcv_str)
+
+                    # Factor
+                    factor = sssom_resolver.coverage_to_factor(matched_comp.min_cover, matched_comp.max_cover)
+                    if factor:
+                        self.sheet.cell(row=current_row, column=col_factor, value=factor)
+
+                # Check LandCharacteristics
+                for char in (unit.land_characteristics or []):
+                    char_lbl = (char.label or "").lower()
+                    if ("irrigation" in char_lbl and "irrigation" in label.lower()) or \
+                       ("rice" in char_lbl and "rice" in label.lower()) or \
+                       ("hops" in char_lbl and "hops" in label.lower()):
+                        self.sheet.cell(row=current_row, column=col_barcode, value="X" if any(s in char_lbl for s in ["rice", "hops"]) else 2)
+
+            current_row += 1
 
         output = io.BytesIO()
         self.workbook.save(output)
@@ -373,17 +438,17 @@ class EagleExcelExporter:
 
 
 def run_iso_to_eagle_mapping(xml_bytes: bytes, log_callback=print,
-                             use_fuzzy: bool = False, force_hierarchical: bool = False) -> bytes:
-    log_callback("Initialising LchsXmlParser...")
+                             use_fuzzy: bool = True, force_hierarchical: bool = False) -> bytes:
+    log_callback("Initializing LchsXmlParser with SSSOM crosswalk...")
     parser = LchsXmlParser(xml_bytes, log_callback)
 
-    log_callback("Extracting and semantically mapping data...")
-    validated_objects = parser.extract_classes(log_callback, use_fuzzy, force_hierarchical)
+    log_callback("Extracting ISO classes and properties into validated LandUnits...")
+    land_units = parser.extract_land_units(use_fuzzy=use_fuzzy, force_hierarchical=force_hierarchical)
 
-    if not validated_objects:
-        log_callback("❌ Error: No valid data could be extracted from the XML. Please check the file structure.")
-    else:
-        log_callback(f"Successfully processed {len(validated_objects)} Corine classes. Generating Excel Matrix...")
+    if not land_units:
+        log_callback("❌ Error: No valid data could be extracted from the XML.")
+        return b""
 
-    exporter = EagleExcelExporter()
-    return exporter.generate(validated_objects)
+    log_callback(f"Successfully processed {len(land_units)} Land Units. Generating EAGLE Matrix Excel...")
+    exporter = EagleExcelExporter(log_callback)
+    return exporter.generate(land_units)

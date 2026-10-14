@@ -259,6 +259,18 @@ wheels = [
 ]
 
 [[package]]
+name = "deprecation"
+version = "2.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "packaging" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5a/d3/8ae2869247df154b64c1884d7346d412fed0c49df84db635aab2d1c40e62/deprecation-2.1.0.tar.gz", hash = "sha256:72b3bde64e5d778694b0cf68178aed03d15e15477116add3fb773e581f9518ff", size = 173788, upload-time = "2020-04-20T14:23:38.738Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/02/c3/253a89ee03fc9b9682f1541728eb66db7db22148cd94f89ab22528cd1e1b/deprecation-2.1.0-py2.py3-none-any.whl", hash = "sha256:a10811591210e1fb0e768a8c25517cabeabcba6f0bf96564f8ff45189f90b14a", size = 11178, upload-time = "2020-04-20T14:23:36.581Z" },
+]
+
+[[package]]
 name = "docutils"
 version = "0.22.4"
 source = { registry = "https://pypi.org/simple" }
@@ -269,7 +281,7 @@ wheels = [
 
 [[package]]
 name = "eagle-iso-mapper"
-version = "0.1.0"
+version = "0.2.0"
 source = { virtual = "." }
 dependencies = [
     { name = "linkml" },
@@ -279,6 +291,7 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "pyyaml" },
+    { name = "sssom" },
     { name = "streamlit" },
 ]
 
@@ -291,6 +304,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.13.4" },
     { name = "pydantic-settings", specifier = ">=2.14.1" },
     { name = "pyyaml", specifier = ">=6.0.3" },
+    { name = "sssom", specifier = ">=0.4.17" },
     { name = "streamlit", specifier = ">=1.58.0" },
 ]
 
@@ -1711,6 +1725,40 @@ wheels = [
 ]
 
 [[package]]
+name = "sssom"
+version = "0.4.17"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "click" },
+    { name = "curies" },
+    { name = "deprecation" },
+    { name = "linkml" },
+    { name = "linkml-runtime" },
+    { name = "pandas" },
+    { name = "pyyaml" },
+    { name = "rdflib" },
+    { name = "sparqlwrapper" },
+    { name = "sssom-schema" },
+    { name = "validators" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/80/ce/7405bd6bf3f216c5eb3e2146a665cad3ad819fc4cc7de48e0e725b140485/sssom-0.4.17.tar.gz", hash = "sha256:b8312997425d778af1c9225bba6dcbddd00951a5f3178b8e3bc7001be5f8f924", size = 178668, upload-time = "2025-09-18T21:56:36.652Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b9/8b/c9353d4e0d56db8da4e56f38aa23ea745b3752baa0ea24a6b138f64cb4b7/sssom-0.4.17-py3-none-any.whl", hash = "sha256:a7db403d568e826e73ea384ac2039ff32b61322be98fc4fafb22f0ac0cbd8620", size = 188485, upload-time = "2025-09-18T21:56:35.25Z" },
+]
+
+[[package]]
+name = "sssom-schema"
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "linkml-runtime" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/20/1b/ef7da2d1709205b41b48aa541fd8f6d171da7309c16a77a294ed534c7bf4/sssom_schema-1.0.0.tar.gz", hash = "sha256:62ae18f0f1a7fd10a1d0bfdf1167a8b5761b3f5473bc1e5243005e163aceaec9", size = 32855, upload-time = "2024-08-09T19:46:08.013Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/54/61/dfcccdf334ece31ad67babd095ab9d5750f454411a3f7679155c0b2885d2/sssom_schema-1.0.0-py3-none-any.whl", hash = "sha256:e41031637094eddce7e71d6642e1f7b3f972aae08c0039c1dd27fe5208835d15", size = 32437, upload-time = "2024-08-09T19:46:06.386Z" },
+]
+
+[[package]]
 name = "starlette"
 version = "1.2.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1846,6 +1894,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e6/bf/f6544ba992ddb9a6077343a576f9844f7f8f06ab819aefd00206e9255f18/uvicorn-0.48.0.tar.gz", hash = "sha256:a5504207195d08c2511bf9125ede5ac4a4b71725d519e758d01dcf0bc2d31c37", size = 91074, upload-time = "2026-05-24T12:08:41.925Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/01/be/72532be3da7acc5fdfbccdb95215cd04f995a0886532a5b423f929cda4cc/uvicorn-0.48.0-py3-none-any.whl", hash = "sha256:48097851328b87ec36117d3d575234519eb58c2b22d79666e9bbc6c49a761dad", size = 71410, upload-time = "2026-05-24T12:08:40.258Z" },
+]
+
+[[package]]
+name = "validators"
+version = "0.36.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/7b/3f/4fe7905f73ba0e768baa102a09ba9458f2f0bb4a676102e1fd7a3cb55c2b/validators-0.36.0.tar.gz", hash = "sha256:92ad9ed00bbed320b784cec0ea90b213cf08904cf605b3d0852cfa4108e32a2c", size = 79234, upload-time = "2026-10-11T11:01:31.682Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d5/ce/fc5090ea3789bdfd22e90f2515b237194c5dacfc8f26d2082a0b50b2ca86/validators-0.36.0-py3-none-any.whl", hash = "sha256:c52ad00435e385b95fa4d6dd3081cb20c0660e7fd07b214523c8584dd2edba34", size = 46040, upload-time = "2026-10-11T11:01:30.269Z" },
 ]
 
 [[package]]

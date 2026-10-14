@@ -86,6 +86,9 @@ slots:
   id:
     identifier: true
     range: string
+  name:
+    range: string
+    description: "Human-readable name or designation of the land unit."
   uri:
     range: uri
     description: "Persistent identifier from the Eionet Data Dictionary."

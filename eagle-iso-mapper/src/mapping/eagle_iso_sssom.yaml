@@ -26,6 +26,27 @@ mappings:
     mapping_justification: semmatch:ManualMappingCuration
     comment: EAGLE sealed surface maps 1:1 to LCML built-up surface.
 
+  - subject_id: eagle:LCC-1_1_1_1_2
+    subject_label: Specific Buildings
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Building
+    object_label: Building
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_2
+    subject_label: Natural Material Surfaces
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_NaturalSurfaceElement
+    object_label: Natural Surface Element
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_2_2_2
+    subject_label: Bare Soils
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Soil
+    object_label: Bare Soil
+    mapping_justification: semmatch:ManualMappingCuration
+
   - subject_id: eagle:LCC-2
     subject_label: Biotic, Vegetation
     predicate_id: skos:exactMatch
@@ -34,11 +55,53 @@ mappings:
     mapping_justification: semmatch:ManualMappingCuration
     comment: Top-level vegetation class match.
 
-  - subject_id: eagle:LCC-1_2_2_2
-    subject_label: Bare Soils
+  - subject_id: eagle:LCC-2_1_1
+    subject_label: Trees
     predicate_id: skos:exactMatch
-    object_id: iso:LC_Soil
-    object_label: Bare Soil
+    object_id: iso:LC_Tree
+    object_label: Tree
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-2_1_2
+    subject_label: Bushes, Shrubs
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Shrub
+    object_label: Shrub
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-2_2
+    subject_label: Herbaceous Vegetation
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Vegetation
+    object_label: Herbaceous Vegetation
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-2_2_1
+    subject_label: Graminoids, Grass-Like
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Graminoid
+    object_label: Graminoid
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-2_2_2
+    subject_label: Non-Graminoids, Forbs, Ferns
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Forbs
+    object_label: Forbs
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-2_4
+    subject_label: Lichens, Mosses, Algae
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_LichenAndMoss
+    object_label: Lichen and Moss
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-2_4_2
+    subject_label: Algae
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Algae
+    object_label: Algae
     mapping_justification: semmatch:ManualMappingCuration
 
   # -------------------------------------------------------------------------
@@ -67,6 +130,20 @@ mappings:
     mapping_justification: semmatch:LogicalReasoning
     comment: Disjunctive OR-relation maps to ISO Exclusive presence type.
 
+  - subject_id: eagle:BCV-5
+    subject_label: Exclusive Mandatory (ONLY-THIS-ONE)
+    predicate_id: skos:broadMatch
+    object_id: iso:PresenceType_Exclusive
+    object_label: Exclusive Presence
+    mapping_justification: semmatch:LogicalReasoning
+
+  - subject_id: eagle:BCV-X
+    subject_label: Explicitly Excluded
+    predicate_id: skos:exactMatch
+    object_id: iso:PresenceType_Precluded
+    object_label: Precluded Presence
+    mapping_justification: semmatch:LogicalReasoning
+
   # -------------------------------------------------------------------------
   # LAND USE ATTRIBUTES (EAGLE LUA / HILUCS <-> ISO 19144-3 LUML)
   # -------------------------------------------------------------------------
@@ -78,8 +155,22 @@ mappings:
     mapping_justification: semmatch:ManualMappingCuration
     comment: HILUCS residential code described via LUML residential function.
 
+  - subject_id: eagle:LUA-5_2
+    subject_label: Residential Use With Other Compatible Uses
+    predicate_id: skos:broadMatch
+    object_id: iso:LU_Residential
+    object_label: Residential Function
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LUA-1_1_1
+    subject_label: Commercial Crop Production
+    predicate_id: skos:broadMatch
+    object_id: iso:LU_Agriculture
+    object_label: Agricultural Production Function
+    mapping_justification: semmatch:ManualMappingCuration
+
   # -------------------------------------------------------------------------
-  # LAND CHARACTERISTICS (EAGLE LCH <-> ISO Extensible Codelists)
+  # LAND CHARACTERISTICS (EAGLE LCH <-> ISO Extensible Codelists & Characteristics)
   # -------------------------------------------------------------------------
   - subject_id: eagle:LCH-5_1_4_5
     subject_label: Irrigation Applied
@@ -89,10 +180,38 @@ mappings:
     mapping_justification: semmatch:ManualMappingCuration
     comment: Maps 1:1 into ISO 19144-2 extensible irrigation codelist.
 
+  - subject_id: eagle:LCH-5_1_4_5_4
+    subject_label: Sprinkler Irrigation
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_IrrigationType_Sprinkler
+    object_label: Sprinkler Irrigation
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCH-5_1_6_1_1_7
+    subject_label: Rice
+    predicate_id: skos:exactMatch
+    object_id: iso:Species_OryzaSativa
+    object_label: Oryza sativa
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCH-5_1_6_1_10_2
+    subject_label: Hops
+    predicate_id: skos:exactMatch
+    object_id: iso:Species_HumulusLupulus
+    object_label: Humulus lupulus
+    mapping_justification: semmatch:ManualMappingCuration
+
   - subject_id: eagle:LCH-7_3_5
     subject_label: Urban Context
     predicate_id: skos:closeMatch
     object_id: iso:LC_GeoType
-    object_label: Geographical Aspect Codelist
+    object_label: Geographical Aspect Codelist (Urban)
     mapping_justification: semmatch:ManualMappingCuration
     comment: Context characteristics mapped via LC_GeoType extensible codelist.
+
+  - subject_id: eagle:LCH-7_3_6
+    subject_label: Rural Context
+    predicate_id: skos:closeMatch
+    object_id: iso:LC_GeoType
+    object_label: Geographical Aspect Codelist (Rural)
+    mapping_justification: semmatch:ManualMappingCuration
