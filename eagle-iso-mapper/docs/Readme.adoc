@@ -1,23 +1,84 @@
-# The Pipeline
+= EAGLE ↔ ISO 19144 Mapping Engine
+:toc: left
+:toclevels: 3
+:icons: font
 
-image:./diagrams/eagle-iso-mapping-pipeline.svg[EAGLE<->ISO Mapping Pipeline, 600, 400]
+image:./diagrams/eagle-iso-mapping-pipeline.svg[EAGLE ↔ ISO Mapping Pipeline, width=100%]
 
-## The Process in Detail (The 3 Layers)
+== Overview
 
-### 1. Extract Layer (The Parsers)
+The **EAGLE ↔ ISO 19144 Mapping Engine** bridges two prominent geospatial land characterisation standards:
+* **EAGLE (EIONET Action Group on Land Monitoring in Europe)**: An object-oriented conceptual model decomposing land units into Land Cover Components (LCC), Land Use Attributes (LUA), and Land Characteristics (LCH), represented pragmatically via the EAGLE Barcode Matrix in Excel.
+* **ISO 19144 (Geographic information — Land characterisation meta language)**: An international family of standards comprising ISO 19144-1 (Classification systems), ISO 19144-2 (LCML), and ISO 19144-3 (LUML), represented as relational XML natively supported by FAO and ISO TC 211 Land Characterisation System (LChS) tools.
 
-* **Separation of Concerns:** Strictly separates the purely technical data extraction from the underlying business logic.
-* **`LchsXmlParser`:** Uses XPath to search for specific XML nodes, making it completely independent of missing XSD schemas.
-* **`EagleExcelParser`:** Rigidly parses row and column values directly from the Excel grid.
+The engine provides an automated, lossless bidirectional transformation pipeline driven entirely by declarative schema models and ontology crosswalks.
 
-### 2. Transform Layer (The "Brain")
+---
 
-* **Executable Blueprints:** This layer houses the **Pydantic classes**, which represent the conceptual LinkML YAML schemas as executable, validating code.
-* **Forward Mapping:** Translates complex ISO semantics (e.g., `Fixed`, `ConditionalTemporal`) into reduced EAGLE numerical values (3, 1) and aggregates coverage thresholds into single factors.
-* **Reverse Mapping (`@model_validator`):** Utilizes predefined rule logic to reconstruct semantically richer ISO concepts and coverage thresholds (via smart defaults) from the reduced EAGLE values.
+== System Architecture
 
-### 3. Load Layer (The Generators)
+The system is organized into four distinct architectural blocks following modern data engineering and semantic web best practices:
 
-* **Data Ingestion:** Receives the fully transformed, error-free data objects directly from memory.
-* **`EagleExcelExporter`:** Writes the data into the exact cell coordinates of the designated EAGLE Matrix template.
-* **`LchsXmlGenerator`:** Programmatically constructs the hierarchical XML tree structure to ensure an error-free import back into the LChS software.
+[cols="1,3", options="header"]
+|===
+| Component | Responsibility
+| **1. Specifications** | Standard-compliant declarative definitions: LinkML domain model (`eagle-iso-mapping.linkml.yaml`) and SSSOM crosswalk (`eagle_iso_sssom.yaml`).
+| **2. Core Engine** | Compiled Pydantic v2 data models (`LandUnit`, `LandCoverComponent`, etc.) and the `SSSOMResolver` module utilizing the official `sssom` Python library for bidirectional CURIE resolution.
+| **3. Transformation Pipelines** | Forward pipeline (`EagleXslxParser` ➔ `LchsXmlGenerator`) and reverse pipeline (`LchsXmlParser` ➔ `EagleExcelExporter`).
+| **4. User Interface** | Lightweight Streamlit web application (`app.py`) featuring live logging, interactive sheet detection, XML/Excel downloads, and in-place SSSOM editing.
+|===
+
+---
+
+== The 3-Layer Processing Pipeline
+
+=== 1. Extract Layer (Parsers)
+
+* **Separation of Concerns:** Strictly isolates technical file parsing from business and semantic logic.
+* **`EagleXslxParser`:** 
+  ** Dynamically scans vertical EAGLE Barcoding sheets (`CLC-all 3 Classes`, `CLC112`, etc.) in memory.
+  ** Detects class code and name headers.
+  ** Identifies Barcode Values (`BCV_1`..`BCV_5`, `BCV_X`) and percentage factors across LCC, LUA, and LCH segments.
+* **`LchsXmlParser`:** 
+  ** Parses both official relational LChS XML structures (`LC_Class`, `LC_HorizontalPatterns`, `LC_Strata`, `LC_Properties`, `LC_Characteristics`) and simplified hierarchical XML.
+  ** Namespace-agnostic XPath processing ensures resilience against namespace variance.
+
+=== 2. Transform Layer (Semantic Core)
+
+* **LinkML Pydantic Domain Model:** Serves as the validated in-memory canonical representation (`LandUnit`), modeling components as typed entities (`AbioticComponent`, `BioticComponent`, `WaterComponent`), socio-economic uses (`LandUseAttribute`), and characteristics (`LandCharacteristic`).
+* **SSSOM Crosswalk Resolution (`sssom_engine.py`):**
+  ** Powered by `sssom` (Simple Standard for Sharing Ontological Mappings).
+  ** Resolves EAGLE CURIEs (e.g., `eagle:LCC-1_1_1`) to ISO 19144 block references (e.g., `iso:LC_BuildUpSurface`).
+  ** Translates EAGLE Barcode operators (`BCV-3`, `BCV-1`, `BCV-2`, `BCV-X`) to ISO 19144 presence types (`Fixed`, `Conditional`, `Exclusive`, `Precluded`).
+  ** Converts single percentage factors (e.g., `055`, `075`) to bounded minimum/maximum coverage thresholds (`30%–80%`, `75%–100%`) and vice-versa.
+
+=== 3. Load Layer (Generators & Exporters)
+
+* **`LchsXmlGenerator`:** Constructs standard-compliant ISO 19144 XML complete with classes, horizontal patterns, strata layers, element properties, and specific characteristics (irrigation types, floristic species constraints).
+* **`EagleExcelExporter`:** Reconstructs the official EAGLE Barcode Matrix spreadsheet with formatted headers, standard taxonomy rows, and populated barcode/factor value pairs.
+
+---
+
+== Quickstart & Usage
+
+=== Running the Web Application
+
+Launch the Streamlit app using `uv` or Python:
+
+[source,bash]
+----
+# Run directly with uv
+uv run streamlit run app.py
+
+# Or via the bootloader script (compiles LinkML models first)
+python run.py
+----
+
+=== Automated Test Suite
+
+Execute the automated pytest suite verifying SSSOM resolution and round-trip conversion:
+
+[source,bash]
+----
+pytest -v
+----
