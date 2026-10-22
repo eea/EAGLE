@@ -172,6 +172,15 @@ class Resolver:
 
         self._attach(mentions, ctx)
 
+    def suggest(self, text: str, k: int = 6) -> list[str]:
+        """Selectable elements whose label / definition best fit some wording (for manual picks)."""
+        query = self.index.query(Counter(content_lemmas(text)))
+        ranked = sorted(self.index.similarities(query).items(), key=lambda kv: -kv[1])
+        return [
+            code for code, cosine in ranked
+            if cosine >= 0.1 and not self.vocab.get(code).is_heading and self.vocab.get(code).level > 0
+        ][:k]
+
     # ------------------------------------------------------------------ ranking
 
     def _query(self, m: Mention, ctx: _Context, surface: str | None = None) -> dict[str, float]:

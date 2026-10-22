@@ -44,10 +44,14 @@ class Item:
 
     code: str | None
     score: float
-    confidence: str  # high | medium | low | none
+    confidence: str  # high | medium | low | none | manual
     reasons: list[str] = field(default_factory=list)
     negated: bool = False
     text: str | None = None  # the part of the span this item stems from
+    origin: str = "automatic"  # automatic | changed (class picked by the user) | added (manual highlight)
+    bcv: str | None = None  # bar code value suggested from the text: X, 1, 2, 3, 4, 5
+    bcv_reasons: list[str] = field(default_factory=list)
+    bcv_basis: str = "cue"  # cue (explicit wording) | assumed (no cue) | manual
 
 
 @dataclass
@@ -87,6 +91,9 @@ class Entry:
     alternatives: list[dict] = field(default_factory=list)
     definition: str = ""
     applies_to: str = ""
+    bcv: str | None = None
+    bcv_reasons: list[str] = field(default_factory=list)
+    bcv_basis: str = "cue"
 
 
 @dataclass
@@ -112,9 +119,15 @@ class Analysis:
                     "block": m.block,
                     "entries": entries_of.get(m.id, []),
                     "negated": any(i.negated for i in m.items),
+                    "manual": any(i.origin != "automatic" for i in m.items),
                     "tip": " · ".join(
                         part
-                        for part in (m.block, ", ".join(i.code for i in m.items if i.code), m.note)
+                        for part in (
+                            m.block,
+                            ", ".join(i.code for i in m.items if i.code),
+                            "BCV " + "/".join(dict.fromkeys(i.bcv for i in m.items if i.bcv)) if any(i.bcv for i in m.items) else "",
+                            m.note,
+                        )
                         if part
                     ),
                 }
@@ -134,6 +147,9 @@ class Analysis:
                     "alternatives": e.alternatives,
                     "definition": e.definition,
                     "appliesTo": e.applies_to,
+                    "bcv": e.bcv,
+                    "bcvReasons": e.bcv_reasons,
+                    "bcvBasis": e.bcv_basis,
                 }
                 for e in self.entries
             ],

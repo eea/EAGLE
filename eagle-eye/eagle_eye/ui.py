@@ -13,6 +13,11 @@ _annotator = components.declare_component(
 )
 
 
-def annotator(payload: dict, view: str, selection: dict | None, key: str) -> dict | None:
-    """Render `view` ("text" or "classes"); returns {"selection", "nonce"} after a click."""
-    return _annotator(payload=payload, view=view, selection=selection, key=key, default=None)
+def annotator(payload: dict, view: str, selection: dict | None, key: str, pending: dict | None = None) -> dict | None:
+    """Render `view` ("text" or "classes").
+
+    Returns after a click {"selection", "nonce"}, or after the user marks some text
+    {"range": {"start", "end"}, "selection": None, "nonce"}. `pending` is such a
+    marked range that is still waiting for a class.
+    """
+    return _annotator(payload=payload, view=view, selection=selection, pending=pending, key=key, default=None)

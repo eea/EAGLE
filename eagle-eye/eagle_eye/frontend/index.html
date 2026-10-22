@@ -28,6 +28,15 @@
             cursor: pointer; transition: opacity .15s, background .15s; }
   mark.mk:hover { background: color-mix(in srgb, var(--c) 28%, transparent); }
   mark.mk.negated { border-bottom-style: dashed; text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--c) 55%, transparent); }
+  mark.mk.manual { border-bottom-style: double; border-bottom-width: 4px; }
+  mark.mk.pending { background: color-mix(in srgb, var(--fg) 14%, transparent); border-bottom: 2px dashed var(--fg); color: inherit; }
+  .doc { user-select: text; }
+  .tag.manual { color: var(--c); border-color: var(--c); }
+  .bcv { margin-left: 6px; padding: 0 7px; border-radius: 999px; font-size: 11px; font-weight: 700; color: #fff; vertical-align: middle; cursor: help; }
+  .bcv.assumed { opacity: .6; outline: 1px dashed var(--muted); outline-offset: 1px; }
+  .bcv-X { background: #2b2b2b; } .bcv-1 { background: #2f6fdd; } .bcv-2 { background: #d9820b; }
+  .bcv-3 { background: #d63b3b; } .bcv-4 { background: #8a4fd0; } .bcv-5 { background: #2a9d57; }
+  :root[data-theme="dark"] .bcv-X { background: #6b7280; }
   .has-sel mark.mk { opacity: .35; }
   .has-sel mark.mk.sel { opacity: 1; background: color-mix(in srgb, var(--c) 30%, transparent); }
   .has-sel mark.mk.focus { outline: 2px solid var(--c); outline-offset: 1px; }
@@ -110,46 +119,114 @@ function focusPanels() {
   for (const b of Object.keys(BLOCKS)) active.has(b) ? collapsed.delete(b) : collapsed.add(b);
 }
 
+let pending = null; // {start, end}: text the user marked, waiting for a class to be assigned
+
+function emit(value) {
+  send("streamlit:setComponentValue", { dataType: "json", value: Object.assign({ nonce: Date.now() + Math.random() }, value) });
+}
+
 function choose(next) {
   selection = next;
+  pending = null;
   focusPanels();
   render();
-  send("streamlit:setComponentValue", {
-    dataType: "json",
-    value: { selection: next, nonce: Date.now() + Math.random() },
-  });
+  emit({ selection: next });
+}
+
+// Character offset in the original text of a DOM position inside the annotated text.
+function offsetOf(doc, node, offset) {
+  const range = document.createRange();
+  range.selectNodeContents(doc);
+  range.setEnd(node, offset);
+  return range.toString().length;
+}
+
+function markSelectedText(doc, text) {
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) return;
+  const range = sel.getRangeAt(0);
+  if (!doc.contains(range.commonAncestorContainer)) return;
+  let start = offsetOf(doc, range.startContainer, range.startOffset);
+  let end = offsetOf(doc, range.endContainer, range.endOffset);
+  const raw = text.slice(start, end);
+  start += raw.length - raw.trimStart().length;
+  end -= raw.length - raw.trimEnd().length;
+  // A drag rarely hits word edges exactly: take whole words.
+  const word = /[\p{L}\p{N}]/u;
+  while (start > 0 && word.test(text[start - 1]) && word.test(text[start])) start--;
+  while (end < text.length && word.test(text[end]) && word.test(text[end - 1])) end++;
+  if (end - start < 2) return;
+  sel.removeAllRanges();
+  selection = null;
+  pending = { start, end };
+  render();
+  emit({ selection: null, range: pending });
 }
 
 function renderText(root, payload) {
   const doc = el("div", "doc");
-  if (!payload.text.trim()) {
+  const text = payload.text;
+  if (!text.trim()) {
     doc.classList.add("empty");
     doc.textContent = "Paste or upload a land cover / land use description to see it annotated here.";
     root.append(doc);
     return;
   }
-  let pos = 0;
-  for (const m of payload.mentions) {
-    doc.append(document.createTextNode(payload.text.slice(pos, m.start)));
-    const mark = el("mark", `mk b-${m.block}`, payload.text.slice(m.start, m.end));
-    mark.title = m.tip;
-    if (m.negated) mark.classList.add("negated");
-    if (m.entries.some(selected)) mark.classList.add("sel");
-    if (selection && selection.mention === m.id) mark.classList.add("focus");
-    mark.addEventListener("click", () => {
-      const same = selection && selection.mention === m.id;
-      choose(same || !m.entries.length ? null : { entries: m.entries, mention: m.id });
-    });
+  // Cut the text wherever a highlight or the pending selection starts or ends.
+  const cuts = new Set([0, text.length]);
+  for (const m of payload.mentions) [m.start, m.end].forEach((c) => cuts.add(c));
+  if (pending) [pending.start, pending.end].forEach((c) => cuts.add(c));
+  const points = [...cuts].sort((x, y) => x - y);
+  for (let i = 0; i < points.length - 1; i++) {
+    const [a, b] = [points[i], points[i + 1]];
+    const piece = text.slice(a, b);
+    const m = payload.mentions.find((m) => m.start <= a && b <= m.end);
+    const marked = pending && pending.start <= a && b <= pending.end;
+    if (!m && !marked) {
+      doc.append(document.createTextNode(piece));
+      continue;
+    }
+    const mark = el("mark", m ? `mk b-${m.block}` : "mk pending", piece);
+    if (marked) mark.classList.add("pending");
+    if (m) {
+      mark.title = m.tip;
+      if (m.negated) mark.classList.add("negated");
+      if (m.manual) mark.classList.add("manual");
+      if (m.entries.some(selected)) mark.classList.add("sel");
+      if (selection && selection.mention === m.id) mark.classList.add("focus");
+      mark.addEventListener("click", () => {
+        if (window.getSelection().toString().trim()) return; // a drag-selection, not a click
+        const same = selection && selection.mention === m.id;
+        choose(same || !m.entries.length ? null : { entries: m.entries, mention: m.id });
+      });
+    }
     doc.append(mark);
-    pos = m.end;
   }
-  doc.append(document.createTextNode(payload.text.slice(pos)));
+  doc.addEventListener("mouseup", () => setTimeout(() => markSelectedText(doc, text), 0));
   root.append(doc);
 }
 
 const LEVELS = { high: 3, medium: 2, low: 1 };
 
+// Bar code values (EAGLE bar coding manual, table 3).
+const BCV_MEANING = {
+  X: "excluded by definition",
+  1: "optional, typical but not mandatory",
+  2: "selective mandatory (either-or)",
+  3: "cumulative mandatory (and)",
+  4: "paired mandatory (at least two of the group)",
+  5: "exclusive mandatory (only this one)",
+};
+
+function bcvBadge(e) {
+  const badge = el("span", `bcv bcv-${e.bcv}`, `BCV ${e.bcv}`);
+  if (e.bcvBasis === "assumed") badge.classList.add("assumed");
+  badge.title = `${BCV_MEANING[e.bcv] || ""}${e.bcvBasis === "assumed" ? " (assumed: no cue in the text)" : e.bcvBasis === "manual" ? " (set manually)" : ""}`;
+  return badge;
+}
+
 function confidence(level) {
+  if (level === "manual") return el("span", "tag manual", "manual");
   const n = LEVELS[level] || 0;
   const badge = el("span", "conf", "●".repeat(n) + "○".repeat(3 - n));
   badge.title = `${level} confidence`;
@@ -164,6 +241,7 @@ function details(e) {
   box.addEventListener("click", (ev) => ev.stopPropagation()); // reading is not selecting
   const ul = el("ul", "reasons");
   for (const r of e.reasons) ul.append(el("li", "", r));
+  if (e.bcv) ul.append(el("li", "", `bar code value ${e.bcv}, ${BCV_MEANING[e.bcv]}: ${e.bcvReasons.join("; ") || "from the wording"}`));
   box.append(ul);
   if (e.definition) box.append(el("p", "definition", e.definition));
   if (e.alternatives.length) {
@@ -237,13 +315,14 @@ function renderClasses(root, payload) {
         if (e.negated) label.append(el("span", "tag excl", "excluded"));
         if (!e.code) label.append(el("span", "tag", "type only"));
         else label.append(confidence(e.confidence));
+        if (e.bcv) label.append(bcvBadge(e));
         body.append(label);
         const meta = el("div", "meta");
         if (e.code) meta.append(el("code", "", e.code), document.createTextNode(e.breadcrumb ? ` · ${e.breadcrumb}` : ""));
         else meta.textContent = e.breadcrumb;
         if (meta.textContent) body.append(meta);
         if (e.appliesTo) body.append(el("div", "meta", `describes: ${e.appliesTo}`));
-        if (e.reasons.length || e.definition || e.alternatives.length) body.append(details(e));
+        if (e.reasons.length || e.definition || e.alternatives.length || e.bcv) body.append(details(e));
         li.append(el("i", "dot small"), body, el("span", "n", `×${e.mentions.length}`));
         li.addEventListener("click", () => {
           const same = selection && selection.mention === null && selection.entries.length === 1 && selection.entries[0] === e.key;
@@ -271,6 +350,7 @@ window.addEventListener("message", (event) => {
   const before = JSON.stringify(selection);
   args = event.data.args;
   selection = args.selection || null;
+  pending = args.pending || null;
   if (JSON.stringify(selection) !== before) focusPanels(); // e.g. a highlight clicked in the text pane
   const theme = event.data.theme;
   const dark = theme ? theme.base === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;

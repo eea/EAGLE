@@ -4,6 +4,12 @@ version = "0.1.0"
 description = "Text analysis web app that spots EAGLE land cover (LCC), land use (LUA) and land characteristics (LCH) in class descriptions"
 requires-python = ">=3.12"
 dependencies = [
+    "openpyxl>=3.1.5",
+    "pandas>=3.0.6",
+    "pydantic>=2.14.1",
+    "pydantic-settings>=2.16.1",
+    "pyyaml>=6.0.3",
+    "sssom>=0.4.17",
     "streamlit>=1.40",
 ]
 
