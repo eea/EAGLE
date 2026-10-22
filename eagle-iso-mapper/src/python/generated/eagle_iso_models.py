@@ -132,6 +132,10 @@ class ISOPresenceEnum(str, Enum):
     """
     Exclusive presence (maps to BCV 2 / BCV 5)
     """
+    Precluded = "Precluded"
+    """
+    Explicitly excluded presence (maps to BCV X)
+    """
 
 
 class FunctionalRelationshipEnum(str, Enum):

@@ -189,6 +189,8 @@ enums:
         description: "Optional presence (maps to BCV 1)"
       Exclusive:
         description: "Exclusive presence (maps to BCV 2 / BCV 5)"
+      Precluded:
+        description: "Explicitly excluded presence (maps to BCV X)"
 
   FunctionalRelationshipEnum:
     permissible_values:
