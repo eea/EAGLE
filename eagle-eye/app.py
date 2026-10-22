@@ -5,7 +5,7 @@ Run with:  uv run streamlit run app.py
 
 import streamlit as st
 
-from eagle_eye.extractor import analyze
+from eagle_eye.analysis import analyze
 from eagle_eye.readers import SUPPORTED_TYPES, read_upload
 from eagle_eye.samples import SAMPLES
 from eagle_eye.ui import annotator
@@ -59,7 +59,7 @@ payload = analysis.to_payload()
 
 # Drop a selection that no longer exists after the text changed.
 selected = st.session_state.selection
-if selected and selected["entry"] not in {e["key"] for e in payload["entries"]}:
+if selected and not set(selected["entries"]) <= {e["key"] for e in payload["entries"]}:
     st.session_state.selection = selected = None
 
 left, right = st.columns([1.15, 1], gap="large")
@@ -112,11 +112,14 @@ with right:
                 {
                     "text": m.text,
                     "type": m.block,
-                    "best guess": f"{m.concept} {vocab.get(m.concept).label}" if m.concept else "–",
-                    "alternatives": ", ".join(m.candidates[1:]),
-                    "evidence": m.source,
+                    "EAGLE class": f"{item.code} {vocab.get(item.code).label}" if item.code else "–",
+                    "excluded": item.negated,
+                    "confidence": item.confidence,
+                    "alternatives": ", ".join(f"{a.code} ({a.score:.2f})" for a in m.alternatives),
+                    "why": "; ".join(item.reasons),
                 }
                 for m in analysis.mentions
+                for item in m.items
             ],
             hide_index=True,
             width="stretch",

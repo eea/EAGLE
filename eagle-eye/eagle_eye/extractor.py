@@ -26,17 +26,48 @@ _BREAK = re.compile(r"[.;:!?\n]")
 
 
 @dataclass
+class Ranked:
+    """A possible EAGLE element for a mention, with the reasons behind its score."""
+
+    code: str
+    score: float  # 0..1
+    reasons: list[str] = field(default_factory=list)
+
+
+@dataclass
+class Item:
+    """One concrete EAGLE class a mention stands for.
+
+    Usually a mention has one; a negated management list such as
+    "(not drained, irrigated)" stands for several, each one excluded.
+    """
+
+    code: str | None
+    score: float
+    confidence: str  # high | medium | low | none
+    reasons: list[str] = field(default_factory=list)
+    negated: bool = False
+    text: str | None = None  # the part of the span this item stems from
+
+
+@dataclass
 class Mention:
     id: int
     start: int
     end: int
     text: str
     block: str  # LCC | LUA | LCH
-    concept: str | None  # best-guess EAGLE element code, if specific enough
-    candidates: list[str]
+    evidence: list[tuple[str, float, str]]  # (code, strength 0..1, source) from the matching step
     source: str  # rule id, "label" or "label-part"
     negated: bool = False
     note: str = ""
+    items: list[Item] = field(default_factory=list)  # set by the resolver
+    alternatives: list[Ranked] = field(default_factory=list)
+    applies_to: int | None = None  # id of the LCC mention a pattern / parameter describes
+
+    @property
+    def concept(self) -> str | None:
+        return self.items[0].code if self.items else None
 
 
 @dataclass
@@ -50,6 +81,12 @@ class Entry:
     breadcrumb: str
     mention_ids: list[int] = field(default_factory=list)
     negated: bool = False
+    confidence: str = "none"
+    score: float = 0.0
+    reasons: list[str] = field(default_factory=list)
+    alternatives: list[dict] = field(default_factory=list)
+    definition: str = ""
+    applies_to: str = ""
 
 
 @dataclass
@@ -57,20 +94,29 @@ class Analysis:
     text: str
     mentions: list[Mention]
     entries: list[Entry]
+    summary: dict = field(default_factory=dict)
 
     def to_payload(self) -> dict:
-        entry_of = {m_id: e.key for e in self.entries for m_id in e.mention_ids}
+        entries_of: dict[int, list[str]] = {}
+        for e in self.entries:
+            for m_id in e.mention_ids:
+                entries_of.setdefault(m_id, []).append(e.key)
         return {
             "text": self.text,
+            "summary": self.summary,
             "mentions": [
                 {
                     "id": m.id,
                     "start": m.start,
                     "end": m.end,
                     "block": m.block,
-                    "entry": entry_of[m.id],
-                    "negated": m.negated,
-                    "tip": f"{m.block}" + (f" · {m.concept}" if m.concept else "") + (f" · {m.note}" if m.note else ""),
+                    "entries": entries_of.get(m.id, []),
+                    "negated": any(i.negated for i in m.items),
+                    "tip": " · ".join(
+                        part
+                        for part in (m.block, ", ".join(i.code for i in m.items if i.code), m.note)
+                        if part
+                    ),
                 }
                 for m in self.mentions
             ],
@@ -83,6 +129,11 @@ class Analysis:
                     "breadcrumb": e.breadcrumb,
                     "mentions": e.mention_ids,
                     "negated": e.negated,
+                    "confidence": e.confidence,
+                    "reasons": e.reasons,
+                    "alternatives": e.alternatives,
+                    "definition": e.definition,
+                    "appliesTo": e.applies_to,
                 }
                 for e in self.entries
             ],
@@ -99,6 +150,7 @@ class _Candidate:
     source: str
     negated: bool = False
     note: str = ""
+    strength: float = 0.9
 
 
 _GENERIC_LEMMAS = frozenset(lemma(w) for w in GENERIC_WORDS)
@@ -165,11 +217,27 @@ def _rule_candidates(text: str, tokens: list[Token]) -> list[_Candidate]:
                 start = _absorb_modifiers(text, tokens, start)
             if rule.wrap_parens and text[start - 1 : start] == "(" and text[end : end + 1] == ")":
                 start, end = start - 1, end + 1
-            found.append(_Candidate(start, end, rule.block, rule.codes, rule.score, rule.id, rule.negated, rule.note))
+            found.append(_Candidate(start, end, rule.block, rule.codes, rule.score, rule.id, rule.negated, rule.note, rule.strength))
     return found
 
 
-def _resolve(candidates: list[_Candidate], vocab: Vocabulary) -> list[tuple[_Candidate, list[str]]]:
+EVIDENCE_STRENGTH = {"label": 1.0, "label-part": 0.75}
+
+
+def _evidence(group: list[_Candidate], block: str) -> list[tuple[str, float, str]]:
+    """Per element evidence of one span: rule hits (first code strongest) and label hits."""
+    best: dict[str, tuple[float, str]] = {}
+    for c in group:
+        if c.block != block:
+            continue
+        for i, code in enumerate(c.codes):
+            strength = EVIDENCE_STRENGTH.get(c.source, c.strength if i == 0 else c.strength * 0.65)
+            if code not in best or strength > best[code][0]:
+                best[code] = (strength, c.source)
+    return sorted(((code, s, src) for code, (s, src) in best.items()), key=lambda e: -e[1])
+
+
+def _resolve(candidates: list[_Candidate], vocab: Vocabulary) -> list[tuple[_Candidate, list[tuple[str, float, str]]]]:
     """Pick non-overlapping spans: longest first, then strongest evidence."""
     by_span: dict[tuple[int, int], list[_Candidate]] = {}
     for c in candidates:
@@ -188,12 +256,12 @@ def _resolve(candidates: list[_Candidate], vocab: Vocabulary) -> list[tuple[_Can
         taken.append((start, end))
         group.sort(key=rank)
         best = group[0]
-        codes = list(dict.fromkeys(code for c in group if c.block == best.block for code in c.codes))
-        chosen.append((best, codes))
+        chosen.append((best, _evidence(group, best.block)))
     return sorted(chosen, key=lambda pair: pair[0].start)
 
 
 def extract(text: str, vocab: Vocabulary | None = None) -> list[Mention]:
+    """Find the spans; the resolver (eagle_eye.resolver) then picks concrete classes."""
     vocab = vocab or load_vocabulary()
     tokens = tokenize(text)
     pool = _rule_candidates(text, tokens) + _label_candidates(text, tokens, vocab)
@@ -204,32 +272,10 @@ def extract(text: str, vocab: Vocabulary | None = None) -> list[Mention]:
             end=best.end,
             text=text[best.start : best.end],
             block=best.block,
-            concept=codes[0] if codes else None,
-            candidates=codes,
+            evidence=evidence,
             source=best.source,
             negated=best.negated,
             note=best.note,
         )
-        for i, (best, codes) in enumerate(_resolve(pool, vocab))
+        for i, (best, evidence) in enumerate(_resolve(pool, vocab))
     ]
-
-
-def _entries(mentions: list[Mention], vocab: Vocabulary) -> list[Entry]:
-    entries: dict[str, Entry] = {}
-    for m in mentions:
-        if m.concept:
-            concept = vocab.get(m.concept)
-            key, label, breadcrumb = m.concept, concept.label, vocab.breadcrumb(m.concept)
-        else:
-            surface = " ".join(lemmas(m.text))
-            key, label, breadcrumb = f"{m.block}:{surface}", m.text.strip().capitalize(), m.note
-        entry = entries.setdefault(key, Entry(key, m.block, label, m.concept, breadcrumb))
-        entry.mention_ids.append(m.id)
-        entry.negated = entry.negated or m.negated
-    return sorted(entries.values(), key=lambda e: (BLOCKS.index(e.block), e.mention_ids[0]))
-
-
-def analyze(text: str, vocab: Vocabulary | None = None) -> Analysis:
-    vocab = vocab or load_vocabulary()
-    mentions = extract(text, vocab)
-    return Analysis(text, mentions, _entries(mentions, vocab))

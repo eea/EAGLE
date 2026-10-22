@@ -27,6 +27,12 @@ class Concept:
     parent: str | None
     element_type: str | None  # Heading / Character / Parameter (LCH only)
     relevance: str | None  # LC / LU / Gen
+    definition: str = ""
+    includes: tuple[str, ...] = ()  # examples named in the definition's "Includes" note
+    excludes: str = ""  # the definition's "Excludes" note
+    domains: tuple[str, ...] = ()  # thematic domains: AGRI, FRST, HABT, URBN, ...
+    data_unit: str | None = None
+    is_parameter: bool = False
 
     @property
     def is_heading(self) -> bool:
@@ -37,6 +43,10 @@ class Vocabulary:
     def __init__(self, concepts: list[Concept]):
         self.concepts = concepts
         self._by_code = {c.code: c for c in concepts}
+        self._children: dict[str, list[Concept]] = {}
+        for c in concepts:
+            if c.parent:
+                self._children.setdefault(c.parent, []).append(c)
 
     def __contains__(self, code: str) -> bool:
         return code in self._by_code
@@ -52,6 +62,17 @@ class Vocabulary:
             chain.append(node)
             node = self._by_code.get(node.parent) if node.parent else None
         return chain[::-1]
+
+    def children(self, code: str) -> list[Concept]:
+        return self._children.get(code, [])
+
+    def descendants(self, code: str):
+        """Breadth-first walk below `code`."""
+        queue = list(self.children(code))
+        while queue:
+            node = queue.pop(0)
+            yield node
+            queue.extend(self.children(node.code))
 
     def breadcrumb(self, code: str) -> str:
         return " › ".join(c.label for c in self.path(code)[1:])
@@ -81,4 +102,8 @@ class Vocabulary:
 @cache
 def load_vocabulary(path: Path = DATA_FILE) -> Vocabulary:
     payload = json.loads(path.read_text(encoding="utf-8"))
-    return Vocabulary([Concept(**c) for c in payload["concepts"]])
+    concepts = [
+        Concept(**{**c, "includes": tuple(c["includes"]), "domains": tuple(c["domains"])})
+        for c in payload["concepts"]
+    ]
+    return Vocabulary(concepts)

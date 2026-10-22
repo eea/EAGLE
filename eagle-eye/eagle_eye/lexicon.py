@@ -21,6 +21,7 @@ class Rule:
     pattern: re.Pattern
     codes: tuple[str, ...] = ()
     score: float = 2.0
+    strength: float = 0.9  # how directly the wording names its element (0..1)
     absorb_modifiers: bool = False  # pull a preceding "maintenance"/"extensive" into the span
     negated: bool = False  # the span states that something is NOT the case
     wrap_parens: bool = False  # include enclosing "(" ")" when the span fills them
@@ -53,12 +54,13 @@ MODIFIERS = frozenset(
     """.split()
 )
 
-_NEG = r"(?:not|never|without|no|non|neither|nor)"
+_NEG = r"(?:(?:not|never|without|no|neither|nor)\s+|non-?\s*)"
 _PARTICIPLE = (
     r"(?:drained|irrigated|sown|seeded|fertili[sz]ed|ploughed|plowed|tilled|mown|mowed|cut|grazed"
     r"|burnt|burned|planted|harvested|cultivated|managed|treated|limed|pruned|cleared|sprayed"
     r"|fenced|stocked|used|farmed|logged|thinned)"
 )
+PARTICIPLE = _PARTICIPLE
 _SEP = r"(?:\s*,\s*(?:or\s+|and\s+|nor\s+)?|\s+(?:or|and|nor)\s+)"
 _NUM = r"\d+(?:[.,]\d+)?"
 _RANGE_OPEN = r"(?:more|less|greater|higher|lower|larger|smaller|taller)\s+than|at\s+least|at\s+most|up\s+to|over|under|above|below|exceeding|minimum\s+of|maximum\s+of|[<>≤≥]=?"
@@ -67,13 +69,13 @@ _RULES = (
             # ---------------------------------------------------------------- LCC
             _rule("LCC", r"(?:\(semi-?\)-?|\bsemi-?)?\bnatural\s+vegetation\b|\bvegetation\b|\bvegetated\b", "LCC-2", note="vegetation"),
             _rule("LCC", r"\bherbaceous(?:\s+(?:vegetation|plants?|cover|layer))?\b", "LCC-2_2"),
-            _rule("LCC", r"\bwoody\s+(?:vegetation|plants?|species|overgrowth|growth|regeneration|encroachment)\b", "LCC-2_1"),
-            _rule("LCC", r"\b(?:grass(?:es|land|lands)?|meadows?|pastures?|steppes?|savann?ahs?|prairies?|sedges?|reeds?)\b", "LCC-2_2_1"),
-            _rule("LCC", r"\b(?:trees?|forests?|woodlands?|woods|copses?|stands\s+of\s+trees)\b", "LCC-2_1_1"),
+            _rule("LCC", r"\bwoody\s+(?:vegetation|plants?|species|overgrowth|growth|regeneration|encroachment)\b", "LCC-2_1", strength=0.8),
+            _rule("LCC", r"\b(?:grass(?:es|land|lands)?|meadows?|pastures?|steppes?|savann?ahs?|prairies?)\b", "LCC-2_2_1", strength=0.85),
+            _rule("LCC", r"\b(?:trees?|forests?|woodlands?|woods|copses?|stands\s+of\s+trees)\b", "LCC-2_1_1", strength=0.8),
             _rule("LCC", r"\b(?:shrubs?|shrublands?|bush(?:es)?|scrub|thickets?)\b", "LCC-2_1_2"),
-            _rule("LCC", r"\b(?:heath(?:er|lands?)?|moors?|moorlands?)\b", "LCC-2_1_2_2", "LCH-7_1_6"),
+            _rule("LCC", r"\b(?:heath(?:er|lands?)?|moors?|moorlands?)\b", "LCC-2_1_2_2", "LCH-7_1_6", strength=0.75),
             _rule("LCC", r"\b(?:rock(?:y|s)?(?:\s+(?:areas?|surfaces?|ground|terrain|faces?|outcrops?))?|cliffs?|(?:mineral\s+|rock\s+)?outcrops?)\b", "LCC-1_2_1_1"),
-            _rule("LCC", r"\b(?:screes?|gravel|pebbles?|boulders?|stones?)\b", "LCC-1_2_2_1"),
+            _rule("LCC", r"\b(?:screes?|gravel|pebbles?|boulders?|stones?)\b", "LCC-1_2_2_1", strength=0.7),
             _rule("LCC", r"\b(?:sand(?:y)?|dunes?|beach(?:es)?)\b", "LCC-1_2_2_1_3"),
             _rule("LCC", r"\bbare\s+(?:soils?|ground|land|earth)\b", "LCC-1_2_2_2"),
             _rule("LCC", r"\bpeat\b", "LCC-1_2_2_3_2"),
@@ -83,12 +85,13 @@ _RULES = (
             _rule("LCC", r"\bsnow\b", "LCC-3_2_1"),
             _rule("LCC", r"\b(?:ice|glaciers?)\b", "LCC-3_2_2"),
             _rule("LCC", r"\b(?:buildings?|houses?|dwellings?)\b", "LCC-1_1_1_1"),
-            _rule("LCC", r"\b(?:roads?|pavements?|paved|asphalt|concrete|impervious|sealed\s+(?:surfaces?|areas?|soils?)|car\s+parks?)\b", "LCC-1_1_1_3"),
-            _rule("LCC", r"\b(?:built-?up|urban\s+fabric|artificial\s+surfaces?|constructions?)\b", "LCC-1_1"),
+            _rule("LCC", r"\b(?:roads?|pavements?|paved|asphalt|concrete|impervious|sealed\s+(?:surfaces?|areas?|soils?)|car\s+parks?)\b", "LCC-1_1_1_3", strength=0.75),
+            _rule("LCC", r"\b(?:built-?up|urban\s+fabric|artificial\s+surfaces?|constructions?)\b", "LCC-1_1", strength=0.7),
             # ---------------------------------------------------------------- LUA
-            _rule("LUA", r"\b(?:(?:no|low|moderate|minimal|little|high|strong|intensive|heavy|limited|slight|reduced)\s+)human\s+(?:influence|impact|intervention|disturbance|interference|activity|pressure)\b",
-                  "LUA-6_3", note="degree of human influence"),
-            _rule("LUA", r"\bhuman\s+(?:influence|impact|intervention|disturbance|interference|activity|use)\b", note="human influence"),
+            _rule("LUA", r"\b(?:no|without|minimal|negligible)\s+human\s+(?:influence|impact|intervention|disturbance|interference|activity|pressure)\b",
+                  "LUA-6_3", note="no human influence"),
+            _rule("LUA", r"\b(?:(?:low|moderate|little|high|strong|intensive|heavy|limited|slight|reduced)\s+)?human\s+(?:influence|impact|intervention|disturbance|interference|activity|pressure|use)\b",
+                  note="degree of human influence"),
             _rule("LUA", r"\b(?:agricultur(?:e|al)|farming|farmland|farms?|arable(?:\s+(?:land|farming))?|crop\s+production|livestock|animal\s+husbandry|horticultur(?:e|al))\b", "LUA-1_1"),
             _rule("LUA", r"\b(?:forestry|silviculture|timber\s+(?:production|harvesting)|logging)\b", "LUA-1_2"),
             _rule("LUA", r"\b(?:mining|quarry(?:ing)?|quarries|extraction\s+sites?|open-?cast)\b", "LUA-1_3"),
@@ -102,7 +105,7 @@ _RULES = (
             _rule("LUA", r"\b(?:economic\s+use|land\s+use|land-use)\b", note="land use"),
             _rule("LUA", r"\b(?:no|without)\s+(?:economic|agricultural|forestry)\s+use\b", "LUA-6_3"),
             # ---------------------------------------------------------------- LCH
-            Rule("LCH", re.compile(rf"\b{_NEG}\s+{_PARTICIPLE}(?:{_SEP}{_PARTICIPLE})*", re.IGNORECASE),
+            Rule("LCH", re.compile(rf"\b{_NEG}{_PARTICIPLE}(?:{_SEP}{_PARTICIPLE})*", re.IGNORECASE),
                  ("LCH-5_1_4",), score=3.0, negated=True, wrap_parens=True, note="management explicitly excluded"),
             _rule("LCH", r"\b(?:mow(?:ing|n|ed)?|cutting|haymaking)\b", "LCH-5_1_4_8", absorb_modifiers=True),
             _rule("LCH", r"\b(?:fertili[sz](?:ation|ed|er|ers|ing)|manur(?:e|ed|ing))\b", "LCH-5_1_4_2", absorb_modifiers=True),
@@ -118,15 +121,15 @@ _RULES = (
             _rule("LCH", r"\b(?:burning|burnt)\b", "LCH-5_1_4_10", absorb_modifiers=True),
             _rule("LCH", r"\b(?:nature\s+(?:conservation|protection|reserves?)|protected\s+areas?|national\s+parks?|conservation\s+areas?)\b", "LCH-5_5_2_1", "LCH-5_5_2"),
             _rule("LCH", r"\bnatura\s*2000\b", "LCH-5_5_2_3"),
-            _rule("LCH", r"\b(?:scattered|dispersed|sporadic|isolated)\b", "LCH-8_1_4"),
-            _rule("LCH", r"\b(?:patch(?:es|y)|mosaics?)\b", "LCH-8_1_3"),
-            _rule("LCH", r"\b(?:homogeneous|uniform)\b", "LCH-8_1_1"),
-            _rule("LCH", r"\b(?:heterogeneous)\b", "LCH-8_1_2"),
+            _rule("LCH", r"\b(?:scattered|dispersed|sporadic|isolated)\b", "LCH-8_1_4", strength=0.85),
+            _rule("LCH", r"\b(?:patch(?:es|y)|mosaics?)\b", "LCH-8_1_3", strength=0.7),
+            _rule("LCH", r"\b(?:homogeneous|uniform)\b", "LCH-8_1_1", strength=0.7),
+            _rule("LCH", r"\b(?:heterogeneous)\b", "LCH-8_1_2", strength=0.7),
             _rule("LCH", r"\b(?:rows?\s+of\s+trees|tree\s+lines?)\b", "LCH-8_2_2", score=2.5),
             _rule("LCH", r"\b(?:evergreen)\b", "LCH-3_2_1"),
             _rule("LCH", r"\b(?:deciduous)\b", "LCH-3_2_2"),
             _rule("LCH", r"\b(?:broad-?\s?lea(?:f|ved)|needle-?\s?lea(?:f|ved)|coniferous|conifers?)\b", "LCH-3_1"),
-            _rule("LCH", r"\b(?:wetlands?|marsh(?:es|land)?|bogs?|fens?|swamps?|mires?)\b", "LCH-7_1_4"),
+            _rule("LCH", r"\b(?:wetlands?|marsh(?:es|land)?|bogs?|fens?|swamps?|mires?)\b", "LCH-7_1_4", strength=0.7),
             _rule("LCH", r"\b(?:abandoned|abandonment|disused)\b", "LCH-6_1_4"),
             _rule("LCH", r"\b(?:(?:tree|crown|canopy)\s+cover(?:age)?(?:\s+density)?)\b", "LCH-3_13", score=2.5),
             # Parameters and thresholds: ranges, comparisons and measured quantities.

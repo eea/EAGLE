@@ -57,6 +57,15 @@
   .tag { font-size: 11px; border: 1px solid var(--line); border-radius: 999px; padding: 0 7px; margin-left: 6px; color: var(--muted); }
   .tag.excl { color: #c0392b; border-color: #c0392b; }
   .dot.small { width: 8px; height: 8px; margin-top: 9px; flex: none; }
+  .conf { margin-left: 6px; font-size: 9px; letter-spacing: 1px; color: var(--muted); vertical-align: middle; }
+  .context { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0 0 12px; font-size: 14px; }
+  .muted { color: var(--muted); }
+  .chip { border: 1px solid var(--line); border-radius: 999px; padding: 0 10px; background: var(--card); }
+  details.why { margin-top: 2px; font-size: 13px; }
+  details.why summary { cursor: pointer; color: var(--muted); width: fit-content; }
+  details.why ul.reasons { margin: 4px 0 4px 18px; padding: 0; }
+  details.why p { margin: 4px 0; color: var(--muted); }
+  details.why p.definition { border-left: 3px solid color-mix(in srgb, var(--c) 50%, transparent); padding-left: 8px; white-space: pre-line; }
 </style>
 </head>
 <body>
@@ -70,7 +79,9 @@ const BLOCKS = {
 };
 
 let args = null;
-let selection = null; // {entry: key, mention: id | null}
+let selection = null; // {entries: [keys], mention: id | null}
+const openDetails = new Set(); // entry keys whose "why" panel is open; survives re-renders
+const selected = (key) => !!selection && selection.entries.includes(key);
 
 const send = (type, extra) =>
   window.parent.postMessage(Object.assign({ isStreamlitMessage: true, type }, extra), "*");
@@ -108,17 +119,48 @@ function renderText(root, payload) {
     const mark = el("mark", `mk b-${m.block}`, payload.text.slice(m.start, m.end));
     mark.title = m.tip;
     if (m.negated) mark.classList.add("negated");
-    if (selection && selection.entry === m.entry) mark.classList.add("sel");
+    if (m.entries.some(selected)) mark.classList.add("sel");
     if (selection && selection.mention === m.id) mark.classList.add("focus");
     mark.addEventListener("click", () => {
       const same = selection && selection.mention === m.id;
-      choose(same ? null : { entry: m.entry, mention: m.id });
+      choose(same || !m.entries.length ? null : { entries: m.entries, mention: m.id });
     });
     doc.append(mark);
     pos = m.end;
   }
   doc.append(document.createTextNode(payload.text.slice(pos)));
   root.append(doc);
+}
+
+const LEVELS = { high: 3, medium: 2, low: 1 };
+
+function confidence(level) {
+  const n = LEVELS[level] || 0;
+  const badge = el("span", "conf", "●".repeat(n) + "○".repeat(3 - n));
+  badge.title = `${level} confidence`;
+  return badge;
+}
+
+function details(e) {
+  const box = el("details", "why");
+  box.open = openDetails.has(e.key);
+  box.append(el("summary", "", "why this class"));
+  box.addEventListener("toggle", () => (box.open ? openDetails.add(e.key) : openDetails.delete(e.key)));
+  box.addEventListener("click", (ev) => ev.stopPropagation()); // reading is not selecting
+  const ul = el("ul", "reasons");
+  for (const r of e.reasons) ul.append(el("li", "", r));
+  box.append(ul);
+  if (e.definition) box.append(el("p", "definition", e.definition));
+  if (e.alternatives.length) {
+    const alt = el("p", "alts");
+    alt.append(document.createTextNode("Also considered: "));
+    e.alternatives.forEach((a, i) => {
+      if (i) alt.append(document.createTextNode(", "));
+      alt.append(el("code", "", a.code), document.createTextNode(` ${a.label}`));
+    });
+    box.append(alt);
+  }
+  return box;
 }
 
 function renderClasses(root, payload) {
@@ -130,15 +172,21 @@ function renderClasses(root, payload) {
   }
   root.append(legend);
 
-  const activeBlock = selection
-    ? (payload.entries.find((e) => e.key === selection.entry) || {}).block
-    : null;
+  const s = payload.summary || {};
+  if (s.domains && s.domains.length) {
+    const ctx = el("div", "context");
+    ctx.append(el("span", "muted", "Context:"));
+    for (const d of s.domains) ctx.append(el("span", "chip", d));
+    root.append(ctx);
+  }
+
+  const activeBlocks = new Set(payload.entries.filter((e) => selected(e.key)).map((e) => e.block));
 
   for (const b of Object.keys(BLOCKS)) {
     const entries = payload.entries.filter((e) => e.block === b);
     const total = entries.reduce((n, e) => n + e.mentions.length, 0);
     const card = el("section", `card b-${b}`);
-    if (activeBlock === b) card.classList.add("active");
+    if (activeBlocks.has(b)) card.classList.add("active");
 
     const head = el("header");
     head.append(el("h3", "", BLOCKS[b].title), el("span", "sub", BLOCKS[b].sub), el("span", "count", String(total)));
@@ -150,20 +198,23 @@ function renderClasses(root, payload) {
       const list = el("ul");
       for (const e of entries) {
         const li = el("li", "entry");
-        if (selection && selection.entry === e.key) li.classList.add("sel");
+        if (selected(e.key)) li.classList.add("sel");
         const body = el("div", "body");
         const label = el("div", "label", e.label);
         if (e.negated) label.append(el("span", "tag excl", "excluded"));
         if (!e.code) label.append(el("span", "tag", "type only"));
+        else label.append(confidence(e.confidence));
         body.append(label);
         const meta = el("div", "meta");
         if (e.code) meta.append(el("code", "", e.code), document.createTextNode(e.breadcrumb ? ` · ${e.breadcrumb}` : ""));
         else meta.textContent = e.breadcrumb;
         if (meta.textContent) body.append(meta);
+        if (e.appliesTo) body.append(el("div", "meta", `describes: ${e.appliesTo}`));
+        if (e.reasons.length || e.definition || e.alternatives.length) body.append(details(e));
         li.append(el("i", "dot small"), body, el("span", "n", `×${e.mentions.length}`));
         li.addEventListener("click", () => {
-          const same = selection && selection.entry === e.key && selection.mention === null;
-          choose(same ? null : { entry: e.key, mention: null });
+          const same = selection && selection.mention === null && selection.entries.length === 1 && selection.entries[0] === e.key;
+          choose(same ? null : { entries: [e.key], mention: null });
         });
         list.append(li);
       }
