@@ -40,7 +40,11 @@
           background: var(--card); transition: box-shadow .15s, border-color .15s; }
   .card.active { box-shadow: 0 0 0 2px var(--c); }
   .has-sel .card:not(.active) { opacity: .7; }
-  .card > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 10px 14px 6px; }
+  .card > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 10px 14px 6px; cursor: pointer; user-select: none; }
+  .card.collapsed > header { padding-bottom: 10px; }
+  .card > header:hover .chevron, .card > header:focus-visible .chevron { color: var(--c); }
+  .card > header:focus-visible { outline: 2px solid var(--c); outline-offset: -2px; border-radius: 8px; }
+  .chevron { width: 12px; color: var(--muted); font-size: 12px; }
   .card h3 { margin: 0; font-size: 16px; font-weight: 700; color: var(--c); }
   .card .sub { color: var(--muted); font-size: 13px; }
   .card .count { margin-left: auto; font-weight: 700; color: var(--c); }
@@ -81,6 +85,7 @@ const BLOCKS = {
 let args = null;
 let selection = null; // {entries: [keys], mention: id | null}
 const openDetails = new Set(); // entry keys whose "why" panel is open; survives re-renders
+const collapsed = new Set(); // blocks (LCC / LUA / LCH) whose panel the user has folded
 const selected = (key) => !!selection && selection.entries.includes(key);
 
 const send = (type, extra) =>
@@ -188,11 +193,29 @@ function renderClasses(root, payload) {
     const card = el("section", `card b-${b}`);
     if (activeBlocks.has(b)) card.classList.add("active");
 
+    const closed = collapsed.has(b);
+    if (closed) card.classList.add("collapsed");
     const head = el("header");
-    head.append(el("h3", "", BLOCKS[b].title), el("span", "sub", BLOCKS[b].sub), el("span", "count", String(total)));
+    head.setAttribute("role", "button");
+    head.tabIndex = 0;
+    head.setAttribute("aria-expanded", String(!closed));
+    head.append(el("span", "chevron", closed ? "▸" : "▾"), el("h3", "", BLOCKS[b].title), el("span", "sub", BLOCKS[b].sub), el("span", "count", String(total)));
+    const toggle = () => {
+      closed ? collapsed.delete(b) : collapsed.add(b);
+      render();
+    };
+    head.addEventListener("click", toggle);
+    head.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter" || ev.key === " ") {
+        ev.preventDefault();
+        toggle();
+      }
+    });
     card.append(head);
 
-    if (!entries.length) {
+    if (closed) {
+      // header only
+    } else if (!entries.length) {
       card.append(el("div", "none", "Nothing detected"));
     } else {
       const list = el("ul");
@@ -235,8 +258,13 @@ function render() {
 
 window.addEventListener("message", (event) => {
   if (!event.data || event.data.type !== "streamlit:render") return;
+  const before = JSON.stringify(selection);
   args = event.data.args;
   selection = args.selection || null;
+  // A highlight clicked in the text opens the panel(s) of its class; other panels stay as they are.
+  if (args.view === "classes" && selection && JSON.stringify(selection) !== before) {
+    for (const e of args.payload.entries) if (selected(e.key)) collapsed.delete(e.block);
+  }
   const theme = event.data.theme;
   const dark = theme ? theme.base === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
   document.documentElement.dataset.theme = dark ? "dark" : "light";
