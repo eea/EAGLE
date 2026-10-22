@@ -1,0 +1,16 @@
+[project]
+name = "eagle-eye"
+version = "0.1.0"
+description = "Text analysis web app that spots EAGLE land cover (LCC), land use (LUA) and land characteristics (LCH) in class descriptions"
+requires-python = ">=3.12"
+dependencies = [
+    "streamlit>=1.40",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+build = ["openpyxl>=3.1.5"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

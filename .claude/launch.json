@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "eagle-eye",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "--directory", "eagle-eye", "streamlit", "run", "app.py", "--server.port", "8511", "--server.headless", "true"],
+      "port": 8511
+    }
+  ]
+}

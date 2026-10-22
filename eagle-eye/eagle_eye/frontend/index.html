@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --fg: #1f2933; --muted: #6b7785; --line: #dfe3e8; --card: #f6f7f9; --ring: #1f2933;
+    --LCC: #23904f; --LUA: #7b3fc4; --LCH: #a98200;
+    --font: "Source Sans", "Source Sans Pro", system-ui, sans-serif;
+  }
+  :root[data-theme="dark"] {
+    --fg: #e8eaed; --muted: #9aa5b1; --line: #3a414b; --card: #1e232b; --ring: #f5f6f7;
+    --LCC: #5fd08a; --LUA: #b68cf2; --LCH: #f0c63c;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: transparent; color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.6; }
+  body { padding: 2px; }
+
+  .b-LCC { --c: var(--LCC); } .b-LUA { --c: var(--LUA); } .b-LCH { --c: var(--LCH); }
+
+  /* ---------- annotated text ---------- */
+  .doc { white-space: pre-wrap; word-wrap: break-word; padding: 14px 16px; min-height: 340px;
+         border: 1px solid var(--line); border-radius: 10px; }
+  .doc.empty { color: var(--muted); }
+  mark.mk { color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent);
+            border-bottom: 2px solid var(--c); border-radius: 3px; padding: 0 1px; font-weight: 600;
+            cursor: pointer; transition: opacity .15s, background .15s; }
+  mark.mk:hover { background: color-mix(in srgb, var(--c) 28%, transparent); }
+  mark.mk.negated { border-bottom-style: dashed; text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--c) 55%, transparent); }
+  .has-sel mark.mk { opacity: .35; }
+  .has-sel mark.mk.sel { opacity: 1; background: color-mix(in srgb, var(--c) 30%, transparent); }
+  .has-sel mark.mk.focus { outline: 2px solid var(--c); outline-offset: 1px; }
+
+  /* ---------- class pane ---------- */
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 12px; font-size: 14px; color: var(--muted); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); display: inline-block; }
+  .card { border: 1px solid var(--line); border-left: 5px solid var(--c); border-radius: 10px; margin: 0 0 12px;
+          background: var(--card); transition: box-shadow .15s, border-color .15s; }
+  .card.active { box-shadow: 0 0 0 2px var(--c); }
+  .has-sel .card:not(.active) { opacity: .7; }
+  .card > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 10px 14px 6px; }
+  .card h3 { margin: 0; font-size: 16px; font-weight: 700; color: var(--c); }
+  .card .sub { color: var(--muted); font-size: 13px; }
+  .card .count { margin-left: auto; font-weight: 700; color: var(--c); }
+  .card ul { list-style: none; margin: 0; padding: 0 8px 10px; }
+  .card .none { padding: 0 14px 12px; color: var(--muted); font-size: 14px; font-style: italic; }
+  li.entry { display: flex; gap: 8px; align-items: flex-start; padding: 6px 8px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; }
+  li.entry:hover { background: color-mix(in srgb, var(--c) 10%, transparent); }
+  li.entry.sel { background: color-mix(in srgb, var(--c) 20%, transparent); border-color: var(--c); }
+  li.entry .body { flex: 1; min-width: 0; }
+  li.entry .label { font-weight: 600; }
+  li.entry .meta { font-size: 12.5px; color: var(--muted); overflow-wrap: anywhere; }
+  li.entry code { font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--c); }
+  li.entry .n { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+  .tag { font-size: 11px; border: 1px solid var(--line); border-radius: 999px; padding: 0 7px; margin-left: 6px; color: var(--muted); }
+  .tag.excl { color: #c0392b; border-color: #c0392b; }
+  .dot.small { width: 8px; height: 8px; margin-top: 9px; flex: none; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+"use strict";
+const BLOCKS = {
+  LCC: { title: "Land Cover", sub: "LCC · components" },
+  LUA: { title: "Land Use", sub: "LUA · attributes" },
+  LCH: { title: "Land Characteristics", sub: "LCH" },
+};
+
+let args = null;
+let selection = null; // {entry: key, mention: id | null}
+
+const send = (type, extra) =>
+  window.parent.postMessage(Object.assign({ isStreamlitMessage: true, type }, extra), "*");
+// Measure the content, not the document: documentElement.scrollHeight never drops below the frame height.
+const fitFrame = () =>
+  send("streamlit:setFrameHeight", { height: Math.ceil(document.getElementById("root").getBoundingClientRect().height) + 8 });
+
+function el(tag, cls, text) {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+function choose(next) {
+  selection = next;
+  render();
+  send("streamlit:setComponentValue", {
+    dataType: "json",
+    value: { selection: next, nonce: Date.now() + Math.random() },
+  });
+}
+
+function renderText(root, payload) {
+  const doc = el("div", "doc");
+  if (!payload.text.trim()) {
+    doc.classList.add("empty");
+    doc.textContent = "Paste or upload a land cover / land use description to see it annotated here.";
+    root.append(doc);
+    return;
+  }
+  let pos = 0;
+  for (const m of payload.mentions) {
+    doc.append(document.createTextNode(payload.text.slice(pos, m.start)));
+    const mark = el("mark", `mk b-${m.block}`, payload.text.slice(m.start, m.end));
+    mark.title = m.tip;
+    if (m.negated) mark.classList.add("negated");
+    if (selection && selection.entry === m.entry) mark.classList.add("sel");
+    if (selection && selection.mention === m.id) mark.classList.add("focus");
+    mark.addEventListener("click", () => {
+      const same = selection && selection.mention === m.id;
+      choose(same ? null : { entry: m.entry, mention: m.id });
+    });
+    doc.append(mark);
+    pos = m.end;
+  }
+  doc.append(document.createTextNode(payload.text.slice(pos)));
+  root.append(doc);
+}
+
+function renderClasses(root, payload) {
+  const legend = el("div", "legend");
+  for (const b of Object.keys(BLOCKS)) {
+    const item = el("span", `b-${b}`);
+    item.append(el("i", "dot"), document.createTextNode(`${BLOCKS[b].title} (${b})`));
+    legend.append(item);
+  }
+  root.append(legend);
+
+  const activeBlock = selection
+    ? (payload.entries.find((e) => e.key === selection.entry) || {}).block
+    : null;
+
+  for (const b of Object.keys(BLOCKS)) {
+    const entries = payload.entries.filter((e) => e.block === b);
+    const total = entries.reduce((n, e) => n + e.mentions.length, 0);
+    const card = el("section", `card b-${b}`);
+    if (activeBlock === b) card.classList.add("active");
+
+    const head = el("header");
+    head.append(el("h3", "", BLOCKS[b].title), el("span", "sub", BLOCKS[b].sub), el("span", "count", String(total)));
+    card.append(head);
+
+    if (!entries.length) {
+      card.append(el("div", "none", "Nothing detected"));
+    } else {
+      const list = el("ul");
+      for (const e of entries) {
+        const li = el("li", "entry");
+        if (selection && selection.entry === e.key) li.classList.add("sel");
+        const body = el("div", "body");
+        const label = el("div", "label", e.label);
+        if (e.negated) label.append(el("span", "tag excl", "excluded"));
+        if (!e.code) label.append(el("span", "tag", "type only"));
+        body.append(label);
+        const meta = el("div", "meta");
+        if (e.code) meta.append(el("code", "", e.code), document.createTextNode(e.breadcrumb ? ` · ${e.breadcrumb}` : ""));
+        else meta.textContent = e.breadcrumb;
+        if (meta.textContent) body.append(meta);
+        li.append(el("i", "dot small"), body, el("span", "n", `×${e.mentions.length}`));
+        li.addEventListener("click", () => {
+          const same = selection && selection.entry === e.key && selection.mention === null;
+          choose(same ? null : { entry: e.key, mention: null });
+        });
+        list.append(li);
+      }
+      card.append(list);
+    }
+    root.append(card);
+  }
+}
+
+function render() {
+  if (!args) return;
+  const root = document.getElementById("root");
+  root.replaceChildren();
+  root.className = selection ? "has-sel" : "";
+  (args.view === "text" ? renderText : renderClasses)(root, args.payload);
+  fitFrame();
+}
+
+window.addEventListener("message", (event) => {
+  if (!event.data || event.data.type !== "streamlit:render") return;
+  args = event.data.args;
+  selection = args.selection || null;
+  const theme = event.data.theme;
+  const dark = theme ? theme.base === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.dataset.theme = dark ? "dark" : "light";
+  if (theme && theme.font) document.documentElement.style.setProperty("--font", theme.font);
+  render();
+});
+
+new ResizeObserver(fitFrame).observe(document.getElementById("root"));
+send("streamlit:componentReady", { apiVersion: 1 });
+</script>
+</body>
+</html>
