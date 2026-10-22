@@ -40,11 +40,13 @@
           background: var(--card); transition: box-shadow .15s, border-color .15s; }
   .card.active { box-shadow: 0 0 0 2px var(--c); }
   .has-sel .card:not(.active) { opacity: .7; }
-  .card > header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 10px 14px 6px; cursor: pointer; user-select: none; }
+  .card > header { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; padding: 10px 14px 6px; cursor: pointer; user-select: none; }
   .card.collapsed > header { padding-bottom: 10px; }
-  .card > header:hover .chevron, .card > header:focus-visible .chevron { color: var(--c); }
+  .card > header:hover .chevron, .card > header:focus-visible .chevron { background: var(--c); color: var(--card); }
   .card > header:focus-visible { outline: 2px solid var(--c); outline-offset: -2px; border-radius: 8px; }
-  .chevron { width: 12px; color: var(--muted); font-size: 12px; }
+  .chevron { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 24px; height: 24px;
+             border: 2px solid var(--c); border-radius: 50%; color: var(--c); font-size: 14px; line-height: 1; font-weight: 700;
+             background: color-mix(in srgb, var(--c) 14%, transparent); transition: background .15s, color .15s; }
   .card h3 { margin: 0; font-size: 16px; font-weight: 700; color: var(--c); }
   .card .sub { color: var(--muted); font-size: 13px; }
   .card .count { margin-left: auto; font-weight: 700; color: var(--c); }
@@ -101,8 +103,16 @@ function el(tag, cls, text) {
   return node;
 }
 
+// Highlighting a class opens its panel and folds the panels of the other class types.
+function focusPanels() {
+  if (!selection || args.view !== "classes") return;
+  const active = new Set(args.payload.entries.filter((e) => selected(e.key)).map((e) => e.block));
+  for (const b of Object.keys(BLOCKS)) active.has(b) ? collapsed.delete(b) : collapsed.add(b);
+}
+
 function choose(next) {
   selection = next;
+  focusPanels();
   render();
   send("streamlit:setComponentValue", {
     dataType: "json",
@@ -261,10 +271,7 @@ window.addEventListener("message", (event) => {
   const before = JSON.stringify(selection);
   args = event.data.args;
   selection = args.selection || null;
-  // A highlight clicked in the text opens the panel(s) of its class; other panels stay as they are.
-  if (args.view === "classes" && selection && JSON.stringify(selection) !== before) {
-    for (const e of args.payload.entries) if (selected(e.key)) collapsed.delete(e.block);
-  }
+  if (JSON.stringify(selection) !== before) focusPanels(); // e.g. a highlight clicked in the text pane
   const theme = event.data.theme;
   const dark = theme ? theme.base === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
   document.documentElement.dataset.theme = dark ? "dark" : "light";
