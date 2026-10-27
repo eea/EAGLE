@@ -6,12 +6,12 @@
 <style>
   :root {
     --fg: #1f2933; --muted: #6b7785; --line: #dfe3e8; --card: #f6f7f9; --ring: #1f2933;
-    --LCC: #23904f; --LUA: #7b3fc4; --LCH: #a98200;
+    --LCC: #23904f; --LUA: #7b3fc4; --LCH: #a98200; --pop: #ffffff;
     --font: "Source Sans", "Source Sans Pro", system-ui, sans-serif;
   }
   :root[data-theme="dark"] {
     --fg: #e8eaed; --muted: #9aa5b1; --line: #3a414b; --card: #1e232b; --ring: #f5f6f7;
-    --LCC: #5fd08a; --LUA: #b68cf2; --LCH: #f0c63c;
+    --LCC: #5fd08a; --LUA: #b68cf2; --LCH: #f0c63c; --pop: #2a303a;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; background: transparent; color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.6; }
@@ -20,7 +20,7 @@
   .b-LCC { --c: var(--LCC); } .b-LUA { --c: var(--LUA); } .b-LCH { --c: var(--LCH); }
 
   /* ---------- annotated text ---------- */
-  .doc { white-space: pre-wrap; word-wrap: break-word; padding: 14px 16px; min-height: 340px;
+  .doc { white-space: pre-wrap; word-wrap: break-word; padding: 14px 16px; min-height: 340px; max-height: 700px; overflow-y: auto;
          border: 1px solid var(--line); border-radius: 10px; }
   .doc.empty { color: var(--muted); }
   mark.mk { color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent);
@@ -59,14 +59,15 @@
   .card h3 { margin: 0; font-size: 16px; font-weight: 700; color: var(--c); }
   .card .sub { color: var(--muted); font-size: 13px; }
   .card .count { margin-left: auto; font-weight: 700; color: var(--c); }
-  .card ul { list-style: none; margin: 0; padding: 0 8px 10px; }
+  .card ul { list-style: none; margin: 0 4px 8px 0; padding: 0 4px 0 8px; position: relative; overflow-y: auto; scrollbar-width: thin; }
   .card .none { padding: 0 14px 12px; color: var(--muted); font-size: 14px; font-style: italic; }
-  li.entry { display: flex; gap: 8px; align-items: flex-start; padding: 6px 8px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; }
+  li.entry { display: flex; gap: 8px; align-items: flex-start; padding: 4px 8px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; }
   li.entry:hover { background: color-mix(in srgb, var(--c) 10%, transparent); }
   li.entry.sel { background: color-mix(in srgb, var(--c) 20%, transparent); border-color: var(--c); }
   li.entry .body { flex: 1; min-width: 0; }
-  li.entry .label { font-weight: 600; }
-  li.entry .meta { font-size: 12.5px; color: var(--muted); overflow-wrap: anywhere; }
+  li.entry .label { font-weight: 600; font-size: 15px; line-height: 1.35; }
+  li.entry .meta { font-size: 12px; line-height: 1.35; color: var(--muted); }
+  li.entry .meta.crumb { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   li.entry code { font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--c); }
   li.entry .n { font-size: 12.5px; color: var(--muted); white-space: nowrap; }
   .tag { font-size: 11px; border: 1px solid var(--line); border-radius: 999px; padding: 0 7px; margin-left: 6px; color: var(--muted); }
@@ -76,11 +77,20 @@
   .context { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 0 0 12px; font-size: 14px; }
   .muted { color: var(--muted); }
   .chip { border: 1px solid var(--line); border-radius: 999px; padding: 0 10px; background: var(--card); }
-  details.why { margin-top: 2px; font-size: 13px; }
-  details.why summary { cursor: pointer; color: var(--muted); width: fit-content; }
-  details.why ul.reasons { margin: 4px 0 4px 18px; padding: 0; }
-  details.why p { margin: 4px 0; color: var(--muted); }
-  details.why p.definition { border-left: 3px solid color-mix(in srgb, var(--c) 50%, transparent); padding-left: 8px; white-space: pre-line; }
+  .help, .help-gap { flex: none; width: 16px; height: 16px; margin-top: 2px; }
+  .help { display: inline-flex; align-items: center; justify-content: center;
+          padding: 0; border: 0; border-radius: 50%; background: #1a73e8; color: #fff; font: 700 11px/1 var(--font);
+          cursor: help; }
+  .help:hover, .help:focus-visible { background: #1558b8; outline: 2px solid color-mix(in srgb, #1a73e8 40%, transparent); outline-offset: 1px; }
+  .pop { position: fixed; z-index: 50; display: none; width: min(350px, calc(100vw - 12px)); max-height: 340px; overflow-y: auto;
+         padding: 10px 14px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--pop); color: var(--fg);
+         box-shadow: 0 8px 28px rgba(0, 0, 0, .28); font-size: 13px; line-height: 1.45; }
+  .pop h4 { margin: 10px 0 3px; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  .pop h4:first-child { margin-top: 0; }
+  .pop .head { font-weight: 700; color: var(--c); }
+  .pop ul { margin: 0 0 0 18px; padding: 0; }
+  .pop blockquote { margin: 0; padding-left: 9px; border-left: 3px solid color-mix(in srgb, var(--c) 55%, transparent); white-space: pre-line; }
+  .pop code { font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--c); }
 </style>
 </head>
 <body>
@@ -95,7 +105,6 @@ const BLOCKS = {
 
 let args = null;
 let selection = null; // {entries: [keys], mention: id | null}
-const openDetails = new Set(); // entry keys whose "why" panel is open; survives re-renders
 const collapsed = new Set(); // blocks (LCC / LUA / LCH) whose panel the user has folded
 const selected = (key) => !!selection && selection.entries.includes(key);
 
@@ -233,46 +242,108 @@ function confidence(level) {
   return badge;
 }
 
-function details(e) {
-  const box = el("details", "why");
-  box.open = openDetails.has(e.key);
-  box.append(el("summary", "", "why this class"));
-  box.addEventListener("toggle", () => (box.open ? openDetails.add(e.key) : openDetails.delete(e.key)));
-  box.addEventListener("click", (ev) => ev.stopPropagation()); // reading is not selecting
-  const ul = el("ul", "reasons");
-  for (const r of e.reasons) ul.append(el("li", "", r));
-  if (e.bcv) ul.append(el("li", "", `bar code value ${e.bcv}, ${BCV_MEANING[e.bcv]}: ${e.bcvReasons.join("; ") || "from the wording"}`));
-  box.append(ul);
-  if (e.definition) box.append(el("p", "definition", e.definition));
-  if (e.alternatives.length) {
-    const alt = el("p", "alts");
-    alt.append(document.createTextNode("Also considered: "));
-    e.alternatives.forEach((a, i) => {
-      if (i) alt.append(document.createTextNode(", "));
-      alt.append(el("code", "", a.code), document.createTextNode(` ${a.label}`));
-    });
-    box.append(alt);
+// Help bubble: the explanation of a class pops up on hover (or keyboard focus).
+const pop = el("div", "pop");
+document.body.append(pop);
+let popTimer = null;
+
+function popContent(e) {
+  pop.replaceChildren();
+  pop.className = `pop b-${e.block}`;
+  const section = (title) => pop.append(el("h4", "", title));
+  pop.append(el("div", "head", e.label));
+
+  section("Why this class");
+  const why = el("ul");
+  for (const r of e.reasons) why.append(el("li", "", r));
+  pop.append(why);
+
+  if (e.bcv) {
+    section(`Bar code value ${e.bcv}`);
+    const bcv = el("ul");
+    bcv.append(el("li", "", `${BCV_MEANING[e.bcv]}${e.bcvBasis === "assumed" ? " (assumed: no cue in the text)" : e.bcvBasis === "manual" ? " (set manually)" : ""}`));
+    for (const r of e.bcvReasons) bcv.append(el("li", "", r));
+    pop.append(bcv);
   }
-  return box;
+  if (e.definition) {
+    section("EAGLE definition");
+    pop.append(el("blockquote", "", e.definition));
+  }
+  if (e.alternatives.length) {
+    section("Also considered");
+    const alts = el("ul");
+    for (const a of e.alternatives) {
+      const li = el("li");
+      li.append(el("code", "", a.code), document.createTextNode(` ${a.label}`));
+      alts.append(li);
+    }
+    pop.append(alts);
+  }
+}
+
+function showPop(icon, e) {
+  clearTimeout(popTimer);
+  popContent(e);
+  pop.style.display = "block";
+  const r = icon.getBoundingClientRect();
+  const w = pop.offsetWidth;
+  const h = pop.offsetHeight;
+  const left = Math.max(6, Math.min(r.left - 12, window.innerWidth - w - 6));
+  const below = r.bottom + 8;
+  const top = below + h <= window.innerHeight - 6 ? below : Math.max(6, r.top - h - 8);
+  pop.style.left = `${left}px`;
+  pop.style.top = `${top}px`;
+}
+
+function hidePop(now) {
+  clearTimeout(popTimer);
+  popTimer = setTimeout(() => (pop.style.display = "none"), now ? 0 : 160);
+}
+
+pop.addEventListener("mouseenter", () => clearTimeout(popTimer));
+pop.addEventListener("mouseleave", () => hidePop());
+
+function helpBubble(e) {
+  const icon = el("button", "help", "?");
+  icon.type = "button";
+  icon.setAttribute("aria-label", `Why ${e.label}`);
+  icon.addEventListener("mouseenter", () => showPop(icon, e));
+  icon.addEventListener("focus", () => showPop(icon, e));
+  icon.addEventListener("mouseleave", () => hidePop());
+  icon.addEventListener("blur", () => hidePop());
+  icon.addEventListener("click", (ev) => ev.stopPropagation()); // reading is not selecting
+  return icon;
+}
+
+// Only SLOTS class rows are visible at once. Every panel with classes gets a share; a panel
+// with few classes leaves its unused rows to the others. Longer lists scroll inside their panel.
+const SLOTS = 9;
+const ROW_PX = 52;
+
+function allocateSlots(payload) {
+  const need = {};
+  for (const b of Object.keys(BLOCKS)) {
+    const n = payload.entries.filter((e) => e.block === b).length;
+    if (n && !collapsed.has(b)) need[b] = n;
+  }
+  const give = {};
+  let left = SLOTS;
+  for (const b of Object.keys(need)) {
+    give[b] = Math.min(need[b], 2);
+    left -= give[b];
+  }
+  while (left > 0) {
+    const open = Object.keys(need).filter((b) => need[b] > give[b]);
+    if (!open.length) break;
+    open.sort((x, y) => need[y] / (give[y] + 1) - need[x] / (give[x] + 1)); // D'Hondt: shares follow the number of classes
+    give[open[0]]++;
+    left--;
+  }
+  return give;
 }
 
 function renderClasses(root, payload) {
-  const legend = el("div", "legend");
-  for (const b of Object.keys(BLOCKS)) {
-    const item = el("span", `b-${b}`);
-    item.append(el("i", "dot"), document.createTextNode(`${BLOCKS[b].title} (${b})`));
-    legend.append(item);
-  }
-  root.append(legend);
-
-  const s = payload.summary || {};
-  if (s.domains && s.domains.length) {
-    const ctx = el("div", "context");
-    ctx.append(el("span", "muted", "Context:"));
-    for (const d of s.domains) ctx.append(el("span", "chip", d));
-    root.append(ctx);
-  }
-
+  const slots = allocateSlots(payload);
   const activeBlocks = new Set(payload.entries.filter((e) => selected(e.key)).map((e) => e.block));
 
   for (const b of Object.keys(BLOCKS)) {
@@ -307,6 +378,7 @@ function renderClasses(root, payload) {
       card.append(el("div", "none", "Nothing detected"));
     } else {
       const list = el("ul");
+      list.style.maxHeight = `${(slots[b] || 1) * ROW_PX}px`;
       for (const e of entries) {
         const li = el("li", "entry");
         if (selected(e.key)) li.classList.add("sel");
@@ -317,13 +389,14 @@ function renderClasses(root, payload) {
         else label.append(confidence(e.confidence));
         if (e.bcv) label.append(bcvBadge(e));
         body.append(label);
-        const meta = el("div", "meta");
+        const meta = el("div", "meta crumb");
         if (e.code) meta.append(el("code", "", e.code), document.createTextNode(e.breadcrumb ? ` · ${e.breadcrumb}` : ""));
         else meta.textContent = e.breadcrumb;
+        meta.title = e.code ? `${e.code} · ${e.breadcrumb}` : e.breadcrumb;
         if (meta.textContent) body.append(meta);
         if (e.appliesTo) body.append(el("div", "meta", `describes: ${e.appliesTo}`));
-        if (e.reasons.length || e.definition || e.alternatives.length || e.bcv) body.append(details(e));
-        li.append(el("i", "dot small"), body, el("span", "n", `×${e.mentions.length}`));
+        const hasHelp = e.reasons.length || e.definition || e.alternatives.length || e.bcv;
+        li.append(el("i", "dot small"), hasHelp ? helpBubble(e) : el("span", "help-gap"), body, el("span", "n", `×${e.mentions.length}`));
         li.addEventListener("click", () => {
           const same = selection && selection.mention === null && selection.entries.length === 1 && selection.entries[0] === e.key;
           choose(same ? null : { entries: [e.key], mention: null });
@@ -340,9 +413,18 @@ function render() {
   if (!args) return;
   const root = document.getElementById("root");
   root.replaceChildren();
+  pop.style.display = "none";
   root.className = selection ? "has-sel" : "";
   (args.view === "text" ? renderText : renderClasses)(root, args.payload);
   fitFrame();
+  requestAnimationFrame(() =>
+    document.querySelectorAll(".card ul").forEach((ul) => {
+      const li = ul.querySelector("li.sel");
+      if (li && (li.offsetTop < ul.scrollTop || li.offsetTop + li.offsetHeight > ul.scrollTop + ul.clientHeight)) {
+        ul.scrollTop = Math.max(0, li.offsetTop - 4);
+      }
+    })
+  );
 }
 
 window.addEventListener("message", (event) => {

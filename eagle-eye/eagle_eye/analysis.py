@@ -63,15 +63,19 @@ def _entries(mentions: list[Mention], vocab: Vocabulary) -> list[Entry]:
 def _summary(entries: list[Entry], vocab: Vocabulary) -> dict:
     # An element tagged with a single domain is a stronger hint than one tagged with several.
     weight: Counter = Counter()
+    sources: dict[str, list[str]] = {}
     for e in entries:
         if e.code and e.confidence in ("high", "medium"):
             domains = vocab.get(e.code).domains
             for d in domains:
                 weight[d] += 1 / len(domains)
+                sources.setdefault(d, []).append(e.label)
     top = max(weight.values(), default=0)
     shown = [d for d, w in weight.most_common(3) if w >= 1.5 and w >= 0.25 * top]
     return {
         "domains": [DOMAIN_NAMES.get(d, d) for d in shown],
+        # the elements whose thematic domain tag (Eionet vocabulary) gave each domain
+        "domain_sources": {DOMAIN_NAMES.get(d, d): sources[d] for d in shown},
         "confidence": dict(Counter(e.confidence for e in entries)),
     }
 

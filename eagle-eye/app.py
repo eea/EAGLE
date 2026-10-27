@@ -3,6 +3,8 @@
 Run with:  uv run streamlit run app.py
 """
 
+import html
+
 import streamlit as st
 
 from eagle_eye.analysis import analyze
@@ -15,6 +17,21 @@ from eagle_eye.ui import annotator
 from eagle_eye.vocabulary import load_vocabulary
 
 st.set_page_config(page_title="EAGLE Eye", page_icon="🦅", layout="wide", initial_sidebar_state="collapsed")
+
+st.markdown(
+    """<style>
+    header[data-testid="stHeader"], [data-testid="stToolbar"], [data-testid="stDecoration"] { display: none; }
+    [data-testid="stMainBlockContainer"], .block-container { padding-top: 1.2rem; padding-bottom: 1rem; }
+    :root { --ee-lcc: #23904f; --ee-lua: #7b3fc4; --ee-lch: #a98200; }
+    @media (prefers-color-scheme: dark) { :root { --ee-lcc: #5fd08a; --ee-lua: #b68cf2; --ee-lch: #f0c63c; } }
+    .ee-legend { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: -.4rem 0 .8rem; font-size: 1rem; }
+    .ee-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 7px; }
+    .ee-muted { color: var(--text-color); opacity: .65; }
+    .ee-chip { border: 1px solid rgba(128,128,128,.4); border-radius: 999px; padding: 1px 10px; margin-left: 4px;
+               background: rgba(128,128,128,.12); cursor: help; white-space: nowrap; }
+    </style>""",
+    unsafe_allow_html=True,
+)
 
 ANNOTATED, EDIT = "🖍️ Annotated", "✏️ Edit"
 FIRST_SAMPLE = next(iter(SAMPLES))
@@ -264,16 +281,22 @@ def export_panel(analysis):
 
 # ---------------------------------------------------------------- page
 
-st.title("🦅 EAGLE Eye")
-st.caption(
-    "Find the three EAGLE building blocks in a land cover / land use description: "
-    "**Land Cover** (LCC), **Land Use** (LUA) and **Land Characteristics** (LCH). "
-    "Click a highlight to change its class, or select some text to add a highlight."
+st.title("🦅 EAGLE Eye", anchor=False)
+st.markdown(
+    '<div class="ee-legend">'
+    '<span><i style="background:var(--ee-lcc)"></i>Land Cover (LCC)</span>'
+    '<span><i style="background:var(--ee-lua)"></i>Land Use (LUA)</span>'
+    '<span><i style="background:var(--ee-lch)"></i>Land Characteristics (LCH)</span>'
+    "</div>",
+    unsafe_allow_html=True,
 )
 
-left, right = st.columns([1.15, 1], gap="large")
+PANE_HEIGHT = 700  # px: the text, the class pane and the details table share it
+
+left, middle, right = st.columns([1.1, 1.15, 1.25], gap="medium")
 
 with left:
+    st.subheader("Description", anchor=False)
     st.segmented_control("View", [ANNOTATED, EDIT], key="mode", label_visibility="collapsed")
 
     if state.mode == EDIT:
@@ -281,7 +304,7 @@ with left:
             "Text",
             value=state.doc,
             key="editor",
-            height=420,
+            height=PANE_HEIGHT - 80,
             label_visibility="collapsed",
             placeholder="Paste a class definition here, then press Ctrl+Enter…",
             on_change=commit_editor,
@@ -289,6 +312,13 @@ with left:
         text_event = None
     else:
         text_event = annotator(payload, "text", selected, key="text-pane", pending=state.pending)
+
+    words = len(state.doc.split())
+    manual_count = sum(1 for m in analysis.mentions for i in m.items if i.origin != "automatic")
+    st.caption(
+        f"{words} words · {len(analysis.mentions)} highlights" + (f" · {manual_count} changed by hand" if manual_count else "")
+        + " · click a highlight to change its class, select text to add one"
+    )
 
     upload_col, sample_col = st.columns([3, 2], vertical_alignment="bottom")
     upload_col.file_uploader(
@@ -309,38 +339,46 @@ with left:
         st.error(state.upload_error)
     if state.notice:
         st.warning(state.notice)
-    words = len(state.doc.split())
-    manual_count = sum(1 for m in analysis.mentions for i in m.items if i.origin != "automatic")
-    st.caption(f"{words} words · {len(analysis.mentions)} highlights" + (f" · {manual_count} changed by hand" if manual_count else ""))
 
-with right:
-    title_col, export_col = st.columns([3, 2], vertical_alignment="center")
-    title_col.subheader("EAGLE classes", anchor=False)
+with middle:
+    st.subheader("EAGLE classes", anchor=False)
+    context_col, export_col = st.columns([3, 2], vertical_alignment="center")
+    summary = payload["summary"]
+    if summary["domains"]:
+        badges = " ".join(
+            f'<span class="ee-chip" title="{html.escape("From the thematic domain of: " + ", ".join(dict.fromkeys(summary["domain_sources"][d])))}">{html.escape(d)}</span>'
+            for d in summary["domains"]
+        )
+        context_col.markdown(f'<span class="ee-muted">Context:</span> {badges}', unsafe_allow_html=True)
+    else:
+        context_col.markdown('<span class="ee-muted">Context: none detected</span>', unsafe_allow_html=True)
     with export_col.popover("⬇ Export XML", width="stretch"):
         export_panel(analysis)
     assign_panel()
     class_event = annotator(payload, "classes", selected, key="class-pane")
 
-    with st.expander("Highlight details"):
-        st.dataframe(
-            [
-                {
-                    "text": m.text,
-                    "type": m.block,
-                    "EAGLE class": f"{item.code} {vocab.get(item.code).label}" if item.code else "–",
-                    "excluded": item.negated,
-                    "confidence": item.confidence,
-                    "BCV": item.bcv or "–",
-                    "BCV why": "; ".join(item.bcv_reasons),
-                    "alternatives": ", ".join(f"{a.code} ({a.score:.2f})" for a in m.alternatives),
-                    "why": "; ".join(item.reasons),
-                }
-                for m in analysis.mentions
-                for item in m.items
-            ],
-            hide_index=True,
-            width="stretch",
-        )
+with right:
+    st.subheader("Highlight details", anchor=False)
+    st.dataframe(
+        [
+            {
+                "text": m.text,
+                "EAGLE class": f"{item.code} {vocab.get(item.code).label}" if item.code else "–",
+                "BCV": item.bcv or "–",
+                "confidence": item.confidence,
+                "type": m.block,
+                "excluded": item.negated,
+                "why": "; ".join(item.reasons),
+                "BCV why": "; ".join(item.bcv_reasons),
+                "alternatives": ", ".join(f"{a.code} ({a.score:.2f})" for a in m.alternatives),
+            }
+            for m in analysis.mentions
+            for item in m.items
+        ],
+        hide_index=True,
+        width="stretch",
+        height=PANE_HEIGHT,
+    )
 
 for name, event in (("text", text_event), ("classes", class_event)):
     if event and event["nonce"] != state.get(f"nonce_{name}"):
