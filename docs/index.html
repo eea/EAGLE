@@ -4,7 +4,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,900&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: CLMS-portal look. Green utility bar, white masthead, breadcrumb, title with rule,
    tab strip, then block panels (tree) on the left and a sticky concept sheet on the right. */
@@ -68,9 +68,14 @@ mark{background:var(--tint-2);color:inherit;padding:0 1px;box-shadow:inset 0 -2p
 .mast{background:var(--surface);border-bottom:1px solid var(--line)}
 .mast .wrap{display:flex;align-items:center;gap:20px;padding-block:18px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
-.brand svg{width:46px;height:46px;flex:none}
-.brand .t1{font-size:22px;font-weight:900;letter-spacing:.06em;color:var(--green-ink);line-height:1}
-.brand .t2{font-size:15px;font-weight:700;color:var(--green-ink);line-height:1.2}
+.brand svg{width:250px;height:auto;flex:none;display:block;overflow:visible}
+.logo-sm,.logo-lg,.logo-big{font-family:var(--f-body)}
+.logo-sm{font-weight:700;font-size:19px;fill:var(--navy);letter-spacing:.01em}
+.logo-big{font-style:italic;font-weight:900;font-size:74px;fill:var(--green);stroke:var(--navy);stroke-width:3.2px;stroke-linejoin:round;paint-order:stroke fill}
+.logo-lg{font-weight:700;font-size:19px;fill:var(--green-ink)}
+.logo-rule{stroke:var(--green);stroke-width:2.5px;stroke-linecap:round}
+.prod{display:flex;flex-direction:column;gap:3px;min-width:0}
+.prod .pname{font-size:18px;font-weight:700;color:var(--navy);line-height:1.2}
 .sep{width:1px;align-self:stretch;background:var(--line)}
 .mast .src{font-size:13px;color:var(--muted);max-width:52ch;line-height:1.4}
 .mast nav{margin-left:auto;display:flex;gap:22px;flex-wrap:wrap}
@@ -205,6 +210,9 @@ footer p{margin:0;max-width:70ch}
   .topbar .ver{display:none}
   .search kbd{display:none}
   .mast nav,.sep,.mast .src{display:none}
+  .brand svg{width:180px}
+  .prod .pname{font-size:15px}
+  .mast .wrap{gap:14px;padding-block:12px}
   .bhead{padding:16px 14px 10px;grid-template-columns:auto minmax(0,1fr)}
   .btools{grid-column:1/-1;order:3}
   .classes{padding:4px 10px 14px}
@@ -227,12 +235,19 @@ footer p{margin:0;max-width:70ch}
 </div></div>
 
 <header class="mast"><div class="wrap">
-  <a class="brand" href="#" id="home">
-    <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="var(--green)"/><path d="M9 30c6-3 10-3 15 0s9 3 15 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M9 23c6-3 10-3 15 0s9 3 15 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".75"/><path d="M12 16c5-2.5 8.5-2.5 12 0s7 2.5 12 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".5"/></svg>
-    <span><span class="t1">EAGLE</span><br><span class="t2">Vocabulary Browser</span></span>
+  <a class="brand" href="#" id="home" aria-label="EAGLE, EIONET Action Group: Land Monitoring in Europe. Back to overview">
+    <svg viewBox="0 0 320 114" role="img" aria-hidden="true">
+      <text class="logo-sm" x="20" y="20">EIONET Action Group</text>
+      <text class="logo-big" x="6" y="86" textLength="300" lengthAdjust="spacingAndGlyphs">EAGLE</text>
+      <line class="logo-rule" x1="14" y1="105" x2="62" y2="105"/>
+      <text class="logo-lg" x="314" y="111" text-anchor="end">Land Monitoring in Europe</text>
+    </svg>
   </a>
   <span class="sep" aria-hidden="true"></span>
-  <span class="src">Land cover components, land use attributes and land characteristics of the EAGLE data model, linked to the EIONET Data Dictionary.</span>
+  <div class="prod">
+    <span class="pname">Vocabulary Browser</span>
+    <span class="src">Land cover components, land use attributes and land characteristics of the EAGLE data model, linked to the EIONET Data Dictionary.</span>
+  </div>
   <nav aria-label="External resources">
     <a href="https://dd.eionet.europa.eu/vocabulary/landcover/eagle/" target="_blank" rel="noopener">EIONET Data Dictionary ↗</a>
   </nav>
