@@ -329,7 +329,7 @@ const ancestors = c => { const a=[]; let n=by.get(c); while(n && n.p){ a.unshift
 function descCount(c){ let n=0; const st=[...kids.get(c)]; while(st.length){ const x=st.pop(); n++; st.push(...kids.get(x)); } return n; }
 const DESC = new Map(); RAW.c.forEach(o=>DESC.set(o.c, descCount(o.c)));
 const norm = s => (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
-RAW.c.forEach(o=>{ o._l=norm(o.l); o._c=o.c.toLowerCase(); o._i=norm(o.i.join(' | ')); o._d=norm(o.d); o._x=norm(o.x); o._s=norm(o.s); });
+RAW.c.forEach(o=>{ o._l=norm(o.l); o._c=o.c.toLowerCase(); o._i=norm(o.i.join(' | ')); o._d=norm(o.d); o._x=norm(o.x); });
 
 const esc = s => String(s??'').replace(/[&<>"']/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const toHash = c => c.replace(/_/g,'-');
@@ -544,7 +544,7 @@ function search(raw){
   const out = [];
   for(const o of RAW.c){
     if(!o.p) { /* block roots */ }
-    const hay = o._l+' '+o._c+' '+o._i+' '+o._d+' '+o._x+' '+o._s;
+    const hay = o._l+' '+o._c+' '+o._i+' '+o._d+' '+o._x;
     if(!toks.every(t=>hay.includes(t))) continue;
     let sc = 0, why = null;
     if(o._c===s) sc+=1000; else if(o._c.startsWith(s)) sc+=400;
@@ -554,7 +554,6 @@ function search(raw){
     else if(toks.some(t=>o._i.includes(t))){ sc+=80; why={k:'Includes',t:o.i.filter(x=>toks.some(t=>norm(x).includes(t))).join(', ')}; }
     else if(toks.some(t=>o._d.includes(t))){ sc+=20; why={k:'Definition',t:snippet(o.d,toks)}; }
     else if(toks.some(t=>o._x.includes(t))){ sc+=10; why={k:'Excludes',t:snippet(o.x,toks)}; }
-    else if(toks.some(t=>o._s.includes(t))){ sc+=5; why={k:'In plain words',t:snippet(o.s,toks)}; }
     sc -= ancestors(o.c).length*2;
     out.push({o,sc,why});
   }
