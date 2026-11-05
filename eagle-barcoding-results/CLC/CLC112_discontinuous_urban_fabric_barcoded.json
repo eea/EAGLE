@@ -1,0 +1,63 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "1.1.2",
+  "class_label": "Discontinuous urban fabric",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-112.html",
+  "class_description": "Definition:\nThe discontinuous urban fabric class is assigned when urban structures and transport networks associated with vegetated areas and bare surfaces are present and occupy significant surfaces in a discontinuous spatial pattern. The impermeable features like buildings, roads and artificially surfaced areas range from 30 to 80 % land coverage.\nClarification:\nThe discrimination between continuous and discontinuous urban fabric is set from the presence of vegetation visible in the satellite image illustrating either single houses with gardens or scattered apartment blocks with green areas between them. The density of houses is the main criterion to attribute a land cover class to the built-up areas or to any other class. For example in case of patchwork of small agricultural parcels and scattered houses (with distance between them less than 300 m), the threshold to be applied for separation between class 112 (discontinuous urban fabric) and class 242 (complex cultivation patterns) is 30 % of urban fabric within the patchwork area. Above that threshold the area should be assigned to class 112, below the threshold to class 242.\nThis class is applicable for:\n- permanent residential built-up areas of sparse to significant soil sealing degree;\n- residential suburbs made of individual houses with private gardens and/or small squares, private housing estates;\n- villages and hamlets with scattered blocks of residential buildings where numerous non-sealed spaces (gardens, lawns) can be distinguished between the houses;\n- areas of multi-flat or multi-storey houses forming built-up areas, representing a typical physiognomic uniformity, particularly at the outskirts of urban settlements;\n- mixed fabric of residential and industrial / commercial activities (the latter not dominating);\n- complex cultivation pattern areas with scattered houses occupying > 30 % of the patchwork area;\n- holiday cottage houses with well-developed infrastructure and road network connected residential built-up areas, and visually not separable on the satellite image;\n- street-along (‘ribbon development’) villages if houses with kitchen gardens reach 100 m width;\n- troglodyte villages along streets and subterranean housings visible from the satellite image.\nThis class includes:\n- individual houses;\n- small and large blocks of flats;\n- vegetation and green spaces between buildings (gardens, lawns, flower beds, shrub and tree formations);\n- parking areas/lots;\n- playgrounds;\n- transport network features, squares, streets;\n- sports areas < 25 ha;\n- buildings with educational, health care and production functions and market places < 25 ha;\n- cemeteries (vegetated or non-vegetated) < 25 ha;\n- public utilities or community service facilities < 25 ha.\nThis class is not applicable for:\n- holiday cottage areas, holiday parks, permanent/static caravan sites, lodges etc., which are only used for recreational purposes and recognizable as a separate unit in the satellite image (class 142).\nThis class excludes:\n- greenhouses for crop production purposes (classes 211, 212). In this case they are not considered as buildings in the sense of being counted for soil sealing degree.",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1",
+      "name": "Sealed Artificial Surfaces and Constructions",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_2",
+      "name": "Bare Soils",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2",
+      "name": "Biotic, Vegetation",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-5_1",
+      "name": "Permanent Residential",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_5",
+      "name": "Urban Context",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_6",
+      "name": "Rural Context",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

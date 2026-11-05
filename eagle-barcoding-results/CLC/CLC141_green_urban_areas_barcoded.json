@@ -1,0 +1,77 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "1.4.1",
+  "class_label": "Green urban areas",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-141.html",
+  "class_description": "Definition:\nAreas with vegetation within or partly embraced by urban fabric. This class is assigned for urban greenery, which usually has recreational or ornamental character and is usually accessible for the public.\nThis class is applicable for:\n- parks inside settlements, with or without public access;\n- ornamental gardens;\n- mansions’ green grounds,\n- botanical and zoological gardens situated inside settlements (urban fabric - 112) or in contact-peripheral zone of settlement;\n- city squares with greenery;\n- inner spaces of city blocks;\n- cemeteries with vegetation inside or directly attached to settlements;\n- vegetated areas that can potentially be used for recreational purpose even if it is not their main utilisation, such as woods inside urban fabric.\nThis class includes:\n- vegetated areas of parks, lawns, flower beds, bushes, trees;\n- park ponds, lakes, fountains;\n- lanes and paths (paved or non-paved) in parks or other vegetated recreational areas;\n- buildings and service facilities associated to parks and botanical or zoological gardens;\n- small sport grounds and facilities <25 ha inside city parks.\nThis class is not applicable for:\n- non-vegetated cemeteries inside urban fabric (class 11x).\n- allotment gardens within or around settlements (class 142)\n- vegetated cemeteries outside urban fabric (class 142);\n- parks, public gardens, leisure parks, botanical or zoological gardens outside settlements (class 142);\n- sport grounds (public golf courses, tennis courts, football pitches etc.) ,>25 ha in city parks (class 142);\n- vegetated areas that are in contact with settlements but have agricultural production function (classes 2xx);\n- grass-covered parcels between buildings or at the edge of settlements waiting to be used, as well ground with ruderal, degraded vegetation between construction parcels (class 231)\n- kitchen gardens in settlements with purpose of agricultural production for own consumption (class 242).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1",
+      "name": "Sealed Artificial Surfaces and Constructions",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_2_1",
+      "name": "Open Non-Sealed Artificial Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2",
+      "name": "Biotic, Vegetation",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_1_1",
+      "name": "Inland Water Bodies",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-3_4_1_2",
+      "name": "Outdoor Cultural Service",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-3_4_4_1",
+      "name": "Urban Greenery, City Parks, Playgrounds",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-3_4_4_2",
+      "name": "(Semi-)Natural Areas Used for Recreation",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_5",
+      "name": "Urban Context",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

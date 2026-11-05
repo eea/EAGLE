@@ -1,0 +1,77 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "2.4.4",
+  "class_label": "Agro-forestry areas",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-244.html",
+  "class_description": "Definition:\nAnnual crops or grazing land under the wooded cover of forestry species.\nThis class is applicable for:\n- Mediterranean agro-forestry systems, typical of the Iberian Peninsula (named dehesa in Spain and montado in Portugal): agricultural land (arable land, pastures) shaded with forestry trees with a crown coverage of usually 10-30%. Primary use is either grazing (with cattle, sheep, goat, pigs) or arable production, which can be accompanied by harvesting of non-timber forest products such as wild game, mushrooms, honey, cork and firewood. The tree component is primarily oaks. The understorey is usually cleared every 7 to 10 years, to prevent natural succession with shrubs;\n- agricultural land shaded by palm trees in Mediterranean context;\n- areas of forest trees intermixed with fruit trees/olive trees, none of them dominating.\nThis class includes:\n- arable crops or permanent grassland (pasture);\n- in obligatory combination with trees, usually oaks, namely holm (Quercus ilex) and cork (Quercus suber), but also carob, beech, pine or palm trees;\n- optionally shrubs.\nThis class is not applicable for:\n- meadows with dispersed forest trees and shrubs occupying up to 50% of area, not under agro-forestry use (class 231 particularity: wooded meadows)\n- arable land or pasture shaded by fruit trees or olives intermixed on the same parcel (class 241);\n- abandoned agro-forestry areas where arable land or pasture is overgrown with shrubs (class 323 or 324).\n- agro-forestry areas with > 30% occupancy of trees (classes 31x).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_2_2",
+      "name": "Bare Soils",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_1",
+      "name": "Trees",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2",
+      "name": "Bushes, Shrubs",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_1_1",
+      "name": "Commercial Crop Production",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_2_5",
+      "name": "Agroforestry",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-8_1_2",
+      "name": "Heterogeneous, Mixed, Unevenly Textured",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-8_1_4",
+      "name": "Scattered Pattern",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

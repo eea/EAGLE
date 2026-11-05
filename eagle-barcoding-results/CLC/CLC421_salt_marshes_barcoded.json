@@ -1,0 +1,161 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "4.2.1",
+  "class_label": "Salt marshes",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-421.html",
+  "class_description": "Definition:\nVegetated low-lying areas in the coastal zone, above the high-tide line, susceptible to flooding by seawater. Often in the process of being filled in by coastal mud and sand sediments, gradually being colonized by halophilic plants.\nClarification:\nSalt marshes are in most cases directly connected to intertidal areas and may successively develop from them in the long-term.\nThis class is applicable for:\n- intertidal sand, silt or mud-based habitats colonized by halophytic herbaceous plants;\n- all flowering plant communities t are submerged by high tides at some stage of the annual cycle;\n- coastal salt pastures and meadows;\n- salt meadows in the intertidal zone.\nThis class includes:\n- halophytic grasses such as: Puccinelia spp., Spartina spp., rushes such as Juncus spp. and Blismus rufus and herbs such as Limonium spp., Aster tripolium, Salicornia spp.\n- tidal creeks in between and cutting through salt marsh where sea water flows in and out (coming from intertidal flats).\nThis class is not applicable for:\n- humid meadows of low herbaceous vegetation dominated by Juncus gerardis, Carex divisa, Hordeum marinum or Trifolium spp. and Lotus spp. (class 321)\n- inland salt marshes with halophile and gypsophile communities (classes 333 or 411);\n- humid meadows around the landward edge of brackish lagoons (class 411).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_2_1_3",
+      "name": "Sand, Grit",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_1_4",
+      "name": "Clay, Silt",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_1",
+      "name": "Lichens",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_2",
+      "name": "Mosses",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_3",
+      "name": "Algae",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_1_2",
+      "name": "Marine Waters",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_5_1",
+      "name": "Terrestrial Plant",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_5_3",
+      "name": "Aquatic Submerged Plant",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_5_4",
+      "name": "Aquatic Emergent Plant",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_3_2",
+      "name": "Almost Standing Water",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_3_3",
+      "name": "Standing Water",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_1",
+      "name": "Aquatic, Water At Surface",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_2",
+      "name": "Waterlogged, Saturated Ground",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_3",
+      "name": "Wet",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_1",
+      "name": "Brine",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_2",
+      "name": "Saline",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_3",
+      "name": "Brackish",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_2",
+      "name": "Coastal Habitats",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_2",
+      "name": "Coastal Context",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

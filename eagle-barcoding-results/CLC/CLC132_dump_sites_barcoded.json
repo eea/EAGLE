@@ -1,0 +1,63 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "1.3.2",
+  "class_label": "Dump sites",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-132.html",
+  "class_description": "Definition:\nPublic, industrial or mine dump sites.\nThis class is applicable for:\n- dump sites of public, communal waste (landfills);\n- dump sites of industrial waste - waste rock after processing of various raw materials;\n- dump sites of waste material from wastewater treatment plants (sewage sludge);\n- pools of waste water/liquid waste, products of various chemical processes;\n- associated land of mines where barren materials are dumped (coal tips, slag dumps).\nThis class includes:\n- surface of dumped material (solid or liquid)\n- protecting dikes;\n- line vegetation belts, part of buffering/protective zones around the dump sites;\n- buildings, transport networks including parking lots, associated with dump site;\n- non-vegetated slag heaps.\nThis class is not applicable for:\n- decanting basins of biological water treatment plants by means of lagoonage processing; recycling centres (class 121);\n- dump sites abandoned and reconverted to leisure areas (class 142);\n- abandoned or reclaimed dump sites, which are to be mapped according to their actual land cover (231, 324, 333)\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1_1_1",
+      "name": "Conventional Buildings",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_1_3",
+      "name": "Open Sealed Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_2_1",
+      "name": "Open Non-Sealed Artificial Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_2_2",
+      "name": "Waste Materials",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_1",
+      "name": "Mineral Fragments",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2",
+      "name": "Biotic, Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

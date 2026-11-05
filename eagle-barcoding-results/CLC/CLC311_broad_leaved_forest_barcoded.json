@@ -1,0 +1,98 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "3.1.1",
+  "class_label": "Broad-leaved forest",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-311.html",
+  "class_description": "Definition:\nVegetation formation composed principally of trees, including shrub and bush understorey, where broad-leaved species predominate.\nClarification:\nThe predominant classifying parameter for this class is a crown cover density of > 30 % or a minimum 500 subjects/ha density, with broad-leaved trees representing > 75 % of the formation. The minimum tree height is 5 m.\nThis class is applicable for:\n- mature forests of natural or anthropogenic origin like the following:\n- pure or mixed stands of beech (Fagus), oak (Quercus), hornbeam (Carpinus), lime (Tilia), maple (Acer), ash (Fraxinus), poplar (Populus), birch (Betula) species among others;\n- riparian and gallery woodlands, with dominant Alnus, Betula, Populus or Salix\n- thermophyllous deciduous broad-leaved woodland (dominated by Quercus pubescens)\n- evergreen broad-leaved woodlands composed of sclerophyllous trees (mainly Quercus Ilex, Quercus Suber, Quercus Rotondifolia);\n- olive-carob forests dominated by Olea europaea spp. sylvestris, Ceratonia siliqua;\n- palm groves woodlands;\n- holly woods dominated by Ilex aquifolium;\n- tamarix woodlands;\n- arborescent matorral with sclerophyllous broad-leaved species;\n- walnut trees and chestnut trees used for wood production included into forest area context;\n- plantations of eucalyptus;\n- carob plantations;\n- young plantations of broad-leaved trees reaching the 5 m height;\n- broad-leaved wooded dunes.\nThis class includes:\n- deciduous and evergreen broad-leaved tree species listed under the “applicable for” section with >75% cover\n- palm trees;\n- optionally sporadically occurring patches of coniferous trees not exceeding 25 % share of the tree covered area;\n- sporadically occurring <25 ha patches of\n- shrubs and dwarf shrubs;\n- herbaceous vegetation (grasses and herbs);\n- mosses and lichens;\n- denuded spots.\nThis class is not applicable for:\n- mixed broad-leaved / coniferous stands where broad-leaved trees cover < 75%, but > 25% of the area (class 313);\n- recent or older burnt areas inside forest areas (classes 334 or 32x );\n- woodland areas composed of broad-leaved trees smaller than 5 m height (class 322, 323);\n- vegetated areas where the crown cover of the broad-leaved trees is < 30 % (class 324, 231, 321), except boreal forest where crown cover threshold is 15%;\n- forest nurseries specialised in reproduction situated inside broad-leaved wooded areas (class 324);\n- young plantations not yet reaching the 5 m height (class 324);\n- clear-cuts (class 324);\n- electric line corridors, fire breaks (if wider than 100 m) (class 324);\n- forest nurseries outside forests for commercial purpose (class 211);\n- wooded parks (in urban setting class 141, outside urban setting class 142).\nThis class excludes:\n- deciduous coniferous trees, dominantly Larix species (class 312).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-2_1_1",
+      "name": "Trees",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2",
+      "name": "Bushes, Shrubs",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_1",
+      "name": "Lichens",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_2",
+      "name": "Mosses",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_2",
+      "name": "Forestry",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_5",
+      "name": "Other Primary Production",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_1_1",
+      "name": "Needle Leaved",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_1_2",
+      "name": "Broad Leaved",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_1_3",
+      "name": "Palm Leaved",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_7",
+      "name": "Woodland, Forest and Other Wooded Land",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

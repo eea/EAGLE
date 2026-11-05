@@ -1,0 +1,154 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "4.1.1",
+  "class_label": "Inland marshes",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-411.html",
+  "class_description": "Definition:\nLow-lying land usually flooded in winter, and with ground more or less saturated by fresh water all year round.\nThis class is applicable for:\n- non-forested areas with dominantly herbaceous vegetation that is liable to flooding by fresh running or stagnant water;\n- fens and transitional bogs without peat deposition or on peaty ground with less than 30 cm thick peat layer;\n- marsh vegetation located in margin zones of raised bogs;\n- water-fringe vegetation of reed beds;\n- sedge communities, fen-sedge beds, tall rush swamps;\n- riparian cane formations;\n- inland saline (alkali) marshes (prevailing archeic) with halophile and gypsophile plant communities;\n- humid meadows where hygrophyle plant species cover at least 25 % of the parcel;\n- humid meadows around the landward edge of brackish lagoons.\nThis class includes:\n- specific low ligneous, semi-ligneous or herbaceous vegetation;\n- reeds, bulrushes, rushes, willows, sedges and tall herbs, sphagnum hummocks and other water plants;\n- alder, willows or other tree species (covering < 30%);\n- high floating vegetation;\n- water surfaces <25 ha within inland marshes.\nThis class is not applicable for:\n- humid meadows (water logging of between 10 and 30 cm depth) (class 231 or 321);\n- rice fields (class 213);\n- salt marshes (class 421);\n- salt meadows under tidal influence (class 421);\n- polders with reticulated channels bordered by hydrophilic vegetation (class 2xx);\n- humid forests with a crown cover > 30 % (class 31x).\nThis class excludes:\n- free water space in wetlands > 25 ha (class 512);\n- low floating aquatic vegetation under water (class 512).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_2_1_3",
+      "name": "Sand, Grit",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_1_4",
+      "name": "Clay, Silt",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1",
+      "name": "Woody Vegetation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_3",
+      "name": "Algae",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_1_1",
+      "name": "Inland Water Bodies",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_5_1",
+      "name": "Terrestrial Plant",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_5_3",
+      "name": "Aquatic Submerged Plant",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_5_4",
+      "name": "Aquatic Emergent Plant",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_3_2",
+      "name": "Almost Standing Water",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_3_3",
+      "name": "Standing Water",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_1",
+      "name": "Aquatic, Water At Surface",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_2",
+      "name": "Waterlogged, Saturated Ground",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_3",
+      "name": "Wet",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_4",
+      "name": "Fresh",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_5",
+      "name": "Ultra Fresh",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_1_1_7",
+      "name": "Rice",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_4",
+      "name": "Mires, Bogs and Fens",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_2",
+      "name": "Coastal Context",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    }
+  ]
+}

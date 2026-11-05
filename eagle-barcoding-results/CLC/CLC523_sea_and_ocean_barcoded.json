@@ -1,0 +1,112 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "5.2.3",
+  "class_label": "Sea and ocean",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-523.html",
+  "class_description": "Definition:\nZone seaward of the lowest tide limit.\nThis class is applicable for:\n- bays;\n- fjords or fjards, sea lochs, ryas and straits;\n- sea surface below lowest tide limit;\n- off-shore floating aquaculture facilities for fish, shellfish or macroalgae production.\nThis class includes:\n- sea water;\n- floating marine vegetation (macroalgae);\n- floating aquaculture installations, such as cages, tanks, buoy lines;\n- narrow (<100 m wide) coast defence structures (breakwaters, seawalls, sea dikes, groins, jetties) stretching into the sea.\nThis class is not applicable for:\n- archipelago of lands located inside sea/ocean areas;\n- sea water areas as part of port areas that include sea water to reach a zone > 25 ha (class 123);\n- on-shore aquaculture installations, such as tanks, basins, buildings (class 121).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1_2",
+      "name": "Specific Structures and Facilities",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_1_1",
+      "name": "Bare Rock",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_1",
+      "name": "Mineral Fragments",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_2",
+      "name": "Bare Soils",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_3_2",
+      "name": "Micro Algae, Plankton",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_1_2",
+      "name": "Marine Waters",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_4_1",
+      "name": "Aquaculture",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_2_4",
+      "name": "Perennial Water Regime",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_1",
+      "name": "Aquatic, Water At Surface",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_1",
+      "name": "Brine",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_2",
+      "name": "Saline",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_1",
+      "name": "Marine Habitats",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

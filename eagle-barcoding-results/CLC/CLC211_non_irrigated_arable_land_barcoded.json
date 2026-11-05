@@ -1,0 +1,105 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "2.1.1",
+  "class_label": "Non-irrigated arable land",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-211.html",
+  "class_description": "Definition:\nCultivated land parcels under rainfed agricultural use for annually harvested non-permanent crops, normally under a crop rotation system, including fallow lands within such crop rotation. Fields with sporadic sprinkler-irrigation with non-permanent devices to support dominant rainfed cultivation are included.\nThis class is applicable for:\n- cultivated land under crop rotation:\n- temporary (1-3 years) fallow land under rotation system, where the below quoted agricultural crops were cultivated;\n- weeded crops;\n- fragmented agricultural land use resulting in juxtaposition of different annual crops;\n- drained arable land;\n- abandoned irrigated arable land when the irrigation channel network is still visible in the satellite image;\n- flooded crops as water cross beds;\n- nurseries of fruit trees and fruit shrubs.\nThis class includes:\n- cultivated herbaceous plants and low growing shrubs like:\n- regular annual crops, such as cereals, root crops, leguminous crops, oil crops;\n- fodder crops, annual or multiannual grown as part of the crop rotation (alfalfa, sown grass for silage or hay production);\n- vegetables;\n- multi–year plants as asparagus and chicory;\n- semi-permanent crops as strawberries;\n- non-permanent industrial crops as textile plants, oleaginous plants (e.g. cotton, flax);\n- tobacco;\n- condiment plants (e.g. mustard);\n- sugar cane;\n- flowers under a rotation system;\n- industrial flower crops as lavender species;\n- aromatic and medicinal plants.\n- bare soil of cultivated land;\n- weeds;\n- stubble of harvested arable crops;\n- ligneous crops (fruits and berries) or permanent grassoccupying altogether < 25% of area;\n- dispersed, mostly linear semi-natural or ruderal vegetation between parcels;\n- dirt roads between parcels;\n- hedgerows or stone walls separating parcels;\n- greenhouses (plastic or glass) out of the Mediterranean climate zone;\n- temporary deposits of harvested crops or crop residues (e.g straw);\n- patches < 25 ha of other cultivation types (e.g. pastures, plantations), given that > 75 % of the total area is under a rotation system.\nThis class is not applicable for:\n- city gardens (class 242);\n- allotment gardens within or around settlements (142);\n- lands that lay fallow for at least three years (classes 231 or 32x);\n- hop plantations (class 222);\n- rice field (class 213);\n- fruit trees and berry plantation under glass greenhouses (class 222);\n- willow trees for wicker production (class 222);\n- greenhouses (plastic or glass) in the Mediterranean climate zone (class 212);\n- permanent plantations of roses (class 222);\n- wine-growing nurseries (class 221);\n- pastures and meadows / permanent grassland under agricultural use (class 231);\n- arable land abandoned for > 3 years, being in the process of succession by herbaceous vegetation (class 231) or shrubs (class 323 or 324);\n- areas where intermixed other cultivation types (permanent crops or pastures) occupy > 25% of area, but none of them predominates (class 242);\n- areas where a mosaic of parcels <25ha of agricultural land (arable crops, pasture, permanent crops) are intermixed with natural vegetation and natural areas (<25ha) that occupy >25% and <75% of the area (class 243);\n- arable crops with dispersed forestry trees in an agro-forestry system (class 244).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1_1_2",
+      "name": "Specific Buildings",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_2_1",
+      "name": "Open Non-Sealed Artificial Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_2",
+      "name": "Bare Soils",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2_1",
+      "name": "Regular Bushes",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_1_1",
+      "name": "Commercial Crop Production",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_1_1",
+      "name": "Arable Crop Land",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_2_1",
+      "name": "Crop Rotation",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_1",
+      "name": "No Irrigation",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_1_1_7",
+      "name": "Rice",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_1_10_2",
+      "name": "Hops",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_9",
+      "name": "Regularly Or Recently Cultivated Agricultural, Horticultural and Domestic Habitats",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

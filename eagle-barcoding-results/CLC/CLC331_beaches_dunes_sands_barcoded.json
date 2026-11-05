@@ -1,0 +1,91 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "3.3.1",
+  "class_label": "Beaches - dunes - sands",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-331.html",
+  "class_description": "Definition:\nNatural non-vegetated expanses of sand or pebble/gravel, in coastal or continental locations, like beaches, dunes, gravel pads; including beds of stream channels with torrential regime. Vegetation covers maximum 10%.\nThis class is applicable for:\n- supra-littoral beaches and dunes developed at the back of the beach from high water mark towards land;\n- river dune formation in the immediate vicinity of great rivers;\n- inland and lacustrine dunes;\n- shifting dunes with non-vegetated surface or open grasslands (white dune);\n- grey dunes fixed, stabilised or colonised by more or less closed perennial grasslands;\n- ergs (continental dune fields located in desert);\n- accumulation of gravel along lower section of Alpine and glacial rivers;\n- gravel-covered channels and beds of Mediterranean rivers, having a periodic or episodic water regime without running water for most of the year.\nThis class includes:\n- non-vegetated surfaces of sand, gravel, pebble dominating the area;\n- herbaceous vegetation (mostly grasses);\n- scattered shrubs.\nThis class is not applicable for:\n- plant formations with >10% vegetation cover;\n- inland dune heaths (crowberry and heather brown dunes) (class 322);\n- inland dunes thickets occupied by dense formations of shrubs including sea-buckthorn, privet, elder, willow, gorse or broom often festooned with creepers (class 322);\n- dune juniper thickets and woods (class 32x);\n- dune sclerophyllous scrubs (class 323);\n- wooded dunes (class 31x);\n- humid dune-slacks (class 411);\n- non-vegetated gravel or scree slopes on steep Alpine mountain side (class 332);\n- vegetated islands inside stream beds (class 3xx);\n- sites and products of recent volcanic activities, volcanic ash and lapilli fields, barren lava fields (class 332).\n- temporarily dry parts of riverbeds due to low water level (< 6 months / year) because of seasonal fluctuation of water or low snow melting rate in glacier-fed Nordic rivers (class 511);\n- temporarily dry zone of lake beds due to seasonal water level changes (e.g. irrigation water reservoirs, inland saline lakes) (class 512)\nThis class excludes:\n- bare rock and boulders (class 332).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_2_1_2",
+      "name": "Pebbles, Gravel, Tuff",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_1_3",
+      "name": "Sand, Grit",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_1_4",
+      "name": "Clay, Silt",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_1_5",
+      "name": "Mixed Unsorted Material",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2",
+      "name": "Bushes, Shrubs",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_3_1_1",
+      "name": "Surface Open Pit Mining",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_8",
+      "name": "Inland Unvegetated Or Sparsely Vegetated Habitats",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_2",
+      "name": "Coastal Context",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_7",
+      "name": "Riparian Context",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

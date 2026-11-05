@@ -1,0 +1,133 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "2.1.2",
+  "class_label": "Permanently irrigated land",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-212.html",
+  "class_description": "Definition:\nCultivated land parcels under agricultural use for arable crops that are permanently or periodically irrigated, using a permanent infrastructure (irrigation channels, drainage network and additional irrigation facilities). Most of these crops cannot be cultivated without artificial water supply. Does not include sporadically irrigated land.\nThis class is applicable for:\n- arable land or sown grassland (as part of crop rotation) under permanent irrigation with\n- spray sprinkler line;\n- rotary sprinkler;\n- irrigation channels.\nThis class includes:\n- arable crops;\n- non-permanent grass;\n- irrigation infrastructure (channels, technical structures, ponds);\n- greenhouses in Mediterranean climate areas.\nThis class is not applicable for:\n- arable crops irrigated only sporadically (classes 211, 242);\n- permanent crops under permanent irrigation (classes 22x);\n- vineyards (class 221);\n- orchards (class 222);\n- olive groves (class 223);\n- agricultural land with drainage network intended to dry up wet soils (classes 211, 22x, 231 or 242);\n- arable land, pastures or mixed agriculture under irrigation from superficial water supplies with pumping infrastructure (classes 211, 231 or 242);\n- areas irrigated by underground irrigation pipes and above ground pipes and furrows (classes 211, 22x, 231 or 242);\n- spray sprinkler line used only sporadically (classes 211, 22x, 231 or 242);\n- land under irrigation with drop by drop system (classes 211, 22x, 242);\n- arable land with abandoned irrigation system even the irrigation channel network is still visible in the satellite image (class 211);\n- permanent grasslands, pastures, meadows under permanent irrigation (class 231).\nThis class excludes:\n- crops under greenhouses outside Mediterranean climate zones (classes 211 or 222);\n- rice fields (class 213).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1_1_2",
+      "name": "Specific Buildings",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_2",
+      "name": "Bare Soils",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_1_1",
+      "name": "Commercial Crop Production",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_1_1",
+      "name": "Arable Crop Land",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_2_1",
+      "name": "Crop Rotation",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_2",
+      "name": "Irrigation Applied, Method Unspecified",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_3",
+      "name": "Gravity Surface Irrigation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_4",
+      "name": "Sprinkler Irrigation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_5",
+      "name": "Irrigation Carousel",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_6",
+      "name": "Drip Irrigation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_7",
+      "name": "Subsurface Drip Irrigation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_8",
+      "name": "Manual Irrigation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_1_1_7",
+      "name": "Rice",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_1_10_2",
+      "name": "Hops",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_9",
+      "name": "Regularly Or Recently Cultivated Agricultural, Horticultural and Domestic Habitats",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "3.2.2",
+  "class_label": "Moors and heathland",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-322.html",
+  "class_description": "Definition:\nVegetation with low and closed cover, dominated by bushes, shrubs, dwarf shrubs (heather, briars, broom, gorse, laburnum etc.) and herbaceous plants, forming a climax stage of development.\nThis class is applicable for:\n- Climax stage vegetation dominated by shrubs and dwarf shrubs on temperate, Atlantic, maritime, alpine and arctic habitat, such as:\n- wet heath distributed on humid or semi-peaty soils (peat depth < 30 cm) with Erica tetralix/ciliaris, Sphagnum spp. and Molinia spp.;\n- dwarf pine (Pinus mugo) coverage above the upper tree limit in the Alpine zone or in the bottom of large depressions with temperature inversion;\n- maritime, prostrate, wind-swept and cushiony heaths with maritime ecotypes;\n- heath and scrub formation in Atlantic, sub-Atlantic and sub-continental areas with gorse (Ulex spp.), vaccinium heaths (Calluna vulgaris, Vaccinium spp.), heather (Erica spp.), bracken or gorse (Genista spp.), bilberry heaths (Vaccinium myrtillus), briar patch (Rubus spp.);\n- moors in supra-Mediterranean area with box trees and gorse, hedgehog-heaths (Buxus spp., Astragalus spp., Bupleurum spp., etc.);\n- sub Alpine tall herbs with dominating bushy facies (Calluna spp., Vaccinium spp., Rubus spp., Juniperus nana, etc.);\n- arctic moors areas with moss, lichen, gramineous coverage and small dwarf or prostrate shrub formations (Betula nana, Salix lapponum, Salix glauca, Juniperus alpina, Dryas spp., Vaccinium myrtillus, Empetrum nigrum);\n- moss- and lichen-dominated pioneer vegetation of lava fields in areas of active volcanism, typical in Iceland;\n- alpine heaths with dwarf shrubs (Empetrum, Betula nana, Vaccinium myrtillus, Phyllo-doce caerulea, Cassiope tetragona, Dryas), mosses and lichens\n- thickets and brush woods in temperate climate areas (box, bramble thickets, broom fields, gorse thickets, bracken fields, common juniper-scrubs);\n- brush woods and bush-like forest in Alpine area with dwarf mountain pine scrub or green alder scrub (Pinus mugo ssp. mughus and Alnus spp.) Alpine willow brush, etc., accompanied by Rhododendron spp.;\n- thickets and bush-like forest in arctic area with Betula nana and Salix lapponum/glauca spp.;\n- dwarf-shrub covered areas with <30 cm peat and without visible sign of morphological features typical of bogs (e.g. pools, peat hags, peatland gullying);\n- agricultural crops abandoned for > 3 years, where the above listed ligneous/semi-ligneous vegetation covers > 50 % of the surface;\n- coastal dunes (so-called brown dunes) covered and fixed with shrubs (Hippophae spp., Empetrum spp., Salix spp.);\n- areas covered by the above-listed vegetation types used as ski-pistes during skiing season.\nThis class includes:\n- shrubs and dwarf shrubs, dominating the vegetation;\n- trees of dwarf growth form, not higher than 3 m;\n- herbaceous vegetation (grasses and herbs);\n- mosses and lichens;\n- outcrops of natural bare surfaces not reaching 50% cover of the area.\nThis class is not applicable for:\n- Mediterranean drought-tolerant climax stage vegetation (maquis, garrigue, matorral) (class 323);\n- heathland in transition, under afforestation process with presence of young forest trees (class 324);\n- heathland under natural recolonization process where tree-like species cover > 30 % of the surface (class 31x);\n- dwarf-shrub covered areas with >30 cm peat, with visible sign of morphological features typical of bogs (e.g. pools, peat hags, peatland gullying) (class 412).\nThis class excludes:\n- sclerophyllous shrubs (class 323);\n- trees of > 5 m height with >30% cover (classes 31x);\n- young forest trees (class 324).\nClarification:\nDwarf pine is usually found from 1,000–2,200 m a.s.l. in Europe, occasionally as low as 200 m in the north of the range in Germany and Poland, and as high as 2,700 m in the south of the range in Bulgaria and the Pyrenees. It is also often artificially planted, for instance in coastal dunes as protection against deflation (e.g.in Lithuania and Denmark), where it can become invasive.\nThis class is applicable for:\n- natural stands of dwarf mountain pine\n- dwarf pine plantations;\nThis class includes:\n- dwarf mountain pine (Pinus mugo spp. mughus);\n- rocky formations;\n- sporadic areas of grassland;\n- sporadic tree enclaves.",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2",
+      "name": "Natural Material Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_1",
+      "name": "Trees",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2",
+      "name": "Bushes, Shrubs",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_1_1",
+      "name": "Grasses, Sedges, Rushes, Cereals",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_2",
+      "name": "Non-Graminoids, Forbs, Ferns",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_1",
+      "name": "Lichens",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_2",
+      "name": "Mosses",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_5",
+      "name": "Other Primary Production",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_6",
+      "name": "Heathland, Scrub and Tundra",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

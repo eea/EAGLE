@@ -1,0 +1,42 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "1.3.3",
+  "class_label": "Construction sites",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-133.html",
+  "class_description": "Definition:\nSpaces under construction development, soil or bedrock excavations, earthworks. This class is assigned for areas where landscape is affected by human activities, changed or modified into artificial surfaces, being in a state of anthropogenic transition.\nThis class is applicable for:\n- construction sites of any kind, e.g. for residential areas, public and industrial structures and facilities, transportation infrastructures, water dams/reservoirs;\n- residential fabric under construction with road infrastructure already finished, but buildings still under construction;\n- green areas, golf courses, nature reconstruction areas under the process of creation.\nThis class includes:\n- bare surfaces of soil or bedrock as an intermediate state resulting from construction activities;\n- sealed or unsealed surfaces (e.g. roads, tracks, storage areas) temporarily associated to construction activities;\n- vegetated or bare areas surrounded by or neighbouring construction areas, waiting to be used;\n- piled up construction material or removed topsoil;\n- scattered finished buildings/structures <25 ha covering <30% of 133 patch.\nThis class is not applicable for:\n- abandoned construction sites, which are to be mapped according to their actual land cover (e.g. 231, 322/323/324, 333)\nThis class excludes:\n- completed buildings, other structures already in use (classes 11x, 12x, 14x);\n- completed parts of transport networks when they are larger than 25 ha (class 122).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1_3",
+      "name": "Open Sealed Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_2_1",
+      "name": "Open Non-Sealed Artificial Surfaces",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-6_1_1",
+      "name": "Under Construction",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "3.3.4",
+  "class_label": "Burnt areas",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-334.html",
+  "class_description": "Definition:\nNatural woody vegetation affected by recent fires.\nClarification:\nThis class includes recently (within a year of image acquisition) burnt areas of forests, moors and heathlands, sclerophyllous vegetation, transitional forest-shrub formations, areas with sparse vegetation. Recent burn is visible on satellite images, still mainly black, dark green or grey.\nThis class is applicable for:\n- recent burns of forest (classes 31x) still visible in the satellite images;\n- recent burns of natural and semi-natural woody vegetated areas represented by classes 322, 323, 324.\nThis class includes:\n- damaged natural woody plants;\n- damaged natural herbaceous plants among burnt woody plants;\n- bare soil, rock covered with ash.\nThis class is not applicable for:\n- human farming management by burning arable lands (classes 211 and 231);\n- burnt permanent crops (classes 22x);\n- burnt natural grassland (class 321);\n- burnt areas where regeneration has already started on > 50% of area (classes 32x);\n- burnt areas where sign of fresh burn is not visible any more and at least 50% of area is non-vegetated (class 333).\nThis class excludes:\n- damaged agricultural crops (classes 2xx).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2",
+      "name": "Natural Material Surfaces",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2",
+      "name": "Biotic, Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_1_1",
+      "name": "Commercial Crop Production",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_1_3",
+      "name": "Production for Own Consumption",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-6_1_6",
+      "name": "Collapsed, Destroyed, Damaged",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-6_2_3_1",
+      "name": "Forest Fire, Wildfire",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

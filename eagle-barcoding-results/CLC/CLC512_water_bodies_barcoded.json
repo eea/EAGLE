@@ -1,0 +1,91 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "5.1.2",
+  "class_label": "Water bodies",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-512.html",
+  "class_description": "Definition:\nNatural or artificial water bodies with presence of standing water surface during most of the year.\nThis class is applicable for:\n- natural freshwater and inland salt water lakes;\n- water reservoirs, areas of water retention;\n- archipelago of lakes inland;\n- fish ponds, water surfaces used for freshwater fish-breeding activities;\n- disused mineral extraction pits filled with water;\n- fish ponds and water reservoirs temporarily without water (seasonal lack of water, maintenance, etc.), given that the area is most of the year covered by water.\nThis class includes:\n- water surface;\n- low floating aquatic vegetation with species such as Nuphar spp., Nymphaea spp., Potamageton spp. and Lemna spp.;\n- embankments separating pools of fishponds;\n- temporarily dry sand, gravel or rock surfaces around lakes with changing water level;\n- floating aquaculture installations (cages, buoy lines).\nThis class is not applicable for:\n- land temporarily inundated for flood prevention purpose or as result of natural flood event (classes 2xx, 3xx);\n- temporal lakes, most of the year used as agricultural land, such as polje of the Dinaric Alps (classes 2xx);\n- open water surfaces of rice fields (class 213) ;\n- salt or brackish water surfaces separated from the sea by narrow stretches of land and having connection to sea water (class 521).\nThis class excludes:\n- surface plant species characteristic for standing water (e.g. Typha latifolia, Carex riparia, Glyceria maxima, Sparganium erectum and Phragmites communis (class 411);\n- liquid waste (class 132);\n- flowing water (class 511).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1_2",
+      "name": "Specific Structures and Facilities",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_1_1",
+      "name": "Bare Rock",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_1",
+      "name": "Mineral Fragments",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_2",
+      "name": "Bare Soils",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_1_1_2",
+      "name": "Standing Water",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_4_1",
+      "name": "Aquaculture",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_2_4",
+      "name": "Perennial Water Regime",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_1",
+      "name": "Aquatic, Water At Surface",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_1",
+      "name": "Inland Context",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

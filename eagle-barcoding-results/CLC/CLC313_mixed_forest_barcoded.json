@@ -1,0 +1,91 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "3.1.3",
+  "class_label": "Mixed forest",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-313.html",
+  "class_description": "Definition:\nVegetation formation composed principally of trees, including shrub and bush understorey, where neither broad-leaved nor coniferous species predominate.\nThis class is applicable for:\n- mature forests with at least 30 % crown cover density, where both broad-leaved and coniferous trees occupy at least 25 %, but maximum 75 % of tree-covered area, of natural or anthropogenic origin;\n- forests where broad-leaved and coniferous trees are mixed individually or in small groups within the stand (parcel);\n- forests consisting of < 25 ha patches of homogeneous broad-leaved and coniferous stands (parcels) none of the types dominating with > 75 %;\n- mixed-forest wooded dunes.\nThis class includes:\n- deciduous or evergreen broad-leaved trees with 25-75 % share;\n- evergreen or deciduous coniferous (needle-leaved) trees with 25-75 % share;\n- sporadically occurring <25 ha patches of\n- shrubs and dwarf shrubs;\n- herbaceous vegetation (grasses and herbs);\n- mosses and lichens;\n- denuded spots.\nThis class is not applicable for:\n- forests where either broad-leaved or coniferous trees cover > 75% of the area (classes 311 and 312, respectively);\n- vegetated areas where the crown cover of mixed species trees is < 30 % (classes 324, 231, 321).\n- woodlands with mixed species grown-up trees smaller than 5 m high (classes 322, 323);\n- young plantations not yet reaching the height of 5 m (class 324);\n- clear-cuts (class 324);\n- electric line corridors, fire breaks (if wider than 100 m) (class 324);\n- recent or older burnt areas inside mixed-forest areas (class 334 or 32x);\n- forest nurseries specialised in reproduction situated inside mixed-forest areas (class 324);\n- forest nurseries outside forests for commercial purpose (class 211);\n- wooded parks (in urban setting class 141, outside urban setting class 142).\nThis class excludes:\n- dwarf coniferous trees as Pinus mugo spp. mughus (class 322).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-2_1_1",
+      "name": "Trees",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2",
+      "name": "Bushes, Shrubs",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_1",
+      "name": "Lichens",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_2",
+      "name": "Mosses",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_2",
+      "name": "Forestry",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_5",
+      "name": "Other Primary Production",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_1_1",
+      "name": "Needle Leaved",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_1_2",
+      "name": "Broad Leaved",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_7",
+      "name": "Woodland, Forest and Other Wooded Land",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}
