@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/eagle-eye-logo.jpg" alt="EAGLE Eye Logo" width="400"/>
+</p>
+
 # 🦅 EAGLE Eye
 
 Paste or upload a land cover / land use class description and see which parts of it
