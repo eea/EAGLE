@@ -1,0 +1,3923 @@
+{
+ "_about": {
+  "language": "English",
+  "lang": "en",
+  "note": "Plain-language tooltip texts for the EAGLE Vocabulary Browser. Edit only the \"tip\" values; \"label\" is the official class name, shown for reference. Machine-drafted, pending expert review."
+ },
+ "LCC": {
+  "label": "Land Cover Components",
+  "tip": "Groups the physical things that cover the ground surface, such as buildings, bare rock, plants and water, regardless of what people use the land for."
+ },
+ "LCC-1": {
+  "label": "Abiotic, Non-Vegetated Surfaces and Objects",
+  "tip": "Surfaces without plants, either built by people (e.g. roads, buildings) or made of natural materials like rock, sand or soil."
+ },
+ "LCC-1_1": {
+  "label": "Artificial Surfaces and Constructions",
+  "tip": "Places where people have replaced the natural ground with built structures or artificial materials, e.g. towns, roads and industrial sites. Urban parks and other greenery are not counted here."
+ },
+ "LCC-1_1_1": {
+  "label": "Sealed Artificial Surfaces and Constructions",
+  "tip": "Ground covered by buildings or by hard surfaces such as concrete, asphalt or paving that water cannot soak through, e.g. houses and pavements."
+ },
+ "LCC-1_1_1_1": {
+  "label": "Buildings",
+  "tip": "Permanent roofed structures that shelter people, animals or goods, or house production and services, e.g. homes, barns or factories."
+ },
+ "LCC-1_1_1_1_1": {
+  "label": "Conventional Buildings",
+  "tip": "Ordinary medium or large buildings where people live, work or do business, e.g. houses, blocks of flats, offices, shops, farm buildings and factories."
+ },
+ "LCC-1_1_1_1_2": {
+  "label": "Specific Buildings",
+  "tip": "Buildings of notable size, height or shape that stand out as landmarks, e.g. stadiums, churches, towers or large greenhouses."
+ },
+ "LCC-1_1_1_2": {
+  "label": "Specific Structures and Facilities",
+  "tip": "Free-standing human-made structures that are not buildings, e.g. bridges, chimneys, pylons, storage tanks, pipelines or solar panels."
+ },
+ "LCC-1_1_1_3": {
+  "label": "Open Sealed Surfaces",
+  "tip": "Flat ground covered with a hard surface like asphalt or concrete that water cannot soak through, e.g. paved roads, car parks, squares and airport runways."
+ },
+ "LCC-1_1_2": {
+  "label": "Non-Sealed Artificial Surfaces",
+  "tip": "Human-made surfaces that are not paved or built on and still let water soak through, e.g. gravel areas or dumped waste, though plants may still struggle to grow."
+ },
+ "LCC-1_1_2_1": {
+  "label": "Open Non-Sealed Artificial Surfaces",
+  "tip": "Flat open areas surfaced by people with loose or compacted material that still lets water through, e.g. gravel squares, crushed stone, earth sports fields or grass pavers."
+ },
+ "LCC-1_1_2_2": {
+  "label": "Waste Materials",
+  "tip": "Ground covered by discarded material such as household or industrial waste, e.g. construction rubble, slag, scrap metal or wood."
+ },
+ "LCC-1_2": {
+  "label": "Natural Material Surfaces",
+  "tip": "Bare surfaces made of natural materials kept in their natural form, whether or not people have affected them, e.g. rock, sand or soil."
+ },
+ "LCC-1_2_1": {
+  "label": "Consolidated Surfaces",
+  "tip": "Natural solid stone surfaces with no plant cover, forming a continuous hard layer that lets little water through, e.g. exposed bedrock."
+ },
+ "LCC-1_2_1_1": {
+  "label": "Bare Rock",
+  "tip": "Exposed solid rock with only a few cracks or small patches of soil, e.g. rock outcrops, fresh lava flows or quarry faces."
+ },
+ "LCC-1_2_1_2": {
+  "label": "Hard Pan",
+  "tip": "Soil surfaces that have hardened permanently through chemical or physical processes, forming a crust that water and plant roots cannot get through."
+ },
+ "LCC-1_2_2": {
+  "label": "Unconsolidated Surfaces",
+  "tip": "Ground made of loose mineral particles of any size, laid down by nature or by people, e.g. beaches, sand dunes, scree slopes or river gravel banks."
+ },
+ "LCC-1_2_2_1": {
+  "label": "Mineral Fragments",
+  "tip": "Loose pieces of rock produced as larger rock breaks down over time and then piled up by nature or people; further split by particle size."
+ },
+ "LCC-1_2_2_1_1": {
+  "label": "Boulders, Stones",
+  "tip": "Large rock pieces, roughly 20 to 200 cm or bigger, too heavy for people to carry far and moved only by gravity, glaciers or major floods."
+ },
+ "LCC-1_2_2_1_2": {
+  "label": "Pebbles, Gravel, Tuff",
+  "tip": "Medium-sized rock pieces between about 2 and 20 cm, moved and piled up by erosion, e.g. scree on mountain slopes or gravel river banks."
+ },
+ "LCC-1_2_2_1_3": {
+  "label": "Sand, Grit",
+  "tip": "Small loose grains between 0.06 mm and 2 cm that wind and water can shift, e.g. sand dunes, sandy beaches or volcanic ash."
+ },
+ "LCC-1_2_2_1_4": {
+  "label": "Clay, Silt",
+  "tip": "Very fine mineral particles smaller than 0.06 mm that wind and water can easily move, e.g. muddy river banks or fine volcanic ash."
+ },
+ "LCC-1_2_2_1_5": {
+  "label": "Mixed Unsorted Material",
+  "tip": "A jumble of unsorted rock material ranging from fine dust to large boulders, most often debris left behind by glaciers."
+ },
+ "LCC-1_2_2_2": {
+  "label": "Bare Soils",
+  "tip": "Soil that could support plants because it holds enough mineral and organic matter, but has no plant cover when observed, e.g. a freshly ploughed field."
+ },
+ "LCC-1_2_2_3": {
+  "label": "Natural Deposits",
+  "tip": "Natural material that builds up over time, either as minerals left when water evaporates or as plant remains that have not fully rotted, e.g. salt crusts or peat."
+ },
+ "LCC-1_2_2_3_1": {
+  "label": "Inorganic Deposits",
+  "tip": "Mineral layers left behind when water evaporates, such as salt or gypsum, e.g. the crust on a dried-out salt lake."
+ },
+ "LCC-1_2_2_3_2": {
+  "label": "Organic Deposits, Peat",
+  "tip": "Layers of partly rotted plant material, mostly bog moss, that build up in waterlogged wetlands where lack of oxygen slows decay."
+ },
+ "LCC-2": {
+  "label": "Biotic, Vegetation",
+  "tip": "Any ground covered by plants, whether wild, semi-natural or planted by people, e.g. forests, crops or city parks; subdivided by plant type."
+ },
+ "LCC-2_1": {
+  "label": "Woody Vegetation",
+  "tip": "Plants with stems made of wood that survive from year to year, such as trees and shrubs; leaf type and whether they lose their leaves are recorded separately."
+ },
+ "LCC-2_1_1": {
+  "label": "Trees",
+  "tip": "Long-lived woody plants with a single main trunk that branches out, e.g. oaks, pines, fruit trees or ornamental trees. Giant bamboo is not included."
+ },
+ "LCC-2_1_2": {
+  "label": "Bushes, Shrubs",
+  "tip": "Woody plants with several stems growing from at or near the ground, usually under 5 metres tall, e.g. hawthorn or juniper."
+ },
+ "LCC-2_1_2_1": {
+  "label": "Regular Bushes",
+  "tip": "Ordinary shrubs with several stems from the base and an open, spreading shape, usually under 5 metres tall, e.g. hedgerow bushes."
+ },
+ "LCC-2_1_2_2": {
+  "label": "Dwarf Shrubs",
+  "tip": "Very low woody plants, usually no taller than 25 cm, that thrive in harsh alpine, arctic or dry places, e.g. heather, bilberry or rosemary."
+ },
+ "LCC-2_2": {
+  "label": "Herbaceous Vegetation",
+  "tip": "Non-woody plants whose above-ground parts die back at the end of the growing season and regrow from roots, bulbs or seeds, e.g. grasses and wildflowers."
+ },
+ "LCC-2_2_1": {
+  "label": "Graminoids, Grass-Like",
+  "tip": "Grasses and grass-like plants with narrow leaves growing from the base, including true grasses, sedges and rushes, whether wild or farmed, e.g. lawns, meadows or cereal crops."
+ },
+ "LCC-2_2_1_1": {
+  "label": "Grasses, Sedges, Rushes, Cereals",
+  "tip": "Wild or cultivated grass-like plants that do not grow taller than about 2 metres, e.g. meadow grasses, sedges, rushes or wheat. Reeds and bamboo are not included."
+ },
+ "LCC-2_2_1_1_1": {
+  "label": "Poaceae, Grasses, Cereals",
+  "tip": "Members of the true grass family, wild or cultivated, e.g. pasture grasses, lawn turf, or cereals such as wheat, barley and maize."
+ },
+ "LCC-2_2_1_1_2": {
+  "label": "Cyperaceae, Sedges, Rushes",
+  "tip": "Sedges and rushes, grass-like plants often found in marshes, wet meadows and other damp places, e.g. cotton grass or soft rush."
+ },
+ "LCC-2_2_1_2": {
+  "label": "Reeds, Bamboos, Canes",
+  "tip": "Tall grass-like plants that can grow higher than 2 metres, e.g. common reed, tall bamboo species or sugar cane."
+ },
+ "LCC-2_2_2": {
+  "label": "Non-Graminoids, Forbs, Ferns",
+  "tip": "Non-woody plants that are not grasses, such as wildflowers, ferns and many farm crops, e.g. sunflowers, vegetables, strawberries or hops."
+ },
+ "LCC-2_3": {
+  "label": "Succulents, Cacti",
+  "tip": "Plants that store water in thick leaves, stems or roots to survive dry or salty conditions, e.g. cacti, stonecrops or glasswort on salt marshes."
+ },
+ "LCC-2_4": {
+  "label": "Lichens, Mosses, Algae",
+  "tip": "Small, simple plant-like organisms such as lichens, mosses and algae, which grow on rocks, soil, tree bark or in water."
+ },
+ "LCC-2_4_1": {
+  "label": "Lichens",
+  "tip": "Crusty, leafy or bushy growths formed by a fungus living together with algae or bacteria, e.g. the grey-green patches on rocks and tree bark."
+ },
+ "LCC-2_4_2": {
+  "label": "Mosses",
+  "tip": "Small, non-woody plants only a few centimetres tall, without true roots, that take in water and nutrients mainly through their leaves, e.g. bog moss."
+ },
+ "LCC-2_4_3": {
+  "label": "Algae",
+  "tip": "A large, varied group of simple plant-like organisms that mostly live in or near water, though some grow on damp rocks or tree trunks."
+ },
+ "LCC-2_4_3_1": {
+  "label": "Macro Algae",
+  "tip": "Large algae with branching, leaf-like shapes that can grow several metres long, rooted underwater or floating, e.g. seaweed or kelp."
+ },
+ "LCC-2_4_3_2": {
+  "label": "Micro Algae, Plankton",
+  "tip": "Tiny single-celled or small clustered algae, usually living in water as plankton but also as green films on rocks or tree trunks."
+ },
+ "LCC-3": {
+  "label": "Water",
+  "tip": "Surfaces covered by water in any form, either liquid (e.g. rivers, lakes, sea) or frozen (snow and ice)."
+ },
+ "LCC-3_1": {
+  "label": "Liquid Water Bodies",
+  "tip": "Water in its liquid form, whatever its shape, saltiness or origin, in a fairly stable bed, e.g. rivers, lakes or the sea. Areas only briefly flooded are not included."
+ },
+ "LCC-3_1_1": {
+  "label": "Inland Water Bodies",
+  "tip": "Inland water surfaces not directly connected to the open sea, whether fresh or salty, natural or human-made, e.g. rivers, lakes and reservoirs."
+ },
+ "LCC-3_1_1_1": {
+  "label": "Water Course",
+  "tip": "Flowing water such as rivers, streams, creeks or canals."
+ },
+ "LCC-3_1_1_2": {
+  "label": "Standing Water",
+  "tip": "Still, non-flowing water, mainly lakes and ponds, e.g. natural lakes, fishponds, reservoirs or cut-off river bends (oxbow lakes)."
+ },
+ "LCC-3_1_2": {
+  "label": "Marine Waters",
+  "tip": "Sea water on the seaward side of the average high-tide line, including tidal flats along coasts that flood and drain with the tides."
+ },
+ "LCC-3_2": {
+  "label": "Solid Waters",
+  "tip": "Water in frozen form, such as snow, ice and glaciers."
+ },
+ "LCC-3_2_1": {
+  "label": "Snow",
+  "tip": "Ground covered by snow, e.g. snowfields on high mountains that remain all year."
+ },
+ "LCC-3_2_2": {
+  "label": "Ice, Glaciers",
+  "tip": "Ground covered by ice, including glaciers formed as snow piles up and compacts into ice over many years."
+ },
+ "LUA": {
+  "label": "Land Use Attributes",
+  "tip": "Groups the ways people use land, such as farming, industry, services, transport or housing. An area can carry several uses, recorded at the most detailed level known."
+ },
+ "LUA-1": {
+  "label": "Primary Production Sector",
+  "tip": "Land used to produce goods directly from local natural resources, e.g. farming, forestry, fishing, mining and quarrying, plus nearby first-stage processing."
+ },
+ "LUA-1_1": {
+  "label": "Agriculture",
+  "tip": "Land used to grow crops or raise animals for food, sale, own use or industry, including greenhouses, fallow fields and biofuel crops."
+ },
+ "LUA-1_1_1": {
+  "label": "Commercial Crop Production",
+  "tip": "Fields, orchards and grasslands farmed to produce crops or fodder for people, livestock, bioenergy or industry, in the open or in greenhouses."
+ },
+ "LUA-1_1_2": {
+  "label": "Farming Infrastructure",
+  "tip": "Buildings and facilities on farms, e.g. farmhouses, animal sheds, manure stores and buildings for handling or processing crops."
+ },
+ "LUA-1_1_2_1": {
+  "label": "Animal Husbandry",
+  "tip": "Farm facilities for housing and feeding livestock, e.g. cattle sheds, poultry houses or pig barns; also covers insects and land snails."
+ },
+ "LUA-1_1_2_2": {
+  "label": "Farming Storage",
+  "tip": "Farm areas or buildings used for storage, e.g. barns or maize silage clamps."
+ },
+ "LUA-1_1_2_3": {
+  "label": "Other Farming Infrastructure",
+  "tip": "Farm facilities other than animal housing or storage, used for handling and processing crops and similar tasks, e.g. a grain drying or sorting shed."
+ },
+ "LUA-1_1_3": {
+  "label": "Production for Own Consumption",
+  "tip": "Land where people grow food or keep animals for their own household rather than for sale, e.g. kitchen gardens or private animal sheds."
+ },
+ "LUA-1_2": {
+  "label": "Forestry",
+  "tip": "Land used to grow and harvest wood, e.g. timber, firewood or pulpwood, including tree nurseries and log storage areas, in natural or planted forests."
+ },
+ "LUA-1_3": {
+  "label": "Mining and Quarrying",
+  "tip": "Land used to extract naturally occurring materials such as coal, ores, gravel, sand, salt, oil, natural gas or peat, above or below ground."
+ },
+ "LUA-1_4": {
+  "label": "Aquaculture and Fishing",
+  "tip": "Areas used for commercial fishing and for farming fish and other water animals."
+ },
+ "LUA-1_4_1": {
+  "label": "Aquaculture",
+  "tip": "Areas used to breed and rear fish and other water animals, e.g. fish hatcheries, mussel farms or crocodile farms."
+ },
+ "LUA-1_4_2": {
+  "label": "Professional Wild Fishery",
+  "tip": "Water areas used for commercial catching of wild fish and seafood, typically offshore."
+ },
+ "LUA-1_5": {
+  "label": "Other Primary Production",
+  "tip": "Primary production not covered by farming, forestry, mining or fishing, e.g. commercial hunting, gathering wild products, herding migratory animals or beekeeping."
+ },
+ "LUA-1_5_1": {
+  "label": "Hunting",
+  "tip": "Areas, fenced or open, used for professional hunting of wild animals."
+ },
+ "LUA-1_5_2": {
+  "label": "Management of Migratory Animals",
+  "tip": "Areas used for keeping and feeding animals that roam over large ranges, such as reindeer or deer."
+ },
+ "LUA-1_5_3": {
+  "label": "Picking Natural Products",
+  "tip": "Areas where wild, uncultivated products other than wood are gathered for sale, e.g. wild berries, mosses or lichens."
+ },
+ "LUA-1_5_4": {
+  "label": "Apiculture, Bee Hives",
+  "tip": "Areas used for honey production, with one or more bee colonies present; like hunting, its outer boundary is often hard to draw."
+ },
+ "LUA-2": {
+  "label": "Secondary Production Sector",
+  "tip": "Land used by industry to turn raw materials into finished or part-finished goods, e.g. factories, plus their linked storage and transport areas."
+ },
+ "LUA-2_1": {
+  "label": "Manufacturing Industry",
+  "tip": "Groups factory-based production of goods, split into raw materials industry, heavy products and light products."
+ },
+ "LUA-2_1_1": {
+  "label": "Raw Industry",
+  "tip": "Industry that turns farm, forest and mining output into basic manufactured materials, e.g. sawmills, steelworks or chemical plants."
+ },
+ "LUA-2_1_1_1": {
+  "label": "Manufacturing Textile Products",
+  "tip": "Sites used for preparing and spinning fibres, weaving fabric, making thread, and tanning or dressing leather, e.g. a textile mill."
+ },
+ "LUA-2_1_1_2": {
+  "label": "Manufacturing Wood-Based Products",
+  "tip": "Sites that process wood into products, e.g. sawmills and plants making plywood, fibreboard, joinery, cork or straw goods."
+ },
+ "LUA-2_1_1_3": {
+  "label": "Manufacturing Pulp and Paper Products",
+  "tip": "Sites used for making pulp, paper, cardboard, paper-based hygiene products or wallpaper, e.g. a paper mill."
+ },
+ "LUA-2_1_1_4": {
+  "label": "Manufacturing Coke, Petroleum And Nuclear Fuels",
+  "tip": "Sites used for producing coke, refining petroleum or processing nuclear fuel, e.g. an oil refinery."
+ },
+ "LUA-2_1_1_5": {
+  "label": "Manufacturing Chemical Products and Synthetic Fibres",
+  "tip": "Sites making chemicals and synthetic fibres, e.g. fertilisers, paints, medicines, soap, glue or nylon. Natural fibres like cotton or flax are not included."
+ },
+ "LUA-2_1_1_6": {
+  "label": "Manufacturing Metallic Products",
+  "tip": "Sites used for producing, processing and casting iron, steel and other metals, and for making metal products, e.g. a steelworks or foundry."
+ },
+ "LUA-2_1_1_7": {
+  "label": "Manufacturing Nonmetallic Mineral Products",
+  "tip": "Sites making glass, bricks, ceramics, cement, concrete, lime or plaster, or cutting and shaping stone, e.g. a brickworks."
+ },
+ "LUA-2_1_1_8": {
+  "label": "Manufacturing Rubber and Plastic Products",
+  "tip": "Sites used for making tyres, tubes, plastic packaging and other rubber or plastic goods."
+ },
+ "LUA-2_1_1_9": {
+  "label": "Manufacturing Other Raw Materials",
+  "tip": "Sites producing basic manufactured materials that do not fit any of the other raw industry categories."
+ },
+ "LUA-2_1_2": {
+  "label": "Heavy End Product Industry",
+  "tip": "Industry that turns basic manufactured materials into heavy finished products such as machinery and vehicles."
+ },
+ "LUA-2_1_2_1": {
+  "label": "Manufacturing Machinery Products",
+  "tip": "Sites making machines for industry, farming, forestry and other uses, as well as weapons, ammunition and household appliances (but not vehicles or aircraft)."
+ },
+ "LUA-2_1_2_2": {
+  "label": "Manufacturing Vehicles and Transport Equipment",
+  "tip": "Sites building vehicles and transport equipment, e.g. car factories, shipyards, or plants making aircraft, trains, motorcycles or bicycles."
+ },
+ "LUA-2_1_2_3": {
+  "label": "Manufacturing Other Heavy End Products",
+  "tip": "Sites making heavy finished products that do not fit the machinery or vehicle categories."
+ },
+ "LUA-2_1_3": {
+  "label": "Light End Product Industry",
+  "tip": "Industry that turns basic manufactured materials into lighter consumer goods, e.g. food, clothing, electronics or furniture."
+ },
+ "LUA-2_1_3_1": {
+  "label": "Manufacturing Food, Beverages and Tobacco Products",
+  "tip": "Sites that process food, drinks and tobacco, e.g. meat and dairy plants, flour mills, breweries or animal feed factories."
+ },
+ "LUA-2_1_3_2": {
+  "label": "Manufacturing Clothes and Leather Products",
+  "tip": "Sites making clothing, fur and leather goods, luggage, bags, saddles and footwear."
+ },
+ "LUA-2_1_3_3": {
+  "label": "Publishing, Printing, Reproduction of Recorded Media",
+  "tip": "Sites used for publishing and printing books, newspapers and journals, and for producing copies of sound recordings."
+ },
+ "LUA-2_1_3_4": {
+  "label": "Manufacturing Electrical, Precision and Optical Equipment",
+  "tip": "Sites making electrical, electronic and precision equipment, e.g. computers, cables, batteries, lamps, phones, medical instruments or watches."
+ },
+ "LUA-2_1_3_5": {
+  "label": "Manufacturing Other Light End Products",
+  "tip": "Sites making other light consumer goods, e.g. furniture, jewellery, musical instruments, sports goods and toys."
+ },
+ "LUA-2_2": {
+  "label": "Energy Production",
+  "tip": "Land used to produce electricity or heat, e.g. power stations, wind farms or solar parks."
+ },
+ "LUA-2_2_1": {
+  "label": "Nuclear Based Energy Production",
+  "tip": "Land where nuclear power plants are operated."
+ },
+ "LUA-2_2_2": {
+  "label": "Fossil Fuel Based Energy Production",
+  "tip": "Power plants that burn fossil fuels such as coal, oil, natural gas or peat."
+ },
+ "LUA-2_2_2_1": {
+  "label": "Coal and Lignite Based Energy Production",
+  "tip": "Power plants that burn coal or lignite (brown coal) to generate energy."
+ },
+ "LUA-2_2_2_2": {
+  "label": "Mineral Oil Based Energy Production",
+  "tip": "Power plants that burn mineral oil to generate energy."
+ },
+ "LUA-2_2_2_3": {
+  "label": "Mineral Gas Based Energy Production",
+  "tip": "Power plants that burn natural gas to generate energy."
+ },
+ "LUA-2_2_2_4": {
+  "label": "Peat and Other Fossil Fuel Based Energy Production",
+  "tip": "Power plants that burn peat or other fossil fuels not covered by the coal, oil or gas categories."
+ },
+ "LUA-2_2_3": {
+  "label": "Biomass Based Energy Production",
+  "tip": "Power plants that burn fuels made from plants or organic matter, e.g. wood, biogas or other biofuels."
+ },
+ "LUA-2_2_4": {
+  "label": "Renewable Energy Production",
+  "tip": "Land used to produce energy from renewable sources other than biomass, e.g. hydropower, solar, wind, geothermal, tidal or wave power."
+ },
+ "LUA-2_2_4_1": {
+  "label": "Water Based Energy Production",
+  "tip": "Areas that generate electricity by letting river currents or water falling from reservoirs turn turbines, e.g. hydroelectric dams. Tidal power is not included."
+ },
+ "LUA-2_2_4_2": {
+  "label": "Solar Based Energy Production",
+  "tip": "Areas that collect sunlight to produce electricity or heat using solar panels or solar heat collectors, on land or floating on water."
+ },
+ "LUA-2_2_4_3": {
+  "label": "Wind Based Energy Production",
+  "tip": "Areas on land or offshore that generate electricity with wind turbines, e.g. a wind farm."
+ },
+ "LUA-2_2_4_4": {
+  "label": "Geo-Thermal Based Energy Production",
+  "tip": "Areas that produce heat or electricity using the natural heat from deep underground, e.g. a geothermal power station."
+ },
+ "LUA-2_2_4_5": {
+  "label": "Tide Based Energy Production",
+  "tip": "Coastal areas that generate electricity by using tidal currents to turn turbines."
+ },
+ "LUA-2_2_5": {
+  "label": "Waste Combustion Based Energy Production",
+  "tip": "Areas where energy is produced by burning waste, e.g. a waste-to-energy incinerator."
+ },
+ "LUA-2_5": {
+  "label": "Other Industry",
+  "tip": "Land used to make industrial products that do not fit any of the other industry or energy categories."
+ },
+ "LUA-3": {
+  "label": "Tertiary Services Sector",
+  "tip": "Land used to provide services to businesses and the public, e.g. shops, offices, hotels, schools, hospitals, government buildings and leisure facilities."
+ },
+ "LUA-3_1": {
+  "label": "Commercial Services",
+  "tip": "Land used to provide commercial services, such as shops, real estate, hotels and restaurants."
+ },
+ "LUA-3_1_1": {
+  "label": "Wholesale, Retail Trade, Repair of Vehicles and Household Goods",
+  "tip": "Land used for buying and selling goods wholesale or retail and for repairing vehicles and household items, e.g. shops, car dealers or repair workshops."
+ },
+ "LUA-3_1_2": {
+  "label": "Real Estate Services",
+  "tip": "Land used for real estate and renting services, e.g. estate agency or property rental offices."
+ },
+ "LUA-3_1_3": {
+  "label": "Accommodation and Food Services",
+  "tip": "Land used for places to stay and eat, e.g. hotels, holiday villages, campsites, restaurants, bars and canteens."
+ },
+ "LUA-3_1_4": {
+  "label": "Other Commercial Services",
+  "tip": "Commercial services not covered elsewhere, e.g. beauty salons, spas or other wellbeing services."
+ },
+ "LUA-3_2": {
+  "label": "Financial, Professional and Information Services",
+  "tip": "Land used to provide financial, professional or information services, typically in offices."
+ },
+ "LUA-3_2_1": {
+  "label": "Financial and Insurance Services",
+  "tip": "Land used for banking, lending, insurance and other financial services, e.g. bank branches or insurance offices."
+ },
+ "LUA-3_2_2": {
+  "label": "Professional, Technical and Scientific Services",
+  "tip": "Land used for expert services such as IT, research and development, law, accounting, architecture, engineering, advertising or consulting."
+ },
+ "LUA-3_2_3": {
+  "label": "Information and Communication Services",
+  "tip": "Land used for media and communication services, e.g. publishing, film and TV production, radio broadcasting, post, telecoms and data processing."
+ },
+ "LUA-3_2_4": {
+  "label": "Administrative and Support Services",
+  "tip": "Land used for support services to businesses and people, e.g. travel agencies, rental firms, cleaning or security companies."
+ },
+ "LUA-3_2_5": {
+  "label": "Other Financial Professional and Information Services",
+  "tip": "Financial, professional or information services that do not fit any of the other categories in this group."
+ },
+ "LUA-3_3": {
+  "label": "Community Services",
+  "tip": "Land used to provide services to the community, e.g. public administration, schools, hospitals and religious sites."
+ },
+ "LUA-3_3_1": {
+  "label": "Public Administration, Defense, Justice, Public Security",
+  "tip": "Land used for government administration, defence, courts, police, fire services and compulsory social security, e.g. town halls or military bases."
+ },
+ "LUA-3_3_2": {
+  "label": "Science, Research, Education",
+  "tip": "Land used for education at all levels, from primary schools to universities and adult education."
+ },
+ "LUA-3_3_3": {
+  "label": "Health and Social Services",
+  "tip": "Land used for health care and social work for people and animals, e.g. hospitals, clinics, care homes or veterinary practices."
+ },
+ "LUA-3_3_4": {
+  "label": "Religious Services",
+  "tip": "Land used for religious purposes, e.g. places of worship, monasteries and cemeteries."
+ },
+ "LUA-3_3_4_1": {
+  "label": "House of Worship",
+  "tip": "Buildings for religious worship of any faith, e.g. churches, mosques or synagogues, including their associated administrative buildings."
+ },
+ "LUA-3_3_4_2": {
+  "label": "Monastery",
+  "tip": "Monasteries, where a community of people lives together to devote their lives to practising their religion according to set rules and rituals."
+ },
+ "LUA-3_3_4_3": {
+  "label": "Cemetery",
+  "tip": "Burial grounds of any faith, including historical cemeteries."
+ },
+ "LUA-3_3_5": {
+  "label": "Other Community Services",
+  "tip": "Land used for community services not covered by the other categories, e.g. cemeteries."
+ },
+ "LUA-3_4": {
+  "label": "Cultural, Entertainment and Recreational Services",
+  "tip": "Land used for culture, entertainment, sport and recreation, e.g. museums, theme parks, stadiums and city parks."
+ },
+ "LUA-3_4_1": {
+  "label": "Cultural Services",
+  "tip": "Land used for arts, libraries, museums, zoos, botanical gardens, historical sites and other cultural services."
+ },
+ "LUA-3_4_1_1": {
+  "label": "Indoor Cultural Service",
+  "tip": "Indoor venues for culture, e.g. libraries, museums and theatres."
+ },
+ "LUA-3_4_1_2": {
+  "label": "Outdoor Cultural Service",
+  "tip": "Outdoor places for culture, e.g. zoos and botanical gardens."
+ },
+ "LUA-3_4_2": {
+  "label": "Entertainment",
+  "tip": "Land used for entertainment, e.g. amusement parks, theme parks and casinos or other gambling venues."
+ },
+ "LUA-3_4_3": {
+  "label": "Sports Infrastructure",
+  "tip": "Land used for sports facilities, e.g. stadiums, sports halls, swimming pools, gyms, ski resorts and golf courses."
+ },
+ "LUA-3_4_3_1": {
+  "label": "Golf Course",
+  "tip": "Land used as golf courses."
+ },
+ "LUA-3_4_3_2": {
+  "label": "Ski Piste",
+  "tip": "Prepared slopes used for alpine skiing, snowboarding and other snow sliding sports."
+ },
+ "LUA-3_4_3_3": {
+  "label": "Outdoor Racecourse",
+  "tip": "Outdoor tracks for racing, e.g. motor racing circuits, motocross or mountain bike courses, horse racecourses and skate parks."
+ },
+ "LUA-3_4_3_4": {
+  "label": "Sport Hall",
+  "tip": "Indoor halls big enough for team ball games such as basketball, volleyball or handball."
+ },
+ "LUA-3_4_3_5": {
+  "label": "Stadium",
+  "tip": "Sports grounds (grass, sand, artificial turf, etc.) surrounded by covered or open stands for spectators, e.g. a football stadium."
+ },
+ "LUA-3_4_3_6": {
+  "label": "Swimming Pool",
+  "tip": "Indoor swimming halls and outdoor swimming pools."
+ },
+ "LUA-3_4_3_7": {
+  "label": "Sports Ground",
+  "tip": "Outdoor sports fields without a roof or spectator stands around them, e.g. a local football pitch or athletics track."
+ },
+ "LUA-3_4_3_8": {
+  "label": "Fitness Club",
+  "tip": "Indoor gyms and clubs for fitness and individual sports such as boxing, wrestling, body workouts or gymnastics, smaller than full sports halls."
+ },
+ "LUA-3_4_3_9": {
+  "label": "Yachtharbour, Sport Boat Marina",
+  "tip": "Harbours for leisure boats and yachts, covering the land areas and, where relevant, the harbour water itself."
+ },
+ "LUA-3_4_4": {
+  "label": "Open Air Recreational Areas",
+  "tip": "Outdoor areas used for leisure, from city parks and playgrounds to national parks and countryside such as forests, moors, lakes and mountains."
+ },
+ "LUA-3_4_4_1": {
+  "label": "Urban Greenery, City Parks, Playgrounds",
+  "tip": "Green spaces in towns used for leisure, e.g. city parks, playgrounds and other urban greenery."
+ },
+ "LUA-3_4_4_2": {
+  "label": "(Semi-)Natural Areas Used for Recreation",
+  "tip": "Natural or near-natural areas used for leisure, e.g. national parks, forests, heaths, mountains, lakes or rivers used for walking and recreation."
+ },
+ "LUA-3_4_5": {
+  "label": "Other Recreational Services",
+  "tip": "Recreational uses not covered by the other culture, entertainment and recreation categories, e.g. allotments or hobby fishing."
+ },
+ "LUA-3_4_5_1": {
+  "label": "Allotment Garden",
+  "tip": "Small plots of land in towns rented as gardens, sometimes for growing food but mainly for leisure."
+ },
+ "LUA-3_4_5_2": {
+  "label": "Amateur Fishing",
+  "tip": "Ponds, lakes, rivers and nearby land used for hobby fishing, mainly inland. Offshore fishing is not included."
+ },
+ "LUA-3_5": {
+  "label": "Other Services",
+  "tip": "Land used for services that do not fit any of the other service categories."
+ },
+ "LUA-4": {
+  "label": "Transport Networks, Logistics, Utilities",
+  "tip": "Land used for the basic networks society depends on, e.g. transport, storage, communications, water supply and sewage or waste treatment."
+ },
+ "LUA-4_1": {
+  "label": "Transport Networks",
+  "tip": "Land used for transport infrastructure, such as roads, railways, airports and ports."
+ },
+ "LUA-4_1_1": {
+  "label": "Road Network",
+  "tip": "Land used for road transport, e.g. roads, car parks and service stations."
+ },
+ "LUA-4_1_2": {
+  "label": "Railway Network",
+  "tip": "Land used for rail transport, e.g. tracks, railway stations and rail yards."
+ },
+ "LUA-4_1_3": {
+  "label": "Air Transport",
+  "tip": "Land used for air transport, e.g. airports and their related services."
+ },
+ "LUA-4_1_4": {
+  "label": "Water Transport",
+  "tip": "Land and water used for shipping and boat transport, e.g. ports, docks and navigable rivers."
+ },
+ "LUA-4_1_5": {
+  "label": "Other Transportation Networks",
+  "tip": "Land used for forms of transport that do not fit the road, rail, air or water transport categories."
+ },
+ "LUA-4_2": {
+  "label": "Logistics and Storage",
+  "tip": "Land used to store industrial or trade goods away from factory sites, plus the facilities that support this, e.g. warehouses and distribution centres."
+ },
+ "LUA-4_3": {
+  "label": "Utilities",
+  "tip": "Land used for public services that keep a place running, such as power and water supply, sewage handling and waste treatment."
+ },
+ "LUA-4_3_1": {
+  "label": "Power Distribution Services",
+  "tip": "Areas used to deliver energy, such as electricity lines, gas networks and district heating, including pipelines that carry oil and gas."
+ },
+ "LUA-4_3_1_1": {
+  "label": "Electricity Distribution",
+  "tip": "Land used to move electricity to users, e.g. the corridors of power lines and the sites of electrical substations."
+ },
+ "LUA-4_3_1_2": {
+  "label": "Gas Distribution",
+  "tip": "Land used to distribute gas to users, e.g. gas pipeline routes and their associated stations."
+ },
+ "LUA-4_3_1_3": {
+  "label": "Thermal Energy Distribution",
+  "tip": "Land used to distribute heat to buildings, e.g. the pipes and facilities of a district heating network."
+ },
+ "LUA-4_3_2": {
+  "label": "Water and Sewage Infrastructure",
+  "tip": "Areas used to supply clean water and deal with sewage, from extraction and purification to storage, distribution and wastewater treatment, pipelines included."
+ },
+ "LUA-4_3_2_1": {
+  "label": "Drinking Water Facilities",
+  "tip": "Facilities and their grounds for getting, treating, storing and distributing drinking water, e.g. a waterworks or a water reservoir site."
+ },
+ "LUA-4_3_2_2": {
+  "label": "Sewage Water Treatment",
+  "tip": "Sites where wastewater from homes and businesses is cleaned before release, e.g. a municipal sewage treatment plant."
+ },
+ "LUA-4_3_2_3": {
+  "label": "Water Runoff Retention Basin",
+  "tip": "Basins built to hold back runoff water in a stream so that the risk of flooding downstream is reduced."
+ },
+ "LUA-4_3_2_4": {
+  "label": "Artificial Snow Water Pond",
+  "tip": "Ponds kept in ski resort areas to store water that is used for making artificial snow."
+ },
+ "LUA-4_3_2_5": {
+  "label": "Irrigation and Fire Fighting Water Pond",
+  "tip": "Basins that store water for putting out fires or for watering farmland, and sometimes forest land."
+ },
+ "LUA-4_3_3": {
+  "label": "Waste Treatment",
+  "tip": "Areas where waste is collected, treated or recycled, e.g. landfills, incinerators, composting sites and hazardous waste plants."
+ },
+ "LUA-4_3_3_1": {
+  "label": "Dump Site",
+  "tip": "Areas where waste is collected and deposited, such as a landfill or rubbish tip."
+ },
+ "LUA-4_3_3_1_1": {
+  "label": "Hazardous Waste",
+  "tip": "Waste that can harm people or nature and needs special handling or sealed sites. What counts as hazardous depends partly on national law."
+ },
+ "LUA-4_3_3_1_2": {
+  "label": "Inert Or Non-Hazardous Waste",
+  "tip": "Waste that poses no danger to people or the environment, e.g. construction rubble and normal household rubbish."
+ },
+ "LUA-4_3_3_2": {
+  "label": "Recycling Facilities",
+  "tip": "Sites where used materials are prepared for reuse, e.g. paper, plastic bottles and glass, or garden waste turned into compost."
+ },
+ "LUA-4_3_4": {
+  "label": "Other Utilities",
+  "tip": "Land used for utility services that do not fit into the energy, water, sewage or waste categories."
+ },
+ "LUA-5": {
+  "label": "Residential",
+  "tip": "Land used mainly for people's homes, from city apartment blocks to rural houses and mobile homes, including areas mixed with compatible uses."
+ },
+ "LUA-5_1": {
+  "label": "Permanent Residential",
+  "tip": "Housing areas where people live all year round, e.g. detached houses with gardens, terraced rows or blocks of flats."
+ },
+ "LUA-5_2": {
+  "label": "Residential Use With Other Compatible Uses",
+  "tip": "Housing areas mixed with other uses that sit well alongside homes, e.g. local shops, services or light workshops."
+ },
+ "LUA-5_3": {
+  "label": "Other Residential",
+  "tip": "Housing that is not a permanent main residence, such as holiday cottages, temporary camps or informal settlements."
+ },
+ "LUA-5_3_1": {
+  "label": "Temporary Residential, Permanent Structure",
+  "tip": "Solid buildings used only part of the year as homes, e.g. summer cottages or holiday houses."
+ },
+ "LUA-5_3_2": {
+  "label": "Temporary Dwelling, Non-Permanent Structure",
+  "tip": "Areas of temporary shelters that are not built to last, e.g. refugee camps or camps for migrant people."
+ },
+ "LUA-5_3_3": {
+  "label": "Informal Dwelling",
+  "tip": "Settlements built outside any legal or planning framework, such as slums or favelas, that over time become quasi-permanent."
+ },
+ "LUA-6": {
+  "label": "Other Uses",
+  "tip": "Land that fits none of the main use groups (production, services, transport and utilities, housing), including areas under construction."
+ },
+ "LUA-6_1": {
+  "label": "Transitional Areas Under Construction",
+  "tip": "Land where building work is currently under way. Used for actual present use, not for future planned use."
+ },
+ "LUA-6_3": {
+  "label": "Areas Not In Any Economic Use",
+  "tip": "Land left in a natural state with no economic use, e.g. untouched wilderness or remote mountain areas."
+ },
+ "LUA-6_4": {
+  "label": "Flood Protection",
+  "tip": "Land set aside to reduce flooding, e.g. a polder that can be flooded on purpose to lower a river's flood peak."
+ },
+ "LCH": {
+  "label": "Land Characteristics",
+  "tip": "Groups extra descriptive details that can be attached to land cover or land use, such as materials, plant traits, water conditions, status, patterns, shape and timing."
+ },
+ "LCH-1": {
+  "label": "Built-Up Characteristics",
+  "tip": "Details that describe built-up areas, such as how much ground is sealed, building layout, construction materials, green roofs and transport features."
+ },
+ "LCH-1_1": {
+  "label": "Soil Sealing Degree",
+  "tip": "Measures the share of an area covered by sealed, waterproof surfaces like asphalt, concrete or buildings, given as a percentage (%)."
+ },
+ "LCH-1_2": {
+  "label": "Built-Up Pattern",
+  "tip": "Groups the typical ways buildings are sized and spread across an area, from scattered farmhouses to dense city blocks."
+ },
+ "LCH-1_2_1": {
+  "label": "Scattered Single Houses, Discontinuous",
+  "tip": "A few buildings spread out with clear gaps between them, not dominating the landscape, as in sparsely populated countryside."
+ },
+ "LCH-1_2_2": {
+  "label": "Single Blocks, Discontinuous",
+  "tip": "Large multi-storey buildings standing apart with open space between them, housing many people or offices, e.g. apartment blocks or a skyscraper."
+ },
+ "LCH-1_2_3": {
+  "label": "Suburban Row Houses, Terraced, Semi-Detached Houses",
+  "tip": "Suburban housing where gardens take up much of each plot, e.g. rows of terraced or semi-detached houses."
+ },
+ "LCH-1_2_4": {
+  "label": "City Street Blocks, Closed Front",
+  "tip": "City-centre blocks enclosed by streets, with buildings standing wall to wall along the street and mostly paved backyards."
+ },
+ "LCH-1_2_5": {
+  "label": "Large Complex Buildings, Big Halls",
+  "tip": "Very large stand-alone buildings or halls, e.g. a football stadium, airport terminal, train station or cathedral."
+ },
+ "LCH-1_3": {
+  "label": "Building Nature",
+  "tip": "Groups labels for what kind of building something is, based on the INSPIRE buildings standard, e.g. church, silo, lighthouse or greenhouse."
+ },
+ "LCH-1_3_1": {
+  "label": "Building Nature Value",
+  "tip": "A value naming the specific type of a building, taken from the INSPIRE buildings code list, e.g. chapel, tower or windmill."
+ },
+ "LCH-1_4": {
+  "label": "Other Construction Nature",
+  "tip": "Groups labels for man-made structures that are not buildings, e.g. bridges, dams, chimneys, pylons, wind turbines or solar panels."
+ },
+ "LCH-1_4_1": {
+  "label": "Other Construction Nature Value",
+  "tip": "A value naming the type of a non-building structure, taken from an INSPIRE code list, e.g. antenna, retaining wall or storage tank."
+ },
+ "LCH-1_5": {
+  "label": "Artificial Surface Material Type",
+  "tip": "Groups the man-made materials found on ground surfaces and roofs in towns, e.g. concrete, asphalt, metal or roof tiles."
+ },
+ "LCH-1_5_1": {
+  "label": "Mineral Compound",
+  "tip": "Man-made materials produced from mined earth by mixing components and adding water or heat, e.g. concrete, glass or brick."
+ },
+ "LCH-1_5_1_1": {
+  "label": "Glass",
+  "tip": "Glass used as a surface material, for example on glass roofs or glazed building surfaces."
+ },
+ "LCH-1_5_1_2": {
+  "label": "Ceramic, Clay Tiles, Bricks",
+  "tip": "Fired clay products used on roofs and ground surfaces, e.g. clay roof tiles, ceramic tiles or bricks."
+ },
+ "LCH-1_5_1_3": {
+  "label": "Concrete",
+  "tip": "Concrete used as a surface material, e.g. on pavements, car parks or flat roofs."
+ },
+ "LCH-1_5_1_4": {
+  "label": "Asbestos Fibre Cement",
+  "tip": "Cement boards or sheets reinforced with asbestos fibres, often found on older roofs, e.g. corrugated roofing sheets."
+ },
+ "LCH-1_5_1_5": {
+  "label": "Non-Asbestos Fibre Cement",
+  "tip": "Fibre-reinforced cement boards or sheets made without asbestos, used for example as roofing or cladding."
+ },
+ "LCH-1_5_2": {
+  "label": "Solar Panels",
+  "tip": "Surfaces covered with solar panels, e.g. photovoltaic panels on a roof or in a solar park."
+ },
+ "LCH-1_5_3": {
+  "label": "Metal",
+  "tip": "Metal used as a surface material, mainly on roofs, e.g. copper, zinc, aluminium or steel sheeting."
+ },
+ "LCH-1_5_3_1": {
+  "label": "Copper",
+  "tip": "Copper used as a surface material, e.g. a copper roof, often turning green with age."
+ },
+ "LCH-1_5_3_2": {
+  "label": "Zinc",
+  "tip": "Zinc used as a surface material, e.g. zinc roof sheeting."
+ },
+ "LCH-1_5_3_3": {
+  "label": "Aluminium",
+  "tip": "Aluminium used as a surface material, e.g. aluminium roof panels."
+ },
+ "LCH-1_5_3_4": {
+  "label": "Steel",
+  "tip": "Steel used as a surface material, e.g. steel roofing sheets on warehouses or factories."
+ },
+ "LCH-1_5_3_5": {
+  "label": "Iron",
+  "tip": "Iron used as a surface material, e.g. corrugated iron roofing."
+ },
+ "LCH-1_5_3_6": {
+  "label": "Lead",
+  "tip": "Lead used as a surface material, e.g. lead sheeting on roofs."
+ },
+ "LCH-1_5_4": {
+  "label": "Hydrocarbon Compound",
+  "tip": "Materials made from leftovers of refined crude oil, often mixed with sand or gravel to seal roads and roofs, e.g. asphalt or tar."
+ },
+ "LCH-1_5_4_1": {
+  "label": "Tar",
+  "tip": "Tar, a dark sticky oil-based material used to seal and harden surfaces such as roads or roofs."
+ },
+ "LCH-1_5_4_2": {
+  "label": "Asphalt",
+  "tip": "Asphalt, the dark oil-based mix with gravel or sand commonly used to pave roads and car parks."
+ },
+ "LCH-1_5_4_3": {
+  "label": "Bitumen",
+  "tip": "Bitumen, a thick oil-based binder used to waterproof surfaces, e.g. bitumen roofing felt or road surfacing."
+ },
+ "LCH-1_5_5": {
+  "label": "Polymer, Plastic, Synthetic Fibre",
+  "tip": "Synthetic materials made industrially by chemical processing, e.g. plastics, rubber and synthetic fibres used on surfaces."
+ },
+ "LCH-1_5_5_1": {
+  "label": "Hard Rubber",
+  "tip": "Hard rubber used as a surface material, e.g. rubber flooring on playgrounds or sports areas."
+ },
+ "LCH-1_5_5_2": {
+  "label": "Hard Plastic",
+  "tip": "Rigid plastic used as a surface material, e.g. plastic roofing panels."
+ },
+ "LCH-1_5_5_3": {
+  "label": "Plastic Foil",
+  "tip": "Thin plastic sheeting covering a surface, e.g. foil over crops or a plastic liner."
+ },
+ "LCH-1_5_5_4": {
+  "label": "Synthetic Fibre",
+  "tip": "Synthetic fibre used as a surface material, e.g. artificial turf on a sports pitch."
+ },
+ "LCH-1_5_6": {
+  "label": "Mineral Material",
+  "tip": "Natural stone materials taken from quarries, riverbeds, beaches and similar sources, used without chemical processing, e.g. gravel or slate."
+ },
+ "LCH-1_5_6_1": {
+  "label": "Natural Stone",
+  "tip": "Natural stone used as a surface material, e.g. cobblestones or stone slabs."
+ },
+ "LCH-1_5_6_2": {
+  "label": "Slate",
+  "tip": "Slate, a natural stone that splits into thin flat layers, commonly used as roofing on older houses."
+ },
+ "LCH-1_5_6_3": {
+  "label": "Pebbles, Gravel",
+  "tip": "Loose small stones used on surfaces, e.g. a gravel path or pebble-covered roof."
+ },
+ "LCH-1_5_6_4": {
+  "label": "Sand",
+  "tip": "Sand used as a surface material, e.g. on a sports ground or path."
+ },
+ "LCH-1_5_6_5": {
+  "label": "Ashes, Slag",
+  "tip": "Ashes or slag, the leftovers from burning or metal smelting, used as a surface material, e.g. on a cinder track."
+ },
+ "LCH-1_5_7": {
+  "label": "Organic",
+  "tip": "Surface materials of plant origin used on roofs or the ground, e.g. wooden shingles or thatch."
+ },
+ "LCH-1_5_7_1": {
+  "label": "Wood",
+  "tip": "Wood used as a surface material, e.g. wooden shingles, decking or boardwalks."
+ },
+ "LCH-1_5_7_2": {
+  "label": "Reed, Straw, Leaves",
+  "tip": "Plant stems or leaves used as a surface material, e.g. a thatched roof of reed or straw."
+ },
+ "LCH-1_6": {
+  "label": "Artificial Surface Material Arrangement",
+  "tip": "Groups the ways surface materials are laid out on ground or roofs, e.g. a continuous layer, paving stones or overlapping tiles."
+ },
+ "LCH-1_6_1": {
+  "label": "Seamless Sealing",
+  "tip": "Material laid as one continuous layer with no joints, e.g. an asphalt road surface."
+ },
+ "LCH-1_6_2": {
+  "label": "Closed Pavement",
+  "tip": "Paving made of separate pieces fitted tightly together with seams but no gaps, e.g. a paved pedestrian street."
+ },
+ "LCH-1_6_3": {
+  "label": "Permeable Paving, Grass Pavers",
+  "tip": "Paving pieces laid with small gaps so rainwater can soak into the ground, e.g. grass pavers in a car park."
+ },
+ "LCH-1_6_4": {
+  "label": "Tiles",
+  "tip": "Paving or roofing laid as tiles, which may partly overlap, e.g. a tiled roof."
+ },
+ "LCH-1_7": {
+  "label": "Building Greening Type",
+  "tip": "Groups types of vegetation grown on buildings, mainly on roofs and possibly on walls."
+ },
+ "LCH-1_7_1": {
+  "label": "Greened Roof",
+  "tip": "A roof covered with growing plants, e.g. a green roof on an office building."
+ },
+ "LCH-1_7_1_1": {
+  "label": "Low Growing Roof Vegetation",
+  "tip": "A green roof with low plants such as herbs, mosses, lichens or dwarf shrubs."
+ },
+ "LCH-1_7_1_2": {
+  "label": "High Growing Roof Vegetation",
+  "tip": "A green roof with taller woody plants such as trees and bushes, often forming a roof garden."
+ },
+ "LCH-1_8": {
+  "label": "Transportation Network Characteristics",
+  "tip": "Groups details that describe transport areas, such as types of roads and paths and types of harbours."
+ },
+ "LCH-1_8_1": {
+  "label": "Road Network Type",
+  "tip": "Groups types of roads and paths by their main use, from highways to footpaths and cycle lanes."
+ },
+ "LCH-1_8_1_1": {
+  "label": "Fast Transit Road, Highway",
+  "tip": "Roads built for fast long-distance traffic, e.g. motorways and highways."
+ },
+ "LCH-1_8_1_2": {
+  "label": "Pedestrian Zone",
+  "tip": "An area reserved for people on foot, sometimes bicycles, where motor traffic is banned or limited, e.g. a shopping street."
+ },
+ "LCH-1_8_1_3": {
+  "label": "Associated Walk- Or Cycleway",
+  "tip": "A footpath or cycle lane running alongside a road, sometimes separated from it by a narrow green strip."
+ },
+ "LCH-1_8_1_4": {
+  "label": "Walk- and Cycleway",
+  "tip": "A path shared by walkers and cyclists on its own route, away from roads."
+ },
+ "LCH-1_8_1_5": {
+  "label": "Cycleway",
+  "tip": "A path or lane reserved for bicycles only, with no pedestrians or cars, e.g. a separate bike lane."
+ },
+ "LCH-1_8_1_6": {
+  "label": "Walkway",
+  "tip": "A path meant only for people on foot, e.g. a footpath."
+ },
+ "LCH-1_8_1_7": {
+  "label": "Open Square",
+  "tip": "An open, often rectangular or round space in the street network, e.g. a town square or a large roundabout."
+ },
+ "LCH-1_8_4": {
+  "label": "Harbour Type",
+  "tip": "Groups types of port areas where ships and boats dock, load and unload, e.g. cargo ports, marinas and shipyards."
+ },
+ "LCH-1_8_4_1": {
+  "label": "Cargo Port",
+  "tip": "A port where traded goods are shipped in and out, usually with container terminals."
+ },
+ "LCH-1_8_4_2": {
+  "label": "Passenger Port",
+  "tip": "A port where people board and leave ships, e.g. a ferry or cruise terminal."
+ },
+ "LCH-1_8_4_3": {
+  "label": "Fishing Port",
+  "tip": "A port used by fishing boats bringing in their catch from the sea."
+ },
+ "LCH-1_8_4_4": {
+  "label": "Naval Port",
+  "tip": "A port that serves military ships, e.g. a navy base harbour."
+ },
+ "LCH-1_8_4_5": {
+  "label": "Marina",
+  "tip": "A harbour for yachts and sport boats used for recreation and leisure."
+ },
+ "LCH-1_8_4_6": {
+  "label": "Local Multifunctional Harbour",
+  "tip": "A local harbour not limited to one kind of vessel, serving several purposes at once."
+ },
+ "LCH-1_8_4_7": {
+  "label": "Shipyard",
+  "tip": "An area by the sea or a river where ships are built, maintained or repaired, either afloat or in a dry dock."
+ },
+ "LCH-1_8_4_8": {
+  "label": "Jetty",
+  "tip": "A long structure reaching out from the shore where vessels dock to load, unload or let passengers on and off."
+ },
+ "LCH-2": {
+  "label": "Physical Characteristics",
+  "tip": "Groups physical properties of the land itself, such as ground that stays permanently frozen."
+ },
+ "LCH-2_1": {
+  "label": "Permafrost Zone",
+  "tip": "Areas where the ground stays frozen for at least two years in a row, found in polar regions or high mountains."
+ },
+ "LCH-3": {
+  "label": "Biotic Vegetation Characteristics",
+  "tip": "Groups details describing plants and vegetation, e.g. leaf shape, whether leaves fall, lifespan, growth form and species origin."
+ },
+ "LCH-3_1": {
+  "label": "Leaf Form",
+  "tip": "Groups the basic leaf shapes used to tell trees and shrubs apart, e.g. needle leaves or broad leaves."
+ },
+ "LCH-3_1_1": {
+  "label": "Needle Leaved",
+  "tip": "Trees and shrubs with thin, needle-shaped leaves, e.g. pine, spruce or fir."
+ },
+ "LCH-3_1_2": {
+  "label": "Broad Leaved",
+  "tip": "Plants with broad, flat leaves, e.g. oak, beech or maple."
+ },
+ "LCH-3_1_3": {
+  "label": "Palm Leaved",
+  "tip": "Plants with the large fan- or feather-shaped leaves typical of palms, e.g. palm trees."
+ },
+ "LCH-3_1_4": {
+  "label": "Non-Leafy",
+  "tip": "Plants that have no leaves at all, e.g. many cacti that use green stems instead."
+ },
+ "LCH-3_2": {
+  "label": "Foliage Persistence",
+  "tip": "Groups plants by whether they shed their leaves or needles each season or keep them for several years."
+ },
+ "LCH-3_2_1": {
+  "label": "Evergreen",
+  "tip": "Plants that keep their leaves or needles for several years, e.g. spruce or holly."
+ },
+ "LCH-3_2_2": {
+  "label": "Deciduous",
+  "tip": "Plants that lose their leaves or needles at the end of each growing cycle, usually every year, e.g. beech or larch."
+ },
+ "LCH-3_2_2_1": {
+  "label": "Winter Deciduous",
+  "tip": "Plants that drop their leaves each year to cope with freezing winter temperatures, e.g. oak or birch."
+ },
+ "LCH-3_2_2_2": {
+  "label": "Summer Deciduous",
+  "tip": "Plants that drop their leaves each year before or during hot summers to avoid drying out."
+ },
+ "LCH-3_3": {
+  "label": "Leaf Anatomy",
+  "tip": "Groups features of the leaf's outer structure, such as how its surface or skin is built."
+ },
+ "LCH-3_3_1": {
+  "label": "Sclerophyllous",
+  "tip": "Plants with small, hard, leathery or waxy leaves adapted to long dry and hot periods, e.g. olive trees or cork oaks."
+ },
+ "LCH-3_4": {
+  "label": "Phenological Plant Life Span",
+  "tip": "Groups plants by how long they live, from one season to many years."
+ },
+ "LCH-3_4_1": {
+  "label": "Annual Plant",
+  "tip": "A plant that completes its whole life cycle within one growing season, e.g. many cereals or summer flowers."
+ },
+ "LCH-3_4_2": {
+  "label": "Biennial Plant",
+  "tip": "A plant whose life cycle spans two years, flowering and setting seed in the second year."
+ },
+ "LCH-3_4_3": {
+  "label": "Perennial Plant",
+  "tip": "A plant that survives unfavourable seasons such as winter and lives more than two years."
+ },
+ "LCH-3_4_4": {
+  "label": "Ephemeral Plant",
+  "tip": "A plant that runs through several life cycles in one growing season and can multiply quickly."
+ },
+ "LCH-3_5": {
+  "label": "Plant Location",
+  "tip": "Groups plants by where they grow: on land, on other plants, under water or at the water surface."
+ },
+ "LCH-3_5_1": {
+  "label": "Terrestrial Plant",
+  "tip": "Plants growing on solid ground, including wetland plants like reeds that stand in water."
+ },
+ "LCH-3_5_2": {
+  "label": "Epiphyte Plant",
+  "tip": "A plant that grows on another plant for support, taking moisture and nutrients from air, rain or debris rather than its host."
+ },
+ "LCH-3_5_3": {
+  "label": "Aquatic Submerged Plant",
+  "tip": "Water plants living mainly below the surface without reaching it, e.g. algae."
+ },
+ "LCH-3_5_4": {
+  "label": "Aquatic Emergent Plant",
+  "tip": "Water plants that mainly float on the water surface, e.g. water lilies."
+ },
+ "LCH-3_6": {
+  "label": "Growth Form, Habit",
+  "tip": "Groups the overall shapes plants grow into, describing how their stems and branches are arranged."
+ },
+ "LCH-3_6_1": {
+  "label": "Erect Growth, Single Stem",
+  "tip": "A woody plant with one main upright stem, as in a typical tree."
+ },
+ "LCH-3_6_2": {
+  "label": "Open, Spreading, Dense Growth, Multi-Stem",
+  "tip": "A woody plant with several stems growing from the ground upward and outward, e.g. bushes and shrubs."
+ },
+ "LCH-3_6_3": {
+  "label": "Prostrate, Creaping",
+  "tip": "Plants whose branches or shoots lie on or just above the ground and spread sideways rather than upright."
+ },
+ "LCH-3_6_4": {
+  "label": "Clump-Forming",
+  "tip": "Plants growing as a compact mound or thicket with shoots spreading out from the centre, e.g. bamboos, sedges or some grasses."
+ },
+ "LCH-3_6_5": {
+  "label": "Cushion, Mat-Forming",
+  "tip": "Low, compact, pillow-like or mat-forming plants with tightly packed branches, found in alpine and arctic environments."
+ },
+ "LCH-3_6_6": {
+  "label": "Climbing",
+  "tip": "Plants that climb on other plants or objects for support because they lack strong stems, e.g. ivy or grapevine."
+ },
+ "LCH-3_7": {
+  "label": "Raunkiaer Life Form",
+  "tip": "Groups plants by Raunkiaer's system, which classifies them by where their buds survive the unfavourable season, e.g. high above ground or underground."
+ },
+ "LCH-3_7_1": {
+  "label": "Phanerophyte",
+  "tip": "A Raunkiaer life form for plants whose resting buds sit well above the ground on woody stems, e.g. trees and tall shrubs."
+ },
+ "LCH-3_7_2": {
+  "label": "Epiphyte",
+  "tip": "A Raunkiaer life form for plants that grow on other plants rather than rooting in the soil."
+ },
+ "LCH-3_7_3": {
+  "label": "Chamaephyte",
+  "tip": "A Raunkiaer life form for low plants whose resting buds sit close above the ground, e.g. dwarf shrubs."
+ },
+ "LCH-3_7_4": {
+  "label": "Hemicryptophyte",
+  "tip": "A Raunkiaer life form for plants whose resting buds sit right at the soil surface, e.g. many grasses."
+ },
+ "LCH-3_7_5": {
+  "label": "Cryptophyte",
+  "tip": "A Raunkiaer life form for plants whose resting buds survive below ground or under water, e.g. bulbs."
+ },
+ "LCH-3_7_6": {
+  "label": "Therophyte",
+  "tip": "A Raunkiaer life form for plants that survive the unfavourable season only as seeds, e.g. annual herbs."
+ },
+ "LCH-3_7_7": {
+  "label": "Aerophyte",
+  "tip": "A Raunkiaer life form for plants that live in the air without roots in the soil, taking water and nutrients from the air."
+ },
+ "LCH-3_8": {
+  "label": "Vegetation Cover Transition",
+  "tip": "Groups the direction vegetation cover is changing in: either recovering naturally or degrading over time."
+ },
+ "LCH-3_8_1": {
+  "label": "Natural Succession",
+  "tip": "Land where vegetation is regrowing on its own through natural succession, e.g. abandoned fields turning into scrub."
+ },
+ "LCH-3_8_2": {
+  "label": "Vegetation Degradation",
+  "tip": "Land where the vegetation cover is getting poorer or thinner over time."
+ },
+ "LCH-3_9": {
+  "label": "Plant Species Origin",
+  "tip": "Groups plants by their origin relative to where they grow now, e.g. native, introduced, invasive or genetically modified."
+ },
+ "LCH-3_9_1": {
+  "label": "Native Plant",
+  "tip": "A plant species that has naturally grown in this region for a long time, though not necessarily only here."
+ },
+ "LCH-3_9_2": {
+  "label": "Non-Native Plant",
+  "tip": "A plant species that is not normally found in this region."
+ },
+ "LCH-3_9_3": {
+  "label": "Endemic Plant",
+  "tip": "A plant species found only in this particular region and nowhere else, at any scale from a tiny habitat to a continent."
+ },
+ "LCH-3_9_4": {
+  "label": "Invasive Plant",
+  "tip": "A plant from elsewhere that is spreading into a new area, often helped by human transport, and crowding out native plants."
+ },
+ "LCH-3_9_5": {
+  "label": "Migratory Plant",
+  "tip": "A plant species gradually moving into a neighbouring area because conditions in its original habitat are changing, e.g. due to climate."
+ },
+ "LCH-3_9_6": {
+  "label": "Genetically Modified Plant",
+  "tip": "A plant whose genes have been altered, e.g. crops modified for higher yield or drought resistance."
+ },
+ "LCH-3_10": {
+  "label": "Plant Species Type",
+  "tip": "Groups ways to record which plant species are present, following the INSPIRE species distribution standard."
+ },
+ "LCH-3_10_1": {
+  "label": "Plant Species",
+  "tip": "Records the name of the specific plant species growing in an area."
+ },
+ "LCH-3_11": {
+  "label": "Plant Community Type",
+  "tip": "Groups ways to record which plant community grows in an area; still being finalised, possibly following the European Vegetation Survey scheme."
+ },
+ "LCH-3_11_1": {
+  "label": "Plant Community",
+  "tip": "Records the plant community, meaning a typical group of species growing together, e.g. a beech forest community."
+ },
+ "LCH-3_12": {
+  "label": "Plant Growing Season",
+  "tip": "Groups details about the natural growing season of wild and local plants. Crop seasons are recorded elsewhere."
+ },
+ "LCH-3_12_1": {
+  "label": "Plant Growing Season Ongoing",
+  "tip": "Indicates whether the natural growing season of a plant or plant community is currently under way. Does not cover crop seasons."
+ },
+ "LCH-3_13": {
+  "label": "Crown Cover Density",
+  "tip": "Measures how much of an area is covered from above by tree or bush crowns, given as a percentage (%)."
+ },
+ "LCH-4": {
+  "label": "Water Characteristics",
+  "tip": "Groups details that describe water surfaces or relate to water, such as how natural a water body is and how often it holds water."
+ },
+ "LCH-4_1": {
+  "label": "Water Body Formation",
+  "tip": "Groups water bodies by how natural they are, from untouched rivers and lakes to fully man-made canals."
+ },
+ "LCH-4_1_1": {
+  "label": "Natural Water Body",
+  "tip": "A river or lake in its natural state, with no artificial banks and no dams or weirs controlling its flow."
+ },
+ "LCH-4_1_2": {
+  "label": "Controlled, Regulated, Heavily Modified Water Body",
+  "tip": "A river or lake shaped by man-made structures that hold its banks or control its water level, e.g. most navigable rivers."
+ },
+ "LCH-4_1_3": {
+  "label": "Man-Made Water Body",
+  "tip": "A fully artificial water body that would not exist without people, e.g. a shipping canal or irrigation reservoir."
+ },
+ "LCH-4_2": {
+  "label": "Hydrological Water Regime",
+  "tip": "Groups inland waters by how often and how long they hold or carry water, e.g. permanent or seasonal. Not used for sea or tidal areas."
+ },
+ "LCH-4_2_1": {
+  "label": "Dry Water Regime",
+  "tip": "A riverbed or lake bed that is normally dry, with water flowing only rarely after heavy rain, e.g. a wadi in a desert region."
+ },
+ "LCH-4_2_2": {
+  "label": "Ephemeral, Episodic Water Regime",
+  "tip": "Water appears only during or after rain and then stops flowing again, though some seasonal pattern may still be seen, e.g. a stream that runs after storms."
+ },
+ "LCH-4_2_3": {
+  "label": "Intermittent, Seasonal Water Regime",
+  "tip": "Water is present for part of every year, usually in the wet or snowmelt season, e.g. a stream that dries up each summer."
+ },
+ "LCH-4_2_4": {
+  "label": "Perennial Water Regime",
+  "tip": "Water is present all year round, even if the level rises and falls, e.g. a large river or permanent lake."
+ },
+ "LCH-4_3": {
+  "label": "Water Dynamics",
+  "tip": "Groups descriptions of whether water in a water body flows or stays still, from fast-moving rivers to stagnant ponds."
+ },
+ "LCH-4_3_1": {
+  "label": "Running Water",
+  "tip": "Water that keeps moving with a current, so it is constantly renewed and can wear away or deposit ground material, e.g. a river or creek."
+ },
+ "LCH-4_3_2": {
+  "label": "Almost Standing Water",
+  "tip": "Water that moves so slowly it causes little or no erosion, usually on very flat land, e.g. a canal or drainage ditch."
+ },
+ "LCH-4_3_3": {
+  "label": "Standing Water",
+  "tip": "Still water with no current at all, e.g. a lake, pond or puddle."
+ },
+ "LCH-4_4": {
+  "label": "Soil Moisture Regime, Wetness",
+  "tip": "Groups classes describing how wet or dry the soil is, from land covered by shallow water to desert soils with almost no moisture."
+ },
+ "LCH-4_4_1": {
+  "label": "Aquatic, Water At Surface",
+  "tip": "Land that is not a water body but is so wet that shallow water covers its surface, e.g. parts of a marsh or bog."
+ },
+ "LCH-4_4_2": {
+  "label": "Waterlogged, Saturated Ground",
+  "tip": "Soil soaked with water so that nearly all air spaces are filled, often because groundwater is high or rain is frequent."
+ },
+ "LCH-4_4_3": {
+  "label": "Wet",
+  "tip": "Soil that stays wet all year, with water filling many pores but some air still present, often fed by groundwater close to the surface."
+ },
+ "LCH-4_4_4": {
+  "label": "Seasonally Wet",
+  "tip": "Soil that is wet only during part of the year, for example in a rainy season or after seasonal flooding."
+ },
+ "LCH-4_4_5": {
+  "label": "Mesic",
+  "tip": "Soil with a steady, moderate supply of moisture, enough for plants to avoid drought stress; typical of temperate regions with evenly spread rainfall."
+ },
+ "LCH-4_4_6": {
+  "label": "Semi-Dry",
+  "tip": "Soil that alternates between rainy and dry spells, with dry periods dominating; water drains away quickly and little is held for plants."
+ },
+ "LCH-4_4_7": {
+  "label": "Dry",
+  "tip": "Soil where hardly any moisture is available to plants through the year, and droughts may last years; only hardy vegetation survives."
+ },
+ "LCH-4_4_8": {
+  "label": "Very Dry",
+  "tip": "Soil so dry that no vegetation can grow and almost no life is present, as in true deserts."
+ },
+ "LCH-4_4_9": {
+  "label": "Xeric",
+  "tip": "Soil moisture typical of a Mediterranean climate, with cool, wet winters and hot, dry summers."
+ },
+ "LCH-4_5": {
+  "label": "Wetness Source",
+  "tip": "Groups the possible origins of the water that makes land wet, such as rain, surface water or groundwater."
+ },
+ "LCH-4_5_1": {
+  "label": "Rainfed Source",
+  "tip": "Land whose wetness comes from rainfall."
+ },
+ "LCH-4_5_2": {
+  "label": "Surface Water Source",
+  "tip": "Land whose wetness comes from surface water flowing in, e.g. from a nearby river or runoff."
+ },
+ "LCH-4_5_3": {
+  "label": "Subterranean, Groundwater Source",
+  "tip": "Land whose wetness comes from groundwater rising up through the soil from below."
+ },
+ "LCH-4_6": {
+  "label": "Salinity",
+  "tip": "Groups classes for how salty water or soil is, from salt-saturated brine to practically salt-free rainwater. Usually given in parts per thousand."
+ },
+ "LCH-4_6_1": {
+  "label": "Brine",
+  "tip": "Water that is saturated or nearly saturated with salt, at 50 parts per thousand or more, e.g. the Dead Sea."
+ },
+ "LCH-4_6_2": {
+  "label": "Saline",
+  "tip": "Salty water as found in the oceans and salt lakes, with 30 to 50 parts per thousand of salt, e.g. the Atlantic Ocean."
+ },
+ "LCH-4_6_3": {
+  "label": "Brackish",
+  "tip": "Water saltier than fresh water but less salty than the sea (5 to 30 parts per thousand), e.g. estuaries, lagoons or the Baltic Sea."
+ },
+ "LCH-4_6_4": {
+  "label": "Fresh",
+  "tip": "Water with very little salt (0.1 to 0.5 parts per thousand), e.g. most rivers and groundwater; drinkable water lies at the low end."
+ },
+ "LCH-4_6_5": {
+  "label": "Ultra Fresh",
+  "tip": "Water that is practically free of salt, like rain, snow or dew before it picks up other substances."
+ },
+ "LCH-4_7": {
+  "label": "pH Value",
+  "tip": "Measures how acidic or alkaline water is, on a scale from 0 (acidic) to 14 (alkaline), where 7 is neutral like pure water."
+ },
+ "LCH-4_8": {
+  "label": "Tidal Phenomena",
+  "tip": "Groups characteristics of coastal areas that are regularly flooded and drained by the tides."
+ },
+ "LCH-4_8_1": {
+  "label": "Tidal Influence",
+  "tip": "Records whether a piece of land is affected by the tides, optionally with the typical rise and fall of the water level."
+ },
+ "LCH-4_8_2": {
+  "label": "Tidal Range",
+  "tip": "Measures the height difference between low tide and high tide at a location, in meters."
+ },
+ "LCH-4_9": {
+  "label": "Groundwater",
+  "tip": "Groups characteristics of groundwater, the water held underground in soil and rock."
+ },
+ "LCH-4_9_1": {
+  "label": "Groundwater Table Level",
+  "tip": "Measures how far below the ground surface the groundwater (water table) lies, in meters."
+ },
+ "LCH-4_10": {
+  "label": "Snow Characteristics",
+  "tip": "Groups characteristics describing surfaces covered by snow."
+ },
+ "LCH-4_10_1": {
+  "label": "Snow Height",
+  "tip": "Measures the depth of snow lying on the ground, in meters."
+ },
+ "LCH-4_11": {
+  "label": "Ice Characteristics",
+  "tip": "Groups characteristics of surfaces covered by ice, on land or water; currently a placeholder for future entries."
+ },
+ "LCH-5": {
+  "label": "Land Management",
+  "tip": "Groups information on how people manage and work the land, such as farming methods, cultivation practices and what crops are grown."
+ },
+ "LCH-5_1": {
+  "label": "Agricultural Land Management",
+  "tip": "Groups characteristics of how farmland is managed, including cultivation forms, farming practices, installations, field work and crop types."
+ },
+ "LCH-5_1_1": {
+  "label": "Agricultural Cultivation Form",
+  "tip": "Groups the main forms farmland takes, shaped by the crops grown and how the land is worked: cropland and managed permanent grassland."
+ },
+ "LCH-5_1_1_1": {
+  "label": "Cropland",
+  "tip": "Farmland used to plant, grow and harvest crops, covering both fields of annual crops and orchards or vineyards; managed grassland is separate."
+ },
+ "LCH-5_1_1_1_1": {
+  "label": "Arable Crop Land",
+  "tip": "Fields that are ploughed or prepared for sowing annual crops, often in rotation, e.g. wheat fields; also includes fallow land and rice fields."
+ },
+ "LCH-5_1_1_1_2": {
+  "label": "Permanent Crop Land",
+  "tip": "Land planted with long-lived, mostly woody crops, often in regular rows, e.g. vineyards, olive groves or fruit orchards."
+ },
+ "LCH-5_1_1_2": {
+  "label": "Managed Permanent Grassland",
+  "tip": "Grassland kept for several years in a row to grow grass or other herbaceous plants for animal feed or energy, e.g. a hay meadow; it is rarely ploughed."
+ },
+ "LCH-5_1_2": {
+  "label": "Cultivation Practice",
+  "tip": "Groups the overall farming approaches applied to land, such as crop rotation, plantations or agroforestry, including cropping cycles and plant arrangement."
+ },
+ "LCH-5_1_2_1": {
+  "label": "Crop Rotation",
+  "tip": "Different crops are grown on the same field in a planned sequence over several years; applies mainly to land with annual crops."
+ },
+ "LCH-5_1_2_2": {
+  "label": "No Crop Rotation",
+  "tip": "The same crop is grown on a field year after year over a long period, rather than alternating crops."
+ },
+ "LCH-5_1_2_3": {
+  "label": "Plantation",
+  "tip": "Large estates growing cash crops in rows using industrialised methods aimed at high yields, e.g. a large fruit plantation with plants tied to wires."
+ },
+ "LCH-5_1_2_4": {
+  "label": "Extensive Cultivation Practice",
+  "tip": "Low-intensity farming, for example traditional orchards of scattered fruit, nut or olive trees, often with grass underneath and valuable for wildlife."
+ },
+ "LCH-5_1_2_5": {
+  "label": "Agroforestry",
+  "tip": "Trees combined with farming on the same land, with livestock grazing or crops grown between scattered trees, e.g. the Spanish dehesa."
+ },
+ "LCH-5_1_2_6": {
+  "label": "Shifting Cultivation",
+  "tip": "Slash-and-burn farming, mainly in the tropics: forest is cleared and burnt, cropped for a few years, then left to regrow before the cycle repeats."
+ },
+ "LCH-5_1_2_7": {
+  "label": "Intercropping",
+  "tip": "Growing two or more crops together on the same field at the same time to use space better, e.g. a tall nut tree crop with a shade-tolerant crop below."
+ },
+ "LCH-5_1_2_8": {
+  "label": "Kitchen Garden",
+  "tip": "Small plots of fruit, vegetables and herbs grown mainly for the household's own use rather than for sale."
+ },
+ "LCH-5_1_2_9": {
+  "label": "Paddy Field Cultivation",
+  "tip": "Rice grown on fields that are flooded for part of the season; the only rice-growing method used in Europe."
+ },
+ "LCH-5_1_3": {
+  "label": "Cultivation Installation",
+  "tip": "Groups technical installations used on farmland to boost plant growth, raise yields or protect crops, such as greenhouses or protective nets."
+ },
+ "LCH-5_1_3_1": {
+  "label": "Greenhouse Under Glass or Foil",
+  "tip": "Crops grown under permanent glass or mounted plastic, where the farmer controls temperature, light and water, e.g. a tomato greenhouse."
+ },
+ "LCH-5_1_3_2": {
+  "label": "Under Foil On Ground",
+  "tip": "Crops covered by plastic sheeting lying directly on the ground or plants, creating a warm, sheltered microclimate, e.g. early strawberries or asparagus."
+ },
+ "LCH-5_1_3_3": {
+  "label": "Plantation Protection Net",
+  "tip": "Nets stretched over crops, mostly orchards or other permanent crops, to protect them from things like birds or hail."
+ },
+ "LCH-5_1_3_4": {
+  "label": "Espalier, Trellis, Lattice",
+  "tip": "Fruit trees or shrubs trained flat along a frame by pruning and tying their branches, so they grow in neat lines."
+ },
+ "LCH-5_1_3_5": {
+  "label": "Hydroculture",
+  "tip": "Growing plants without soil, with roots in a nutrient-rich water solution, sometimes supported by an inert material, e.g. hydroponic lettuce."
+ },
+ "LCH-5_1_3_6": {
+  "label": "Vertical Farming",
+  "tip": "Indoor growing of crops on several stacked levels, in a multi-storey building or on racks inside a greenhouse."
+ },
+ "LCH-5_1_4": {
+  "label": "Cultivation Measure and Activities",
+  "tip": "Groups the routine field work done to keep farmland fertile and productive, from planting to harvest, such as ploughing, fertilizing and irrigation."
+ },
+ "LCH-5_1_4_1": {
+  "label": "Ploughing and Tillage",
+  "tip": "Groups options describing whether a field is ploughed and, if known, in which direction relative to the slope."
+ },
+ "LCH-5_1_4_1_1": {
+  "label": "No Ploughing",
+  "tip": "The field is not ploughed; the soil is left undisturbed rather than being turned over before sowing."
+ },
+ "LCH-5_1_4_1_2": {
+  "label": "Ploughing Applied, Direction Unspecified",
+  "tip": "The field is ploughed, but the direction of ploughing is not known or not recorded."
+ },
+ "LCH-5_1_4_1_3": {
+  "label": "Ploughing Across The Slope",
+  "tip": "Furrows run along the slope, following the contour lines, which helps slow water running downhill."
+ },
+ "LCH-5_1_4_1_4": {
+  "label": "Ploughing Oblique Direction",
+  "tip": "Furrows run diagonally across the slope, neither along the contours nor straight downhill."
+ },
+ "LCH-5_1_4_1_5": {
+  "label": "Ploughing in Direction of Slope",
+  "tip": "Furrows run straight up and down the slope, the way water would flow downhill."
+ },
+ "LCH-5_1_4_2": {
+  "label": "Fertilization",
+  "tip": "Groups options for whether and how land is fertilized, i.e. given nutrients from plant residues, manure or chemical products to keep soil fertile."
+ },
+ "LCH-5_1_4_2_1": {
+  "label": "No Fertilizing",
+  "tip": "The land receives no fertilizer."
+ },
+ "LCH-5_1_4_2_2": {
+  "label": "Fertilization Applied, Type Unspecified",
+  "tip": "The land is fertilized, but the kind of fertilizer used is not known."
+ },
+ "LCH-5_1_4_2_3": {
+  "label": "Organic Fertilizer",
+  "tip": "Natural fertilizer such as plant material or animal manure spread on or ploughed into the field."
+ },
+ "LCH-5_1_4_2_3_1": {
+  "label": "Animal Manure",
+  "tip": "Animal dung or manure spread on or ploughed into fields as a natural fertilizer."
+ },
+ "LCH-5_1_4_2_3_2": {
+  "label": "Green Manure",
+  "tip": "Plant material grown on or brought to a field and ploughed in to feed the soil, e.g. a cover crop sown between two main crops."
+ },
+ "LCH-5_1_4_2_4": {
+  "label": "Synthetic Fertilizer",
+  "tip": "Factory-made fertilizers produced from minerals by industrial chemical processes, e.g. nitrogen fertilizer pellets."
+ },
+ "LCH-5_1_4_3": {
+  "label": "Weed Control",
+  "tip": "Groups options for whether and how unwanted plants competing with a crop for water, light and nutrients are controlled."
+ },
+ "LCH-5_1_4_3_1": {
+  "label": "No Weed Control",
+  "tip": "No measures are taken against weeds on this land."
+ },
+ "LCH-5_1_4_3_2": {
+  "label": "Weed Control Applied, Method Unspecified",
+  "tip": "Weeds are controlled, but the method used is not known."
+ },
+ "LCH-5_1_4_3_3": {
+  "label": "Mechanical or Biological Weed Control",
+  "tip": "Weeds are controlled physically, e.g. by tilling, or biologically, using their natural enemies."
+ },
+ "LCH-5_1_4_3_4": {
+  "label": "Chemical Weed Control",
+  "tip": "Weeds are controlled with chemicals such as herbicides."
+ },
+ "LCH-5_1_4_4": {
+  "label": "Pest Control",
+  "tip": "Groups options for whether and how crops are protected from insects or other organisms that damage them and reduce yields."
+ },
+ "LCH-5_1_4_4_1": {
+  "label": "No Pest Control",
+  "tip": "No measures are taken against pests on this land."
+ },
+ "LCH-5_1_4_4_2": {
+  "label": "Pest Control Applied, Method Unspecified",
+  "tip": "Pests are controlled, but the method used is not known."
+ },
+ "LCH-5_1_4_4_3": {
+  "label": "Mechanical or Biological Pest Control",
+  "tip": "Pests are controlled physically, e.g. with traps, or biologically, using their natural enemies."
+ },
+ "LCH-5_1_4_4_4": {
+  "label": "Chemical Pest Control",
+  "tip": "Pests are controlled with chemicals such as pesticides."
+ },
+ "LCH-5_1_4_5": {
+  "label": "Irrigation",
+  "tip": "Groups options for whether land is artificially watered to help crops grow, and by which method, such as sprinklers or drip lines."
+ },
+ "LCH-5_1_4_5_1": {
+  "label": "No Irrigation",
+  "tip": "The land is not artificially watered; crops depend on natural water only."
+ },
+ "LCH-5_1_4_5_2": {
+  "label": "Irrigation Applied, Method Unspecified",
+  "tip": "The land is irrigated, but the watering method is not known."
+ },
+ "LCH-5_1_4_5_3": {
+  "label": "Gravity Surface Irrigation",
+  "tip": "Water flows over the field by gravity, through small channels or furrows between crops or by flooding the whole plot."
+ },
+ "LCH-5_1_4_5_4": {
+  "label": "Sprinkler Irrigation",
+  "tip": "Water sprayed under pressure over the field like artificial rain, from mobile or fixed sprinklers."
+ },
+ "LCH-5_1_4_5_5": {
+  "label": "Irrigation Carousel",
+  "tip": "A long watering arm rotates around a central point, spraying water in a circle; it creates the round green fields seen from the air."
+ },
+ "LCH-5_1_4_5_6": {
+  "label": "Drip Irrigation",
+  "tip": "Water delivered drop by drop to each plant through thin perforated tubes on the ground, or as a fine mist from micro-sprayers."
+ },
+ "LCH-5_1_4_5_7": {
+  "label": "Subsurface Drip Irrigation",
+  "tip": "Water delivered to plants through perforated tubes or tapes buried underground, at or below root level."
+ },
+ "LCH-5_1_4_5_8": {
+  "label": "Manual Irrigation",
+  "tip": "Plants are watered by hand, e.g. with a hose or watering can."
+ },
+ "LCH-5_1_4_6": {
+  "label": "Irrigation Water Source",
+  "tip": "Groups the places where irrigation water is taken from, such as wells, reservoirs or rivers."
+ },
+ "LCH-5_1_4_6_1": {
+  "label": "Groundwater",
+  "tip": "Irrigation water pumped from underground water layers, usually through wells."
+ },
+ "LCH-5_1_4_6_2": {
+  "label": "Reservoir",
+  "tip": "Irrigation water taken from a stored body of water, e.g. a dammed artificial lake, a natural lake or a rainwater cistern."
+ },
+ "LCH-5_1_4_6_3": {
+  "label": "Water Course",
+  "tip": "Irrigation water taken directly from a flowing river, stream or creek."
+ },
+ "LCH-5_1_4_7": {
+  "label": "Drainage",
+  "tip": "Groups options for whether and how excess water is removed from farmland through drains or ditches, lowering the groundwater level."
+ },
+ "LCH-5_1_4_7_1": {
+  "label": "No Drainage",
+  "tip": "No drainage is carried out on this land."
+ },
+ "LCH-5_1_4_7_2": {
+  "label": "Drainage Applied, Method Unspecified",
+  "tip": "The land appears to be drained, but the method is not known."
+ },
+ "LCH-5_1_4_7_3": {
+  "label": "Open Ditch Drainage",
+  "tip": "Land drained by long open ditches or trenches into which water seeps from the surrounding ground."
+ },
+ "LCH-5_1_4_7_4": {
+  "label": "Subsurface Tube Drainage",
+  "tip": "Land drained by perforated pipes buried beneath the surface, which collect water and carry it away."
+ },
+ "LCH-5_1_4_7_5": {
+  "label": "Filled Ditch Drainage",
+  "tip": "Land drained by trenches filled with loose material such as gravel, level with the ground so they can be crossed easily."
+ },
+ "LCH-5_1_4_8": {
+  "label": "Mowing",
+  "tip": "Groups information on mowing a piece of land, especially how often it is cut during the year."
+ },
+ "LCH-5_1_4_8_1": {
+  "label": "Mowing Intensity",
+  "tip": "Groups classes describing how intensively land is mowed, from no mowing to several cuts per year."
+ },
+ "LCH-5_1_4_8_1_1": {
+  "label": "No Mowing",
+  "tip": "The plot is not mowed."
+ },
+ "LCH-5_1_4_8_1_2": {
+  "label": "Mowing Applied, Frequency Unspecified",
+  "tip": "The plot is mowed, but how often is not known."
+ },
+ "LCH-5_1_4_8_1_3": {
+  "label": "Extensive Mowing",
+  "tip": "Low-intensity mowing: the plot is cut once a year, e.g. a traditional hay meadow."
+ },
+ "LCH-5_1_4_8_1_4": {
+  "label": "Medium Intensity Mowing",
+  "tip": "The plot is mowed twice a year."
+ },
+ "LCH-5_1_4_8_1_5": {
+  "label": "Intensive Mowing",
+  "tip": "The plot is mowed more than twice a year."
+ },
+ "LCH-5_1_4_8_2": {
+  "label": "Mowing Frequency",
+  "tip": "Records how many times per year a piece of land is mowed, given as a count."
+ },
+ "LCH-5_1_4_9": {
+  "label": "Shrub Clearance",
+  "tip": "Removing bushes and young trees from grassland to stop it turning into scrub or woodland, keeping it open, often for grazing."
+ },
+ "LCH-5_1_4_10": {
+  "label": "Biomass Burning",
+  "tip": "Burning off unwanted plants on farmland to control growth; the ashes left behind also enrich the soil."
+ },
+ "LCH-5_1_4_11": {
+  "label": "Liming",
+  "tip": "Spreading lime (calcium carbonate) on land to make the soil less acidic; used mainly in conifer forests but also on farmland."
+ },
+ "LCH-5_1_4_12": {
+  "label": "Pruning",
+  "tip": "Selectively cutting branches, twigs, buds or roots to shape plants and improve health or harvest, e.g. trimming fruit trees or vines."
+ },
+ "LCH-5_1_4_13": {
+  "label": "Set Aside Parcel",
+  "tip": "A farm plot temporarily taken out of crop production for one or more seasons to let the soil recover, sometimes as part of a crop rotation."
+ },
+ "LCH-5_1_5": {
+  "label": "Cultivation Purpose",
+  "tip": "Groups the reasons crops are grown, such as for food, animal feed, industry or energy; the same crop can serve different purposes on different fields."
+ },
+ "LCH-5_1_5_1": {
+  "label": "Alimentary Crop",
+  "tip": "Crops grown as food for people, e.g. vegetables, cereals or fruit, whether eaten fresh or processed. Animal feed crops are not included."
+ },
+ "LCH-5_1_5_1_1": {
+  "label": "Grain Production Crop",
+  "tip": "Crops grown to harvest cereal grains for human food, e.g. wheat for bread."
+ },
+ "LCH-5_1_5_1_2": {
+  "label": "Table Fruit Crop",
+  "tip": "Crops grown so their whole fruits can be eaten, e.g. apples or table grapes."
+ },
+ "LCH-5_1_5_1_3": {
+  "label": "Liquefication, Fermentation or Brewing of Crop",
+  "tip": "Crops grown to be pressed, fermented or brewed, e.g. into juice, wine, edible oil or flavour extracts."
+ },
+ "LCH-5_1_5_2": {
+  "label": "Fodder Crop",
+  "tip": "Crops grown to feed farm animals, e.g. fodder beet, silage maize or alfalfa."
+ },
+ "LCH-5_1_5_2_1": {
+  "label": "Harvested For Silage",
+  "tip": "Fodder crops stored after harvest in a silo or sealed plastic-covered pile, where fermentation preserves them as silage for animals."
+ },
+ "LCH-5_1_5_2_2": {
+  "label": "Harvested For Dry Fodder",
+  "tip": "Grass or similar plants mowed and left on the field to dry into hay or straw, a way of preserving animal feed."
+ },
+ "LCH-5_1_5_2_3": {
+  "label": "Harvested Green For Direct Forage",
+  "tip": "Grass or similar plants cut fresh and green and fed to animals straight away."
+ },
+ "LCH-5_1_5_2_4": {
+  "label": "Temporary Grasses And Grazings",
+  "tip": "Grass or grass mixtures sown for grazing, hay or silage as part of a crop rotation, lasting from one to under five years before being ploughed up."
+ },
+ "LCH-5_1_5_3": {
+  "label": "Industrial Crop",
+  "tip": "Crops grown as raw materials for industry or manufacturing, e.g. cotton or flax for linen."
+ },
+ "LCH-5_1_5_4": {
+  "label": "Energy Crop",
+  "tip": "Crops grown to produce energy, e.g. maize fed into a biogas plant."
+ },
+ "LCH-5_1_5_4_1": {
+  "label": "Bio Gas Crop",
+  "tip": "Crops grown to be fed into biogas plants for energy production."
+ },
+ "LCH-5_1_5_4_2": {
+  "label": "Liquid Bio Fuel Crop",
+  "tip": "Crops grown to make liquid biofuels, e.g. rapeseed oil, or bioethanol from sugar cane or maize."
+ },
+ "LCH-5_1_5_4_3": {
+  "label": "Solid Bio Fuel Crop",
+  "tip": "Crops grown to produce solid biofuels, e.g. fast-growing trees harvested as energy wood."
+ },
+ "LCH-5_1_5_5": {
+  "label": "Ornamental Plants",
+  "tip": "Plants grown for decoration or landscaping, e.g. nursery trees and shrubs later planted in parks, gardens or public spaces."
+ },
+ "LCH-5_1_5_6": {
+  "label": "Functional Crop",
+  "tip": "Crops grown mainly for a useful function other than food, feed, industry or energy, such as protecting soil; can be combined with other purposes."
+ },
+ "LCH-5_1_5_6_1": {
+  "label": "Soil Protective Cover Crop",
+  "tip": "Crops grown to cover and protect soil from erosion or drying out."
+ },
+ "LCH-5_1_5_6_2": {
+  "label": "Soil Nutrient Storage Crop",
+  "tip": "Crops grown to enrich the soil with nutrients such as natural nitrogen, e.g. clover."
+ },
+ "LCH-5_1_5_6_3": {
+  "label": "Biodiversity Conservation Crop",
+  "tip": "Crops grown to protect, preserve or restore biodiversity, e.g. flowering strips that support insects."
+ },
+ "LCH-5_1_5_6_4": {
+  "label": "Carbon Sequestration Crop",
+  "tip": "Crops grown mainly to take carbon dioxide out of the air and store it in plants or in the soil."
+ },
+ "LCH-5_1_5_7": {
+  "label": "Seed Production Crop",
+  "tip": "Crops grown to produce seeds for future sowing."
+ },
+ "LCH-5_1_6": {
+  "label": "Crop Type",
+  "tip": "Groups crops by their form or by the part of the plant that is harvested, such as cereals, pulses or root crops, rather than by their use."
+ },
+ "LCH-5_1_6_1": {
+  "label": "Arable Crops",
+  "tip": "Crops grown on ploughed fields, usually annually, grouped here into cereals, pulses, fodder legumes and root crops."
+ },
+ "LCH-5_1_6_1_1": {
+  "label": "Cereals",
+  "tip": "Grass-family crops grown for their grain, e.g. wheat, barley, maize or rice."
+ },
+ "LCH-5_1_6_1_1_1": {
+  "label": "Common Wheat and Spelt",
+  "tip": "Ordinary bread wheat and the closely related older grain spelt."
+ },
+ "LCH-5_1_6_1_1_2": {
+  "label": "Durum Wheat",
+  "tip": "Hard wheat, the type mainly used to make pasta and semolina."
+ },
+ "LCH-5_1_6_1_1_3": {
+  "label": "Rye",
+  "tip": "A hardy cereal grain, used for example in rye bread."
+ },
+ "LCH-5_1_6_1_1_4": {
+  "label": "Barley",
+  "tip": "A cereal grain used for animal feed, malting and brewing beer."
+ },
+ "LCH-5_1_6_1_1_5": {
+  "label": "Oats",
+  "tip": "A cereal grain used for animal feed and foods such as porridge and oat flakes."
+ },
+ "LCH-5_1_6_1_1_6": {
+  "label": "Maize",
+  "tip": "Corn, a tall cereal crop grown for its grain cobs, as animal feed or for energy."
+ },
+ "LCH-5_1_6_1_1_7": {
+  "label": "Rice",
+  "tip": "A cereal grown for its grain, usually in flooded paddy fields."
+ },
+ "LCH-5_1_6_1_1_8": {
+  "label": "Millet",
+  "tip": "Small-seeded cereal grasses grown for grain, used for food and bird or animal feed."
+ },
+ "LCH-5_1_6_1_1_9": {
+  "label": "Other Cereals",
+  "tip": "Cereal crops not listed separately, e.g. triticale or sorghum."
+ },
+ "LCH-5_1_6_1_2": {
+  "label": "Pulses and Protein Crops",
+  "tip": "Legume crops grown for their protein-rich dry seeds, e.g. peas, beans, lentils or soya."
+ },
+ "LCH-5_1_6_1_2_1": {
+  "label": "Peas",
+  "tip": "Pea plants grown for their seeds, harvested dry or fresh."
+ },
+ "LCH-5_1_6_1_2_2": {
+  "label": "Beans",
+  "tip": "Bean plants grown for their seeds, e.g. field beans or kidney beans."
+ },
+ "LCH-5_1_6_1_2_3": {
+  "label": "Lentils",
+  "tip": "A legume crop grown for its small, lens-shaped edible seeds."
+ },
+ "LCH-5_1_6_1_2_4": {
+  "label": "Sweet Lupins",
+  "tip": "Lupin varieties low in bitter substances, grown for their protein-rich seeds used as food or animal feed."
+ },
+ "LCH-5_1_6_1_2_5": {
+  "label": "Soya",
+  "tip": "Soybeans, a legume grown for its protein- and oil-rich beans, used in food and animal feed."
+ },
+ "LCH-5_1_6_1_2_6": {
+  "label": "Chickpeas",
+  "tip": "A legume grown for its round edible seeds, used for example in hummus."
+ },
+ "LCH-5_1_6_1_2_7": {
+  "label": "Peanuts",
+  "tip": "Groundnuts, a legume whose pods ripen underground; despite the name, not a true nut."
+ },
+ "LCH-5_1_6_1_2_8": {
+  "label": "Other Dry Pulses",
+  "tip": "Legumes grown for dry seeds that are not listed separately, e.g. vetches or grass peas."
+ },
+ "LCH-5_1_6_1_3": {
+  "label": "Clover, Vetch, Lupins, Lucerne",
+  "tip": "Leguminous plants mostly grown as green fodder for livestock, which also add nitrogen to the soil, e.g. clover or lucerne (alfalfa)."
+ },
+ "LCH-5_1_6_1_4": {
+  "label": "Root And Tuber Crops",
+  "tip": "Crops grown for their underground roots or tubers, e.g. potatoes, sugar beet or carrots."
+ },
+ "LCH-5_1_6_1_4_1": {
+  "label": "Potatoes",
+  "tip": "Potato plants grown for their starchy underground tubers."
+ },
+ "LCH-5_1_6_1_4_2": {
+  "label": "Sweet Potatoes",
+  "tip": "A crop grown for its sweet, starchy tuberous roots; not closely related to the common potato."
+ },
+ "LCH-5_1_6_1_4_3": {
+  "label": "Sugar Beet",
+  "tip": "A field crop grown for its thick white root, which is processed to make table sugar."
+ },
+ "LCH-5_1_6_1_4_4": {
+  "label": "Fodder Beet",
+  "tip": "A large beet grown on farmland as animal feed rather than for people, e.g. to feed cattle over winter."
+ },
+ "LCH-5_1_6_1_4_5": {
+  "label": "Carrot",
+  "tip": "The familiar orange root vegetable, grown in fields for its edible taproot."
+ },
+ "LCH-5_1_6_1_4_6": {
+  "label": "Parsnip",
+  "tip": "A pale, carrot-like root vegetable grown in fields for its sweet, edible root."
+ },
+ "LCH-5_1_6_1_4_7": {
+  "label": "Horseradish",
+  "tip": "A plant grown for its pungent root, which is grated to make a hot condiment, e.g. horseradish sauce."
+ },
+ "LCH-5_1_6_1_4_8": {
+  "label": "Radish",
+  "tip": "A fast-growing vegetable cultivated for its crisp, peppery root, often eaten raw in salads."
+ },
+ "LCH-5_1_6_1_4_9": {
+  "label": "Beetroot",
+  "tip": "A red beet grown as a vegetable for its round, deep red edible root."
+ },
+ "LCH-5_1_6_1_4_10": {
+  "label": "White Turnip",
+  "tip": "A root vegetable with a white, rounded root, grown in fields for food or sometimes animal feed."
+ },
+ "LCH-5_1_6_1_4_11": {
+  "label": "Celery Root",
+  "tip": "Also called celeriac, a type of celery grown for its large, knobbly edible root rather than its stalks."
+ },
+ "LCH-5_1_6_1_5": {
+  "label": "Bulb Vegetable Crops",
+  "tip": "Groups vegetables grown for their edible bulbs or bulb-like stems, e.g. onions, garlic and leeks."
+ },
+ "LCH-5_1_6_1_5_1": {
+  "label": "Onions",
+  "tip": "A common bulb vegetable grown in fields for its layered, strongly flavoured bulb used in cooking."
+ },
+ "LCH-5_1_6_1_5_2": {
+  "label": "Garlic",
+  "tip": "A bulb crop grown for its pungent cloves, widely used to flavour food."
+ },
+ "LCH-5_1_6_1_5_3": {
+  "label": "Leeks",
+  "tip": "A mild, onion-related vegetable grown for its long white and green stem, e.g. used in soups."
+ },
+ "LCH-5_1_6_1_6": {
+  "label": "Cole Crops, Brassica oleracea",
+  "tip": "Groups vegetables bred from the wild cabbage plant, e.g. cabbage, broccoli, cauliflower and Brussels sprouts."
+ },
+ "LCH-5_1_6_1_6_1": {
+  "label": "White, Green, Red Cabbage",
+  "tip": "Head-forming cabbages with white, green or red leaves, grown in fields for fresh use or sauerkraut."
+ },
+ "LCH-5_1_6_1_6_2": {
+  "label": "Brussels Sprout",
+  "tip": "A cabbage relative grown for the small leafy buds that form along its tall stem."
+ },
+ "LCH-5_1_6_1_6_3": {
+  "label": "Stem Cabbage, Kohlrabi",
+  "tip": "A cabbage relative grown for its swollen, round stem eaten as a vegetable, known as kohlrabi."
+ },
+ "LCH-5_1_6_1_6_4": {
+  "label": "Cauliflower",
+  "tip": "A cabbage relative grown for its dense white head of undeveloped flower buds."
+ },
+ "LCH-5_1_6_1_6_5": {
+  "label": "Broccoli",
+  "tip": "A cabbage relative grown for its green heads of flower buds and stalks."
+ },
+ "LCH-5_1_6_1_6_6": {
+  "label": "Savoy Cabbage",
+  "tip": "A type of cabbage with crinkled, wrinkly green leaves, grown as a winter vegetable."
+ },
+ "LCH-5_1_6_1_7": {
+  "label": "Leaf, Stalk, Flowering Vegetable Crops",
+  "tip": "Groups vegetables grown for their leaves, stalks or flower parts, e.g. lettuce, spinach, asparagus and artichoke."
+ },
+ "LCH-5_1_6_1_7_1": {
+  "label": "Lettuces, Salads",
+  "tip": "Leafy vegetables grown to be eaten fresh, e.g. lettuce and other salad greens."
+ },
+ "LCH-5_1_6_1_7_2": {
+  "label": "Asparagus",
+  "tip": "A perennial vegetable grown for its young shoots (spears), harvested in spring."
+ },
+ "LCH-5_1_6_1_7_3": {
+  "label": "Spinach",
+  "tip": "A leafy green vegetable grown for its tender, dark green leaves."
+ },
+ "LCH-5_1_6_1_7_4": {
+  "label": "Rods Celery",
+  "tip": "Celery grown for its long, crunchy leaf stalks, as opposed to celery grown for its root."
+ },
+ "LCH-5_1_6_1_7_5": {
+  "label": "Rhubarb",
+  "tip": "A perennial plant grown for its thick, sour red or green stalks, often used in desserts."
+ },
+ "LCH-5_1_6_1_7_6": {
+  "label": "Artichoke",
+  "tip": "A thistle-like plant grown for its large, edible flower buds."
+ },
+ "LCH-5_1_6_1_7_7": {
+  "label": "Romanesco",
+  "tip": "A cauliflower-like vegetable with lime-green, spiral-shaped florets, grown for its edible head."
+ },
+ "LCH-5_1_6_1_8": {
+  "label": "Fruiting Vegetable Crops",
+  "tip": "Groups vegetable plants grown for their fruits, e.g. tomatoes, peppers and eggplants."
+ },
+ "LCH-5_1_6_1_8_1": {
+  "label": "Tomato",
+  "tip": "A widely grown vegetable plant cultivated for its juicy red fruits, in open fields or greenhouses."
+ },
+ "LCH-5_1_6_1_8_2": {
+  "label": "Bell Pepper",
+  "tip": "Sweet, mild peppers grown for their large, colourful fruits, e.g. red, yellow or green peppers."
+ },
+ "LCH-5_1_6_1_8_3": {
+  "label": "Chili Pepper",
+  "tip": "Peppers grown for their small, hot-tasting fruits, used fresh, dried or as spice."
+ },
+ "LCH-5_1_6_1_8_4": {
+  "label": "Eggplant",
+  "tip": "Also called aubergine, a plant grown for its glossy, usually purple fruit eaten as a vegetable."
+ },
+ "LCH-5_1_6_1_9": {
+  "label": "Cucurbit Crops",
+  "tip": "Groups crops of the gourd family that grow on trailing vines, e.g. cucumbers, zucchini, melons and pumpkins."
+ },
+ "LCH-5_1_6_1_9_1": {
+  "label": "Cucumbers",
+  "tip": "A vine crop grown for its long green fruits, eaten fresh or pickled."
+ },
+ "LCH-5_1_6_1_9_2": {
+  "label": "Zucchini",
+  "tip": "Also called courgette, a summer squash grown for its young green fruits."
+ },
+ "LCH-5_1_6_1_9_3": {
+  "label": "Melons",
+  "tip": "Vine crops grown for their large, sweet fruits, e.g. watermelon or cantaloupe."
+ },
+ "LCH-5_1_6_1_9_4": {
+  "label": "Pumpkins",
+  "tip": "Vine crops grown for their large, usually orange fruits, used for food, animal feed or decoration."
+ },
+ "LCH-5_1_6_1_10": {
+  "label": "Oilseed or Fibre Crops",
+  "tip": "Groups field crops grown mainly for oil from their seeds or for plant fibres, e.g. sunflower, rapeseed, cotton and hemp. Some industrial crops such as tobacco and hops also sit here."
+ },
+ "LCH-5_1_6_1_10_1": {
+  "label": "Tobacco",
+  "tip": "A field crop grown for its large leaves, which are dried and used to make cigarettes and other tobacco products."
+ },
+ "LCH-5_1_6_1_10_2": {
+  "label": "Hops",
+  "tip": "A climbing plant grown on tall wire frames for its cone-shaped flowers, used mainly to flavour beer."
+ },
+ "LCH-5_1_6_1_10_3": {
+  "label": "Rape and Turnip Rape",
+  "tip": "Oilseed crops of the cabbage family, recognised by bright yellow fields in spring, grown for oil, e.g. rapeseed (canola)."
+ },
+ "LCH-5_1_6_1_10_4": {
+  "label": "Sunflower",
+  "tip": "A tall plant with large yellow flower heads, grown for its seeds, which are pressed for oil or eaten."
+ },
+ "LCH-5_1_6_1_10_5": {
+  "label": "Linseed, Oil Flax",
+  "tip": "Flax varieties grown mainly for their seeds, which yield linseed oil and are used as food."
+ },
+ "LCH-5_1_6_1_10_6": {
+  "label": "Cotton",
+  "tip": "A shrubby crop grown for the soft white fibres around its seeds, used to make textiles."
+ },
+ "LCH-5_1_6_1_10_7": {
+  "label": "Flax",
+  "tip": "A slender plant grown for the fibres in its stems, used to make linen."
+ },
+ "LCH-5_1_6_1_10_8": {
+  "label": "Hemp",
+  "tip": "A fast-growing plant cultivated for strong stem fibres and seeds, e.g. for rope, textiles or oil."
+ },
+ "LCH-5_1_6_1_10_9": {
+  "label": "Other Oilseed or Fibre Crops",
+  "tip": "Oil or fibre crops that do not fit the more specific types listed alongside, such as sunflower or cotton."
+ },
+ "LCH-5_1_6_1_11": {
+  "label": "Aromatic, Medicinal, Culinary Herbs",
+  "tip": "Herbs grown in fields for scent, medicine or cooking, e.g. lavender, chamomile, parsley or basil."
+ },
+ "LCH-5_1_6_1_12": {
+  "label": "Flowers and Ornamental Plants",
+  "tip": "Plants grown commercially for their flowers or decorative value, e.g. tulips, roses or bedding plants."
+ },
+ "LCH-5_1_6_1_13": {
+  "label": "Strawberries",
+  "tip": "Low-growing plants cultivated in fields or tunnels for their sweet red fruit, treated here as an arable crop."
+ },
+ "LCH-5_1_6_1_14": {
+  "label": "Sugarcane",
+  "tip": "A tall tropical grass grown for its thick stems, which are crushed to extract juice for sugar or biofuel."
+ },
+ "LCH-5_1_6_1_99": {
+  "label": "Other Arable Crops",
+  "tip": "Arable crops, grown on regularly ploughed or tilled land, that do not fit any of the more specific crop groups listed."
+ },
+ "LCH-5_1_6_2": {
+  "label": "Meadow Grasses And Herbs",
+  "tip": "Grasses and herbaceous plants grown or managed on meadows, mainly for hay, silage or grazing."
+ },
+ "LCH-5_1_6_3": {
+  "label": "Permanent Crops",
+  "tip": "Groups crops that stay in the ground for many years and are harvested repeatedly, e.g. orchards, vineyards and olive groves."
+ },
+ "LCH-5_1_6_3_1": {
+  "label": "Pome Fruits",
+  "tip": "Groups orchard fruits with a fleshy body around a core of small seeds, e.g. apples and pears."
+ },
+ "LCH-5_1_6_3_1_1": {
+  "label": "Apple",
+  "tip": "Orchard trees grown for apples, one of the most common fruit crops in Europe."
+ },
+ "LCH-5_1_6_3_1_2": {
+  "label": "Pear",
+  "tip": "Orchard trees grown for pears, sweet fruits with a seed core similar to apples."
+ },
+ "LCH-5_1_6_3_1_3": {
+  "label": "Quince",
+  "tip": "Small trees grown for quince, a hard, fragrant fruit usually cooked into jams or jellies."
+ },
+ "LCH-5_1_6_3_1_4": {
+  "label": "Medlar",
+  "tip": "Small trees grown for medlar, a brownish fruit traditionally eaten once it softens after harvest."
+ },
+ "LCH-5_1_6_3_1_5": {
+  "label": "Pomegranate",
+  "tip": "Shrubs or small trees grown for pomegranates, round fruits filled with juicy red seeds."
+ },
+ "LCH-5_1_6_3_2": {
+  "label": "Drupes, Stone-Like Fruits",
+  "tip": "Groups tree fruits with soft flesh around a single hard stone, e.g. cherries, plums, peaches and apricots."
+ },
+ "LCH-5_1_6_3_2_1": {
+  "label": "Sweet Cherry",
+  "tip": "Orchard trees grown for sweet cherries, eaten fresh as dessert fruit."
+ },
+ "LCH-5_1_6_3_2_2": {
+  "label": "Sour Cherry",
+  "tip": "Trees grown for sour cherries, tart fruits mostly used for juice, jam or baking."
+ },
+ "LCH-5_1_6_3_2_3": {
+  "label": "Plum",
+  "tip": "Orchard trees grown for plums, juicy stone fruits eaten fresh, dried as prunes or distilled."
+ },
+ "LCH-5_1_6_3_2_4": {
+  "label": "Mirabelle, Spilling",
+  "tip": "Trees grown for small plum-type fruits, e.g. the yellow mirabelle plum."
+ },
+ "LCH-5_1_6_3_2_5": {
+  "label": "Peach, Nectarine",
+  "tip": "Orchard trees grown for peaches and nectarines, juicy stone fruits; nectarines have smooth skin."
+ },
+ "LCH-5_1_6_3_2_6": {
+  "label": "Apricot",
+  "tip": "Orchard trees grown for apricots, small orange stone fruits eaten fresh or dried."
+ },
+ "LCH-5_1_6_3_2_7": {
+  "label": "Avocado",
+  "tip": "Trees grown for avocados, creamy green fruits with one large seed."
+ },
+ "LCH-5_1_6_3_2_8": {
+  "label": "Mango",
+  "tip": "Tropical trees grown for mangoes, sweet fruits with orange flesh around a large flat stone."
+ },
+ "LCH-5_1_6_3_2_9": {
+  "label": "Litchi",
+  "tip": "Subtropical trees grown for lychees, small fruits with rough red skin and white, juicy flesh."
+ },
+ "LCH-5_1_6_3_2_10": {
+  "label": "Date Fruit",
+  "tip": "Date palms grown in plantations for their sweet fruits, e.g. in desert oases."
+ },
+ "LCH-5_1_6_3_2_11": {
+  "label": "Oil Palm",
+  "tip": "Tropical palms grown in plantations for their fruit, which is pressed to produce palm oil."
+ },
+ "LCH-5_1_6_3_3": {
+  "label": "Nuts",
+  "tip": "Groups trees and shrubs grown for their edible nuts, e.g. walnuts, hazelnuts and almonds."
+ },
+ "LCH-5_1_6_3_3_1": {
+  "label": "Walnuts",
+  "tip": "Trees grown for walnuts, hard-shelled nuts used as food and for oil."
+ },
+ "LCH-5_1_6_3_3_2": {
+  "label": "Chestnuts",
+  "tip": "Sweet chestnut trees grown for their edible nuts, often roasted in autumn."
+ },
+ "LCH-5_1_6_3_3_3": {
+  "label": "Hazelnuts",
+  "tip": "Shrubs or small trees grown for hazelnuts, e.g. used in chocolate spreads and baking."
+ },
+ "LCH-5_1_6_3_3_4": {
+  "label": "Cashew Nuts",
+  "tip": "Tropical trees grown for cashew nuts, which hang below a fleshy fruit called the cashew apple."
+ },
+ "LCH-5_1_6_3_3_5": {
+  "label": "Brazil Nuts",
+  "tip": "Tall tropical trees grown or harvested for Brazil nuts, large seeds packed inside a hard pod."
+ },
+ "LCH-5_1_6_3_3_6": {
+  "label": "Pekka Nuts",
+  "tip": "Likely refers to pecan nuts, grown on large trees for their rich, edible nuts."
+ },
+ "LCH-5_1_6_3_3_7": {
+  "label": "Pistachios",
+  "tip": "Trees grown in warm, dry areas for pistachios, green nuts in a split shell."
+ },
+ "LCH-5_1_6_3_3_8": {
+  "label": "Almond",
+  "tip": "Orchard trees grown for almonds, nuts eaten whole or used in baking and almond milk."
+ },
+ "LCH-5_1_6_3_3_9": {
+  "label": "Coconuts",
+  "tip": "Coconut palms grown in tropical plantations for their large nuts, used for food, oil and fibre."
+ },
+ "LCH-5_1_6_3_4": {
+  "label": "Citrus Fruits",
+  "tip": "Groups trees grown for juicy, segmented fruits with aromatic peel, e.g. oranges, lemons and mandarins."
+ },
+ "LCH-5_1_6_3_4_1": {
+  "label": "Oranges",
+  "tip": "Citrus trees grown for oranges, the most widely grown citrus fruit, eaten fresh or juiced."
+ },
+ "LCH-5_1_6_3_4_2": {
+  "label": "Lemons",
+  "tip": "Citrus trees grown for lemons, sour yellow fruits used for juice and flavouring."
+ },
+ "LCH-5_1_6_3_4_3": {
+  "label": "Limes",
+  "tip": "Citrus trees grown for limes, small green sour fruits used in cooking and drinks."
+ },
+ "LCH-5_1_6_3_4_4": {
+  "label": "Pomelos",
+  "tip": "Citrus trees grown for pomelos, the largest citrus fruit, with thick peel and mild flesh."
+ },
+ "LCH-5_1_6_3_4_5": {
+  "label": "Grapefruits",
+  "tip": "Citrus trees grown for grapefruits, large fruits with a slightly bitter taste."
+ },
+ "LCH-5_1_6_3_4_6": {
+  "label": "Mandarine",
+  "tip": "Citrus trees grown for mandarins, small, easy-to-peel sweet oranges."
+ },
+ "LCH-5_1_6_3_4_7": {
+  "label": "Clementine",
+  "tip": "Citrus trees grown for clementines, small, usually seedless mandarin-type fruits."
+ },
+ "LCH-5_1_6_3_5": {
+  "label": "Berry Crops",
+  "tip": "Groups shrubs and plants grown for small, soft fruits, e.g. raspberries, currants and blueberries."
+ },
+ "LCH-5_1_6_3_5_1": {
+  "label": "Raspberries",
+  "tip": "Cane plants grown for raspberries, soft red berries eaten fresh or frozen."
+ },
+ "LCH-5_1_6_3_5_2": {
+  "label": "Blackberries",
+  "tip": "Thorny or thornless canes grown for blackberries, dark juicy berries."
+ },
+ "LCH-5_1_6_3_5_3": {
+  "label": "Currants",
+  "tip": "Shrubs grown for currants, small red, white or black berries used in juice and jam."
+ },
+ "LCH-5_1_6_3_5_4": {
+  "label": "Gooseberries",
+  "tip": "Spiny shrubs grown for gooseberries, tart green or reddish berries."
+ },
+ "LCH-5_1_6_3_5_5": {
+  "label": "Blueberries",
+  "tip": "Shrubs grown for blueberries, small sweet blue berries, often on acidic soils."
+ },
+ "LCH-5_1_6_3_5_6": {
+  "label": "Cranberries",
+  "tip": "Low creeping plants grown for cranberries, sour red berries, often in flooded beds or bogs."
+ },
+ "LCH-5_1_6_3_5_7": {
+  "label": "Juniper",
+  "tip": "Evergreen shrubs grown for juniper berries, used as a spice and to flavour gin."
+ },
+ "LCH-5_1_6_3_5_8": {
+  "label": "Elderberries",
+  "tip": "Shrubs grown for elderberries and elderflowers, used for syrups, juice and wine."
+ },
+ "LCH-5_1_6_3_5_9": {
+  "label": "Cornel",
+  "tip": "Shrubs or small trees grown for cornels (cornelian cherries), small red, tart fruits."
+ },
+ "LCH-5_1_6_3_5_10": {
+  "label": "Passion Fruit",
+  "tip": "Climbing vines grown in warm regions for passion fruit, with pulpy, aromatic seeds."
+ },
+ "LCH-5_1_6_3_6": {
+  "label": "Grapes",
+  "tip": "Vineyards growing grapevines for wine, table grapes or raisins."
+ },
+ "LCH-5_1_6_3_7": {
+  "label": "Olives",
+  "tip": "Olive groves with long-lived trees grown for olives, eaten or pressed into olive oil."
+ },
+ "LCH-5_1_6_3_8": {
+  "label": "Other Fleshy Fruits",
+  "tip": "Groups other trees and plants grown for soft, juicy fruits, e.g. bananas, figs, kiwis and papayas."
+ },
+ "LCH-5_1_6_3_8_1": {
+  "label": "Banana",
+  "tip": "Large tropical plants grown in plantations for bunches of bananas."
+ },
+ "LCH-5_1_6_3_8_2": {
+  "label": "Fig Fruit",
+  "tip": "Trees grown for figs, soft sweet fruits eaten fresh or dried."
+ },
+ "LCH-5_1_6_3_8_3": {
+  "label": "Kiwi",
+  "tip": "Climbing vines grown on trellises for kiwi fruit, with brown fuzzy skin and green flesh."
+ },
+ "LCH-5_1_6_3_8_4": {
+  "label": "Papaya",
+  "tip": "Tropical plants grown for papayas, large fruits with orange flesh and black seeds."
+ },
+ "LCH-5_1_6_3_8_5": {
+  "label": "Ananas",
+  "tip": "Pineapple, a tropical plant grown in fields for its large, spiky, sweet fruit."
+ },
+ "LCH-5_1_6_3_8_6": {
+  "label": "Custard Apple",
+  "tip": "Tropical trees grown for custard apples, fruits with sweet, creamy white flesh."
+ },
+ "LCH-5_1_6_3_8_7": {
+  "label": "Prickly Pear",
+  "tip": "Cactus plants grown for their edible fruits, known as prickly pears, common in Mediterranean areas."
+ },
+ "LCH-5_1_6_3_8_8": {
+  "label": "Persimmon",
+  "tip": "Trees grown for persimmons (kaki), orange fruits that are sweet when fully ripe."
+ },
+ "LCH-5_1_6_3_9": {
+  "label": "Exotic Aromatic and Spice Crops",
+  "tip": "Groups tropical perennial plants grown for drinks, spices and flavourings, e.g. coffee, cocoa, vanilla and pepper."
+ },
+ "LCH-5_1_6_3_9_1": {
+  "label": "Coffee Bush",
+  "tip": "Shrubs grown in tropical plantations for coffee beans, the seeds inside their red berries."
+ },
+ "LCH-5_1_6_3_9_2": {
+  "label": "Cocoa Tree",
+  "tip": "Tropical trees grown for cocoa beans, the raw material for chocolate."
+ },
+ "LCH-5_1_6_3_9_3": {
+  "label": "Pepper",
+  "tip": "Climbing vines grown for peppercorns, which are dried to make black, white or green pepper."
+ },
+ "LCH-5_1_6_3_9_4": {
+  "label": "Cinnamon Tree",
+  "tip": "Tropical trees grown for their inner bark, which is dried to make the spice cinnamon."
+ },
+ "LCH-5_1_6_3_9_5": {
+  "label": "Vanilla",
+  "tip": "A climbing orchid grown in the tropics for its seed pods, cured to make vanilla."
+ },
+ "LCH-5_1_6_3_9_6": {
+  "label": "Cloves",
+  "tip": "Tropical trees grown for their dried flower buds, used as the spice cloves."
+ },
+ "LCH-5_1_6_3_9_7": {
+  "label": "Cardamom",
+  "tip": "A tropical plant of the ginger family grown for its aromatic seed pods, used as a spice."
+ },
+ "LCH-5_1_6_3_9_8": {
+  "label": "Ginger",
+  "tip": "A tropical plant grown for its spicy underground stem (rhizome), used fresh or dried in cooking."
+ },
+ "LCH-5_1_6_3_10": {
+  "label": "Leaf Crops from Woody Plants",
+  "tip": "Groups shrubs and trees grown so that their leaves can be harvested, e.g. tea bushes."
+ },
+ "LCH-5_1_6_3_10_1": {
+  "label": "Tea Bush",
+  "tip": "Evergreen shrubs grown on plantations, often on hillsides, for leaves used to make tea."
+ },
+ "LCH-5_1_6_3_10_2": {
+  "label": "Coca Bush",
+  "tip": "Shrubs grown mainly in the Andes for coca leaves, which are chewed, brewed or processed."
+ },
+ "LCH-5_1_6_3_10_3": {
+  "label": "Mate Tree",
+  "tip": "South American trees grown for leaves used to brew mate, a caffeinated herbal drink."
+ },
+ "LCH-5_1_6_3_11": {
+  "label": "Woody Plant Nursery",
+  "tip": "Land where young trees and shrubs are raised for sale or replanting, e.g. a tree nursery for gardens or forestry."
+ },
+ "LCH-5_1_6_3_12": {
+  "label": "Christmas Trees",
+  "tip": "Plantations of young conifers, e.g. fir or spruce, grown to be cut and sold as Christmas trees."
+ },
+ "LCH-5_1_6_3_13": {
+  "label": "Herbaceous Biomass Crops",
+  "tip": "Long-lived, non-woody plants grown to produce biomass for energy or materials, e.g. Miscanthus, Silphium or Sorghum."
+ },
+ "LCH-5_1_6_3_14": {
+  "label": "Woody Biomass Crops",
+  "tip": "Fast-growing trees or shrubs planted to produce wood biomass, e.g. willow or poplar harvested in short cycles."
+ },
+ "LCH-5_1_6_3_99": {
+  "label": "Other Permanent Crops",
+  "tip": "Permanent crops, which stay in the ground for many years, that do not fit any of the more specific groups listed."
+ },
+ "LCH-5_1_6_4": {
+  "label": "Mushrooms",
+  "tip": "Cultivated mushrooms, usually grown indoors on special substrates, e.g. button mushrooms or oyster mushrooms."
+ },
+ "LCH-5_1_6_5": {
+  "label": "Aquatic Crops",
+  "tip": "Groups crops grown in water rather than on dry land, e.g. cultivated algae."
+ },
+ "LCH-5_1_6_5_1": {
+  "label": "Algae Crops",
+  "tip": "Algae farmed in ponds, tanks or the sea, e.g. seaweed or microalgae used for food, feed or fuel."
+ },
+ "LCH-5_1_6_98": {
+  "label": "Fallow Land",
+  "tip": "Former farmland left uncultivated for at least 3 years or for good, with no crop cover and no longer part of a crop rotation."
+ },
+ "LCH-5_1_6_99": {
+  "label": "Unspecified Crop",
+  "tip": "Use when a parcel is clearly being farmed, but the crop species growing on it is not known."
+ },
+ "LCH-5_1_7": {
+  "label": "Plant Growth Stage",
+  "tip": "Groups the stages a crop passes through during the season, from sowing and germination through flowering and ripening to after harvest."
+ },
+ "LCH-5_1_7_1": {
+  "label": "Sowing The Seeds",
+  "tip": "The stage just after seeds are put in the field, before any sprouts or plant growth can be seen."
+ },
+ "LCH-5_1_7_2": {
+  "label": "Germination, Sprouting",
+  "tip": "The early stage when seeds start to grow and the first sprouts appear."
+ },
+ "LCH-5_1_7_3": {
+  "label": "Vegetative Phase",
+  "tip": "The stage when sprouts grow into young plants, putting out leaves and shoots, e.g. cereals forming side shoots (tillering)."
+ },
+ "LCH-5_1_7_4": {
+  "label": "Reproductive Phase",
+  "tip": "The stage when crops form heads, ears or flowers, e.g. wheat producing ears."
+ },
+ "LCH-5_1_7_5": {
+  "label": "Ripening Phase",
+  "tip": "The stage when crops form fruit or grain and mature, after which the plants begin to age and die back."
+ },
+ "LCH-5_1_7_6": {
+  "label": "Harvested Empty Field",
+  "tip": "A field that has been harvested and left bare, with no crop leftovers and no regrowth of weeds yet."
+ },
+ "LCH-5_1_7_7": {
+  "label": "Crop Residues",
+  "tip": "A harvested field where leftovers remain, e.g. straw, stubble or dropped fruit. It can occur together with resprouting on the field."
+ },
+ "LCH-5_1_7_8": {
+  "label": "Resprouting on Harvested Field",
+  "tip": "A harvested field turning green again as weeds or spilled crop seeds sprout on their own. It can occur together with crop residues."
+ },
+ "LCH-5_1_8": {
+  "label": "Crop Season",
+  "tip": "Groups descriptions of when in the year crops are grown, e.g. summer or winter season, and how many seasons a field has."
+ },
+ "LCH-5_1_8_1": {
+  "label": "Crop Season Ongoing",
+  "tip": "Indicates that a crop is currently growing on the land and its growing season has not yet ended."
+ },
+ "LCH-5_1_8_2": {
+  "label": "Summer Crop Season",
+  "tip": "Crops sown in spring and grown through the warm months, e.g. maize harvested in late summer or autumn."
+ },
+ "LCH-5_1_8_3": {
+  "label": "Winter Crop Season",
+  "tip": "Crops sown in autumn that stay in the field over winter, e.g. winter wheat harvested the following summer."
+ },
+ "LCH-5_1_8_4": {
+  "label": "Year-round Crop Season",
+  "tip": "Crops grown continuously throughout the whole year rather than in a single season."
+ },
+ "LCH-5_1_8_5": {
+  "label": "Number Of Crop Seasons",
+  "tip": "The number of separate crop growing seasons that take place on the same land, typically counted per year."
+ },
+ "LCH-5_1_9": {
+  "label": "Crop Rotation Element",
+  "tip": "Groups the roles a crop can play in a crop rotation, such as main crop, follow-on crop, companion crop or cover crop."
+ },
+ "LCH-5_1_9_1": {
+  "label": "Main Crop",
+  "tip": "The first and main crop of the year, usually sown after the previous year's harvest, normally giving the highest yield."
+ },
+ "LCH-5_1_9_2": {
+  "label": "Secondary Crop",
+  "tip": "A second or third crop sown after the year's main crop is harvested; its yield is usually lower than if sown the previous autumn."
+ },
+ "LCH-5_1_9_3": {
+  "label": "Side Crop",
+  "tip": "An extra crop grown at the same time alongside the main or secondary crop, e.g. to improve soil or biodiversity, and also harvested."
+ },
+ "LCH-5_1_9_4": {
+  "label": "Cover Crop",
+  "tip": "A follow-on crop grown mainly to protect and enrich the soil, e.g. against erosion, rather than for harvest value."
+ },
+ "LCH-5_1_10": {
+  "label": "Cultivation Strategy",
+  "tip": "Groups overall approaches to farming and the bundle of methods they involve, e.g. conventional or organic farming."
+ },
+ "LCH-5_1_10_1": {
+  "label": "Conventional Farming",
+  "tip": "Farming that relies on industrial fertilizers, herbicides, pesticides and heavy machinery to get the highest possible yields."
+ },
+ "LCH-5_1_10_2": {
+  "label": "Organic Farming",
+  "tip": "Farming that avoids industrial fertilizers and pesticides, using natural fertilizers such as green manure and biological or mechanical pest control."
+ },
+ "LCH-5_1_11": {
+  "label": "Grazing",
+  "tip": "Groups information on whether land is grazed by livestock and how intensively, following the EU farm subsidy system (IACS)."
+ },
+ "LCH-5_1_11_1": {
+  "label": "Grazing Intensity",
+  "tip": "Groups levels describing how heavily land is grazed by animals, from no grazing to grazing of unknown or low intensity."
+ },
+ "LCH-5_1_11_1_1": {
+  "label": "No Grazing",
+  "tip": "Land where no grazing by livestock has been observed."
+ },
+ "LCH-5_1_11_1_2": {
+  "label": "Grazing Present, Intensity Unspecified",
+  "tip": "Land where livestock graze, but how many animals or how intensively is not known."
+ },
+ "LCH-5_1_11_1_3": {
+  "label": "Extensive, Freerange Grazing",
+  "tip": "Low-intensity grazing with two or fewer livestock units per hectare, e.g. a few cattle roaming freely on pasture."
+ },
+ "LCH-5_1_11_1_4": {
+  "label": "Intensive Grazing",
+  "tip": "Pasture carrying a heavy load of animals, defined here as more than 2 livestock units per hectare, e.g. a field densely stocked with dairy cows."
+ },
+ "LCH-5_1_11_2": {
+  "label": "Grazing Lifestock per ha",
+  "tip": "Measures how many grazing animals, counted in livestock units, are kept on each hectare of a particular plot of land."
+ },
+ "LCH-5_1_11_3": {
+  "label": "Grazing Cycle",
+  "tip": "Groups the ways grazing is spread over the year, from year-round use of pasture to seasonal, rotational or only occasional grazing."
+ },
+ "LCH-5_1_11_3_1": {
+  "label": "All Year-round Grazing",
+  "tip": "Animals graze the land throughout the whole year rather than only in certain seasons, e.g. hardy sheep kept outdoors in all months."
+ },
+ "LCH-5_1_11_3_2": {
+  "label": "Seasonal Grazing",
+  "tip": "Animals graze the land only during part of the year, e.g. cattle taken to summer pastures in the mountains."
+ },
+ "LCH-5_1_11_3_3": {
+  "label": "Rotational Grazing, Paddocks",
+  "tip": "Livestock are moved in turns between fenced sections of pasture (paddocks), so each section gets time to regrow before being grazed again."
+ },
+ "LCH-5_1_11_3_4": {
+  "label": "Occasional Grazing",
+  "tip": "Land that animals graze only now and then, without a regular schedule, e.g. a meadow used for livestock in some years."
+ },
+ "LCH-5_1_11_3_5": {
+  "label": "Unmanaged Natural Grazing",
+  "tip": "Grazing that happens without human management, e.g. wild or free-roaming animals feeding on natural vegetation."
+ },
+ "LCH-5_1_11_4": {
+  "label": "Grazing Routine",
+  "tip": "Groups the times of day when animals are out grazing: during daytime, at night, or around the clock."
+ },
+ "LCH-5_1_11_4_1": {
+  "label": "Day Grazing",
+  "tip": "Animals are put out to graze during the day and kept in a barn or enclosure overnight."
+ },
+ "LCH-5_1_11_4_2": {
+  "label": "Night Grazing",
+  "tip": "Animals graze only during the night, and are kept elsewhere during the daytime."
+ },
+ "LCH-5_1_11_4_3": {
+  "label": "Day and Night Grazing",
+  "tip": "Animals stay out on the pasture and graze both by day and by night."
+ },
+ "LCH-5_1_11_5": {
+  "label": "Lifestock Species Type",
+  "tip": "Groups the kinds of animals that graze on a piece of land, such as cattle, sheep, goats, horses or poultry."
+ },
+ "LCH-5_1_11_5_1": {
+  "label": "Cattle",
+  "tip": "Land grazed by cows, bulls or other cattle, e.g. a pasture used by beef or dairy herds."
+ },
+ "LCH-5_1_11_5_2": {
+  "label": "Horses",
+  "tip": "Land grazed by horses, e.g. a paddock or meadow where horses are kept."
+ },
+ "LCH-5_1_11_5_3": {
+  "label": "Deer",
+  "tip": "Land grazed by deer, e.g. a fenced area where deer are farmed or kept."
+ },
+ "LCH-5_1_11_5_4": {
+  "label": "Pigs, Boars",
+  "tip": "Land where pigs or wild boars graze and root, e.g. outdoor pig farming in woodland or fields."
+ },
+ "LCH-5_1_11_5_5": {
+  "label": "Sheep",
+  "tip": "Land grazed by sheep, e.g. upland pastures or hillsides used for sheep farming."
+ },
+ "LCH-5_1_11_5_6": {
+  "label": "Goats",
+  "tip": "Land grazed by goats, e.g. rough scrubby slopes used for goat herding."
+ },
+ "LCH-5_1_11_5_7": {
+  "label": "Poultry",
+  "tip": "Land where chickens, ducks, geese or other farm birds feed outdoors, e.g. a free-range poultry run."
+ },
+ "LCH-5_1_11_5_8": {
+  "label": "Other Grazing Animals",
+  "tip": "Grazing animals not listed separately, e.g. donkeys, llamas or alpacas."
+ },
+ "LCH-5_2": {
+  "label": "Forest Land Management",
+  "tip": "Groups the ways woodland is managed: tree ages, species mix, harvesting and replanting methods, and what the wood is used for."
+ },
+ "LCH-5_2_1": {
+  "label": "Forest Age Structure",
+  "tip": "Describes how tree ages are mixed within a forest plot, which reflects how it has been planted, managed and harvested."
+ },
+ "LCH-5_2_1_1": {
+  "label": "Even-Aged Stands",
+  "tip": "A forest plot where all trees are about the same age, usually because they were planted together, e.g. a uniform spruce plantation."
+ },
+ "LCH-5_2_1_2": {
+  "label": "Uneven-Aged Stands",
+  "tip": "A forest plot containing trees of different ages growing side by side."
+ },
+ "LCH-5_2_1_3": {
+  "label": "All-Aged Stands, Old-Growth Forest",
+  "tip": "Forest made mostly of self-sown native trees whose ages and species mix come from natural growth, e.g. old woodland in a strict forest reserve."
+ },
+ "LCH-5_2_2": {
+  "label": "Forest Age Stage",
+  "tip": "Groups forests by roughly how old the trees are at the time of observation, from seedlings to mature trees."
+ },
+ "LCH-5_2_2_1": {
+  "label": "Seedlings",
+  "tip": "Very young trees in their first years of growth, roughly up to about 5 years old, e.g. a freshly replanted clearing."
+ },
+ "LCH-5_2_2_2": {
+  "label": "Young or Mid-Aged Trees",
+  "tip": "Trees in an early growth stage, roughly 5 to 15 years old as a rough guide, no longer seedlings but not yet fully grown."
+ },
+ "LCH-5_2_2_3": {
+  "label": "Grown-Up or Mature Trees",
+  "tip": "Fully grown trees, roughly 20 years and older as a guide; a tree counts as mature once it starts producing flowers or fruit."
+ },
+ "LCH-5_2_3": {
+  "label": "Forest Composition",
+  "tip": "Indicates whether a forest plot contains a mixture of tree species or consists mainly of one species."
+ },
+ "LCH-5_2_3_1": {
+  "label": "Mixed Forest Stands",
+  "tip": "Forest where several tree species grow together, e.g. oak, beech and hornbeam in the same stand."
+ },
+ "LCH-5_2_3_2": {
+  "label": "Unmixed Forest Stands",
+  "tip": "Forest made up mostly of a single tree species, whether planted as a monoculture or growing that way naturally, e.g. a pure pine stand."
+ },
+ "LCH-5_2_4": {
+  "label": "Forestry Practice",
+  "tip": "Groups the main overall strategies for growing and harvesting woodland, such as coppice, high forest, or a mix of the two."
+ },
+ "LCH-5_2_4_1": {
+  "label": "Coppice, Low Forest",
+  "tip": "Traditionally managed, usually broadleaved woodland whose trees are cut back every 15 to 25 years and regrow new shoots from the stumps."
+ },
+ "LCH-5_2_4_2": {
+  "label": "Coppice-Standard Combination",
+  "tip": "Woodland combining coppice, regularly cut back to the stumps, with taller trees left to grow into high forest above it."
+ },
+ "LCH-5_2_4_3": {
+  "label": "High Forest",
+  "tip": "Woodland of tall, straight-stemmed trees grown from seed or planted seedlings, usually forming a closed canopy when mature, e.g. a beech or spruce forest."
+ },
+ "LCH-5_2_5": {
+  "label": "Forestry Rotation System",
+  "tip": "Groups forests by how long trees are grown before they are felled, from very short cycles to continuous forest cover."
+ },
+ "LCH-5_2_5_1": {
+  "label": "Short Rotation Coppice (SRC) Plantation",
+  "tip": "Very dense plantings of fast-growing trees, usually willow or poplar, cut every 2 to 5 years and left to resprout from the stumps."
+ },
+ "LCH-5_2_5_2": {
+  "label": "Short Rotation Forestry (SRF) Plantation",
+  "tip": "Trees planted and felled once they reach about 10 to 20 cm trunk diameter, typically after 6 to 20 years, often for energy wood."
+ },
+ "LCH-5_2_5_3": {
+  "label": "Intermediate or Long Rotation Forestry",
+  "tip": "The most common forest management cycle, where trees are harvested once stands are around 40 to 50 years old or older."
+ },
+ "LCH-5_2_5_4": {
+  "label": "Continuous Cover Forestry",
+  "tip": "Forest kept permanently wooded by harvesting individual trees rather than clear cutting, usually leaving a mix of species and ages."
+ },
+ "LCH-5_2_6": {
+  "label": "Forest Rejuvenation",
+  "tip": "Groups the ways a forest renews itself after harvest or disturbance, either through planting and sowing by people or through natural regrowth."
+ },
+ "LCH-5_2_6_1": {
+  "label": "Planted Rejuvenation",
+  "tip": "Forest renewal started by people, who deliberately plant young trees or sow seeds, e.g. replanting saplings after a harvest."
+ },
+ "LCH-5_2_6_2": {
+  "label": "Natural Forest Succession",
+  "tip": "Forest renewal that happens naturally, with trees reproducing from their own seeds and fruits and no human planting involved."
+ },
+ "LCH-5_2_6_2_1": {
+  "label": "Self-Seeded Forest Succession",
+  "tip": "Natural forest regrowth where trees spread by dropping or scattering their own seeds, e.g. birch seedlings appearing in a clearing."
+ },
+ "LCH-5_2_6_2_2": {
+  "label": "Re-Sprouting Forest",
+  "tip": "Natural regrowth of new shoots from roots, branches or a cut or broken stump, e.g. after coppicing."
+ },
+ "LCH-5_2_7": {
+  "label": "Silvicultural Measure",
+  "tip": "Groups care measures applied to forest trees and soil to keep them healthy and growing well, such as thinning, pruning or drainage."
+ },
+ "LCH-5_2_7_1": {
+  "label": "Forest Cleaning, Weeding",
+  "tip": "Clearing competing plants such as weeds or unwanted young trees from around seedlings during the first years of a new forest."
+ },
+ "LCH-5_2_7_2": {
+  "label": "Forest Thinning",
+  "tip": "Removing some trees from a stand so the best ones get more light, water, nutrients and space to grow."
+ },
+ "LCH-5_2_7_3": {
+  "label": "Forest Pruning",
+  "tip": "Selectively cutting off parts of trees, such as branches, buds or roots, to shape growth or remove dead or damaged parts."
+ },
+ "LCH-5_2_7_4": {
+  "label": "Ring-Barking, Girdling",
+  "tip": "Cutting a ring of bark around a tree's trunk, which interrupts its flow of nutrients and causes it to die gradually."
+ },
+ "LCH-5_2_7_5": {
+  "label": "Interplanting",
+  "tip": "Planting young trees of other species within a single-species forest to make it more mixed, e.g. adding beech to a pine plantation."
+ },
+ "LCH-5_2_7_6": {
+  "label": "Dead Wood Removal",
+  "tip": "Clearing fallen or standing dead trees and branches out of a forest."
+ },
+ "LCH-5_2_7_7": {
+  "label": "Forest Irrigation",
+  "tip": "Watering forest trees artificially, e.g. to help young plantations through dry periods."
+ },
+ "LCH-5_2_7_8": {
+  "label": "Forest Drainage",
+  "tip": "Draining wet forest land with ditches or pipes so that trees can grow better."
+ },
+ "LCH-5_2_7_9": {
+  "label": "Forest Liming",
+  "tip": "Spreading lime on forest soil to reduce its acidity, e.g. in areas affected by acid rain."
+ },
+ "LCH-5_2_7_10": {
+  "label": "Forest Firebreak",
+  "tip": "A strip cleared of trees and burnable vegetation inside or around a forest, meant to stop or slow the spread of wildfires."
+ },
+ "LCH-5_2_8": {
+  "label": "Silvicultural Harvest and Regeneration Method",
+  "tip": "Groups the common methods of harvesting timber, which in forestry are closely tied to how the forest is then regenerated."
+ },
+ "LCH-5_2_8_1": {
+  "label": "Clearcutting",
+  "tip": "Felling all trees on a plot at once, leaving none standing, e.g. a fully harvested section of plantation awaiting replanting."
+ },
+ "LCH-5_2_8_2": {
+  "label": "Shelterwood Cutting",
+  "tip": "Felling mature trees gradually, a few at a time and spread evenly across the plot, so the remaining trees shelter the young growth."
+ },
+ "LCH-5_2_8_3": {
+  "label": "Femel Cutting",
+  "tip": "Felling mature trees over several years in scattered groups or patches, creating island-like gaps where new trees grow."
+ },
+ "LCH-5_2_8_4": {
+  "label": "Strip Cutting",
+  "tip": "Felling a mature forest step by step in strips, starting at the outer edge of the plot and moving inward year by year."
+ },
+ "LCH-5_2_8_5": {
+  "label": "Selection Cutting",
+  "tip": "Harvesting only selected trees that are ready for cutting while leaving the rest to keep growing, which keeps the forest continuously covered."
+ },
+ "LCH-5_2_8_6": {
+  "label": "Coppicing",
+  "tip": "Repeatedly cutting tree stems close to the ground so new shoots grow from the stump, which are harvested again in later cycles."
+ },
+ "LCH-5_2_8_7": {
+  "label": "Pollarding",
+  "tip": "Cutting a tree's top a few metres above ground so it sprouts many thin shoots, e.g. for leafy fodder or neatly shaped street trees."
+ },
+ "LCH-5_2_9": {
+  "label": "Forest Product Type",
+  "tip": "Groups forests by what their trees are used for: wood, fibre, energy or non-wood products such as cork or resin."
+ },
+ "LCH-5_2_9_1": {
+  "label": "Wood Product",
+  "tip": "Forests whose main product is wood itself, whether for building material, fuel or fibre for paper."
+ },
+ "LCH-5_2_9_1_1": {
+  "label": "Timber Wood",
+  "tip": "Wood harvested for use as construction material, e.g. for furniture, buildings or bridges."
+ },
+ "LCH-5_2_9_1_2": {
+  "label": "Energy Wood",
+  "tip": "Wood harvested to be burned for energy or turned into charcoal, e.g. firewood."
+ },
+ "LCH-5_2_9_1_3": {
+  "label": "Wood Fibre",
+  "tip": "Wood harvested to produce cellulose, the raw material for pulp and paper."
+ },
+ "LCH-5_2_9_2": {
+  "label": "Non-Wood Product",
+  "tip": "Goods from forests that are of biological origin but are not wood, e.g. cork, resin, rubber, bamboo or Christmas trees."
+ },
+ "LCH-5_2_9_2_1": {
+  "label": "Cork",
+  "tip": "Bark harvested from cork oak trees, used for products such as wine stoppers and insulation boards."
+ },
+ "LCH-5_2_9_2_2": {
+  "label": "Resin",
+  "tip": "Sticky sap collected by tapping a hole into a tree trunk and gathering the resin the tree produces to seal the wound."
+ },
+ "LCH-5_2_9_2_3": {
+  "label": "Latex, Natural Rubber",
+  "tip": "Milky sap gathered from wounds in the bark of rubber trees, mostly grown on tropical plantations, and used to make natural rubber."
+ },
+ "LCH-5_2_9_2_4": {
+  "label": "Incense",
+  "tip": "Aromatic resin from Boswellia trees, burnt to give off fragrant smoke in religious or ritual ceremonies."
+ },
+ "LCH-5_2_9_2_5": {
+  "label": "Myrrh",
+  "tip": "Gum-resin from small thorny Commiphora trees, used over the centuries as perfume, incense and medicine."
+ },
+ "LCH-5_2_10": {
+  "label": "Forest History Type",
+  "tip": "Groups forests by their origin and past: untouched primary forest, naturally regrown forest, or forest planted by people."
+ },
+ "LCH-5_2_10_1": {
+  "label": "Primary or Virgin Forest",
+  "tip": "Forest of native trees that regenerated naturally and shows no clearly visible signs of human activity, e.g. untouched old-growth woodland."
+ },
+ "LCH-5_2_10_2": {
+  "label": "Secondary or Naturally Regenerated Forest",
+  "tip": "Forest that regrew naturally but shows clear signs of past human activity, e.g. after selective logging, farming or human-caused fires."
+ },
+ "LCH-5_2_10_3": {
+  "label": "Reforestation",
+  "tip": "Re-establishing forest by planting or sowing on land already used as forest, e.g. replanting seedlings after a clear cut or storm damage."
+ },
+ "LCH-5_2_10_4": {
+  "label": "Afforestation",
+  "tip": "Creating new forest by planting or sowing trees on land that was not forest before, e.g. on former farmland or grassland."
+ },
+ "LCH-5_2_11": {
+  "label": "Forest Tree Species",
+  "tip": "Groups forests by the main tree types growing there, listed by their scientific genus name, such as Quercus (oaks) or Pinus (pines)."
+ },
+ "LCH-5_2_11_1": {
+  "label": "Abies",
+  "tip": "Firs, evergreen conifers with flat needles and upright cones, e.g. the silver fir."
+ },
+ "LCH-5_2_11_2": {
+  "label": "Acer",
+  "tip": "Maples, broadleaved trees known for their lobed leaves and winged seeds, e.g. the sycamore maple."
+ },
+ "LCH-5_2_11_3": {
+  "label": "Aesculus",
+  "tip": "Horse chestnuts, broadleaved trees with large hand-shaped leaves and shiny brown conkers."
+ },
+ "LCH-5_2_11_4": {
+  "label": "Alnus",
+  "tip": "Alders, broadleaved trees often found along rivers and in wet ground, e.g. the black alder."
+ },
+ "LCH-5_2_11_5": {
+  "label": "Betula",
+  "tip": "Birches, broadleaved trees often recognised by their pale, peeling bark, e.g. the silver birch."
+ },
+ "LCH-5_2_11_6": {
+  "label": "Carpinus",
+  "tip": "Hornbeams, broadleaved trees with very hard wood, often found in mixed woods and hedges."
+ },
+ "LCH-5_2_11_7": {
+  "label": "Castanea",
+  "tip": "Sweet chestnuts, broadleaved trees grown for their edible nuts and durable wood."
+ },
+ "LCH-5_2_11_8": {
+  "label": "Cedrus",
+  "tip": "Cedars, large evergreen conifers with needles in clusters, e.g. the cedar of Lebanon."
+ },
+ "LCH-5_2_11_9": {
+  "label": "Corylus",
+  "tip": "Hazels, small broadleaved trees or shrubs that produce hazelnuts, often coppiced."
+ },
+ "LCH-5_2_11_10": {
+  "label": "Cupressoideae",
+  "tip": "Trees of the cypress family, evergreen conifers with scale-like leaves, e.g. cypresses and junipers."
+ },
+ "LCH-5_2_11_11": {
+  "label": "Eucalyptus",
+  "tip": "Eucalyptus or gum trees, fast-growing evergreen broadleaved trees originally from Australia and often grown in plantations."
+ },
+ "LCH-5_2_11_12": {
+  "label": "Fagus",
+  "tip": "Beeches, broadleaved trees with smooth grey bark that often form dense forests, e.g. the European beech."
+ },
+ "LCH-5_2_11_13": {
+  "label": "Fraxinus",
+  "tip": "Ash trees, broadleaved trees with feathery compound leaves, e.g. the common ash."
+ },
+ "LCH-5_2_11_14": {
+  "label": "Ginkgo",
+  "tip": "Ginkgo, an ancient tree species with fan-shaped leaves, often planted in parks and along streets."
+ },
+ "LCH-5_2_11_15": {
+  "label": "Juglans",
+  "tip": "Walnut trees, broadleaved trees grown for their nuts and valuable timber."
+ },
+ "LCH-5_2_11_16": {
+  "label": "Larix",
+  "tip": "Larches, conifers that unusually shed their needles in autumn, e.g. the European larch."
+ },
+ "LCH-5_2_11_17": {
+  "label": "Picea",
+  "tip": "Spruces, evergreen conifers with short needles and hanging cones, e.g. the Norway spruce."
+ },
+ "LCH-5_2_11_18": {
+  "label": "Pinus",
+  "tip": "Pines, evergreen conifers with long needles in bundles, e.g. the Scots pine."
+ },
+ "LCH-5_2_11_19": {
+  "label": "Platanus",
+  "tip": "Plane trees, large broadleaved trees with flaking patchy bark, common along city streets."
+ },
+ "LCH-5_2_11_20": {
+  "label": "Populus",
+  "tip": "Poplars, fast-growing broadleaved trees, including aspens, often planted for wood or along roads."
+ },
+ "LCH-5_2_11_21": {
+  "label": "Pseudotsuga",
+  "tip": "Douglas firs, tall fast-growing conifers originally from North America and widely planted for timber."
+ },
+ "LCH-5_2_11_22": {
+  "label": "Quercus",
+  "tip": "Oaks, long-lived broadleaved trees that bear acorns, e.g. the pedunculate or cork oak."
+ },
+ "LCH-5_2_11_23": {
+  "label": "Salix",
+  "tip": "Willows, broadleaved trees and shrubs usually growing in wet places, also grown as short-rotation energy crops."
+ },
+ "LCH-5_2_11_24": {
+  "label": "Taxus",
+  "tip": "Yews, slow-growing evergreen conifers with dark needles and red berry-like fruits."
+ },
+ "LCH-5_2_11_25": {
+  "label": "Tilia",
+  "tip": "Lime or linden trees, broadleaved trees with heart-shaped leaves and fragrant flowers."
+ },
+ "LCH-5_2_11_26": {
+  "label": "Ulmus",
+  "tip": "Elms, broadleaved trees with rough, uneven leaves, many of which were hit hard by Dutch elm disease."
+ },
+ "LCH-5_3": {
+  "label": "Industrial Land Management",
+  "tip": "Groups characteristics of land used for industry, mainly how mining is done and which raw materials are extracted."
+ },
+ "LCH-5_3_1": {
+  "label": "Mining Technique",
+  "tip": "Groups the methods used to extract raw materials from the ground, such as open pits, underground mines or fracking."
+ },
+ "LCH-5_3_1_1": {
+  "label": "Surface Open Pit Mining",
+  "tip": "Extracting materials from a large open hole dug down from the surface, e.g. an open-cast coal mine or quarry."
+ },
+ "LCH-5_3_1_2": {
+  "label": "Underground Mining",
+  "tip": "Extracting materials through tunnels and shafts below the surface, e.g. a deep coal or metal mine."
+ },
+ "LCH-5_3_1_3": {
+  "label": "Under Water Mining",
+  "tip": "Extracting materials from beneath water, e.g. dredging sand and gravel from a lake or riverbed."
+ },
+ "LCH-5_3_1_4": {
+  "label": "Salines Extraction Site",
+  "tip": "A site where salt is won from salt water, e.g. shallow evaporation ponds along a coast."
+ },
+ "LCH-5_3_1_5": {
+  "label": "Leaching, Solution Mining",
+  "tip": "Extracting minerals by dissolving them with liquids pumped into the ground or poured over ore, then collecting the solution, e.g. some salt or uranium mining."
+ },
+ "LCH-5_3_1_6": {
+  "label": "Fracking",
+  "tip": "Releasing oil or gas from deep rock by pumping in fluid under high pressure to crack it open."
+ },
+ "LCH-5_3_2": {
+  "label": "Mining Product Type",
+  "tip": "Groups the kinds of raw materials taken from mines and extraction sites, from fuels such as coal to metal ores and stone."
+ },
+ "LCH-5_3_2_1": {
+  "label": "Fossil Hydrocarbon Fuels",
+  "tip": "Fuels formed from ancient plant and animal remains, extracted from the ground, e.g. coal, crude oil or natural gas."
+ },
+ "LCH-5_3_2_1_1": {
+  "label": "Hard Coal",
+  "tip": "Hard, black, high-energy coal, usually mined deep underground and used for power and steel making."
+ },
+ "LCH-5_3_2_1_2": {
+  "label": "Coal Lignite",
+  "tip": "Lignite or brown coal, a soft, lower-grade coal often dug from large open-cast mines."
+ },
+ "LCH-5_3_2_1_3": {
+  "label": "Peat",
+  "tip": "Partly decayed plant material from bogs, dug up and dried for fuel or garden use."
+ },
+ "LCH-5_3_2_1_4": {
+  "label": "Crude Oil",
+  "tip": "Petroleum pumped from underground reservoirs in its raw, unrefined form, e.g. from oil wells."
+ },
+ "LCH-5_3_2_1_5": {
+  "label": "Oil Sands",
+  "tip": "Sand or sandstone soaked with a thick, tar-like oil, mined and processed to obtain petroleum."
+ },
+ "LCH-5_3_2_1_6": {
+  "label": "Bituminous Rocks",
+  "tip": "Rocks containing bitumen or oil-rich material, e.g. oil shale, mined as a source of fuel."
+ },
+ "LCH-5_3_2_1_7": {
+  "label": "Mineral Gas",
+  "tip": "Natural gas extracted from underground deposits, mainly used for heating and generating power."
+ },
+ "LCH-5_3_2_2": {
+  "label": "Metal Ores",
+  "tip": "Rocks mined because they contain metals worth extracting, e.g. iron, copper or rare earth ores."
+ },
+ "LCH-5_3_2_2_1": {
+  "label": "Iron Ores",
+  "tip": "Rock rich in iron, mined as the raw material for making iron and steel."
+ },
+ "LCH-5_3_2_2_2": {
+  "label": "Nonferrous Metal Ores",
+  "tip": "Ores of metals other than iron, e.g. copper, zinc, lead, aluminium or gold."
+ },
+ "LCH-5_3_2_2_3": {
+  "label": "Rare Earths",
+  "tip": "Ores of a group of special metals used in electronics, magnets and batteries, e.g. neodymium."
+ },
+ "LCH-5_3_2_3": {
+  "label": "Non-Metallic Minerals",
+  "tip": "Minerals extracted for uses other than metal, e.g. building stone, gravel, salt or gemstones."
+ },
+ "LCH-5_3_2_3_1": {
+  "label": "Stones and Earths",
+  "tip": "Rock, sand, gravel, clay and similar materials dug up mainly for building and construction, e.g. from a gravel pit or quarry."
+ },
+ "LCH-5_3_2_3_2": {
+  "label": "Chemical Minerals",
+  "tip": "Minerals mined as raw materials for the chemical or fertiliser industries, e.g. potash or salt."
+ },
+ "LCH-5_3_2_3_2_1": {
+  "label": "Salt",
+  "tip": "Rock salt or sea salt extracted from mines, brine or evaporation ponds, used in food, industry and road gritting."
+ },
+ "LCH-5_3_2_3_3": {
+  "label": "Precious And Semi-Precious Stones",
+  "tip": "Gemstones mined for jewellery or decoration, e.g. diamonds, rubies or amethysts."
+ },
+ "LCH-5_3_2_4": {
+  "label": "Other Mining Material",
+  "tip": "Mined or extracted materials that do not fit in the other product groups listed here."
+ },
+ "LCH-5_4": {
+  "label": "Terrain Modification and Land Engineering Measure",
+  "tip": "Groups ways in which people reshape the ground or install structures on it, e.g. terraces, levelled ski slopes or avalanche barriers."
+ },
+ "LCH-5_4_1": {
+  "label": "Terraced Terrain",
+  "tip": "Slopes reshaped into a series of level steps, mostly so they can be farmed, e.g. vineyard or rice terraces on a hillside."
+ },
+ "LCH-5_4_2": {
+  "label": "Artificial Terrain Modification",
+  "tip": "Ground heavily reshaped by earthworks, e.g. steep land levelled out or slopes sculpted for ski pistes."
+ },
+ "LCH-5_4_3": {
+  "label": "Artificial Snow Preparation",
+  "tip": "Land, usually ski pistes, covered with man-made snow from snow cannons to improve skiing and extend the season."
+ },
+ "LCH-5_4_4": {
+  "label": "Snow Farming Area",
+  "tip": "Areas where snow is collected in winter and covered with insulating material so it lasts through the summer, e.g. for ski slopes next season."
+ },
+ "LCH-5_4_5": {
+  "label": "Avalanche Prevention or Protection Installation",
+  "tip": "Structures that stop avalanches from starting or protect areas against them, e.g. snow fences or barriers on mountain slopes."
+ },
+ "LCH-5_5": {
+  "label": "Administrative Regulations, Use Constraints",
+  "tip": "Groups legal rules and restrictions on how land may be used or entered, such as protected areas and access limits."
+ },
+ "LCH-5_5_1": {
+  "label": "Access Restriction",
+  "tip": "Groups land by who is allowed to enter it, from open public access to military-only zones."
+ },
+ "LCH-5_5_1_1": {
+  "label": "Civil, Open",
+  "tip": "Land open to the general public, where anyone may enter, e.g. a public park or common land."
+ },
+ "LCH-5_5_1_2": {
+  "label": "Civil and Military",
+  "tip": "Land that both civilians and the military may use and enter, e.g. a shared training ground with public paths."
+ },
+ "LCH-5_5_1_3": {
+  "label": "Temporary Restricted",
+  "tip": "Land closed to access for a limited time, e.g. after a severe natural disaster or a contamination event."
+ },
+ "LCH-5_5_1_4": {
+  "label": "Military Only, Restricted",
+  "tip": "Land only the military may enter, with others kept out or allowed in only by special permission, e.g. a military base."
+ },
+ "LCH-5_5_2": {
+  "label": "Protected Area Type",
+  "tip": "Groups the kinds of legal protection status an area can have, e.g. nature reserves, national parks or Natura 2000 sites."
+ },
+ "LCH-5_5_2_1": {
+  "label": "Nature Conservation Area",
+  "tip": "Land under strict legal nature protection, where many activities such as farming, building or lighting fires are forbidden."
+ },
+ "LCH-5_5_2_2": {
+  "label": "Landscape Conservation Area",
+  "tip": "Protected land where activities like farming and forestry are allowed to a degree, but the look of the landscape must be preserved."
+ },
+ "LCH-5_5_2_3": {
+  "label": "Natura2000",
+  "tip": "Areas listed under European law as part of the Natura 2000 network of protected sites for nature."
+ },
+ "LCH-5_5_2_4": {
+  "label": "Birds Retrieval Area",
+  "tip": "Areas with strict access limits to protect birds, either all year or during the breeding season."
+ },
+ "LCH-5_5_2_5": {
+  "label": "Biosphere Reserve",
+  "tip": "Areas designated by UNESCO to manage nature and human culture together, often with a strictly protected core and less restricted outer zones."
+ },
+ "LCH-5_5_2_6": {
+  "label": "Geopark",
+  "tip": "UNESCO-designated areas with internationally important geology, managed for protection, education and sustainable development."
+ },
+ "LCH-5_5_2_7": {
+  "label": "National Park",
+  "tip": "A larger area run by an authority mainly to conserve nature, often combined with recreation and visitor facilities."
+ },
+ "LCH-5_5_2_8": {
+  "label": "Other Protected Area Type",
+  "tip": "Protected areas with a legal status not covered by the other types listed here."
+ },
+ "LCH-6": {
+  "label": "Status, Condition",
+  "tip": "Groups characteristics describing the current state or condition of a piece of land and, if it is damaged, the reason why."
+ },
+ "LCH-6_1": {
+  "label": "Land Use Status",
+  "tip": "Groups labels describing the state a piece of land is in regarding its use, e.g. under construction, out of use or abandoned."
+ },
+ "LCH-6_1_1": {
+  "label": "Under Construction",
+  "tip": "Land being turned into man-made surfaces, e.g. a building site with excavations or earthworks whose final use is already decided."
+ },
+ "LCH-6_1_2": {
+  "label": "Never Been in Use",
+  "tip": "Land that is not used and shows no recognisable traces of ever having been used by people."
+ },
+ "LCH-6_1_3": {
+  "label": "Out of Use",
+  "tip": "Land that is temporarily not used but will probably be used again, e.g. a factory site on hold."
+ },
+ "LCH-6_1_4": {
+  "label": "Abandoned",
+  "tip": "Land no longer in use that cannot serve its original purpose without major repair, e.g. a derelict industrial site."
+ },
+ "LCH-6_1_5": {
+  "label": "Clear Cut",
+  "tip": "Land from which trees or shrubs have recently been removed, e.g. a freshly felled forest plot."
+ },
+ "LCH-6_1_6": {
+  "label": "Collapsed, Destroyed, Damaged",
+  "tip": "Marks objects that are no longer intact or usable because they were destroyed or collapsed, mostly buildings, structures or utilities, e.g. a building left in ruins."
+ },
+ "LCH-6_1_7": {
+  "label": "Managed Nature Restoration",
+  "tip": "Areas being deliberately returned to a natural or semi-natural state, e.g. by removing paving, cleaning up polluted ground, sowing plants or restoring natural soil moisture."
+ },
+ "LCH-6_2": {
+  "label": "Damage Reason",
+  "tip": "Groups the possible causes of damage to an area, from natural hazards such as floods or earthquakes to human-made harm such as pollution or demolition."
+ },
+ "LCH-6_2_1": {
+  "label": "Geological Or Hydrological",
+  "tip": "Damage caused by processes of the solid earth or of water, e.g. earthquakes, volcanic eruptions, landslides or floods."
+ },
+ "LCH-6_2_1_1": {
+  "label": "Tsunami",
+  "tip": "Damage from a long, powerful wave in the sea or a large lake that reaches land, e.g. one set off by an undersea earthquake or a landslide into a lake."
+ },
+ "LCH-6_2_1_2": {
+  "label": "Volcanic Eruption",
+  "tip": "Damage from a volcano releasing hot magma, ash and gases, including directly linked effects such as ash fall, explosions and fast-moving hot volcanic flows."
+ },
+ "LCH-6_2_1_3": {
+  "label": "Earthquake",
+  "tip": "Damage from ground shaking when stress in the Earth's crust is suddenly released, along with direct effects such as soil turning soft and losing strength."
+ },
+ "LCH-6_2_1_4": {
+  "label": "Subsidence and Collapse",
+  "tip": "Damage from the ground sinking or caving in, mainly downward movement when weathered or compacted rock or soil can no longer carry its own weight."
+ },
+ "LCH-6_2_1_5": {
+  "label": "Landslide",
+  "tip": "Damage from soil, rock and other material moving downhill when a slope fails, e.g. slides, rock falls or debris flows."
+ },
+ "LCH-6_2_1_6": {
+  "label": "Snow Avalanche",
+  "tip": "Damage from a large mass of snow sliding rapidly down a slope, often carrying trees and rocks along its path."
+ },
+ "LCH-6_2_1_7": {
+  "label": "Flood",
+  "tip": "Damage from water covering land that is normally dry, e.g. a river overflowing its banks, a flash flood or a tidal flood."
+ },
+ "LCH-6_2_2": {
+  "label": "Meteorological Or Climatological",
+  "tip": "Groups damage caused by weather or by longer-term climate conditions, e.g. droughts, heat waves, storms or lightning."
+ },
+ "LCH-6_2_2_1": {
+  "label": "Drought",
+  "tip": "Damage from a long, widespread period with less water than usual due to climate variability; not the same as a naturally dry climate."
+ },
+ "LCH-6_2_2_2": {
+  "label": "Extreme Temperatures",
+  "tip": "Damage from unusually hot or cold spells lasting longer than normal, e.g. heat waves or cold waves with frost."
+ },
+ "LCH-6_2_2_3": {
+  "label": "Storm Damage",
+  "tip": "Damage from violent, high-speed winds such as tornadoes or hurricanes, e.g. trees blown over in a forest."
+ },
+ "LCH-6_2_2_4": {
+  "label": "Lightning",
+  "tip": "Damage from lightning strikes, the electrical discharges usually linked to thunderclouds but which can also happen in dry conditions."
+ },
+ "LCH-6_2_2_5": {
+  "label": "Storm Surge",
+  "tip": "Damage from seawater pushed onto land by a storm or a sudden change in air pressure, e.g. during a hurricane; treated separately from other floods."
+ },
+ "LCH-6_2_3": {
+  "label": "Fire",
+  "tip": "Groups damage caused by fire breaking out and spreading, whether above ground in vegetation or below the surface."
+ },
+ "LCH-6_2_3_1": {
+  "label": "Forest Fire, Wildfire",
+  "tip": "Damage from fire spreading over vegetated land, such as forests and other wooded land, e.g. a summer wildfire; planned controlled burns are excluded."
+ },
+ "LCH-6_2_3_2": {
+  "label": "Underground Fire",
+  "tip": "Damage from fire burning below the ground surface, typically in soils rich in peat or coal, e.g. a smouldering peat fire."
+ },
+ "LCH-6_2_4": {
+  "label": "Biological",
+  "tip": "Groups damage caused by living organisms or what they produce, e.g. insect pests, diseases or grazing animals."
+ },
+ "LCH-6_2_4_1": {
+  "label": "Insect Infestation",
+  "tip": "Damage caused by large numbers of insects attacking plants or trees, e.g. bark beetles killing patches of forest."
+ },
+ "LCH-6_2_4_2": {
+  "label": "Mould Infestation",
+  "tip": "Damage caused by mould or similar fungi spreading on plants, materials or buildings."
+ },
+ "LCH-6_2_4_3": {
+  "label": "Epidemic",
+  "tip": "Harm from a disease outbreak that spreads quickly among people, animals or plants in an area."
+ },
+ "LCH-6_2_4_4": {
+  "label": "Allergens",
+  "tip": "Biological substances, such as pollen, that can cause allergic reactions in many people in an area."
+ },
+ "LCH-6_2_4_5": {
+  "label": "Animal Browsing, Overgrazing",
+  "tip": "Vegetation damaged by animals biting off plant parts or grazing so heavily, even tearing out roots, that plants cannot recover."
+ },
+ "LCH-6_2_4_6": {
+  "label": "Animal Trampling",
+  "tip": "Damage to plant cover caused by animals repeatedly walking over it, e.g. bare paths worn by livestock."
+ },
+ "LCH-6_2_5": {
+  "label": "Cosmic",
+  "tip": "Groups damage that originates from outer space, such as meteorite impacts or radiation."
+ },
+ "LCH-6_2_5_1": {
+  "label": "Meteorite Impact",
+  "tip": "Damage caused by solid material from outer space striking the Earth's surface, e.g. a crater left by a meteorite."
+ },
+ "LCH-6_2_5_2": {
+  "label": "Magnetic Disruption",
+  "tip": "Damage linked to disturbances of the Earth's magnetic field caused from space, e.g. during strong solar storms."
+ },
+ "LCH-6_2_5_3": {
+  "label": "Solar and Cosmic Radiation",
+  "tip": "Damage from radiation coming from outer space, such as ultraviolet light or gamma rays."
+ },
+ "LCH-6_2_6": {
+  "label": "Contamination Or Pollution",
+  "tip": "Groups damage caused by harmful substances in the ground, water or air, e.g. chemicals, oil, radioactivity or plastic."
+ },
+ "LCH-6_2_6_1": {
+  "label": "Radioactive Contamination",
+  "tip": "Land or water polluted by radioactive material, e.g. areas affected by a nuclear accident."
+ },
+ "LCH-6_2_6_2": {
+  "label": "Chemical, Toxic Pollution",
+  "tip": "Land or water polluted by harmful chemicals or toxic substances, e.g. waste from industrial sites."
+ },
+ "LCH-6_2_6_3": {
+  "label": "Soil Salinization",
+  "tip": "Soil damaged by a build-up of salts, which harms plant growth and can make farmland less productive."
+ },
+ "LCH-6_2_6_4": {
+  "label": "Oil contaminated",
+  "tip": "Land or water polluted by oil, e.g. after a pipeline leak or an oil spill on a coast."
+ },
+ "LCH-6_2_6_5": {
+  "label": "Explosives Contamination",
+  "tip": "Areas contaminated by military ammunition or industrial explosives, e.g. a former firing range with unexploded shells."
+ },
+ "LCH-6_2_6_6": {
+  "label": "Plastic pollution",
+  "tip": "Areas polluted by plastic, whether large pieces of litter or tiny microplastic particles."
+ },
+ "LCH-6_2_7": {
+  "label": "Intentional Or Accidental Structural Damage",
+  "tip": "Groups damage to buildings and other structures caused by people, either on purpose or by accident, e.g. demolition or neglect."
+ },
+ "LCH-6_2_7_1": {
+  "label": "Structural Decay",
+  "tip": "Damage from structures slowly falling apart over time, e.g. an abandoned building crumbling through lack of maintenance."
+ },
+ "LCH-6_2_7_2": {
+  "label": "Demolition, Explosion",
+  "tip": "Damage from structures being deliberately torn down or blown up, or from an explosion."
+ },
+ "LCH-6_3": {
+  "label": "Degenerative Process",
+  "tip": "Groups slow processes that wear down or degrade land over time, e.g. soil erosion, desertification or melting glaciers."
+ },
+ "LCH-6_3_1": {
+  "label": "Deforestation",
+  "tip": "Loss of tree cover, whether from natural causes or human activity, e.g. drought, storms, clear-cutting or soil erosion."
+ },
+ "LCH-6_3_2": {
+  "label": "Soil Erosion",
+  "tip": "Loss of fertile topsoil carried away by wind, flowing water or gravity, e.g. soil washed off a field after heavy rain."
+ },
+ "LCH-6_3_3": {
+  "label": "Desertification",
+  "tip": "Vegetated land gradually turning into desert, typically after years of low rainfall combined with human or animal pressure such as soil salinization."
+ },
+ "LCH-6_3_4": {
+  "label": "Glacier Melting",
+  "tip": "Areas where glaciers have shrunk in size or thickness by melting as average temperatures rise."
+ },
+ "LCH-7": {
+  "label": "Geographical Characteristics",
+  "tip": "Groups characteristics describing where a piece of land lies geographically, e.g. its habitat, altitude zone, climate, landscape setting and terrain."
+ },
+ "LCH-7_1": {
+  "label": "Habitat Context",
+  "tip": "Groups types of natural or human-shaped surroundings in which people, animals and plants live, largely following the European EUNIS habitat types."
+ },
+ "LCH-7_1_1": {
+  "label": "Marine Habitats",
+  "tip": "Habitats in the sea, from shallow coastal waters to the deep ocean floor, e.g. seagrass meadows or reefs."
+ },
+ "LCH-7_1_2": {
+  "label": "Coastal Habitats",
+  "tip": "Habitats along the coast where land meets sea, e.g. beaches, dunes, sea cliffs and shingle shores."
+ },
+ "LCH-7_1_3": {
+  "label": "Inland Surface Waters Habitats",
+  "tip": "Habitats in and around freshwater on land, e.g. lakes, ponds, rivers and streams."
+ },
+ "LCH-7_1_4": {
+  "label": "Mires, Bogs and Fens",
+  "tip": "Wet habitats with waterlogged, often peaty ground, e.g. raised bogs or fens fed by groundwater."
+ },
+ "LCH-7_1_5": {
+  "label": "Grasslands and Lands Dominated By Forbs, Mosses Or Lichens",
+  "tip": "Open habitats where grasses, herbs, mosses or lichens dominate rather than trees or shrubs, e.g. meadows and pastures."
+ },
+ "LCH-7_1_6": {
+  "label": "Heathland, Scrub and Tundra",
+  "tip": "Habitats dominated by low woody plants or cold-adapted vegetation, e.g. heather moors, shrubland or Arctic tundra."
+ },
+ "LCH-7_1_7": {
+  "label": "Woodland, Forest and Other Wooded Land",
+  "tip": "Habitats dominated by trees, from dense forests to more open wooded land, e.g. beech forests or pine woodland."
+ },
+ "LCH-7_1_8": {
+  "label": "Inland Unvegetated Or Sparsely Vegetated Habitats",
+  "tip": "Inland habitats with bare or very sparse plant cover, e.g. rock outcrops, screes, sand areas or snowfields."
+ },
+ "LCH-7_1_9": {
+  "label": "Regularly Or Recently Cultivated Agricultural, Horticultural and Domestic Habitats",
+  "tip": "Habitats created and kept up by farming, gardening or domestic use, e.g. arable fields, orchards or gardens."
+ },
+ "LCH-7_1_10": {
+  "label": "Constructed, Industrial and Other Artificial Habitats",
+  "tip": "Habitats made or heavily shaped by human construction and industry, e.g. buildings, roads, quarries or waste tips."
+ },
+ "LCH-7_1_11": {
+  "label": "Habitat Complexes",
+  "tip": "Areas made up of several different habitat types closely mixed together and treated as one unit, e.g. a river delta."
+ },
+ "LCH-7_1_12": {
+  "label": "Lagoon",
+  "tip": "Shallow coastal body of water separated from the sea by a barrier such as a sandbar, often with brackish water."
+ },
+ "LCH-7_1_13": {
+  "label": "Estuary",
+  "tip": "The wide mouth of a river where freshwater mixes with seawater and tides reach inland."
+ },
+ "LCH-7_1_14": {
+  "label": "Marine Inlet, Fjord",
+  "tip": "A narrow arm of the sea reaching into the land, e.g. a long, steep-sided fjord carved by glaciers."
+ },
+ "LCH-7_1_15": {
+  "label": "Coastal Salt Marsh",
+  "tip": "Low coastal land covered by salt-tolerant plants and regularly flooded by seawater at high tide."
+ },
+ "LCH-7_1_16": {
+  "label": "Intertidal Flat",
+  "tip": "Flat stretches of mud or sand that are covered by the sea at high tide and exposed at low tide, e.g. mudflats."
+ },
+ "LCH-7_2": {
+  "label": "Height Zone",
+  "tip": "Groups altitude bands in mountain regions, where temperature, moisture and vegetation change step by step as height increases."
+ },
+ "LCH-7_2_1": {
+  "label": "Planar Zone",
+  "tip": "Lowland of flat, plain areas with the usual temperatures of the local climate; ideal ground for farming and settlements."
+ },
+ "LCH-7_2_2": {
+  "label": "Collin Zone",
+  "tip": "Hilly land with gently rolling terrain, usually forming the upper limit for vineyards; also called the colline zone."
+ },
+ "LCH-7_2_3": {
+  "label": "Submontane Zone",
+  "tip": "Zone with more pronounced relief, valleys and mid-height peaks, where growing crops is rare if it happens at all."
+ },
+ "LCH-7_2_4": {
+  "label": "Montane Zone",
+  "tip": "Clearly cooler zone at the peaks of middle mountain ranges, forming the transition towards the high mountains."
+ },
+ "LCH-7_2_5": {
+  "label": "High Montane Zone",
+  "tip": "Upper limit of broadleaved forest where conifers dominate; places here are only inhabited seasonally."
+ },
+ "LCH-7_2_6": {
+  "label": "Subalpine Zone",
+  "tip": "Transition zone at the upper edge of forests, where scattered trees give way to dwarf pines."
+ },
+ "LCH-7_2_7": {
+  "label": "Alpine Zone",
+  "tip": "Zone between the tree line and the snow line, where vegetation is limited to low herbs, grasses and dwarf shrubs, e.g. alpine meadows."
+ },
+ "LCH-7_2_8": {
+  "label": "Nival Zone",
+  "tip": "Highest altitude zone, covered by snow or ice for all or most of the year, where glaciers form and plants are essentially absent."
+ },
+ "LCH-7_3": {
+  "label": "Geographical Context",
+  "tip": "Groups descriptions of the wider setting a piece of land sits in, e.g. urban, rural, coastal or mountain surroundings, whose borders are often fuzzy."
+ },
+ "LCH-7_3_1": {
+  "label": "Inland Context",
+  "tip": "Land far enough from the coast that it is no longer directly influenced by the sea; the opposite of a coastal setting."
+ },
+ "LCH-7_3_2": {
+  "label": "Coastal Context",
+  "tip": "Land close to the seashore, where nearness to the sea shapes things like ports, towns, industry and tourism."
+ },
+ "LCH-7_3_3": {
+  "label": "Island Context",
+  "tip": "Land on an island, influenced by the surrounding sea and by its transport links to the mainland; an island can itself have inland and coastal parts."
+ },
+ "LCH-7_3_4": {
+  "label": "Oceanic Context",
+  "tip": "Open sea far from any coastline, from the edge of the continental shelf out to deep-sea areas."
+ },
+ "LCH-7_3_5": {
+  "label": "Urban Context",
+  "tip": "Setting of cities and their suburbs, where built-up areas and transport networks dominate the landscape and many people live."
+ },
+ "LCH-7_3_6": {
+  "label": "Rural Context",
+  "tip": "Countryside dominated by farmland or forest, where villages exist but large cities are absent and population density is medium to low."
+ },
+ "LCH-7_3_7": {
+  "label": "Riparian Context",
+  "tip": "Land along riverbanks, generally flat and exposed to changing water levels and floods, often with moisture-loving plants such as willows."
+ },
+ "LCH-7_3_8": {
+  "label": "Mountain Context",
+  "tip": "Land shaped by mountains, including the valleys between them, with steep terrain and several climate and vegetation zones."
+ },
+ "LCH-7_4": {
+  "label": "Geomorphological Landform Type",
+  "tip": "Groups the shape of the land surface, e.g. a valley, dune or plateau; currently a placeholder where the landform is written as free text."
+ },
+ "LCH-7_4_1": {
+  "label": "Geomorphological Landform",
+  "tip": "A free-text note naming the landform found at a place, e.g. 'moraine' or 'river terrace', since no fixed list of landforms exists yet."
+ },
+ "LCH-7_5": {
+  "label": "Littoral Zone",
+  "tip": "Groups the bands along a shoreline, at the sea, a lake or a river, sorted by how often they are under water."
+ },
+ "LCH-7_5_1": {
+  "label": "Epilittoral",
+  "tip": "Strip above the shoreline that water does not reach directly; only high groundwater and moist, sometimes salty soil affect it, plus rare extreme storm surges."
+ },
+ "LCH-7_5_2": {
+  "label": "Supralittoral",
+  "tip": "Splash and spray zone just above the waterline, rarely covered by water but wetted by spray from waves; flooded only during storms or floods."
+ },
+ "LCH-7_5_3": {
+  "label": "Eulittoral, Intertidal",
+  "tip": "Zone between low and high water, regularly covered and uncovered by tides on coasts or by changing water levels along rivers and lakes."
+ },
+ "LCH-7_5_4": {
+  "label": "Infralittoral, Sublittoral",
+  "tip": "Zone below the low-water line that is normally always under water, on coasts as well as in rivers and lakes; also called subtidal."
+ },
+ "LCH-7_6": {
+  "label": "Physical Climate Zone",
+  "tip": "Groups broad climate zones of the world, useful e.g. for noting which climate a crop or plant type naturally belongs to."
+ },
+ "LCH-7_6_1": {
+  "label": "Tropical Climate Zone",
+  "tip": "Warm climate zone near the equator, hot all year round, e.g. where rainforests or banana plantations are found."
+ },
+ "LCH-7_6_2": {
+  "label": "Subtropical Climate Zone",
+  "tip": "Climate zone between the tropics and the temperate zone, with hot summers and mild winters, e.g. around the Mediterranean."
+ },
+ "LCH-7_6_3": {
+  "label": "Temperate Climate Zone",
+  "tip": "Climate zone of moderate temperatures with clear seasons, such as most of central and western Europe."
+ },
+ "LCH-7_6_4": {
+  "label": "Polar and Subpolar Climate Zone",
+  "tip": "Cold climate zone near and around the poles, with long winters and short, cool summers, e.g. the Arctic."
+ },
+ "LCH-7_7": {
+  "label": "Terrain Characteristics",
+  "tip": "Groups measurable properties of the ground surface's shape, such as its height, steepness and the direction it faces."
+ },
+ "LCH-7_7_1": {
+  "label": "Terrain Parameters",
+  "tip": "Groups measured values describing terrain at a point, namely elevation, slope and aspect, usually stored as grid (raster) data."
+ },
+ "LCH-7_7_1_1": {
+  "label": "Terrain Elevation",
+  "tip": "Height of the ground above sea level, measured in meters."
+ },
+ "LCH-7_7_1_2": {
+  "label": "Terrain Slope",
+  "tip": "How steep the ground rises, i.e. the slope angle, recorded in degrees."
+ },
+ "LCH-7_7_1_3": {
+  "label": "Terrain Aspect, Exposition",
+  "tip": "Compass direction a slope faces, given in degrees from 0 to 360, where 0 is north, 90 east, 180 south and 270 west."
+ },
+ "LCH-8": {
+  "label": "Spatial Characteristics",
+  "tip": "Groups characteristics describing how things are arranged inside a piece of land, e.g. mixed or uniform patterns, hedgerows or road networks."
+ },
+ "LCH-8_1": {
+  "label": "Spatial Distribution Pattern",
+  "tip": "Groups two-dimensional patterns showing how different land cover elements are spread out and relate to each other within an area."
+ },
+ "LCH-8_1_1": {
+  "label": "Homogeneous, Evenly Textured",
+  "tip": "Area that is uniform throughout, with every spot of the same kind and even texture, e.g. the lawn of a football pitch."
+ },
+ "LCH-8_1_2": {
+  "label": "Heterogeneous, Mixed, Unevenly Textured",
+  "tip": "Area where several different features are mixed together fairly evenly, giving an uneven, patchy texture, e.g. trees and shrubs intermingled."
+ },
+ "LCH-8_1_3": {
+  "label": "Mosaic Pattern",
+  "tip": "Area made up of distinct patches, each uniform in itself but clearly different from its neighbours, e.g. a patchwork of small fields."
+ },
+ "LCH-8_1_4": {
+  "label": "Scattered Pattern",
+  "tip": "A feature that appears only here and there, unevenly spread and not dominant, e.g. scattered trees in a pasture."
+ },
+ "LCH-8_1_5": {
+  "label": "Regular Spacing",
+  "tip": "Objects arranged at regular, even distances from each other, e.g. houses in a planned housing estate or trees in an orchard."
+ },
+ "LCH-8_2": {
+  "label": "Linear Feature Pattern",
+  "tip": "Groups narrow linear landscape features, too small to map one by one, that still shape an area's character, e.g. hedgerows or stone walls."
+ },
+ "LCH-8_2_1": {
+  "label": "Hedge Rows",
+  "tip": "A plot of land surrounded by or divided by several hedgerows, giving it a sub-divided look; mostly found in farming areas."
+ },
+ "LCH-8_2_2": {
+  "label": "Rows of Trees",
+  "tip": "A plot of land surrounded by or containing several lines of trees, e.g. windbreaks in the countryside or tree-lined avenues in towns."
+ },
+ "LCH-8_2_3": {
+  "label": "Stone Walls",
+  "tip": "A plot of land surrounded by or containing several traditional dry stone walls, typical of old farming landscapes."
+ },
+ "LCH-8_3": {
+  "label": "Linear Technical Network",
+  "tip": "Groups networks of linear technical structures that run through an area and shape its look, e.g. small roads, ditches, fences or pipelines."
+ },
+ "LCH-8_3_1": {
+  "label": "Roads Or Railways",
+  "tip": "Shows that an area contains a recognisable network of roads or railways, even if their exact location is not known."
+ },
+ "LCH-8_3_2": {
+  "label": "Pipelines",
+  "tip": "Shows that an area contains one pipeline or a network of them, even if their exact location is not known."
+ },
+ "LCH-8_4": {
+  "label": "Vertical Position",
+  "tip": "Groups the vertical position of an object relative to the ground: on the surface, raised above it, or below it."
+ },
+ "LCH-8_4_1": {
+  "label": "On Ground Surface",
+  "tip": "An object located directly on the ground surface, e.g. a road at street level."
+ },
+ "LCH-8_4_2": {
+  "label": "Suspended, Elevated",
+  "tip": "An object raised above the ground or hanging over it, e.g. a bridge, an elevated railway or overhead power lines."
+ },
+ "LCH-8_4_3": {
+  "label": "Under Ground",
+  "tip": "An object located below the ground surface, e.g. a tunnel, subway line or buried pipe."
+ },
+ "LCH-9": {
+  "label": "Object Characteristics",
+  "tip": "Groups measurements of objects, such as size, how often they occur and when or how long things happen; always used together with another class."
+ },
+ "LCH-9_1": {
+  "label": "Geometric Parameters",
+  "tip": "Groups size measurements for objects, such as area, length, width, height and share of an area covered."
+ },
+ "LCH-9_1_1": {
+  "label": "Object Area Size",
+  "tip": "Size of an object's area in square meters, recorded as a from/to range; for an exact value both ends are the same."
+ },
+ "LCH-9_1_1_1": {
+  "label": "Object Area Size Value From",
+  "tip": "Lower end of the range for an object's area, in square meters."
+ },
+ "LCH-9_1_1_2": {
+  "label": "Object Area Size Value To",
+  "tip": "Upper end of the range for an object's area, in square meters."
+ },
+ "LCH-9_1_2": {
+  "label": "Object Length",
+  "tip": "Length of an object in meters, recorded as a from/to range; for an exact value both ends are the same."
+ },
+ "LCH-9_1_2_1": {
+  "label": "Object Length Value From",
+  "tip": "Lower end of the range for an object's length, in meters."
+ },
+ "LCH-9_1_2_2": {
+  "label": "Object Length Value To",
+  "tip": "Upper end of the range for an object's length, in meters."
+ },
+ "LCH-9_1_3": {
+  "label": "Object Width",
+  "tip": "Width of an object in meters, recorded as a from/to range; for an exact value both ends are the same."
+ },
+ "LCH-9_1_3_1": {
+  "label": "Object Width Value From",
+  "tip": "Lower end of the range for an object's width, in meters."
+ },
+ "LCH-9_1_3_2": {
+  "label": "Object Width Value To",
+  "tip": "Upper end of the range for an object's width, in meters."
+ },
+ "LCH-9_1_4": {
+  "label": "Object Height",
+  "tip": "How tall an object stands above the ground (not height above sea level), in meters, recorded as a from/to range."
+ },
+ "LCH-9_1_4_1": {
+  "label": "Object Height Value From",
+  "tip": "Lower end of the range for an object's height above ground, in meters."
+ },
+ "LCH-9_1_4_2": {
+  "label": "Object Height Value To",
+  "tip": "Upper end of the range for an object's height above ground, in meters."
+ },
+ "LCH-9_1_5": {
+  "label": "Area Coverage",
+  "tip": "Share of a larger area taken up by a given cover or use, as a percentage range, e.g. trees covering 30 to 40% of a park."
+ },
+ "LCH-9_1_5_1": {
+  "label": "Area Coverage Value From",
+  "tip": "Lower end of the range for the percentage of an area covered by a given cover or use, in %."
+ },
+ "LCH-9_1_5_2": {
+  "label": "Area Coverage Value To",
+  "tip": "Upper end of the range for the percentage of an area covered by a given cover or use, in %."
+ },
+ "LCH-9_2": {
+  "label": "Occurrence Type",
+  "tip": "Groups ways of saying how many or how much of something is present in an area, as a percentage, a count or simply as present."
+ },
+ "LCH-9_2_1": {
+  "label": "Percentage Occurrence",
+  "tip": "Share of certain objects among all distinct objects in an area, given as a percentage range, e.g. the proportion of buildings that are houses."
+ },
+ "LCH-9_2_1_1": {
+  "label": "Percentage Occurrence Value From",
+  "tip": "Lower end of the range for the percentage share of certain objects among all objects in an area, in %."
+ },
+ "LCH-9_2_1_2": {
+  "label": "Percentage Occurrence Value To",
+  "tip": "Upper end of the range for the percentage share of certain objects among all objects in an area, in %."
+ },
+ "LCH-9_2_2": {
+  "label": "Countable Occurrence",
+  "tip": "Absolute number of certain objects found in an area, recorded as a from/to range, e.g. how many wind turbines stand in a field."
+ },
+ "LCH-9_2_2_1": {
+  "label": "Countable Occurrence Value From",
+  "tip": "Lower end of the range for how many of the objects occur in the area, as a plain count."
+ },
+ "LCH-9_2_2_2": {
+  "label": "Countable Occurrence Value To",
+  "tip": "Upper end of the range for how many of the objects occur in the area, as a plain count."
+ },
+ "LCH-9_2_3": {
+  "label": "Present Occurrence",
+  "tip": "Simply records that something is present in an area when its exact number or amount cannot be given."
+ },
+ "LCH-9_3": {
+  "label": "Temporal Parameters",
+  "tip": "Groups time information about things in an area, such as the date of an event, how long something lasts or how often it recurs."
+ },
+ "LCH-9_3_1": {
+  "label": "Instant Event Date",
+  "tip": "Date of a sudden, short event that changes the landscape, e.g. a storm, given as the day number counted from 1 January."
+ },
+ "LCH-9_3_1_1": {
+  "label": "Instant Event Date Value From",
+  "tip": "Start of a short time window in which a sudden event happened, given as day of the year."
+ },
+ "LCH-9_3_1_2": {
+  "label": "Instant Event Date Value To",
+  "tip": "End of a short time window in which a sudden event happened, given as day of the year."
+ },
+ "LCH-9_3_2": {
+  "label": "Duration",
+  "tip": "How long a situation lasts, counted in days, e.g. a crop's growing cycle, a construction site or a flood."
+ },
+ "LCH-9_3_2_1": {
+  "label": "Duration Value From",
+  "tip": "Lower end of the range for how long a situation lasts, in days."
+ },
+ "LCH-9_3_2_2": {
+  "label": "Duration Value To",
+  "tip": "Upper end of the range for how long a situation lasts, in days."
+ },
+ "LCH-9_3_3": {
+  "label": "Period",
+  "tip": "A span of time bounded by an explicit start date and end date, e.g. the months a field lies fallow."
+ },
+ "LCH-9_3_3_1": {
+  "label": "Period Start Date",
+  "tip": "First day of a period, given as the day number of the year, from 1 for 1 January to 365 for 31 December."
+ },
+ "LCH-9_3_3_1_1": {
+  "label": "Period Start Date Value From",
+  "tip": "Earliest possible start of a period, given as day of the year; used when the exact start date is uncertain."
+ },
+ "LCH-9_3_3_1_2": {
+  "label": "Period Start Date Value To",
+  "tip": "Latest possible start of a period, given as day of the year; used when the exact start date is uncertain."
+ },
+ "LCH-9_3_3_2": {
+  "label": "Period End Date",
+  "tip": "Last day of a period, given as the day number of the year counted from 1 January."
+ },
+ "LCH-9_3_3_2_1": {
+  "label": "Period End Date Value From",
+  "tip": "Earliest possible end of a period, given as day of the year; used when the exact end date is uncertain."
+ },
+ "LCH-9_3_3_2_2": {
+  "label": "Period End Date Value To",
+  "tip": "Latest possible end of a period, given as day of the year; used when the exact end date is uncertain."
+ },
+ "LCH-9_3_4": {
+  "label": "Recurring Frequency",
+  "tip": "How many times per year something changes or repeats, e.g. how often a meadow is mowed."
+ },
+ "LCH-9_3_4_1": {
+  "label": "Recurring Frequency Value From",
+  "tip": "Lower end of the range for how many times per year something recurs, as a plain count."
+ },
+ "LCH-9_3_4_2": {
+  "label": "Recurring Frequency Value To",
+  "tip": "Upper end of the range for how many times per year something recurs, as a plain count."
+ }
+}
