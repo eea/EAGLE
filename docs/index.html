@@ -47,15 +47,6 @@ a{color:var(--green-ink)}
 .topbar{background:var(--green);color:var(--on-green);position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
 .topbar .wrap{display:flex;align-items:center;gap:16px;min-height:44px;padding-block:6px}
 .topbar .ver{font-size:13px;letter-spacing:.04em;opacity:.95;white-space:nowrap}
-.lang{display:flex;align-items:center;gap:8px;flex:none}
-.lang-l{font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.95;white-space:nowrap}
-.lang-seg{display:flex;border:1px solid rgba(255,255,255,.75)}
-.lang-seg button{border:0;background:none;color:#fff;font:inherit;font-size:13px;font-weight:700;letter-spacing:.04em;padding:4px 9px;cursor:pointer;min-width:36px}
-.lang-seg button+button{border-left:1px solid rgba(255,255,255,.75)}
-.lang-seg button:hover{background:rgba(255,255,255,.18)}
-.lang-seg button[aria-pressed="true"]{background:#fff;color:var(--green-deep)}
-:root[data-theme="dark"] .lang-seg button[aria-pressed="true"]{color:#5A6710}
-.lang-msg{font-size:12px;white-space:nowrap}
 .search{position:relative;width:100%}
 .slot-top{flex:1;max-width:560px;margin-left:auto;min-width:0}
 .finder{background:var(--tint);border:1px solid var(--line);border-top:3px solid var(--green);padding:18px 20px 16px;margin:22px 0;display:flex;flex-direction:column;gap:10px}
@@ -232,7 +223,6 @@ footer p{margin:0;max-width:70ch}
 @media (max-width:640px){
   .tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
   .topbar .ver{display:none}
-  .lang-l,.lang-msg{display:none}
   .search kbd{display:none}
   .finder{padding:14px 14px 12px}
   .finder .search input{font-size:16px;padding-left:44px}
@@ -253,15 +243,6 @@ footer p{margin:0;max-width:70ch}
 </head><body>
 <div class="topbar"><div class="wrap">
   <span class="ver">EAGLE data model · version <span id="ver"></span></span>
-  <div class="lang" role="group" aria-labelledby="lang-l">
-    <span class="lang-l" id="lang-l">Tip language</span>
-    <div class="lang-seg" id="langSeg">
-      <button type="button" data-lang="en" aria-pressed="true" title="English">EN</button>
-      <button type="button" data-lang="de" aria-pressed="false" title="Deutsch">DE</button>
-      <button type="button" data-lang="no" aria-pressed="false" title="Norsk (bokmål)">NO</button>
-    </div>
-    <span class="lang-msg" id="langMsg" role="status"></span>
-  </div>
   <div class="slot-top" id="slotTop"></div>
 </div></div>
 
@@ -507,38 +488,12 @@ detailEl.addEventListener('click', e=>{
 });
 
 // ---------- plain-language tooltips ----------
-// Tip texts live in tips/<lang>.json beside the page ({"CODE": {"label", "tip"}}), loaded on demand.
-// The English texts are also embedded, so tips still work when the files cannot be fetched (e.g. opened from disk).
-const LANGS = {en:{name:'English',lang:'en'}, de:{name:'Deutsch',lang:'de'}, no:{name:'Norsk',lang:'nb'}};
-const TIPS = {}; let tipLang = 'en';
-const langSeg = document.getElementById('langSeg'), langMsg = document.getElementById('langMsg');
-function tipText(o){ return (TIPS[tipLang] && TIPS[tipLang][o.c]) || (TIPS.en && TIPS.en[o.c]) || o.s; }
-async function loadTips(l){
-  if(TIPS[l]) return true;
-  try{
-    const r = await fetch('tips/'+l+'.json', {cache:'no-cache'}); if(!r.ok) throw new Error(r.status);
-    const j = await r.json(), m = {};
-    for(const k in j){ if(k[0]==='_') continue; const v=j[k]; const s = typeof v==='string'? v : v && v.tip; if(s && String(s).trim()) m[k]=String(s).trim(); }
-    TIPS[l] = m; return true;
-  }catch(err){ return false; }
-}
-function paintLang(){ langSeg.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed', String(b.dataset.lang===tipLang))); }
-async function setLang(l, quiet){
-  if(!LANGS[l]) l='en';
-  langMsg.textContent='';
-  const ok = await loadTips(l);
-  if(!ok && l!=='en'){ if(!quiet) langMsg.textContent = LANGS[l].name+' tips could not be loaded'; l='en'; }
-  tipLang = l; paintLang(); hideTip();
-  try{ localStorage.setItem('eagle.tipLang', l); }catch(e){}
-}
-langSeg.addEventListener('click', e=>{ const b=e.target.closest('[data-lang]'); if(b) setLang(b.dataset.lang); });
-
 const tip = document.getElementById('tip'); let tipBtn = null, tipPinned = false;
 function showTip(btn, pin){
   const o = by.get(btn.dataset.tip); if(!o || !o.s) return;
   if(tipBtn && tipBtn!==btn) tipBtn.setAttribute('aria-expanded','false');
   tipBtn = btn; tipPinned = !!pin; btn.setAttribute('aria-expanded','true');
-  tip.innerHTML = `<b>${esc(o.l)}</b>${esc(tipText(o))}`; tip.lang = TIPS[tipLang] && TIPS[tipLang][o.c] ? LANGS[tipLang].lang : 'en'; tip.hidden = false;
+  tip.innerHTML = `<b>${esc(o.l)}</b>${esc(o.s)}`; tip.hidden = false;
   btn.setAttribute('aria-describedby','tip');
   const r = btn.getBoundingClientRect(), tw = tip.offsetWidth, th = tip.offsetHeight, W = innerWidth, H = innerHeight;
   let x = Math.min(Math.max(12, r.left + r.width/2 - 22), W - tw - 12);
@@ -672,7 +627,6 @@ document.querySelectorAll('[data-try]').forEach(b=>b.addEventListener('click',()
 // ---------- boot ----------
 window.addEventListener('hashchange', ()=>{ const c=fromHash(location.hash); if(c && c!==selected) reveal(c,{push:false}); });
 renderTabs(); renderBlocks(); renderDetail(); renderCrumbs();
-loadTips('en'); { let l='en'; try{ l=localStorage.getItem('eagle.tipLang')||'en'; }catch(e){} if(l!=='en') setLang(l,true); }
 const start = fromHash(location.hash); if(start) reveal(start,{push:false});
 if(matchMedia('(max-width:980px)').matches && !start) detailEl.classList.remove('open');
 })();
