@@ -367,6 +367,7 @@ with right:
                 "BCV": item.bcv or "–",
                 "confidence": item.confidence,
                 "type": m.block,
+                "section": (m.section_title + (" (not counted)" if m.muted else "")) if m.section else "–",
                 "excluded": item.negated,
                 "why": "; ".join(item.reasons),
                 "BCV why": "; ".join(item.bcv_reasons),

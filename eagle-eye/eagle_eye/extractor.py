@@ -68,6 +68,9 @@ class Mention:
     items: list[Item] = field(default_factory=list)  # set by the resolver
     alternatives: list[Ranked] = field(default_factory=list)
     applies_to: int | None = None  # id of the LCC mention a pattern / parameter describes
+    section: str | None = None  # guide section the wording stands in (see eagle_eye.sections)
+    section_title: str = ""
+    muted: bool = False  # named, but not part of the class (generalisation advice, an instance of another class)
 
     @property
     def concept(self) -> str | None:
@@ -120,12 +123,14 @@ class Analysis:
                     "entries": entries_of.get(m.id, []),
                     "negated": any(i.negated for i in m.items),
                     "manual": any(i.origin != "automatic" for i in m.items),
+                    "muted": m.muted,
                     "tip": " · ".join(
                         part
                         for part in (
                             m.block,
                             ", ".join(i.code for i in m.items if i.code),
                             "BCV " + "/".join(dict.fromkeys(i.bcv for i in m.items if i.bcv)) if any(i.bcv for i in m.items) else "",
+                            f"under '{m.section_title}'" + (" (not part of the class)" if m.muted else "") if m.section else "",
                             m.note,
                         )
                         if part

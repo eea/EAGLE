@@ -125,12 +125,20 @@ def _connector(text: str, a: Mention, b: Mention) -> str | None:
     return "or" if re.search(r"\bor\b", between, re.IGNORECASE) else "and"
 
 
+_MEASURE = ("percentage", "length", "area", "quantity")
+
+
+def _is_measure(m: Mention) -> bool:
+    """Numbers with a unit ("150 cm", "> 50 %") qualify an element; they are not coordinated with others."""
+    return bool(m.note) and m.note.split()[0] in _MEASURE
+
+
 def _groups(text: str, members: list[Mention]) -> list[list[tuple[Mention, str | None]]]:
     """Runs of directly coordinated wordings: [(mention, connector to the previous one)]."""
     groups: list[list[tuple[Mention, str | None]]] = []
     current: list[tuple[Mention, str | None]] = []
     for m in members:
-        link = _connector(text, current[-1][0], m) if current else None
+        link = _connector(text, current[-1][0], m) if current and not _is_measure(m) and not _is_measure(current[-1][0]) else None
         if current and link is None:
             groups.append(current)
             current = []

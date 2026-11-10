@@ -42,6 +42,7 @@ GENERIC_WORDS = frozenset(
     high low medium small large long short dry wet cover covered level age
     water-regime activity activities product products structure structures
     surface surfaces object objects service services
+    green white red salt lime farm military chemical chemicals plant species
     """.split()
 )
 
@@ -88,9 +89,9 @@ _RULES = (
             _rule("LCC", r"\b(?:roads?|pavements?|paved|asphalt|concrete|impervious|sealed\s+(?:surfaces?|areas?|soils?)|car\s+parks?)\b", "LCC-1_1_1_3", strength=0.75),
             _rule("LCC", r"\b(?:built-?up|urban\s+fabric|artificial\s+surfaces?|constructions?)\b", "LCC-1_1", strength=0.7),
             # ---------------------------------------------------------------- LUA
-            _rule("LUA", r"\b(?:no|without|minimal|negligible)\s+human\s+(?:influence|impact|intervention|disturbance|interference|activity|pressure)\b",
+            _rule("LUA", r"\b(?:no|without|minimal|minimum|negligible)\s+human\s+(?:influence|impact|intervention|disturbance|interference|activity|pressure)\b",
                   "LUA-6_3", note="no human influence"),
-            _rule("LUA", r"\b(?:(?:low|moderate|little|high|strong|intensive|heavy|limited|slight|reduced)\s+)?human\s+(?:influence|impact|intervention|disturbance|interference|activity|pressure|use)\b",
+            _rule("LUA", r"\b(?:(?:low|moderate|medium|little|high|strong|intensive|heavy|limited|slight|reduced|light|weak|minor|major|considerable|significant|substantial|marked|continuous|permanent)\s+)?human\s+(?:influence|impact|intervention|disturbance|interference|activity|pressure|use)\b",
                   note="degree of human influence"),
             _rule("LUA", r"\b(?:agricultur(?:e|al)|farming|farmland|farms?|arable(?:\s+(?:land|farming))?|crop\s+production|livestock|animal\s+husbandry|horticultur(?:e|al))\b", "LUA-1_1"),
             _rule("LUA", r"\b(?:forestry|silviculture|timber\s+(?:production|harvesting)|logging)\b", "LUA-1_2"),

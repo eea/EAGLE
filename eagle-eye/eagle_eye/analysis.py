@@ -6,6 +6,7 @@ from . import barcode
 from .extractor import Analysis, Entry, Item, Mention, extract
 from .overrides import Override
 from .resolver import DOMAIN_NAMES, Resolver
+from .sections import EXCLUDED, GENERALISATION, PARTICULARITY, find_sections, section_of
 from .vocabulary import BLOCKS, Vocabulary, load_vocabulary
 
 DEFINITION_LIMIT = 420
@@ -27,6 +28,8 @@ def _entries(mentions: list[Mention], vocab: Vocabulary) -> list[Entry]:
     entries: dict[str, Entry] = {}
     by_id = {m.id: m for m in mentions}
     for m in mentions:
+        if m.muted:
+            continue
         for item in m.items:
             if item.code:
                 concept = vocab.get(item.code)
@@ -122,6 +125,44 @@ def _apply_overrides(text: str, mentions: list[Mention], overrides: list[Overrid
     return result
 
 
+def _apply_sections(text: str, mentions: list[Mention]) -> None:
+    """Read the wording under the CLC guide's headings as the guide means it."""
+    sections = find_sections(text)
+    for m in mentions:
+        section = section_of(sections, m.start)
+        m.section, m.section_title = (section.kind, section.title) if section else (None, "")
+    if not sections:
+        return
+    stated = {  # elements the class names as part of itself
+        i.code for m in mentions if m.section in (None, PARTICULARITY) for i in m.items if i.code and not i.negated
+    }
+    for m in mentions:
+        coded = [i for i in m.items if i.code]
+        if m.section == GENERALISATION:
+            m.muted = True
+            for i in coded:
+                i.bcv, i.bcv_reasons = None, [f"under '{m.section_title}': mapping advice, not class content"]
+        elif m.section == EXCLUDED:
+            for i in coded:
+                if i.code in stated or i.bcv is None and vocab_is_parameter(i.code):
+                    continue
+                i.bcv, i.negated, i.bcv_basis = "X", True, "cue"
+                i.bcv_reasons = [f"listed under '{m.section_title}'"]
+            if coded and all(i.code in stated for i in coded):
+                m.muted = True  # an instance of another class that merely contains the element
+                for i in coded:
+                    i.bcv, i.bcv_reasons = None, [f"under '{m.section_title}': named as part of an instance of another class"]
+        elif m.section == PARTICULARITY:
+            for i in coded:
+                if i.bcv in ("3", "2", "4", None) and not vocab_is_parameter(i.code):
+                    i.bcv, i.bcv_basis = "1", "cue"
+                    i.bcv_reasons = [f"special case under '{m.section_title}': optional"]
+
+
+def vocab_is_parameter(code: str) -> bool:
+    return load_vocabulary().get(code).is_parameter
+
+
 def _apply_bcv(mentions: list[Mention], ov: Override) -> None:
     target = next((m for m in mentions if (m.start, m.end) == (ov.start, ov.end)), None)
     if target is None or ov.index >= len(target.items) or not target.items[ov.index].code:
@@ -138,6 +179,7 @@ def analyze(text: str, vocab: Vocabulary | None = None, overrides: list[Override
     if overrides:
         mentions = _apply_overrides(text, mentions, overrides, vocab)
     barcode.assign(text, mentions)
+    _apply_sections(text, mentions)
     for ov in (o for o in overrides or () if o.action == "bcv"):
         _apply_bcv(mentions, ov)
     entries = _entries(mentions, vocab)

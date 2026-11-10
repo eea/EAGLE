@@ -98,6 +98,25 @@ For the "Natural Grassland" definition this gives the manual's own bar code: gra
 rocky areas / trees / shrubs / scattered / nature conservation / shrub clearance 1, and
 drained / irrigated / fertilized X. Parameter values (*more than 50 %*) are not bar coded.
 
+**Sections of the CLC illustrated guide (`eagle_eye/sections.py`).** The guide writes every
+class in the same structure; its headings change how the wording below them is read:
+
+| Heading | Treatment |
+| --- | --- |
+| *This class is not applicable for:* / *This class excludes:* | named elements are excluded (X), unless the class names the same element as part of itself elsewhere: then the line only describes an instance of another class, and the wording is shown dotted grey and not counted |
+| *Generalisation:* | mapping advice (minimum widths, 25 ha), not class content: shown dotted grey, not counted |
+| *Particularities:* / *Particularity of class 321: …* | special cases, read as optional (1); their own sub-headings belong to them |
+
+Other headings (*Clarification*, *applicable for*, *includes*) are class content and read
+as usual. Headings need their colon; text without them is read as before. The "Highlight
+details" table shows the section of every highlight.
+
+**Wording variants.** Matching ignores case and works on stems (Snowball English, plus
+-ise/-ize spellings and compounds such as *grassland* → *grass*), so *Grassland*,
+*grasslands* and *fertilised* / *fertilization* are one thing. A wording's confidence rests
+on the wording and the text as a whole, not on the sentence it stands in, so every form of
+it gets the same class and confidence.
+
 ## Vocabulary
 
 `data/eagle_vocabulary.json` is generated from the EAGLE Barcoding Template 3.2, the
@@ -118,6 +137,7 @@ eagle_eye/extractor.py  step 1: matching, overlap resolution, data model
 eagle_eye/resolver.py   step 2: concrete class, confidence, reasons
 eagle_eye/analysis.py   text in, annotated analysis (class pane entries) out, manual overrides applied
 eagle_eye/barcode.py    step 3: bar code values from the logic of the text
+eagle_eye/sections.py   CLC guide sections (not applicable for, excludes, generalisation, particularities)
 eagle_eye/overrides.py  manual corrections anchored to spans of the text
 eagle_eye/isoexport.py  ISO 19144-2 LChS XML via the eagle-iso-mapper
 eagle_eye/lexicon.py    curated rules

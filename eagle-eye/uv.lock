@@ -383,6 +383,7 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-settings" },
     { name = "pyyaml" },
+    { name = "snowballstemmer" },
     { name = "sssom" },
     { name = "streamlit" },
 ]
@@ -402,6 +403,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.14.1" },
     { name = "pydantic-settings", specifier = ">=2.16.1" },
     { name = "pyyaml", specifier = ">=6.0.3" },
+    { name = "snowballstemmer", specifier = ">=3.1.1" },
     { name = "sssom", specifier = ">=0.4.17" },
     { name = "streamlit", specifier = ">=1.40" },
 ]

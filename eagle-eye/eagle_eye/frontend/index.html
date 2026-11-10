@@ -28,6 +28,7 @@
             cursor: pointer; transition: opacity .15s, background .15s; }
   mark.mk:hover { background: color-mix(in srgb, var(--c) 28%, transparent); }
   mark.mk.negated { border-bottom-style: dashed; text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--c) 55%, transparent); }
+  mark.mk.muted { color: var(--muted); background: none; border-bottom: 1px dotted var(--muted); font-weight: 400; cursor: help; }
   mark.mk.manual { border-bottom-style: double; border-bottom-width: 4px; }
   mark.mk.pending { background: color-mix(in srgb, var(--fg) 14%, transparent); border-bottom: 2px dashed var(--fg); color: inherit; }
   .doc { user-select: text; }
@@ -201,6 +202,7 @@ function renderText(root, payload) {
       mark.title = m.tip;
       if (m.negated) mark.classList.add("negated");
       if (m.manual) mark.classList.add("manual");
+      if (m.muted) mark.classList.add("muted");
       if (m.entries.some(selected)) mark.classList.add("sel");
       if (selection && selection.mention === m.id) mark.classList.add("focus");
       mark.addEventListener("click", () => {

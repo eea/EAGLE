@@ -13,4 +13,40 @@ NATURAL_GRASSLAND = (
     "succession is tolerated. […]"
 )
 
-SAMPLES = {"CLC 3.2.1 Natural grassland": NATURAL_GRASSLAND}
+# The same class as written in the CLC2018 Nomenclature illustrated guide (EEA, 2019), shortened:
+# the guide's section headings change how the wording below them is read (see eagle_eye.sections).
+NATURAL_GRASSLAND_GUIDE = """321 Natural grassland
+Grasslands under no or moderate human influence. Low productivity grasslands. Often situated in areas of rough, uneven ground, steep slopes; frequently including rocky areas or patches of other (semi-)natural vegetation.
+Clarification:
+Natural grasslands are areas with herbaceous vegetation (maximum height is 150 cm and graminoid species are prevailing) covering at least 50 % of the surface. Besides herbaceous vegetation, areas of shrub formations, of scattered trees and of mineral outcrops also occur. Often under nature conservation.
+In this context the term "natural" indicates that vegetation is developed under a minimum human interference, (not mowed, drained, irrigated, sown, fertilized or stimulated by chemicals, which might influence production of biomass). Maintenance mowing and shrub clearance for prevention of woody overgrowth due to natural succession is tolerated. Sporadic extensive grazing with low livestock unit/ha is possible.
+This class is applicable for:
+ permanent grasslands of natural origin, under minimum human influence, such as:
+ natural grasslands, meadows, steppes on any type of soil (calcareous / acid / neutral, rock / gravel / sand / loess);
+ natural grasslands with sporadically occurring ligneous vegetation (trees and shrubs) if it does not cover > 30 % of the considered surface;
+ grasslands that can be extensively grazed, but never sown nor otherwise managed by application of fertilizers, pesticides, drainage or reseeding except by burning;
+ grasslands under nature conservation with only maintenance cultivation.
+This class includes:
+ herbaceous vegetation with > 50% cover, dominated by grasses;
+ scattered woody vegetation with < 50% cover, trees occupying <30% of area;
+ bare rocks or bare natural surfaces covering < 50 % of the area.
+This class is not applicable for:
+ permanent grasslands under intensive agricultural use (class 231);
+ derelict grassland where semi-ligneous/ligneous vegetation covers at least 50% of the parcel (class 322, 323, 324);
+ grey dunes (class 331);
+ swampy grassland (class 411);
+ fallow land (class 211).
+This class excludes:
+No entry
+Generalisation:
+ At high altitude, class 321 might be present as altitude formation between heathlands (322) or sparsely vegetated areas (333).
+Particularity of class 321: Alpine meadows
+Grass formations which occur in high mountains above the timberline as natural climax-state herbaceous plant communities, where growing conditions do not allow development and survival of woody vegetation.
+This heading is applicable for:
+ Alpine grasslands which are either completely unused or only in very extensive use under grazing with low livestock units/ha.
+"""
+
+SAMPLES = {
+    "CLC 3.2.1 Natural grassland": NATURAL_GRASSLAND,
+    "CLC 321 Natural grassland (illustrated guide)": NATURAL_GRASSLAND_GUIDE,
+}

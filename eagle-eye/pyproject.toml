@@ -9,6 +9,7 @@ dependencies = [
     "pydantic>=2.14.1",
     "pydantic-settings>=2.16.1",
     "pyyaml>=6.0.3",
+    "snowballstemmer>=3.1.1",
     "sssom>=0.4.17",
     "streamlit>=1.40",
 ]

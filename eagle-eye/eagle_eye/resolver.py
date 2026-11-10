@@ -24,7 +24,7 @@ from functools import cache
 
 from .extractor import Item, Mention, Ranked
 from .lexicon import GENERIC_WORDS, PARTICIPLE, RULES
-from .textnorm import Token, lemma, lemmas, tokenize
+from .textnorm import Token, compound_heads, lemma, lemmas, tokenize
 from .vocabulary import Vocabulary, load_vocabulary
 
 DOMAIN_NAMES = {
@@ -54,7 +54,12 @@ _SENTENCE_BREAK = re.compile(r"(?<=[.!?])\s+(?=[A-Z\"(\[])|\n+")
 
 
 def content_lemmas(text: str) -> list[str]:
-    return [t.lemma for t in tokenize(text) if t.lemma not in STOP and len(t.lemma) > 2 and not t.text.isdigit()]
+    result = []
+    for t in tokenize(text):
+        if t.lemma not in STOP and len(t.lemma) > 2 and not t.text.isdigit():
+            result.append(t.lemma)
+            result.extend(compound_heads(t.text))  # "grassland" also speaks of "grass"
+    return result
 
 
 class DefinitionIndex:
@@ -191,8 +196,18 @@ class Resolver:
             weighted[t] += 1
         return self.index.query(weighted)
 
+    def _term_query(self, surface: str) -> dict[str, float]:
+        return self.index.query(Counter({t: 4 for t in content_lemmas(surface)}))
+
     def _score(self, code: str, strength: float, source: str, query: dict, surface: str,
                domains: Counter, family: set[str]) -> tuple[float, list[str]]:
+        """Score one candidate for a wording.
+
+        `query` is the wording plus its sentence. The score itself rests on the wording
+        (evidence strength, how its own words fit the definition) and on the whole text
+        (domains, related elements), never on the sentence: the same wording, in any case
+        or number, must get the same confidence wherever it stands.
+        """
         concept = self.vocab.get(code)
         reasons = []
         if source == "label":
@@ -206,10 +221,13 @@ class Resolver:
         else:
             reasons.append(f"the wording '{surface}' is a known term for '{concept.label}'")
 
-        cosine = self.index.similarities(query).get(code, 0.0)
-        sim = min(1.0, 2.5 * cosine)
-        if sim >= 0.35 and source not in ("retrieval", "definition"):
-            reasons.append(f"its definition fits the sentence ({round(sim * 100)}%)")
+        sentence_sim = min(1.0, 2.5 * self.index.similarities(query).get(code, 0.0))
+        if sentence_sim >= 0.35 and source not in ("retrieval", "definition"):
+            reasons.append(f"its definition fits the sentence ({round(sentence_sim * 100)}%)")
+        if strength > 0:  # evidence-based candidate: judge by the wording alone
+            sim = min(1.0, 2.5 * self.index.similarities(self._term_query(surface)).get(code, 0.0))
+        else:  # suggested from the sentence: that is all there is to judge by
+            sim = sentence_sim
 
         if domains and concept.domains:
             overlap = [d for d in concept.domains if d in domains]
