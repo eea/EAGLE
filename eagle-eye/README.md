@@ -25,6 +25,15 @@ uv run streamlit run app.py
 
 Tests: `uv run pytest` (they include the bar coding manual's worked examples)
 
+## Examples
+
+The *Example* menu lists the `.txt` and `.md` files in `config/examples/`; choosing one
+replaces the description. The file name (without extension) is the label, the list is
+sorted by name, and the first example is shown when the app starts. The folder is read on
+every interaction, so adding, editing or removing a file needs no restart. Files starting
+with `.` or `_`, README files and empty files are skipped. Set `EAGLE_EYE_EXAMPLES_DIR` to
+read another folder (e.g. a mounted volume on a hosted deployment).
+
 ## Correcting the result and exporting
 
 * **Change a class:** click a highlight; the panel above the class pane lets you pick a
@@ -133,6 +142,7 @@ Without `EIONET_CSV` the vocabulary is downloaded from dd.eionet.europa.eu.
 
 ```
 app.py                  Streamlit page
+config/examples/        example descriptions (.txt / .md) for the Example menu
 eagle_eye/extractor.py  step 1: matching, overlap resolution, data model
 eagle_eye/resolver.py   step 2: concrete class, confidence, reasons
 eagle_eye/analysis.py   text in, annotated analysis (class pane entries) out, manual overrides applied
@@ -144,4 +154,5 @@ eagle_eye/lexicon.py    curated rules
 eagle_eye/vocabulary.py EAGLE matrix loader
 eagle_eye/frontend/     small component: annotated text + class pane, click handling
 eagle_eye/readers.py    upload readers (txt, md; Word/PDF plug in here)
+eagle_eye/examples.py   reads config/examples
 ```

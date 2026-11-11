@@ -3,7 +3,7 @@
 import pytest
 
 from eagle_eye.analysis import analyze
-from eagle_eye.samples import NATURAL_GRASSLAND
+from tests.texts import NATURAL_GRASSLAND
 from eagle_eye.vocabulary import load_vocabulary
 
 # Manual, Figure 9 ("Natural Grassland"): the elements the bar coders assigned, as far as the

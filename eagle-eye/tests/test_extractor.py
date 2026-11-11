@@ -3,7 +3,7 @@ import pytest
 from eagle_eye.analysis import analyze
 from eagle_eye.extractor import extract
 from eagle_eye.lexicon import RULES
-from eagle_eye.samples import NATURAL_GRASSLAND
+from tests.texts import NATURAL_GRASSLAND
 from eagle_eye.vocabulary import load_vocabulary
 
 # What the reference illustration highlights in the CLC 3.2.1 definition.

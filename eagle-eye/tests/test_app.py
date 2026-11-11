@@ -8,6 +8,13 @@ from streamlit.testing.v1 import AppTest
 from eagle_eye.analysis import analyze
 
 APP = str(Path(__file__).resolve().parent.parent / "app.py")
+FIXTURES = Path(__file__).resolve().parent / "fixtures"
+
+
+@pytest.fixture(autouse=True)
+def fixture_examples(monkeypatch):
+    """The page reads its examples from a folder; the tests use their own copies of two of them."""
+    monkeypatch.setenv("EAGLE_EYE_EXAMPLES_DIR", str(FIXTURES))
 
 
 @pytest.fixture
@@ -98,3 +105,35 @@ def test_bar_code_value_can_be_set_and_cleared_by_hand(app):
 def test_export_panel_lists_what_the_xml_cannot_carry(app):
     captions = " ".join(c.value for c in app.caption)
     assert "bar coded elements go into the XML" in captions
+
+
+def example_box(at):
+    return next(s for s in at.selectbox if s.label == "Example")
+
+
+def test_examples_come_from_the_examples_folder(app):
+    box = example_box(app)
+    assert list(box.options) == ["CLC 3.2.1 Natural grassland", "CLC 321 Natural grassland (illustrated guide)"]
+    # the first one is shown at start
+    assert app.session_state["doc"].startswith("Class Definition 3.2.1 Natural grassland")
+
+
+def test_choosing_an_example_replaces_the_description(app):
+    example_box(app).select("CLC 321 Natural grassland (illustrated guide)").run()
+    assert app.session_state["doc"].startswith("321 Natural grassland")
+    assert app.session_state["doc_name"] == "clc-321-natural-grassland-illustrated-guide"  # names the export file
+    assert app.session_state["overrides"] == []
+    # the menu is back at its prompt: the same example can be chosen again after editing
+    assert example_box(app).value is None
+
+
+def test_a_new_file_in_the_folder_shows_up_and_loads(app, tmp_path, monkeypatch):
+    (tmp_path / "Wetland.md").write_text("Reed beds along a lake.", encoding="utf-8")
+    (tmp_path / "README.md").write_text("not an example", encoding="utf-8")
+    (tmp_path / "_draft.txt").write_text("hidden", encoding="utf-8")
+    (tmp_path / "data.csv").write_text("x", encoding="utf-8")
+    monkeypatch.setenv("EAGLE_EYE_EXAMPLES_DIR", str(tmp_path))
+    app.run()
+    assert list(example_box(app).options) == ["Wetland"]
+    example_box(app).select("Wetland").run()
+    assert app.session_state["doc"] == "Reed beds along a lake."

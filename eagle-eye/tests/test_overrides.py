@@ -2,7 +2,7 @@
 
 from eagle_eye.analysis import analyze
 from eagle_eye.overrides import Override, clear_bcv, put, reanchor, remove, reset
-from eagle_eye.samples import NATURAL_GRASSLAND
+from tests.texts import NATURAL_GRASSLAND
 
 TEXT = "Trees and scattered shrubs, not drained or irrigated, under moderate human influence."
 

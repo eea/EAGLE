@@ -1,21 +1,4 @@
-"""Example class definitions for the demo and the tests."""
-
-# CLC class 3.2.1, as in the annotated reference illustration.
-NATURAL_GRASSLAND = (
-    "Class Definition 3.2.1 Natural grassland\n"
-    "Grasslands under no or moderate human influence, with low productivity. […]; "
-    "frequently including rocky areas or patches of other (semi-)natural vegetation. "
-    "Natural grasslands are areas with herbaceous vegetation […]. "
-    "Besides, areas of shrub formations, of scattered trees and of mineral outcrops also occur. "
-    "Often under nature conservation. In this context \"natural\" indicates a minimum human "
-    "interference, (not drained, irrigated, sown, fertilized). […] "
-    "Maintenance mowing and shrub clearance for prevention of woody overgrowth due to natural "
-    "succession is tolerated. […]"
-)
-
-# The same class as written in the CLC2018 Nomenclature illustrated guide (EEA, 2019), shortened:
-# the guide's section headings change how the wording below them is read (see eagle_eye.sections).
-NATURAL_GRASSLAND_GUIDE = """321 Natural grassland
+321 Natural grassland
 Grasslands under no or moderate human influence. Low productivity grasslands. Often situated in areas of rough, uneven ground, steep slopes; frequently including rocky areas or patches of other (semi-)natural vegetation.
 Clarification:
 Natural grasslands are areas with herbaceous vegetation (maximum height is 150 cm and graminoid species are prevailing) covering at least 50 % of the surface. Besides herbaceous vegetation, areas of shrub formations, of scattered trees and of mineral outcrops also occur. Often under nature conservation.
@@ -44,9 +27,3 @@ Particularity of class 321: Alpine meadows
 Grass formations which occur in high mountains above the timberline as natural climax-state herbaceous plant communities, where growing conditions do not allow development and survival of woody vegetation.
 This heading is applicable for:
  Alpine grasslands which are either completely unused or only in very extensive use under grazing with low livestock units/ha.
-"""
-
-SAMPLES = {
-    "CLC 3.2.1 Natural grassland": NATURAL_GRASSLAND,
-    "CLC 321 Natural grassland (illustrated guide)": NATURAL_GRASSLAND_GUIDE,
-}

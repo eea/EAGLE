@@ -6,7 +6,7 @@ import pytest
 
 from eagle_eye import isoexport
 from eagle_eye.analysis import analyze
-from eagle_eye.samples import NATURAL_GRASSLAND
+from tests.texts import NATURAL_GRASSLAND
 from eagle_eye.vocabulary import load_vocabulary
 
 TEXT = "Land covered by grassland, with trees that may also occur, without bare soil."

@@ -3,7 +3,7 @@
 import pytest
 
 from eagle_eye.analysis import analyze
-from eagle_eye.samples import NATURAL_GRASSLAND
+from tests.texts import NATURAL_GRASSLAND
 
 
 def bcv(text):

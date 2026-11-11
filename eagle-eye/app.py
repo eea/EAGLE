@@ -4,6 +4,7 @@ Run with:  uv run streamlit run app.py
 """
 
 import html
+import re
 
 import streamlit as st
 
@@ -12,7 +13,7 @@ from eagle_eye import isoexport
 from eagle_eye.overrides import Override, clear_bcv, put, reanchor, remove, reset
 from eagle_eye.readers import SUPPORTED_TYPES, read_upload
 from eagle_eye.resolver import Resolver
-from eagle_eye.samples import SAMPLES
+from eagle_eye.examples import examples_dir, load_examples
 from eagle_eye.ui import annotator
 from eagle_eye.vocabulary import load_vocabulary
 
@@ -34,11 +35,16 @@ st.markdown(
 )
 
 ANNOTATED, EDIT = "🖍️ Annotated", "✏️ Edit"
-FIRST_SAMPLE = next(iter(SAMPLES))
 
 state = st.session_state
-state.setdefault("doc", SAMPLES[FIRST_SAMPLE])
-state.setdefault("doc_name", "natural-grassland")
+def slug(label: str) -> str:
+    return re.sub(r"[^\w.]+", "-", label.strip().lower()).strip("-")
+
+
+EXAMPLES = load_examples()  # config/examples: read on every run, so new files show up at once
+first_label = next(iter(EXAMPLES), "")
+state.setdefault("doc", EXAMPLES.get(first_label, ""))
+state.setdefault("doc_name", slug(first_label) or "class-description")
 state.setdefault("mode", ANNOTATED)
 state.setdefault("selection", None)  # {entries: [keys], mention: id | None}
 state.setdefault("pending", None)  # {start, end}: text marked by the user, waiting for a class
@@ -94,9 +100,11 @@ def commit_editor():
 
 
 def load_sample():
-    if state.sample is None:
+    label, state.sample = state.sample, None  # back to the prompt, so the same example can be loaded again
+    text = load_examples().get(label) if label else None
+    if text is None:
         return
-    set_document(SAMPLES[state.sample], state.sample.lower().replace(" ", "-"), keep_overrides=False)
+    set_document(text, slug(label), keep_overrides=False)
     state.mode = ANNOTATED
 
 
@@ -329,9 +337,11 @@ with left:
     )
     sample_col.selectbox(
         "Example",
-        list(SAMPLES),
+        list(EXAMPLES),
         index=None,
-        placeholder="Load an example…",
+        placeholder="Load an example…" if EXAMPLES else "No examples found",
+        disabled=not EXAMPLES,
+        help=f"Replaces the description with a text file from {examples_dir()} (.txt or .md).",
         key="sample",
         on_change=load_sample,
     )

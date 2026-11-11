@@ -1,0 +1,11 @@
+Land Cover & Use:
+The observation point is situated within an active commercial agricultural parcel (Land Use: U111 - Agriculture).
+The primary land cover is arable cropland planted with winter wheat (Triticum aestivum).
+
+Biophysical & Surface Characteristics:
+The crop has reached full senescence (ripening stage) and is uniform golden-yellow in color. 
+Average canopy height is approximately 85 cm with an estimated fractional vegetation cover (FCOVER) of 90%. 
+Understory weed presence is negligible (<5%). The underlying silty-loam soil is dry and cracked at the surface, with no standing water or recent irrigation signs.
+
+Spatial Context & Homogeneity:
+The winter wheat parcel is homogeneous for at least 50 meters in all cardinal directions from the GPS point, making it suitable for validating 10m to 20m optical satellite pixels. A paved secondary access road borders the field 65 meters to the west, and a narrow deciduous hedgerow lies 80 meters to the north.

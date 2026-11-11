@@ -4,7 +4,7 @@ import pytest
 
 from eagle_eye.analysis import analyze
 from eagle_eye.extractor import extract
-from eagle_eye.samples import NATURAL_GRASSLAND, NATURAL_GRASSLAND_GUIDE
+from tests.texts import NATURAL_GRASSLAND, NATURAL_GRASSLAND_GUIDE
 from eagle_eye.sections import EXCLUDED, GENERALISATION, PARTICULARITY, find_sections
 from eagle_eye.textnorm import lemma
 
