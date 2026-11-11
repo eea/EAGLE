@@ -1,0 +1,70 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "100 m MMW",
+  "class_code": "1.2.2",
+  "class_label": "Road and rail networks and associated land",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-122.html",
+  "class_description": "Definition:\nMotorways and railways, including associated installations (stations, platforms, embankments, linear greenery narrower than 100 m). Minimum width for inclusion: 100 m.\nClarification:\nThe general requirement of 100 m delineation accuracy is not sufficient in mapping 122. The tolerable shift in delineation is maximum 50 m. In delineating 122 a maximum 15-20% exaggeration of width is allowed, meaning that real width of the road including associated land should be at least 80 m to be included in CLC. In such cases the exaggerated width should be as close as possible to 100 m.\nThis class is applicable for:\n- road transport networks and associated land;\n- motorway rest areas, service stations, services and maintenance activities for roads;\n- railway transport networks and associated land;\n- park and ride facilities related to public transport connections;\n- tramways networks;\n- cableway networks;\n- abandoned transport network where artificial structures are still present and no evidence of other use is recognizable.\nThis class includes:\n- roads of any artificial paved surface material (asphalt, concrete, macadam) (minimum width 100 m);\n- railways, funiculars (minimum width 100 m);\n- parking areas, haulage depots connected on motorway networks, tollbooths;\n- buildings connected to rest areas, service stations and road maintenance activities;\n- marshalling yards, perimeter of stations, services and maintenance activities for trains;\n- vegetated areas associated to and /or surrounded by transport networks, including dikes, protecting or decorative vegetation belts, rows of trees;\n- compounds of large crossroads with minimum area 25 ha;\nThis class is not applicable for:\n- roads and railways inside industrial units (class 121) or inside ports (class 123);\n- motorways and high-speed train tracks under construction (class 133);\n- abandoned transport networks where artificial structures are no longer visible and/or evidence of other use is recognizable (class according to actual cov-er/use).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1_1_1",
+      "name": "Conventional Buildings",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_1_3",
+      "name": "Open Sealed Surfaces",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_2_1",
+      "name": "Open Non-Sealed Artificial Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2",
+      "name": "Biotic, Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-4_1_1",
+      "name": "Road Network",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-4_1_2",
+      "name": "Railway Network",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-4_1_5",
+      "name": "Other Transportation Networks",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

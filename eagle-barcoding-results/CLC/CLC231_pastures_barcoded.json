@@ -1,0 +1,98 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "2.3.1",
+  "class_label": "Pastures",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-231.html",
+  "class_description": "Definition:\nPermanent grassland characterized by agricultural use or strong human disturbance. Floral composition dominated by graminacea and influenced by human activity. Typically used for grazing-pastures, or mechanical harvesting of grass–meadows.\nClarification:\nPastures can be described as extensively or intensively grazed permanent grasslands with presence of farm infrastructure such as: fences, shelters, enclosures, watering places, drinking trough, and/or regular agricultural measures and works: mowing, drainage, hay making, seeding, manuring, shrub clearance. Typical visible signs of use are regular parcel structure and/or animal paths.\nThis class is applicable for:\n- permanent grasslands under grazing by domestic animals;\n- permanent grasslands (not part of the crop rotation) used for harvesting the grass (in form of hay or silage) by mowing;\n- abandoned arable land (after 3 years), arable land abandoned for more than 3 years, being in the process of succession by herbaceous vegetation ;\n- permanent grasslands under strong human disturbance, degraded grasslands, ruderal areas dominated by grass cover;\n- humid meadows with dominating grass cover. Hygrophyle species, such as sedges, rushes, thistles, nettles cover < 25 % of the parcel surface;\n- pastures with scattered trees and shrubs, woody vegetation covering <30% of the ground\n- herbaceous vegetation cover of abandoned or reclaimed mineral extraction sites and dump sites;\n- grass-covered ski-pistes used as pasture most of the year;\n- grassland areas with hedges (bocage);\n- drained wetlands, in particular peatlands, converted to pasture;\n- heavily grazed semi-natural grasslands such as machair plains at the rear of sand dunes.\nThis class includes:\n- herbaceous vegetation;\n- grasses (graminacea) that dominate the botanical composition,\n- herbs (Taraxacum officinale, Ranunculus spp., Chrisanthemum leucantemum, Knautia arvensis, Achillea millefolium, Salvia spp., etc.);\n- scattered woody vegetation, trees covering not more than 30% of area;\n- hedgerows;\n- stone walls separating parcels;\n- draining ditches;\n- installations of farming infrastructure (fences, shelters, enclosures, watering places, drinking trough).\nThis class is not applicable for:\n- grass covered surfaces of airports (class 124);\n- lawns inside city parks (class 141) or sport and leisure facility areas (class 142);\n- sown grass grown as annual crop under the crop rotation system (for silage or hay production) (class 211);\n- arable fodder crops other than grass (e.g. alfalfa) (class 211);\n- military exercising grass fields (without grazing) (class 321);\n- high-productive natural alpine meadows far from houses and/or crops (class 321);\n- derelict (poorly or not maintained) grassland where semi-ligneous/ligneous vegetation cover at least 25 % of the parcel (class 322, 323, 324);\n- humid meadows where hygrophyle plant species cover at least 25 % of the parcel (class 411);\n- salt meadows (class 421).\nThis class excludes:\n- herbaceous grass cover composed of non-palatable and undesirable species for cattle such as Molinia spp. and Brachypodium spp. (class 321).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_2_1_1",
+      "name": "Boulders, Stones",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_1",
+      "name": "Trees",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2_1",
+      "name": "Regular Bushes",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_1_1",
+      "name": "Grasses, Sedges, Rushes, Cereals",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_2",
+      "name": "Non-Graminoids, Forbs, Ferns",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_1_1",
+      "name": "Commercial Crop Production",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_2",
+      "name": "Managed Permanent Grassland",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_2_2",
+      "name": "No Crop Rotation",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_2",
+      "name": "Meadow Grasses And Herbs",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-8_2_1",
+      "name": "Hedge Rows",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-8_2_3",
+      "name": "Stone Walls",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

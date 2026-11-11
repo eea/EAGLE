@@ -1,0 +1,70 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "5.1.1",
+  "class_label": "Water courses",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-511.html",
+  "class_description": "Definition:\nNatural or artificial water-courses serving as water drainage channels. Includes canals. Minimum width for inclusion: 100 m.\nClarification:\nIn case of rivers with oscillating water level (when the width of the stream is less than 100 m in certain seasons of the year), the whole river bed must be added to the narrow water surface and then classified as 511. However, if there is no water in the river during a substantial part of the year (> 6 months), then the gravel and sand parts of the river bed (along with the narrow river bed, if appropriate) must be classified under class 331.\nThis class is applicable for:\n- natural water streams;\n- rivers that are canalised;\n- artificial canals;\n- branching glacial rivers with dynamically changing courses and interspersed gravel islands, where water surface in yearly average occupies >50% of the area.\nThis class includes:\n- flowing water;\n- sand or gravel accumulations along / among streams < 25 ha;.\nThis class is not applicable for:\n- water bodies connected to watercourses (class 512);\n- hydroelectric plant located on watercourses > 25 ha (class 121);\n- sections of river mouth affected by tide (class 522);\n- branching glacial rivers with dynamically changing courses and interspersed gravel islands where water surface occupies <50% of area most of the year (class 331);\n- temporarily flooded areas along rivers (to be mapped according to the land cover dominant over the year).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_2_1",
+      "name": "Mineral Fragments",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_1_1_1",
+      "name": "Water Course",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_2_4",
+      "name": "Perennial Water Regime",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_1",
+      "name": "Aquatic, Water At Surface",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_4",
+      "name": "Fresh",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_5",
+      "name": "Ultra Fresh",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_1",
+      "name": "Inland Context",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

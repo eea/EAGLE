@@ -1,0 +1,56 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "3.3.5",
+  "class_label": "Glaciers and perpetual snow",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-335.html",
+  "class_description": "Definition:\nLand covered by glaciers or permanent snowfields.\nClarification:\nPermanent snow and ice can be captured by finding the patches’ smallest extent during the year. This can be captured when they shrink to minimum due to summer warmth, but before the first snowfall after summer occurs. Such ideal date is between end July and late September. The general requirement of 100 m delineation accuracy is not sufficient in mapping 335. The tolerable shift in delineation is maximum 50 m.\nThis class is applicable for:\n- glaciers and perpetual snow;\n- rock glaciers and debris-covered glaciers clearly identifiable by shape.\nThis class includes:\n- permanent ice and snow surfaces;\n- bare rocks occupying < 50% of area;\n- rock debris covering ice.\nThis class is not applicable for:\n- snow patches pertaining over a part of summer period, but not throughout the whole year (class 3xx).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_1_1",
+      "name": "Bare Rock",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_1_1",
+      "name": "Boulders, Stones",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_2",
+      "name": "Solid Waters",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_8",
+      "name": "Inland Unvegetated Or Sparsely Vegetated Habitats",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_2_7",
+      "name": "Alpine Zone",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

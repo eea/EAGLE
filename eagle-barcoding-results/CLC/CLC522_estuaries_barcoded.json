@@ -1,0 +1,77 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "5.2.2",
+  "class_label": "Estuaries",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-522.html",
+  "class_description": "Definition:\nThe mouth of a river under tidal influence within which the tide ebbs and flows.\nClarification:\nIn practice, upstream maritime influence is stopped by the first floodgate; downstream, the estuary limit is arbitrary.\nThis class is applicable for:\n- river mouths under tidal influence.\nThis class includes:\n- the water and the channel bed with the fringing vegetation zone < 25 ha.\nThis class is not applicable for:\n- bays (class 523);\n- fjords or fiards, ryas and straits (class 523);\nThis class excludes:\n- fringing vegetation along the estuary channel bed > 25 ha (class 421).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_2_1",
+      "name": "Mineral Fragments",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_2",
+      "name": "Bare Soils",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_1_2",
+      "name": "Marine Waters",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_2_4",
+      "name": "Perennial Water Regime",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_1",
+      "name": "Aquatic, Water At Surface",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_2",
+      "name": "Coastal Habitats",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_2",
+      "name": "Coastal Context",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

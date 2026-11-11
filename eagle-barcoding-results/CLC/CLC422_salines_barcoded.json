@@ -1,0 +1,140 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "4.2.2",
+  "class_label": "Salines",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-422.html",
+  "class_description": "Definition:\nSalt-pans for extraction of salt from salt water by evaporation, active or in process of abandonment. Sections of salt marsh exploited for the production of salt, clearly distinguishable from the rest of the marsh by their parcellation and embankment systems.\nThis class is applicable for:\n- coastal or inland salt pans (saltern) in use or recently abandoned;\n- salines organised for breeding shellfish, fishes.\nThis class includes:\n- salt water in the evaporation ponds;\n- piled up heaps of extracted salt;\n- vegetated or non-vegetated embankments separating ponds;\n- sealed or unsealed storage areas;\n- associated buildings and installations.\nThis class is not applicable for:\n- salt pans abandoned for considerable time, natural vegetation occupies the area (class 421).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1_1_1",
+      "name": "Conventional Buildings",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_1_3",
+      "name": "Open Sealed Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_2_1",
+      "name": "Open Non-Sealed Artificial Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_3_1",
+      "name": "Inorganic Deposits",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_1_2",
+      "name": "Marine Waters",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_3_2",
+      "name": "Almost Standing Water",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_3_3",
+      "name": "Standing Water",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_1",
+      "name": "Aquatic, Water At Surface",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_2",
+      "name": "Waterlogged, Saturated Ground",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_3",
+      "name": "Wet",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_1",
+      "name": "Brine",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_2",
+      "name": "Saline",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_3",
+      "name": "Brackish",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_10",
+      "name": "Constructed, Industrial and Other Artificial Habitats",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_11",
+      "name": "Habitat Complexes",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_2",
+      "name": "Coastal Context",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

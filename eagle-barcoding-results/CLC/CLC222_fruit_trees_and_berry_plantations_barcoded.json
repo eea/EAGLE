@@ -1,0 +1,182 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "2.2.2",
+  "class_label": "Fruit trees and berry plantations",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-222.html",
+  "class_description": "Definition:\nCultivated parcels planted with fruit trees and shrubs, intended for fruit production, including nuts. The planting pattern can be by single or mixed fruit species, both in association with permanently grassy surfaces.\nThis class is applicable for:\n- plantations of berry shrubs;\n- plantations or orchards;\n- plantation of citrus fruit trees;\n- groves of nut crops;\n- plantations of tropical fruit trees;\n- permanent industrial plants;\n- hop plantations;\n- willow plantation for wicker production;\n- permanent florist plantations of roses;\n- complex cultivation pattern mosaics where fruit parcels cover at least 50 % of the area;\n- plantation of vines associated to fruit trees within the same parcel where vines cover < 50 % of the surface;\n- recently abandoned orchards which still preserve characteristic alignment or installations (espaliers and climbers);\n- permanently irrigated orchards and hop plantations.\nThis class includes:\n- woody permanent crops such as\n- berry shrubs: black and/or red currants, raspberries, gooseberries, blackberry;\n- orchards: apples, pears, plums, apricots, peaches, cherries, quinces, other rosaceae and figs;\n- citrus species : oranges, lemons, mandarins, tangerines, grape fruits, pomelos;\n- nut crops: chestnut, walnut, almond, hazelnut, pistacia;\n- tropical fruit species: avocados, bananas, guavas, mango, kiwis, passion fruits, papayas, pineapples, pomegranates, brazil nuts, cashew nuts, coconuts, nutmegs;\n- industrial plants: coffee, cacao, mulberry, tea\n- bare soil or grass among woody crops;\n- fruit trees under greenhouses;\n- scattered greenery, and natural vegetation <25% among plantations;\n- constructions supporting crops (espaliers, climbers, canes);\n- access roads inside plantations;\n- irrigation ponds and pools < 25 ha;\n- buildings, sealed or non-sealed storage areas associated to fruit production < 25 ha.\nThis class is not applicable for:\n- strawberry plantations (class 211);\n- cotton plantations (class 211)\n- multi–year plants as asparagus (class 211);\n- olive groves (class 223);\n- vineyard and areas dominated by vine plantations, >50% share (class 221);\n- fruit tree nurseries (class 211);\n- carob tree plantations (class 311);\n- chestnut and walnut groves intended for wood production (class 311);\n- abandoned orchards where plantation structures have disappeared (class 324);\n- non-permanent crops (arable land) associated with permanent crops on the same parcel, with occupation rate of non-permanent crops > 50 % (class 241);\n- complex cultivation patterns where fruit parcels cover < 50 % of the area in mosaic with other crops;\n- complex cultivation pattern mosaics where patches of natural vegetation cover >25% and < 75% (class 243).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1_1_1",
+      "name": "Conventional Buildings",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_1_3",
+      "name": "Open Sealed Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_2_1",
+      "name": "Open Non-Sealed Artificial Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_2",
+      "name": "Bare Soils",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_1",
+      "name": "Trees",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2_1",
+      "name": "Regular Bushes",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_1_1",
+      "name": "Grasses, Sedges, Rushes, Cereals",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_2",
+      "name": "Non-Graminoids, Forbs, Ferns",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_1_1",
+      "name": "Commercial Crop Production",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_1_2",
+      "name": "Permanent Crop Land",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_2_3",
+      "name": "Plantation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_2_4",
+      "name": "Extensive Cultivation Practice",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_1_1_7",
+      "name": "Rice",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_1_10_2",
+      "name": "Hops",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_3_1",
+      "name": "Pome Fruits",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_3_2",
+      "name": "Drupes, Stone-Like Fruits",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_3_3",
+      "name": "Nuts",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_3_4",
+      "name": "Citrus Fruits",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_3_5",
+      "name": "Berry Crops",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_3_8",
+      "name": "Other Fleshy Fruits",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_3_9",
+      "name": "Exotic Aromatic and Spice Crops",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_3_10",
+      "name": "Leaf Crops from Woody Plants",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_9",
+      "name": "Regularly Or Recently Cultivated Agricultural, Horticultural and Domestic Habitats",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

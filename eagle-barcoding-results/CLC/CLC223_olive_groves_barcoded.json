@@ -1,0 +1,105 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "2.2.3",
+  "class_label": "Olive groves",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-223.html",
+  "class_description": "Definition:\nCultivated areas planted with olive trees.\nThis class is applicable for:\n- homogeneous olive groves: plantations of Olea europaea ssp. europaea;\n- olive groves intermixed with vines or fruit trees, with >50% occupancy of olives;\n- olive groves intermixed with annual crops, with >50% occupancy of olives;\n- rainfed as well as permanently irrigated olive groves.\nThis class includes:\n- olive trees;\n- vines or fruit plants intermixed with olives;\n- bare soil or herbaceous vegetation among olive trees;\n- scattered patches of semi-natural vegetation (greenery);\n- interspersed annual crops occupying < 50%;\n- irrigation ponds.\nThis class is not applicable for:\n- non-permanent crop areas shaded by a canopy of olive trees on the same parcel, with non-permanent crops occupying > 50% of area (class 241);\n- parcels of olive trees intermixed in a mosaic with non-permanent crops (arable land), the latter occupying > 50% (class 242);\n- olive trees (Olea europaea ssp. sylvestris) as part of evergreen forest areas (class 311);\n- wild olive trees (Oleaster spp.) as part of sclerophyllous vegetation areas (class 323);\n- abandoned olive groves (class 323 or class 322 – only in Northern Iberian Peninsula).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_2_2",
+      "name": "Bare Soils",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_1",
+      "name": "Trees",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2_1",
+      "name": "Regular Bushes",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_1_1",
+      "name": "Grasses, Sedges, Rushes, Cereals",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_2",
+      "name": "Non-Graminoids, Forbs, Ferns",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_1_1",
+      "name": "Commercial Crop Production",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_1_2",
+      "name": "Permanent Crop Land",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_2_3",
+      "name": "Plantation",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_1_1_7",
+      "name": "Rice",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_1_10_2",
+      "name": "Hops",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_6_3_7",
+      "name": "Olives",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_9",
+      "name": "Regularly Or Recently Cultivated Agricultural, Horticultural and Domestic Habitats",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

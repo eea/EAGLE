@@ -1,0 +1,63 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "1.1.1",
+  "class_label": "Continuous urban fabric",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-111.html",
+  "class_description": "Definition:\nThe continuous urban fabric class is assigned when urban structures and transport networks are dominating the surface area. > 80% of the land surface is covered by impermeable features like buildings, roads and artificially surfaced areas. Non-linear areas of vegetation and bare soil are exceptional.\nClarification:\nThis coverage percentage pertains to real ground surface. Therefore, identification of the 80% imperviousness threshold requires particular attention to avoid confusion with the apparent vegetation (i.e. visible tree crowns) and permeable surfaces under trees. For example, in the streets bordered with trees, the real ground surface under the trees is mostly covered with asphalt or concrete. So, the vegetation percentage has to be estimated taking into account the shape structure and spatial context visible on the satellite image. The occurrence of at least 80 % of soil sealing is not the sole criteria for assigning an area to this class; also land use aspects have to be taken into account. The dominant land use type is residential, which can be also mixed with public services or local governments and commercial or office areas.\nThis class is applicable for:\n- urban centre types and dense ancient suburbs where buildings form a continuous and homogeneous fabric;\n- non-vegetated cemeteries inside urban fabric (regardless of size).\nThis class includes:\n- residential buildings;\n- public service and commercial/industrial buildings with their connected areas < 25 ha;\n- interstices of non-vegetated or bare surfaces;\n- parking lots, concrete or asphalt surfaces;\n- transport network < 25 ha and < 100 width;\n- small squares, pedestrian zones, yards;\n- urban greenery (parks and grass areas) < 25 ha amounting to maximum 20% of the polygon area;\n- vegetated cemeteries < 25 ha located inside continuous urban fabric.\nThis class is not applicable for:\n- industrial, commercial or public complexes and ports, even if those areas are > 80 % sealed (classes 121, 123);\n- urban fabric with > 20% scattered greenery (class 112).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1",
+      "name": "Sealed Artificial Surfaces and Constructions",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2",
+      "name": "Biotic, Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-5_1",
+      "name": "Permanent Residential",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-5_2",
+      "name": "Residential Use With Other Compatible Uses",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-1_2_4",
+      "name": "City Street Blocks, Closed Front",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_5",
+      "name": "Urban Context",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

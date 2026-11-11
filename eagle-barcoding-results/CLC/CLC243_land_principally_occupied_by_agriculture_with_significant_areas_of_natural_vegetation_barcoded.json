@@ -1,0 +1,105 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "2.4.3",
+  "class_label": "Land principally occupied by agriculture with significant areas of natural vegetation",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-243.html",
+  "class_description": "Definition:\nAreas principally occupied by agriculture, interspersed with significant natural or semi-natural areas (including forests, shrubs, wetlands, water bodies, mineral outcrops) in a mosaic pattern.\nThis class is applicable for:\n- mosaic of <25 ha parcels of agricultural land (arable crops, pasture, permanent crops) and scattered patches of natural/semi-natural areas, the latter occupying > 25% but < 75% of the area;\n- hortillonage (vegetable crops and canals);\n- agriculture and scattered heaps of stones;\n- vineyards mixed with arable land and/or meadows interspersed with significant natural vegetation, vineyard parcels covering < 50 % of the area;\n- linear structures of trees organised for truffle production.\nThis class includes:\n- agricultural crops\n- parcels of arable land and/or\n- parcels of pasture and /or\n- parcels of orchards, vineyards and berry plantations;\n- in combination with patches of natural vegetation\n- parcels of natural forests, groups of trees and shrubs and/or\n- patches of natural grassland and/or\n- small water bodies, water flows or wetlands and/or\n- small natural non-vegetated or sparsely vegetated areas;\n- optionally with sporadically occurring houses of rural settlement, or farm buildings.\nThis class is not applicable for:\n- agricultural land associated with small plots of fruit trees/olive groves without significant natural vegetation (class 242);\n- mosaic of parcels where a single permanent crop type (vineyard, fruit plantation, olive groves) occupies > 50% of area (classes 22x);\n- areas in which the share of agricultural areas is above 75 % (classes 21x, 23x, 242);\n- areas in which semi-natural areas predominate with > 75 % occupancy(classes 3xx).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1_1_1",
+      "name": "Conventional Buildings",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2",
+      "name": "Natural Material Surfaces",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1",
+      "name": "Woody Vegetation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_1_1",
+      "name": "Inland Water Bodies",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_1",
+      "name": "Agriculture",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_2",
+      "name": "Forestry",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_1_1",
+      "name": "Arable Crop Land",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_1_2",
+      "name": "Permanent Crop Land",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_2",
+      "name": "Managed Permanent Grassland",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_6",
+      "name": "Rural Context",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-8_1_3",
+      "name": "Mosaic Pattern",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

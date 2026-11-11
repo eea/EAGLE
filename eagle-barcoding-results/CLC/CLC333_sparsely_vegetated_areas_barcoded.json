@@ -1,0 +1,56 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "3.3.3",
+  "class_label": "Sparsely vegetated areas",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-333.html",
+  "class_description": "Definition:\nAreas with sparse vegetation, covering 10-50% of surface. Includes steppes, tundra, lichen heath, badlands, karstic areas and scattered high-altitude vegetation.\nClarification:\nScattered vegetation is composed of herbaceous and/or ligneous and semi-ligneous species, the rest of area is naturally bare ground.\nThis class is applicable for:\n- sparsely vegetated and unstable areas of stones, boulders, or rubble on steep slopes where the vegetation layer covers between 10 % and 50 % of the surface;\n- sub-desertic steppes with gramineous species (Artemisia spp.) mixed with alfa (Stipa spp.) covering between 10 % and 50 % of the surface;\n- lichen heath;\n- sparse vegetation of ‘lapie’ areas or limestone paving;\n- bare soils inside military training areas;\n- karstic areas with scattered gramineous, ligneous and semi-ligneous vegetation;\n- sparsely vegetated badlands;\n- sparse vegetation of abandoned or reclaimed mineral extraction sites or dump sites;\n- sparse vegetation of re-greening on unstable surface (e.g. volcanic sand ) for reclamation and erosion control;\n- burnt areas where sign of recent burn is not visible any more and at least 50% of area is non-vegetated;\n- sparsely vegetated areas used as ski-pistes during skiing season.\nThis class includes:\n- bare surfaces (rock, boulders, mineral fragments, bare soil)\n- herbaceous and/or woody vegetation altogether covering <50% of surface.\nThis class is not applicable for:\n- windblown part of dune areas (class 331);\n- areas where non-vegetated surface covers at least 90 % of the area (class 332);\n- areas where the vegetation covers > 50 % of the surface (classes 31x, 32x);\n- sparse forests with >30% tree cover (class 31x);\n- dense alfa (Stipa ssp.) coverage (class 321);\n- clear cuts and afforestation areas where most the surface is non-vegetated (class 324)\n- mineral extraction sites or dump sites reclaimed by means of afforestation, even if most of the surface is still without vegetation cover (class 324).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2",
+      "name": "Natural Material Surfaces",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2",
+      "name": "Biotic, Vegetation",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_3_1_1",
+      "name": "Surface Open Pit Mining",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-6_1_5",
+      "name": "Clear Cut",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_8",
+      "name": "Inland Unvegetated Or Sparsely Vegetated Habitats",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "1.2.3",
+  "class_label": "Port areas",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-123.html",
+  "class_description": "Definition:\nInfrastructure of port areas (land and water surface), including quays, dockyards and marinas.\nThis class is applicable for:\n- sea ports, river ports, lake ports\n- commercial and military ports;\n- shipyards;\n- fishing ports;\n- yachts ports, sport and recreation ports;\n- oil terminals inside port area.\nThis class includes:\n- shipping and infrastructure port facilities;\n- harbour stations, dock houses, buildings associated to port activities;\n- tanks and pipelines;\n- dockyards, wet and dry docks;\n- roads, railways and parking lots within the port area;\n- sealed or non-sealed storage and loading areas;\n- piers, quays and breakwaters wider than 100 m;\n- harbour basins shirted by quays if the area of infrastructure of the port (firm land part) is smaller than 25 ha\n- strips of industrial units below 25 ha adjacent to the harbour.\nThis class is not applicable for:\n- industrial and commercial units > 25 ha associated with port activities (class 121).\nThis class excludes:\n- water surfaces inside port areas > 25 ha or wider than 100 m (class 511 or 512 or 523).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1",
+      "name": "Sealed Artificial Surfaces and Constructions",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_2_1",
+      "name": "Open Non-Sealed Artificial Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_1",
+      "name": "Liquid Water Bodies",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-4_1_4",
+      "name": "Water Transport",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

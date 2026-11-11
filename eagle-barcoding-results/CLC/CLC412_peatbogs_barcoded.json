@@ -1,0 +1,168 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "4.1.2",
+  "class_label": "Peatbogs",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-412.html",
+  "class_description": "Definition:\nWetlands with accumulation of considerable amount of decomposed moss (mostly Sphagnum) and vegetation matter. Both natural and exploited peat bogs.\nClarification:\nPeat bogs are types of mire where peat, a deposit of dead plant material—often mosses, and in a majority of cases, sphagnum moss, - is accumulated. Bogs occur where the water at the ground surface is acidic and low in nutrients. In general the low fertility and cool, moist climate results in relatively slow plant growth. The decay of biomass is even slower owing to the water-saturated soil which results in accumulation of peat.\nThis class is applicable for:\n- specific plant communities of valley bogs, raised bogs, blanket bogs and quacking (floating) bogs with > 30 cm peat layer underneath, such as:\n- minerotrophic peat bogs fed by ground water or streams with mosses (Drepanocladus spp.) and Carex spp. or schoenus in alcaline bogs with occurrence of Calix spp., Betula spp. and Alnus spp.;\n- ombrotrophic peat bogs fed only by direct precipitation with sphagnum species which are abundant and dominant with other acidophilous plants such as Eriophorum vaginatum, Scirpus spp., Carex spp., Vaccinium oxicoccos, Andromeda spp., Drosera spp. and lichens;\n- blanket bogs with sphagnum species and Narthecium spp., Molinia spp., Scirpus spp., Shoenus spp., Erophiorum spp.;\n- boreal peat bogs with reticulated structure (aapa) with Sphagnum spp., Empetrum spp., Vaccinium spp., Betula nana, Salix nana, Carex spp., Eriophorium spp., Utriculara spp., Drosera spp.;\n- fossil arctic peat bogs (palsa) with Vaccinium spp., Betula nana, Salix lapponum and Salix glauca, lichens and Carex spp\n- peat extraction areas.\nThis class includes:\n- mosses (mostly Sphagnum spp.);\n- acidophillous herbaceous plants (grasses and herbs), such as Carex, Molinia , Drosera species, carnivorous plants;\n- woody plants: dwarf shrubs, such as Vaccinium, Erica species, shrubs and dwarf-growth trees, such as Betula nana, Salix nana;\n- scattered trees;\n- non-vegetated peat surfaces under exploitation;\n- piled up heaps of extracted peat;\n- water surfaces: bog eyes (open water surface occurring near the centre of raised bogs), canals and pools of peat extraction.\nThis class is not applicable for:\n- transitional bogs on peaty soils (< 30 cm thick peat) (class 324);\n- upland areas of blanket peat bogs where peat does not accumulate and are dominated by Nardus or other unpalatable grasses (class 321);\n- dwarf-shrub covered areas with <30 cm peat and without visible sign of morphological features typical of bogs (eg. pools, peat hags, peatland gullying) (class 322);\n- wooded peat bogs (class 31x);\n- drained peat bogs (class 411);\n- upland areas of blanket peat bogs where peat does not accumulate and are dominated by Nardus or other unpalatable grasses (class 321).\nThis class excludes:\n- bog eye > 25 ha : large pool or lake occurring near the centre of raised bogs (class 512).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_2_1_3",
+      "name": "Sand, Grit",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_1_4",
+      "name": "Clay, Silt",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1",
+      "name": "Woody Vegetation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_1",
+      "name": "Lichens",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_2",
+      "name": "Mosses",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_4_3",
+      "name": "Algae",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-3_1_1",
+      "name": "Inland Water Bodies",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_5_1",
+      "name": "Terrestrial Plant",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_5_3",
+      "name": "Aquatic Submerged Plant",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_5_4",
+      "name": "Aquatic Emergent Plant",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_3_2",
+      "name": "Almost Standing Water",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_3_3",
+      "name": "Standing Water",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_1",
+      "name": "Aquatic, Water At Surface",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_2",
+      "name": "Waterlogged, Saturated Ground",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_4_3",
+      "name": "Wet",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_4",
+      "name": "Fresh",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-4_6_5",
+      "name": "Ultra Fresh",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_3_1_1",
+      "name": "Surface Open Pit Mining",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_4",
+      "name": "Mires, Bogs and Fens",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_2",
+      "name": "Coastal Context",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    }
+  ]
+}

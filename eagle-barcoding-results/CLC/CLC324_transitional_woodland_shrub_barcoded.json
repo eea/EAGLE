@@ -1,0 +1,91 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "3.2.4",
+  "class_label": "Transitional woodland-shrub",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-324.html",
+  "class_description": "Definition:\nTransitional bushy and herbaceous vegetation with occasional scattered trees. Can represent woodland degradation, forest regeneration / recolonization or natural succession.\nClarification:\nAreas representing natural development of forest formations, consisting of young plants of broad–leaved and coniferous species, with herbaceous vegetation and dispersed solitary adult trees. Transitional process can be for instance natural succession on abandoned agricultural land, regeneration of forest after damages of various origin (e.g. storm, avalanche), stages of forest degeneration caused by natural or anthropogenic stress factors (e.g. drought, pollution), reforestation after clearcutting, afforestation on formerly non-forested natural or semi-natural areas etc.\nThis class is applicable for:\n- clear cuts in forest areas;\n- open clear-felled or regeneration areas in the transitional stage of regrowth, which lasts for usually 5-8 years or until trees reach the 5 m height;\n- young forest plantations;\n- forest nurseries inside forests area;\n- electric line corridors, fire breaks (if wider than 100 m);\n- natural grassland areas with small patches of forest < 25 ha and/or with trees intermixed which cover < 30 % of the surface;\n- burnt forest or burnt natural shrubland areas that do not show black tones any more in the satellite imagery, but damage is still visible;\n- forests heavily damaged by wind, snow-brake, avalanche, insects, acid rain or other pollution with > 50 % of trees severely affected;\n- areas of recultivation of mineral extraction sites and dump sites by means of afforestation or natural / semi-natural succession with shrubs;\n- agricultural lands (classes 2xx) under recolonization process with occurrence of young forest trees, which cover > 30 % of the surface (scattered trees or small plots of young trees);\n- abandoned fruit tree plantations and orchards;\n- afforestation on former natural grasslands or natural shrubs (322, 323), even when original vegetation still dominates;\n- arborescent matorrals that are pre- or post-formation of broad-leaved evergreen forest with a usually thick evergreen shrub stratum composed of evergreen oaks (Quercus suber/ilex/ rotundifolia), olive trees, carob trees or pines, with crown cover density < 30 %;\n- marginal zones of bogs with vegetation composed of shrubs and pines, which cover > 50 % of the surface.\nThis class includes:\n- young broad-leaved and/or coniferous trees;\n- damaged or dead trees and shrubs;\n- fully grown trees, covering < 30% of area;\n- shrubs;\n- herbaceous vegetation (grasses and herbs);\n- bare soil or natural bare surfaces.\nThis class is not applicable for:\n- young forests where trees reach 5 m height (class 31x);\n- abandoned olive groves (class 323);\n- agricultural lands (classes 2xx) with patches of forest vegetation with an overgrowth occupation rate < 75 % (class 243);\n- stable/climax forest formations with a tree height < 4 m, and Pinus mugo spp. mughus forests (class 322);\n- coastal dunes (so-called brown dunes) covered and fixed with shrubs (Hippophae spp., Empetrum spp., Salix spp.) (class 322);\n- moors and heathland in the process of natural regeneration after fire damage (class 322);\n- sclerophyllous shrubs in the process of natural regeneration after fire damage (class 323).\nThis class excludes:\n- dwarf mountain pine (Pinus mugo).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2",
+      "name": "Natural Material Surfaces",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2_1",
+      "name": "Regular Bushes",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_1_1",
+      "name": "Grasses, Sedges, Rushes, Cereals",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_2",
+      "name": "Non-Graminoids, Forbs, Ferns",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_2",
+      "name": "Forestry",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_5",
+      "name": "Other Primary Production",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-6_1_4",
+      "name": "Abandoned",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-6_1_5",
+      "name": "Clear Cut",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-6_1_6",
+      "name": "Collapsed, Destroyed, Damaged",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_7",
+      "name": "Woodland, Forest and Other Wooded Land",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

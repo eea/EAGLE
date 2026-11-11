@@ -1,0 +1,3923 @@
+{
+ "_about": {
+  "language": "Norsk (bokmål)",
+  "lang": "nb",
+  "note": "Plain-language tooltip texts for the EAGLE Vocabulary Browser. Edit only the \"tip\" values; \"label\" is the official class name, shown for reference. Machine-drafted, pending expert review."
+ },
+ "LCC": {
+  "label": "Land Cover Components",
+  "tip": "Samler de fysiske elementene som dekker jordoverflaten, som bygninger, bart fjell, planter og vann, uansett hva mennesker bruker arealet til."
+ },
+ "LCC-1": {
+  "label": "Abiotic, Non-Vegetated Surfaces and Objects",
+  "tip": "Flater uten planter, enten bygd av mennesker (f.eks. veier, bygninger) eller av naturlige materialer som fjell, sand eller jord."
+ },
+ "LCC-1_1": {
+  "label": "Artificial Surfaces and Constructions",
+  "tip": "Steder der mennesker har erstattet den naturlige grunnen med byggverk eller kunstige materialer, f.eks. tettsteder, veier og industriområder. Byparker og andre grøntområder regnes ikke med her."
+ },
+ "LCC-1_1_1": {
+  "label": "Sealed Artificial Surfaces and Constructions",
+  "tip": "Grunn dekket av bygninger eller harde flater som betong, asfalt eller belegningsstein som vann ikke kan trenge gjennom, f.eks. hus og fortau."
+ },
+ "LCC-1_1_1_1": {
+  "label": "Buildings",
+  "tip": "Permanente byggverk med tak som gir ly for mennesker, dyr eller varer, eller rommer produksjon og tjenester, f.eks. boliger, låver eller fabrikker."
+ },
+ "LCC-1_1_1_1_1": {
+  "label": "Conventional Buildings",
+  "tip": "Vanlige mellomstore eller store bygninger der folk bor, arbeider eller driver forretning, f.eks. hus, boligblokker, kontorer, butikker, driftsbygninger og fabrikker."
+ },
+ "LCC-1_1_1_1_2": {
+  "label": "Specific Buildings",
+  "tip": "Bygninger med påfallende størrelse, høyde eller form som skiller seg ut som landemerker, f.eks. stadioner, kirker, tårn eller store drivhus."
+ },
+ "LCC-1_1_1_2": {
+  "label": "Specific Structures and Facilities",
+  "tip": "Frittstående menneskeskapte konstruksjoner som ikke er bygninger, f.eks. bruer, piper, kraftledningsmaster, lagertanker, rørledninger eller solcellepaneler."
+ },
+ "LCC-1_1_1_3": {
+  "label": "Open Sealed Surfaces",
+  "tip": "Flat grunn dekket med en hard flate som asfalt eller betong som vann ikke kan trenge gjennom, f.eks. asfalterte veier, parkeringsplasser, torg og rullebaner."
+ },
+ "LCC-1_1_2": {
+  "label": "Non-Sealed Artificial Surfaces",
+  "tip": "Menneskeskapte flater som verken er asfaltert eller bebygd og som fortsatt slipper vann gjennom, f.eks. grusarealer eller dumpet avfall, selv om planter ofte har vanskelig for å vokse der."
+ },
+ "LCC-1_1_2_1": {
+  "label": "Open Non-Sealed Artificial Surfaces",
+  "tip": "Flate, åpne arealer som mennesker har dekket med løst eller komprimert materiale som fortsatt slipper vann gjennom, f.eks. grusplasser, pukk, grusbaner eller gressarmering."
+ },
+ "LCC-1_1_2_2": {
+  "label": "Waste Materials",
+  "tip": "Grunn dekket av kassert materiale som husholdnings- eller industriavfall, f.eks. byggavfall, slagg, skrapmetall eller treverk."
+ },
+ "LCC-1_2": {
+  "label": "Natural Material Surfaces",
+  "tip": "Bare flater av naturlige materialer i sin naturlige form, enten de er påvirket av mennesker eller ikke, f.eks. fjell, sand eller jord."
+ },
+ "LCC-1_2_1": {
+  "label": "Consolidated Surfaces",
+  "tip": "Naturlige flater av fast stein uten plantedekke, som danner et sammenhengende hardt lag som slipper lite vann gjennom, f.eks. blottlagt berggrunn."
+ },
+ "LCC-1_2_1_1": {
+  "label": "Bare Rock",
+  "tip": "Blottlagt fast fjell med bare noen få sprekker eller små jordflekker, f.eks. fjellknauser, ferske lavastrømmer eller bruddvegger i steinbrudd."
+ },
+ "LCC-1_2_1_2": {
+  "label": "Hard Pan",
+  "tip": "Jordoverflater som har herdet varig gjennom kjemiske eller fysiske prosesser og danner en skorpe som verken vann eller planterøtter kan trenge gjennom."
+ },
+ "LCC-1_2_2": {
+  "label": "Unconsolidated Surfaces",
+  "tip": "Grunn av løse mineralpartikler i alle størrelser, avsatt av naturen eller av mennesker, f.eks. strender, sanddyner, urer eller grusører langs elver."
+ },
+ "LCC-1_2_2_1": {
+  "label": "Mineral Fragments",
+  "tip": "Løse steinbiter som dannes når større bergarter brytes ned over tid, og som deretter hopes opp av naturen eller mennesker; videre inndelt etter kornstørrelse."
+ },
+ "LCC-1_2_2_1_1": {
+  "label": "Boulders, Stones",
+  "tip": "Store steinbiter, omtrent 20 til 200 cm eller større, for tunge til at mennesker kan bære dem langt, og som bare flyttes av tyngdekraft, isbreer eller store flommer."
+ },
+ "LCC-1_2_2_1_2": {
+  "label": "Pebbles, Gravel, Tuff",
+  "tip": "Mellomstore steinbiter på omtrent 2 til 20 cm som flyttes og hopes opp av erosjon, f.eks. ur i fjellsider eller grusører langs elver."
+ },
+ "LCC-1_2_2_1_3": {
+  "label": "Sand, Grit",
+  "tip": "Små løse korn mellom 0,06 mm og 2 cm som vind og vann kan flytte, f.eks. sanddyner, sandstrender eller vulkansk aske."
+ },
+ "LCC-1_2_2_1_4": {
+  "label": "Clay, Silt",
+  "tip": "Svært fine mineralpartikler mindre enn 0,06 mm som vind og vann lett kan flytte, f.eks. gjørmete elvebredder eller fin vulkansk aske."
+ },
+ "LCC-1_2_2_1_5": {
+  "label": "Mixed Unsorted Material",
+  "tip": "En blanding av usortert steinmateriale fra fint støv til store blokker, oftest løsmasser etterlatt av isbreer (morene)."
+ },
+ "LCC-1_2_2_2": {
+  "label": "Bare Soils",
+  "tip": "Jord som kunne båret planter fordi den inneholder nok mineralsk og organisk materiale, men som ikke har plantedekke da den observeres, f.eks. en nypløyd åker."
+ },
+ "LCC-1_2_2_3": {
+  "label": "Natural Deposits",
+  "tip": "Naturlig materiale som hoper seg opp over tid, enten som mineraler som blir igjen når vann fordamper, eller som planterester som ikke er helt nedbrutt, f.eks. saltskorper eller torv."
+ },
+ "LCC-1_2_2_3_1": {
+  "label": "Inorganic Deposits",
+  "tip": "Mineralske lag som blir igjen når vann fordamper, som salt eller gips, f.eks. skorpen på en uttørket saltsjø."
+ },
+ "LCC-1_2_2_3_2": {
+  "label": "Organic Deposits, Peat",
+  "tip": "Lag av delvis nedbrutt plantemateriale, for det meste torvmose, som hoper seg opp i vannmettede våtmarker der mangel på oksygen bremser nedbrytningen."
+ },
+ "LCC-2": {
+  "label": "Biotic, Vegetation",
+  "tip": "All grunn dekket av planter, enten de er ville, naturlignende eller plantet av mennesker, f.eks. skog, jordbruksvekster eller byparker; inndelt etter plantetype."
+ },
+ "LCC-2_1": {
+  "label": "Woody Vegetation",
+  "tip": "Planter med vedaktige stammer som overlever fra år til år, som trær og busker; bladtype og om de feller bladene registreres separat."
+ },
+ "LCC-2_1_1": {
+  "label": "Trees",
+  "tip": "Langlivede vedplanter med én hovedstamme som forgrener seg, f.eks. eik, furu, frukttrær eller prydtrær. Kjempebambus er ikke med."
+ },
+ "LCC-2_1_2": {
+  "label": "Bushes, Shrubs",
+  "tip": "Vedplanter med flere stammer som vokser fra eller nær bakken, vanligvis under 5 meter høye, f.eks. hagtorn eller einer."
+ },
+ "LCC-2_1_2_1": {
+  "label": "Regular Bushes",
+  "tip": "Vanlige busker med flere stammer fra basis og en åpen, utbredt form, vanligvis under 5 meter høye, f.eks. hekkbusker."
+ },
+ "LCC-2_1_2_2": {
+  "label": "Dwarf Shrubs",
+  "tip": "Svært lave vedplanter, vanligvis ikke høyere enn 25 cm, som trives på barske alpine, arktiske eller tørre steder, f.eks. røsslyng, blåbær eller rosmarin."
+ },
+ "LCC-2_2": {
+  "label": "Herbaceous Vegetation",
+  "tip": "Planter uten ved der delene over bakken dør ved slutten av vekstsesongen og vokser opp igjen fra røtter, løk eller frø, f.eks. gress og ville blomster."
+ },
+ "LCC-2_2_1": {
+  "label": "Graminoids, Grass-Like",
+  "tip": "Gress og gresslignende planter med smale blader som vokser fra basis, inkludert ekte gress, starr og siv, ville eller dyrkede, f.eks. plener, enger eller korn."
+ },
+ "LCC-2_2_1_1": {
+  "label": "Grasses, Sedges, Rushes, Cereals",
+  "tip": "Ville eller dyrkede gresslignende planter som ikke blir høyere enn rundt 2 meter, f.eks. enggress, starr, siv eller hvete. Takrør og bambus er ikke med."
+ },
+ "LCC-2_2_1_1_1": {
+  "label": "Poaceae, Grasses, Cereals",
+  "tip": "Arter i den ekte gressfamilien, ville eller dyrkede, f.eks. beitegress, plengress eller korn som hvete, bygg og mais."
+ },
+ "LCC-2_2_1_1_2": {
+  "label": "Cyperaceae, Sedges, Rushes",
+  "tip": "Starr og siv, gresslignende planter som ofte vokser i myrer, fuktenger og andre fuktige steder, f.eks. myrull eller lyssiv."
+ },
+ "LCC-2_2_1_2": {
+  "label": "Reeds, Bamboos, Canes",
+  "tip": "Høye gresslignende planter som kan bli høyere enn 2 meter, f.eks. takrør, høye bambusarter eller sukkerrør."
+ },
+ "LCC-2_2_2": {
+  "label": "Non-Graminoids, Forbs, Ferns",
+  "tip": "Planter uten ved som ikke er gress, som ville blomster, bregner og mange jordbruksvekster, f.eks. solsikker, grønnsaker, jordbær eller humle."
+ },
+ "LCC-2_3": {
+  "label": "Succulents, Cacti",
+  "tip": "Planter som lagrer vann i tykke blader, stengler eller røtter for å klare tørre eller salte forhold, f.eks. kaktuser, bergknapp eller salturt på strandenger."
+ },
+ "LCC-2_4": {
+  "label": "Lichens, Mosses, Algae",
+  "tip": "Små, enkle plantelignende organismer som lav, moser og alger, som vokser på stein, jord, bark eller i vann."
+ },
+ "LCC-2_4_1": {
+  "label": "Lichens",
+  "tip": "Skorpeaktige, bladaktige eller buskaktige vekster dannet av en sopp som lever sammen med alger eller bakterier, f.eks. de grågrønne flekkene på stein og bark."
+ },
+ "LCC-2_4_2": {
+  "label": "Mosses",
+  "tip": "Små planter uten ved, bare noen få centimeter høye, uten ekte røtter, som tar opp vann og næring hovedsakelig gjennom bladene, f.eks. torvmose."
+ },
+ "LCC-2_4_3": {
+  "label": "Algae",
+  "tip": "En stor og variert gruppe enkle plantelignende organismer som stort sett lever i eller nær vann, selv om noen vokser på fuktig stein eller trestammer."
+ },
+ "LCC-2_4_3_1": {
+  "label": "Macro Algae",
+  "tip": "Store alger med forgrenede, bladlignende former som kan bli flere meter lange, festet under vann eller flytende, f.eks. tang eller tare."
+ },
+ "LCC-2_4_3_2": {
+  "label": "Micro Algae, Plankton",
+  "tip": "Bittesmå encellede alger eller alger i små klynger, som vanligvis lever i vann som plankton, men også som grønne belegg på stein eller trestammer."
+ },
+ "LCC-3": {
+  "label": "Water",
+  "tip": "Flater dekket av vann i alle former, enten flytende (f.eks. elver, innsjøer, hav) eller frosset (snø og is)."
+ },
+ "LCC-3_1": {
+  "label": "Liquid Water Bodies",
+  "tip": "Vann i flytende form, uansett form, saltinnhold eller opprinnelse, i et nokså stabilt leie, f.eks. elver, innsjøer eller havet. Områder som bare oversvømmes kortvarig er ikke med."
+ },
+ "LCC-3_1_1": {
+  "label": "Inland Water Bodies",
+  "tip": "Vannflater i innlandet uten direkte forbindelse med det åpne havet, ferske eller salte, naturlige eller menneskeskapte, f.eks. elver, innsjøer og vannmagasiner."
+ },
+ "LCC-3_1_1_1": {
+  "label": "Water Course",
+  "tip": "Rennende vann som elver, bekker eller kanaler."
+ },
+ "LCC-3_1_1_2": {
+  "label": "Standing Water",
+  "tip": "Stille, ikke-rennende vann, hovedsakelig innsjøer og dammer, f.eks. naturlige innsjøer, fiskedammer, vannmagasiner eller avsnørte elvesvinger (kroksjøer)."
+ },
+ "LCC-3_1_2": {
+  "label": "Marine Waters",
+  "tip": "Sjøvann på havsiden av den midlere høyvannslinjen, inkludert tidevannsflater langs kysten som oversvømmes og tørrlegges med tidevannet."
+ },
+ "LCC-3_2": {
+  "label": "Solid Waters",
+  "tip": "Vann i frossen form, som snø, is og isbreer."
+ },
+ "LCC-3_2_1": {
+  "label": "Snow",
+  "tip": "Grunn dekket av snø, f.eks. snøfonner høyt til fjells som ligger hele året."
+ },
+ "LCC-3_2_2": {
+  "label": "Ice, Glaciers",
+  "tip": "Grunn dekket av is, inkludert isbreer som dannes når snø hoper seg opp og pakkes sammen til is over mange år."
+ },
+ "LUA": {
+  "label": "Land Use Attributes",
+  "tip": "Samler måtene mennesker bruker arealer på, som jordbruk, industri, tjenester, transport eller bolig. Et område kan ha flere bruksformer, registrert på det mest detaljerte nivået som er kjent."
+ },
+ "LUA-1": {
+  "label": "Primary Production Sector",
+  "tip": "Arealer som brukes til å produsere varer direkte fra lokale naturressurser, f.eks. jordbruk, skogbruk, fiske, bergverk og steinbrudd, samt første bearbeiding i nærheten."
+ },
+ "LUA-1_1": {
+  "label": "Agriculture",
+  "tip": "Arealer som brukes til å dyrke vekster eller holde husdyr for mat, salg, eget bruk eller industri, inkludert drivhus, brakkmark og energivekster."
+ },
+ "LUA-1_1_1": {
+  "label": "Commercial Crop Production",
+  "tip": "Åkrer, frukthager og gressarealer som drives for å produsere avlinger eller fôr til mennesker, husdyr, bioenergi eller industri, på friland eller i veksthus."
+ },
+ "LUA-1_1_2": {
+  "label": "Farming Infrastructure",
+  "tip": "Bygninger og anlegg på gårdsbruk, f.eks. våningshus, dyrehus, gjødsellager og bygninger for håndtering eller bearbeiding av avlinger."
+ },
+ "LUA-1_1_2_1": {
+  "label": "Animal Husbandry",
+  "tip": "Gårdsanlegg for oppstalling og fôring av husdyr, f.eks. fjøs, hønsehus eller grisehus; omfatter også insekter og landsnegler."
+ },
+ "LUA-1_1_2_2": {
+  "label": "Farming Storage",
+  "tip": "Gårdsarealer eller bygninger som brukes til lagring, f.eks. låver eller plansiloer for maisensilasje."
+ },
+ "LUA-1_1_2_3": {
+  "label": "Other Farming Infrastructure",
+  "tip": "Gårdsanlegg utenom dyrehus og lager, brukt til håndtering og bearbeiding av avlinger og lignende oppgaver, f.eks. et kornturkeri eller en sorteringshall."
+ },
+ "LUA-1_1_3": {
+  "label": "Production for Own Consumption",
+  "tip": "Arealer der folk dyrker mat eller holder dyr til egen husholdning i stedet for salg, f.eks. kjøkkenhager eller private dyrehus."
+ },
+ "LUA-1_2": {
+  "label": "Forestry",
+  "tip": "Arealer som brukes til å dyrke og høste tre, f.eks. tømmer, ved eller massevirke, inkludert planteskoler og tømmerlagre, i naturlig eller plantet skog."
+ },
+ "LUA-1_3": {
+  "label": "Mining and Quarrying",
+  "tip": "Arealer som brukes til å utvinne naturlig forekommende materialer som kull, malm, grus, sand, salt, olje, naturgass eller torv, over eller under bakken."
+ },
+ "LUA-1_4": {
+  "label": "Aquaculture and Fishing",
+  "tip": "Områder som brukes til kommersielt fiske og til oppdrett av fisk og andre vanndyr."
+ },
+ "LUA-1_4_1": {
+  "label": "Aquaculture",
+  "tip": "Områder som brukes til avl og oppdrett av fisk og andre vanndyr, f.eks. klekkerier, blåskjellanlegg eller krokodillefarmer."
+ },
+ "LUA-1_4_2": {
+  "label": "Professional Wild Fishery",
+  "tip": "Vannområder som brukes til kommersiell fangst av villfisk og sjømat, vanligvis til havs."
+ },
+ "LUA-1_5": {
+  "label": "Other Primary Production",
+  "tip": "Primærproduksjon som ikke dekkes av jordbruk, skogbruk, bergverk eller fiske, f.eks. kommersiell jakt, sanking av ville produkter, gjeting av vandrende dyr eller birøkt."
+ },
+ "LUA-1_5_1": {
+  "label": "Hunting",
+  "tip": "Inngjerdede eller åpne områder som brukes til profesjonell jakt på ville dyr."
+ },
+ "LUA-1_5_2": {
+  "label": "Management of Migratory Animals",
+  "tip": "Områder som brukes til hold og fôring av dyr som streifer over store områder, som rein eller hjort."
+ },
+ "LUA-1_5_3": {
+  "label": "Picking Natural Products",
+  "tip": "Områder der ville, ikke-dyrkede produkter utenom tre sankes for salg, f.eks. ville bær, moser eller lav."
+ },
+ "LUA-1_5_4": {
+  "label": "Apiculture, Bee Hives",
+  "tip": "Områder som brukes til honningproduksjon, med én eller flere bikuber; som ved jakt er yttergrensen ofte vanskelig å trekke."
+ },
+ "LUA-2": {
+  "label": "Secondary Production Sector",
+  "tip": "Arealer som brukes av industrien til å gjøre råvarer om til ferdige eller halvferdige varer, f.eks. fabrikker, samt tilhørende lager- og transportarealer."
+ },
+ "LUA-2_1": {
+  "label": "Manufacturing Industry",
+  "tip": "Samler fabrikkbasert vareproduksjon, inndelt i råvareindustri, tunge produkter og lette produkter."
+ },
+ "LUA-2_1_1": {
+  "label": "Raw Industry",
+  "tip": "Industri som gjør produkter fra jordbruk, skogbruk og bergverk om til grunnleggende industrimaterialer, f.eks. sagbruk, stålverk eller kjemiske fabrikker."
+ },
+ "LUA-2_1_1_1": {
+  "label": "Manufacturing Textile Products",
+  "tip": "Anlegg for bearbeiding og spinning av fibrer, veving av stoff, produksjon av tråd og garving eller beredning av lær, f.eks. en tekstilfabrikk."
+ },
+ "LUA-2_1_1_2": {
+  "label": "Manufacturing Wood-Based Products",
+  "tip": "Anlegg som bearbeider tre til produkter, f.eks. sagbruk og fabrikker som lager kryssfiner, fiberplater, snekkervarer, kork- eller stråvarer."
+ },
+ "LUA-2_1_1_3": {
+  "label": "Manufacturing Pulp and Paper Products",
+  "tip": "Anlegg for produksjon av tremasse, papir, papp, hygieneprodukter av papir eller tapet, f.eks. en papirfabrikk."
+ },
+ "LUA-2_1_1_4": {
+  "label": "Manufacturing Coke, Petroleum And Nuclear Fuels",
+  "tip": "Anlegg for produksjon av koks, raffinering av petroleum eller bearbeiding av kjernebrensel, f.eks. et oljeraffineri."
+ },
+ "LUA-2_1_1_5": {
+  "label": "Manufacturing Chemical Products and Synthetic Fibres",
+  "tip": "Anlegg som lager kjemikalier og syntetiske fibrer, f.eks. kunstgjødsel, maling, legemidler, såpe, lim eller nylon. Naturfibrer som bomull eller lin er ikke med."
+ },
+ "LUA-2_1_1_6": {
+  "label": "Manufacturing Metallic Products",
+  "tip": "Anlegg for produksjon, bearbeiding og støping av jern, stål og andre metaller, og for produksjon av metallvarer, f.eks. et stålverk eller et støperi."
+ },
+ "LUA-2_1_1_7": {
+  "label": "Manufacturing Nonmetallic Mineral Products",
+  "tip": "Anlegg som lager glass, tegl, keramikk, sement, betong, kalk eller gips, eller som skjærer og former stein, f.eks. et teglverk."
+ },
+ "LUA-2_1_1_8": {
+  "label": "Manufacturing Rubber and Plastic Products",
+  "tip": "Anlegg for produksjon av dekk, slanger, plastemballasje og andre gummi- eller plastvarer."
+ },
+ "LUA-2_1_1_9": {
+  "label": "Manufacturing Other Raw Materials",
+  "tip": "Anlegg som produserer grunnleggende industrimaterialer som ikke passer inn i noen av de andre kategoriene for råvareindustri."
+ },
+ "LUA-2_1_2": {
+  "label": "Heavy End Product Industry",
+  "tip": "Industri som gjør grunnleggende industrimaterialer om til tunge ferdigprodukter som maskiner og kjøretøy."
+ },
+ "LUA-2_1_2_1": {
+  "label": "Manufacturing Machinery Products",
+  "tip": "Anlegg som lager maskiner til industri, jordbruk, skogbruk og annen bruk, samt våpen, ammunisjon og husholdningsapparater (men ikke kjøretøy eller luftfartøy)."
+ },
+ "LUA-2_1_2_2": {
+  "label": "Manufacturing Vehicles and Transport Equipment",
+  "tip": "Anlegg som bygger kjøretøy og transportmidler, f.eks. bilfabrikker, skipsverft eller fabrikker som lager fly, tog, motorsykler eller sykler."
+ },
+ "LUA-2_1_2_3": {
+  "label": "Manufacturing Other Heavy End Products",
+  "tip": "Anlegg som lager tunge ferdigprodukter som ikke passer inn i kategoriene for maskiner eller kjøretøy."
+ },
+ "LUA-2_1_3": {
+  "label": "Light End Product Industry",
+  "tip": "Industri som gjør grunnleggende industrimaterialer om til lettere forbruksvarer, f.eks. mat, klær, elektronikk eller møbler."
+ },
+ "LUA-2_1_3_1": {
+  "label": "Manufacturing Food, Beverages and Tobacco Products",
+  "tip": "Anlegg som bearbeider mat, drikke og tobakk, f.eks. kjøtt- og meieribedrifter, kornmøller, bryggerier eller fôrfabrikker."
+ },
+ "LUA-2_1_3_2": {
+  "label": "Manufacturing Clothes and Leather Products",
+  "tip": "Anlegg som lager klær, pels- og lærvarer, reisegods, vesker, saler og fottøy."
+ },
+ "LUA-2_1_3_3": {
+  "label": "Publishing, Printing, Reproduction of Recorded Media",
+  "tip": "Anlegg som brukes til utgivelse og trykking av bøker, aviser og tidsskrifter, og til kopiering av lydopptak."
+ },
+ "LUA-2_1_3_4": {
+  "label": "Manufacturing Electrical, Precision and Optical Equipment",
+  "tip": "Anlegg som lager elektrisk, elektronisk og finmekanisk utstyr, f.eks. datamaskiner, kabler, batterier, lamper, telefoner, medisinske instrumenter eller klokker."
+ },
+ "LUA-2_1_3_5": {
+  "label": "Manufacturing Other Light End Products",
+  "tip": "Anlegg som lager andre lette forbruksvarer, f.eks. møbler, smykker, musikkinstrumenter, sportsutstyr og leker."
+ },
+ "LUA-2_2": {
+  "label": "Energy Production",
+  "tip": "Arealer som brukes til å produsere strøm eller varme, f.eks. kraftverk, vindparker eller solparker."
+ },
+ "LUA-2_2_1": {
+  "label": "Nuclear Based Energy Production",
+  "tip": "Arealer der kjernekraftverk drives."
+ },
+ "LUA-2_2_2": {
+  "label": "Fossil Fuel Based Energy Production",
+  "tip": "Kraftverk som brenner fossilt brensel som kull, olje, naturgass eller torv."
+ },
+ "LUA-2_2_2_1": {
+  "label": "Coal and Lignite Based Energy Production",
+  "tip": "Kraftverk som brenner steinkull eller brunkull for å produsere energi."
+ },
+ "LUA-2_2_2_2": {
+  "label": "Mineral Oil Based Energy Production",
+  "tip": "Kraftverk som brenner mineralolje for å produsere energi."
+ },
+ "LUA-2_2_2_3": {
+  "label": "Mineral Gas Based Energy Production",
+  "tip": "Kraftverk som brenner naturgass for å produsere energi."
+ },
+ "LUA-2_2_2_4": {
+  "label": "Peat and Other Fossil Fuel Based Energy Production",
+  "tip": "Kraftverk som brenner torv eller annet fossilt brensel som ikke dekkes av kategoriene for kull, olje eller gass."
+ },
+ "LUA-2_2_3": {
+  "label": "Biomass Based Energy Production",
+  "tip": "Kraftverk som brenner brensel laget av planter eller organisk materiale, f.eks. ved, biogass eller annet biobrensel."
+ },
+ "LUA-2_2_4": {
+  "label": "Renewable Energy Production",
+  "tip": "Arealer som brukes til å produsere energi fra andre fornybare kilder enn biomasse, f.eks. vannkraft, solenergi, vindkraft, geotermisk energi, tidevanns- eller bølgekraft."
+ },
+ "LUA-2_2_4_1": {
+  "label": "Water Based Energy Production",
+  "tip": "Områder som produserer strøm ved at elvestrømmer eller vann som faller fra magasiner driver turbiner, f.eks. vannkraftverk med demning. Tidevannskraft er ikke med."
+ },
+ "LUA-2_2_4_2": {
+  "label": "Solar Based Energy Production",
+  "tip": "Områder som samler sollys for å produsere strøm eller varme med solcellepaneler eller solfangere, på land eller flytende på vann."
+ },
+ "LUA-2_2_4_3": {
+  "label": "Wind Based Energy Production",
+  "tip": "Områder på land eller til havs som produserer strøm med vindturbiner, f.eks. en vindpark."
+ },
+ "LUA-2_2_4_4": {
+  "label": "Geo-Thermal Based Energy Production",
+  "tip": "Områder som produserer varme eller strøm ved hjelp av den naturlige varmen dypt nede i jorden, f.eks. et geotermisk kraftverk."
+ },
+ "LUA-2_2_4_5": {
+  "label": "Tide Based Energy Production",
+  "tip": "Kystområder som produserer strøm ved at tidevannsstrømmer driver turbiner."
+ },
+ "LUA-2_2_5": {
+  "label": "Waste Combustion Based Energy Production",
+  "tip": "Områder der energi produseres ved å brenne avfall, f.eks. et forbrenningsanlegg med energigjenvinning."
+ },
+ "LUA-2_5": {
+  "label": "Other Industry",
+  "tip": "Arealer som brukes til å lage industriprodukter som ikke passer inn i noen av de andre industri- eller energikategoriene."
+ },
+ "LUA-3": {
+  "label": "Tertiary Services Sector",
+  "tip": "Arealer som brukes til å yte tjenester til næringsliv og allmennheten, f.eks. butikker, kontorer, hoteller, skoler, sykehus, offentlige bygninger og fritidsanlegg."
+ },
+ "LUA-3_1": {
+  "label": "Commercial Services",
+  "tip": "Arealer som brukes til kommersielle tjenester, som butikker, eiendomstjenester, hoteller og restauranter."
+ },
+ "LUA-3_1_1": {
+  "label": "Wholesale, Retail Trade, Repair of Vehicles and Household Goods",
+  "tip": "Arealer som brukes til kjøp og salg av varer i engros- eller detaljhandel og til reparasjon av kjøretøy og husholdningsartikler, f.eks. butikker, bilforhandlere eller verksteder."
+ },
+ "LUA-3_1_2": {
+  "label": "Real Estate Services",
+  "tip": "Arealer som brukes til eiendoms- og utleietjenester, f.eks. eiendomsmeglere eller utleiekontorer."
+ },
+ "LUA-3_1_3": {
+  "label": "Accommodation and Food Services",
+  "tip": "Arealer som brukes til overnatting og servering, f.eks. hoteller, feriebyer, campingplasser, restauranter, barer og kantiner."
+ },
+ "LUA-3_1_4": {
+  "label": "Other Commercial Services",
+  "tip": "Kommersielle tjenester som ikke dekkes andre steder, f.eks. skjønnhetssalonger, spa eller andre velværetjenester."
+ },
+ "LUA-3_2": {
+  "label": "Financial, Professional and Information Services",
+  "tip": "Arealer som brukes til finansielle, faglige eller informasjonstjenester, vanligvis i kontorer."
+ },
+ "LUA-3_2_1": {
+  "label": "Financial and Insurance Services",
+  "tip": "Arealer som brukes til bank, utlån, forsikring og andre finansielle tjenester, f.eks. bankfilialer eller forsikringskontorer."
+ },
+ "LUA-3_2_2": {
+  "label": "Professional, Technical and Scientific Services",
+  "tip": "Arealer som brukes til fagtjenester som IT, forskning og utvikling, juss, regnskap, arkitektur, ingeniørarbeid, reklame eller rådgivning."
+ },
+ "LUA-3_2_3": {
+  "label": "Information and Communication Services",
+  "tip": "Arealer som brukes til medie- og kommunikasjonstjenester, f.eks. forlagsvirksomhet, film- og TV-produksjon, radiokringkasting, post, telekommunikasjon og databehandling."
+ },
+ "LUA-3_2_4": {
+  "label": "Administrative and Support Services",
+  "tip": "Arealer som brukes til støttetjenester for bedrifter og personer, f.eks. reisebyråer, utleiefirmaer, renholds- eller vaktselskaper."
+ },
+ "LUA-3_2_5": {
+  "label": "Other Financial Professional and Information Services",
+  "tip": "Finansielle, faglige eller informasjonstjenester som ikke passer inn i noen av de andre kategoriene i denne gruppen."
+ },
+ "LUA-3_3": {
+  "label": "Community Services",
+  "tip": "Arealer som brukes til tjenester for samfunnet, f.eks. offentlig forvaltning, skoler, sykehus og religiøse steder."
+ },
+ "LUA-3_3_1": {
+  "label": "Public Administration, Defense, Justice, Public Security",
+  "tip": "Arealer som brukes til offentlig forvaltning, forsvar, domstoler, politi, brannvesen og lovpålagt trygd, f.eks. rådhus eller militærbaser."
+ },
+ "LUA-3_3_2": {
+  "label": "Science, Research, Education",
+  "tip": "Arealer som brukes til utdanning på alle nivåer, fra barneskoler til universiteter og voksenopplæring."
+ },
+ "LUA-3_3_3": {
+  "label": "Health and Social Services",
+  "tip": "Arealer som brukes til helsetjenester og sosialt arbeid for mennesker og dyr, f.eks. sykehus, klinikker, pleiehjem eller veterinærpraksiser."
+ },
+ "LUA-3_3_4": {
+  "label": "Religious Services",
+  "tip": "Arealer som brukes til religiøse formål, f.eks. gudshus, klostre og gravplasser."
+ },
+ "LUA-3_3_4_1": {
+  "label": "House of Worship",
+  "tip": "Bygninger for gudstjeneste og bønn i alle trosretninger, f.eks. kirker, moskeer eller synagoger, inkludert tilhørende administrasjonsbygninger."
+ },
+ "LUA-3_3_4_2": {
+  "label": "Monastery",
+  "tip": "Klostre, der et fellesskap av mennesker bor sammen for å vie livet sitt til å utøve sin religion etter faste regler og ritualer."
+ },
+ "LUA-3_3_4_3": {
+  "label": "Cemetery",
+  "tip": "Gravplasser for alle trosretninger, inkludert historiske kirkegårder."
+ },
+ "LUA-3_3_5": {
+  "label": "Other Community Services",
+  "tip": "Arealer som brukes til samfunnstjenester som ikke dekkes av de andre kategoriene, f.eks. gravplasser."
+ },
+ "LUA-3_4": {
+  "label": "Cultural, Entertainment and Recreational Services",
+  "tip": "Arealer som brukes til kultur, underholdning, idrett og rekreasjon, f.eks. museer, fornøyelsesparker, stadioner og byparker."
+ },
+ "LUA-3_4_1": {
+  "label": "Cultural Services",
+  "tip": "Arealer som brukes til kunst, biblioteker, museer, dyreparker, botaniske hager, historiske steder og andre kulturtjenester."
+ },
+ "LUA-3_4_1_1": {
+  "label": "Indoor Cultural Service",
+  "tip": "Innendørs kulturarenaer, f.eks. biblioteker, museer og teatre."
+ },
+ "LUA-3_4_1_2": {
+  "label": "Outdoor Cultural Service",
+  "tip": "Utendørs kultursteder, f.eks. dyreparker og botaniske hager."
+ },
+ "LUA-3_4_2": {
+  "label": "Entertainment",
+  "tip": "Arealer som brukes til underholdning, f.eks. fornøyelsesparker, temaparker og kasinoer eller andre spillesteder."
+ },
+ "LUA-3_4_3": {
+  "label": "Sports Infrastructure",
+  "tip": "Arealer som brukes til idrettsanlegg, f.eks. stadioner, idrettshaller, svømmebasseng, treningssentre, skianlegg og golfbaner."
+ },
+ "LUA-3_4_3_1": {
+  "label": "Golf Course",
+  "tip": "Arealer som brukes som golfbaner."
+ },
+ "LUA-3_4_3_2": {
+  "label": "Ski Piste",
+  "tip": "Preparerte bakker for alpint, snowboard og andre glidesporter på snø."
+ },
+ "LUA-3_4_3_3": {
+  "label": "Outdoor Racecourse",
+  "tip": "Utendørs baner for løp og konkurranser, f.eks. motorsportbaner, motocross- eller terrengsykkelbaner, hesteveddeløpsbaner og skateparker."
+ },
+ "LUA-3_4_3_4": {
+  "label": "Sport Hall",
+  "tip": "Innendørs haller som er store nok til lagballspill som basketball, volleyball eller håndball."
+ },
+ "LUA-3_4_3_5": {
+  "label": "Stadium",
+  "tip": "Idrettsbaner (gress, sand, kunstgress osv.) omgitt av overbygde eller åpne tribuner for tilskuere, f.eks. et fotballstadion."
+ },
+ "LUA-3_4_3_6": {
+  "label": "Swimming Pool",
+  "tip": "Innendørs svømmehaller og utendørs svømmebasseng."
+ },
+ "LUA-3_4_3_7": {
+  "label": "Sports Ground",
+  "tip": "Utendørs idrettsplasser uten tak eller tilskuertribuner rundt, f.eks. en lokal fotballbane eller friidrettsbane."
+ },
+ "LUA-3_4_3_8": {
+  "label": "Fitness Club",
+  "tip": "Innendørs treningssentre og klubblokaler for trening og individuelle idretter som boksing, bryting, styrketrening eller turn, mindre enn fullverdige idrettshaller."
+ },
+ "LUA-3_4_3_9": {
+  "label": "Yachtharbour, Sport Boat Marina",
+  "tip": "Havner for fritidsbåter og seilbåter, som omfatter landarealene og, der det er relevant, selve havnebassenget."
+ },
+ "LUA-3_4_4": {
+  "label": "Open Air Recreational Areas",
+  "tip": "Utendørs områder som brukes til fritid, fra byparker og lekeplasser til nasjonalparker og natur som skog, myr, innsjøer og fjell."
+ },
+ "LUA-3_4_4_1": {
+  "label": "Urban Greenery, City Parks, Playgrounds",
+  "tip": "Grøntområder i byer og tettsteder som brukes til fritid, f.eks. byparker, lekeplasser og annen bynatur."
+ },
+ "LUA-3_4_4_2": {
+  "label": "(Semi-)Natural Areas Used for Recreation",
+  "tip": "Naturlige eller naturlignende områder som brukes til fritid, f.eks. nasjonalparker, skog, lyngheier, fjell, innsjøer eller elver som brukes til turgåing og friluftsliv."
+ },
+ "LUA-3_4_5": {
+  "label": "Other Recreational Services",
+  "tip": "Fritidsbruk som ikke dekkes av de andre kategoriene for kultur, underholdning og rekreasjon, f.eks. kolonihager eller fritidsfiske."
+ },
+ "LUA-3_4_5_1": {
+  "label": "Allotment Garden",
+  "tip": "Små jordlapper i byer som leies som hager, av og til for å dyrke mat, men mest for fritid."
+ },
+ "LUA-3_4_5_2": {
+  "label": "Amateur Fishing",
+  "tip": "Dammer, innsjøer, elver og tilgrensende arealer som brukes til fritidsfiske, hovedsakelig i innlandet. Fiske til havs er ikke med."
+ },
+ "LUA-3_5": {
+  "label": "Other Services",
+  "tip": "Arealer som brukes til tjenester som ikke passer inn i noen av de andre tjenestekategoriene."
+ },
+ "LUA-4": {
+  "label": "Transport Networks, Logistics, Utilities",
+  "tip": "Arealer som brukes til de grunnleggende nettverkene samfunnet er avhengig av, f.eks. transport, lagring, kommunikasjon, vannforsyning og avløps- eller avfallsbehandling."
+ },
+ "LUA-4_1": {
+  "label": "Transport Networks",
+  "tip": "Arealer som brukes til transportinfrastruktur, som veier, jernbaner, flyplasser og havner."
+ },
+ "LUA-4_1_1": {
+  "label": "Road Network",
+  "tip": "Arealer som brukes til veitransport, f.eks. veier, parkeringsplasser og bensinstasjoner."
+ },
+ "LUA-4_1_2": {
+  "label": "Railway Network",
+  "tip": "Arealer som brukes til jernbanetransport, f.eks. spor, jernbanestasjoner og skiftetomter."
+ },
+ "LUA-4_1_3": {
+  "label": "Air Transport",
+  "tip": "Arealer som brukes til lufttransport, f.eks. flyplasser og tilhørende tjenester."
+ },
+ "LUA-4_1_4": {
+  "label": "Water Transport",
+  "tip": "Land- og vannarealer som brukes til skipsfart og båttransport, f.eks. havner, dokker og seilbare elver."
+ },
+ "LUA-4_1_5": {
+  "label": "Other Transportation Networks",
+  "tip": "Arealer som brukes til transportformer som ikke passer inn i kategoriene for vei, jernbane, luft eller sjø."
+ },
+ "LUA-4_2": {
+  "label": "Logistics and Storage",
+  "tip": "Arealer som brukes til lagring av industri- eller handelsvarer utenfor fabrikkområder, samt tilhørende anlegg, f.eks. lagerbygninger og distribusjonssentre."
+ },
+ "LUA-4_3": {
+  "label": "Utilities",
+  "tip": "Areal brukt til offentlige tjenester som holder et sted i drift, som strøm- og vannforsyning, avløpshåndtering og avfallsbehandling."
+ },
+ "LUA-4_3_1": {
+  "label": "Power Distribution Services",
+  "tip": "Områder brukt til å levere energi, som strømledninger, gassnett og fjernvarme, inkludert rørledninger for olje og gass."
+ },
+ "LUA-4_3_1_1": {
+  "label": "Electricity Distribution",
+  "tip": "Areal brukt til å føre strøm frem til brukerne, f.eks. traseer for kraftledninger og områder med transformatorstasjoner."
+ },
+ "LUA-4_3_1_2": {
+  "label": "Gas Distribution",
+  "tip": "Areal brukt til å distribuere gass til brukerne, f.eks. traseer for gassrørledninger og tilhørende stasjoner."
+ },
+ "LUA-4_3_1_3": {
+  "label": "Thermal Energy Distribution",
+  "tip": "Areal brukt til å fordele varme til bygninger, f.eks. rør og anlegg i et fjernvarmenett."
+ },
+ "LUA-4_3_2": {
+  "label": "Water and Sewage Infrastructure",
+  "tip": "Områder brukt til å skaffe rent vann og håndtere avløp, fra uttak og rensing til lagring, distribusjon og avløpsrensing, inkludert rørledninger."
+ },
+ "LUA-4_3_2_1": {
+  "label": "Drinking Water Facilities",
+  "tip": "Anlegg og tilhørende tomter for uttak, behandling, lagring og distribusjon av drikkevann, f.eks. et vannverk eller et høydebasseng."
+ },
+ "LUA-4_3_2_2": {
+  "label": "Sewage Water Treatment",
+  "tip": "Steder der avløpsvann fra husholdninger og bedrifter renses før det slippes ut, f.eks. et kommunalt renseanlegg."
+ },
+ "LUA-4_3_2_3": {
+  "label": "Water Runoff Retention Basin",
+  "tip": "Bassenger bygget for å holde tilbake avrenningsvann i et vassdrag, slik at flomfaren lenger nedstrøms blir mindre."
+ },
+ "LUA-4_3_2_4": {
+  "label": "Artificial Snow Water Pond",
+  "tip": "Dammer i skianlegg som lagrer vann til produksjon av kunstsnø."
+ },
+ "LUA-4_3_2_5": {
+  "label": "Irrigation and Fire Fighting Water Pond",
+  "tip": "Bassenger som lagrer vann til slokking av branner eller til vanning av jordbruksarealer, og noen ganger skogsarealer."
+ },
+ "LUA-4_3_3": {
+  "label": "Waste Treatment",
+  "tip": "Områder der avfall samles inn, behandles eller gjenvinnes, f.eks. fyllinger, forbrenningsanlegg, komposteringsanlegg og anlegg for farlig avfall."
+ },
+ "LUA-4_3_3_1": {
+  "label": "Dump Site",
+  "tip": "Områder der avfall samles inn og deponeres, som en avfallsfylling eller søppelfylling."
+ },
+ "LUA-4_3_3_1_1": {
+  "label": "Hazardous Waste",
+  "tip": "Avfall som kan skade mennesker eller natur og krever spesiell håndtering eller tette deponier. Hva som regnes som farlig, avhenger delvis av nasjonal lovgivning."
+ },
+ "LUA-4_3_3_1_2": {
+  "label": "Inert Or Non-Hazardous Waste",
+  "tip": "Avfall som ikke utgjør noen fare for mennesker eller miljø, f.eks. byggavfall og vanlig husholdningsavfall."
+ },
+ "LUA-4_3_3_2": {
+  "label": "Recycling Facilities",
+  "tip": "Steder der brukte materialer klargjøres for gjenbruk, f.eks. papir, plastflasker og glass, eller hageavfall som blir til kompost."
+ },
+ "LUA-4_3_4": {
+  "label": "Other Utilities",
+  "tip": "Areal brukt til forsyningstjenester som ikke passer inn i kategoriene energi, vann, avløp eller avfall."
+ },
+ "LUA-5": {
+  "label": "Residential",
+  "tip": "Areal som hovedsakelig brukes til boliger, fra boligblokker i byen til hus på landet og mobile hjem, inkludert områder blandet med forenlig bruk."
+ },
+ "LUA-5_1": {
+  "label": "Permanent Residential",
+  "tip": "Boligområder der folk bor hele året, f.eks. eneboliger med hage, rekkehus eller boligblokker."
+ },
+ "LUA-5_2": {
+  "label": "Residential Use With Other Compatible Uses",
+  "tip": "Boligområder blandet med annen bruk som passer godt sammen med boliger, f.eks. nærbutikker, tjenester eller lette verksteder."
+ },
+ "LUA-5_3": {
+  "label": "Other Residential",
+  "tip": "Boliger som ikke er en fast hovedbolig, som fritidsboliger, midlertidige leirer eller uformelle bosetninger."
+ },
+ "LUA-5_3_1": {
+  "label": "Temporary Residential, Permanent Structure",
+  "tip": "Faste bygninger som bare brukes som bolig deler av året, f.eks. sommerhus eller hytter."
+ },
+ "LUA-5_3_2": {
+  "label": "Temporary Dwelling, Non-Permanent Structure",
+  "tip": "Områder med midlertidige boenheter som ikke er bygget for å vare, f.eks. flyktningleirer eller leirer for migranter."
+ },
+ "LUA-5_3_3": {
+  "label": "Informal Dwelling",
+  "tip": "Bosetninger bygget utenfor ethvert juridisk eller planmessig rammeverk, som slumområder eller favelaer, som over tid blir nærmest permanente."
+ },
+ "LUA-6": {
+  "label": "Other Uses",
+  "tip": "Areal som ikke hører til noen av hovedgruppene for arealbruk (produksjon, tjenester, transport og forsyning, bolig), inkludert områder under bygging."
+ },
+ "LUA-6_1": {
+  "label": "Transitional Areas Under Construction",
+  "tip": "Areal der det pågår byggearbeider. Brukes for faktisk nåværende bruk, ikke for fremtidig planlagt bruk."
+ },
+ "LUA-6_3": {
+  "label": "Areas Not In Any Economic Use",
+  "tip": "Areal i naturlig tilstand uten økonomisk bruk, f.eks. urørt villmark eller avsidesliggende fjellområder."
+ },
+ "LUA-6_4": {
+  "label": "Flood Protection",
+  "tip": "Areal satt av for å redusere flom, f.eks. en polder som kan oversvømmes med vilje for å senke flomtoppen i en elv."
+ },
+ "LCH": {
+  "label": "Land Characteristics",
+  "tip": "Samler ekstra beskrivende opplysninger som kan knyttes til arealdekke eller arealbruk, som materialer, planteegenskaper, vannforhold, status, mønstre, form og tidspunkt."
+ },
+ "LCH-1": {
+  "label": "Built-Up Characteristics",
+  "tip": "Opplysninger som beskriver bebygde områder, som hvor mye av bakken som er forseglet, plassering av bygninger, byggematerialer, grønne tak og transportforhold."
+ },
+ "LCH-1_1": {
+  "label": "Soil Sealing Degree",
+  "tip": "Måler hvor stor andel av et område som er dekket av forseglede, vanntette flater som asfalt, betong eller bygninger, oppgitt i prosent (%)."
+ },
+ "LCH-1_2": {
+  "label": "Built-Up Pattern",
+  "tip": "Samler de typiske måtene bygninger er dimensjonert og spredt over et område på, fra spredte gårdsbruk til tette bykvartaler."
+ },
+ "LCH-1_2_1": {
+  "label": "Scattered Single Houses, Discontinuous",
+  "tip": "Noen få bygninger spredt med tydelige mellomrom, som ikke dominerer landskapet, slik som i tynt befolkede bygder."
+ },
+ "LCH-1_2_2": {
+  "label": "Single Blocks, Discontinuous",
+  "tip": "Store bygninger i flere etasjer som står hver for seg med åpne arealer imellom og rommer mange beboere eller kontorer, f.eks. boligblokker eller et høyhus."
+ },
+ "LCH-1_2_3": {
+  "label": "Suburban Row Houses, Terraced, Semi-Detached Houses",
+  "tip": "Forstadsbebyggelse der hager utgjør en stor del av hver tomt, f.eks. rekker av rekkehus eller tomannsboliger."
+ },
+ "LCH-1_2_4": {
+  "label": "City Street Blocks, Closed Front",
+  "tip": "Kvartaler i sentrum omsluttet av gater, med bygninger vegg i vegg langs gaten og for det meste asfalterte eller brolagte bakgårder."
+ },
+ "LCH-1_2_5": {
+  "label": "Large Complex Buildings, Big Halls",
+  "tip": "Svært store frittstående bygninger eller haller, f.eks. et fotballstadion, en flyterminal, en jernbanestasjon eller en katedral."
+ },
+ "LCH-1_3": {
+  "label": "Building Nature",
+  "tip": "Samler betegnelser for hva slags bygning noe er, basert på INSPIRE-standarden for bygninger, f.eks. kirke, silo, fyrtårn eller drivhus."
+ },
+ "LCH-1_3_1": {
+  "label": "Building Nature Value",
+  "tip": "En verdi som angir den konkrete bygningstypen, hentet fra INSPIRE-kodelisten for bygninger, f.eks. kapell, tårn eller vindmølle."
+ },
+ "LCH-1_4": {
+  "label": "Other Construction Nature",
+  "tip": "Samler betegnelser for menneskeskapte konstruksjoner som ikke er bygninger, f.eks. bruer, demninger, skorsteiner, master, vindturbiner eller solcellepaneler."
+ },
+ "LCH-1_4_1": {
+  "label": "Other Construction Nature Value",
+  "tip": "En verdi som angir typen konstruksjon som ikke er en bygning, hentet fra en INSPIRE-kodeliste, f.eks. antenne, støttemur eller lagertank."
+ },
+ "LCH-1_5": {
+  "label": "Artificial Surface Material Type",
+  "tip": "Samler de menneskeskapte materialene som finnes på bakkeflater og tak i tettsteder, f.eks. betong, asfalt, metall eller takstein."
+ },
+ "LCH-1_5_1": {
+  "label": "Mineral Compound",
+  "tip": "Menneskeskapte materialer laget av utvunnede jordarter ved å blande bestanddeler og tilføre vann eller varme, f.eks. betong, glass eller tegl."
+ },
+ "LCH-1_5_1_1": {
+  "label": "Glass",
+  "tip": "Glass brukt som overflatemateriale, for eksempel på glasstak eller glassfasader."
+ },
+ "LCH-1_5_1_2": {
+  "label": "Ceramic, Clay Tiles, Bricks",
+  "tip": "Brente leirprodukter brukt på tak og bakkeflater, f.eks. teglstein på tak, keramiske fliser eller murstein."
+ },
+ "LCH-1_5_1_3": {
+  "label": "Concrete",
+  "tip": "Betong brukt som overflatemateriale, f.eks. på fortau, parkeringsplasser eller flate tak."
+ },
+ "LCH-1_5_1_4": {
+  "label": "Asbestos Fibre Cement",
+  "tip": "Sementplater forsterket med asbestfibre, ofte å finne på eldre tak, f.eks. bølgeplater."
+ },
+ "LCH-1_5_1_5": {
+  "label": "Non-Asbestos Fibre Cement",
+  "tip": "Fiberforsterkede sementplater uten asbest, brukt for eksempel som taktekking eller kledning."
+ },
+ "LCH-1_5_2": {
+  "label": "Solar Panels",
+  "tip": "Flater dekket med solcellepaneler, f.eks. solcellepaneler på et tak eller i en solcellepark."
+ },
+ "LCH-1_5_3": {
+  "label": "Metal",
+  "tip": "Metall brukt som overflatemateriale, hovedsakelig på tak, f.eks. plater av kobber, sink, aluminium eller stål."
+ },
+ "LCH-1_5_3_1": {
+  "label": "Copper",
+  "tip": "Kobber brukt som overflatemateriale, f.eks. et kobbertak, som ofte blir grønt med tiden."
+ },
+ "LCH-1_5_3_2": {
+  "label": "Zinc",
+  "tip": "Sink brukt som overflatemateriale, f.eks. takplater av sink."
+ },
+ "LCH-1_5_3_3": {
+  "label": "Aluminium",
+  "tip": "Aluminium brukt som overflatemateriale, f.eks. takplater av aluminium."
+ },
+ "LCH-1_5_3_4": {
+  "label": "Steel",
+  "tip": "Stål brukt som overflatemateriale, f.eks. takplater av stål på lagerbygninger eller fabrikker."
+ },
+ "LCH-1_5_3_5": {
+  "label": "Iron",
+  "tip": "Jern brukt som overflatemateriale, f.eks. tak av bølgeblikk."
+ },
+ "LCH-1_5_3_6": {
+  "label": "Lead",
+  "tip": "Bly brukt som overflatemateriale, f.eks. blyplater på tak."
+ },
+ "LCH-1_5_4": {
+  "label": "Hydrocarbon Compound",
+  "tip": "Materialer laget av restprodukter fra raffinering av råolje, ofte blandet med sand eller grus for å tette veier og tak, f.eks. asfalt eller tjære."
+ },
+ "LCH-1_5_4_1": {
+  "label": "Tar",
+  "tip": "Tjære, et mørkt, klebrig oljebasert materiale som brukes til å tette og herde flater som veier eller tak."
+ },
+ "LCH-1_5_4_2": {
+  "label": "Asphalt",
+  "tip": "Asfalt, den mørke oljebaserte blandingen med grus eller sand som vanligvis brukes til å dekke veier og parkeringsplasser."
+ },
+ "LCH-1_5_4_3": {
+  "label": "Bitumen",
+  "tip": "Bitumen, et tyktflytende oljebasert bindemiddel som brukes til å gjøre flater vanntette, f.eks. takpapp eller veidekke."
+ },
+ "LCH-1_5_5": {
+  "label": "Polymer, Plastic, Synthetic Fibre",
+  "tip": "Syntetiske materialer laget industrielt ved kjemisk bearbeiding, f.eks. plast, gummi og syntetiske fibre brukt på flater."
+ },
+ "LCH-1_5_5_1": {
+  "label": "Hard Rubber",
+  "tip": "Hard gummi brukt som overflatemateriale, f.eks. gummidekke på lekeplasser eller idrettsanlegg."
+ },
+ "LCH-1_5_5_2": {
+  "label": "Hard Plastic",
+  "tip": "Hard plast brukt som overflatemateriale, f.eks. takplater av plast."
+ },
+ "LCH-1_5_5_3": {
+  "label": "Plastic Foil",
+  "tip": "Tynn plastfolie som dekker en flate, f.eks. plast over avlinger eller en plastmembran."
+ },
+ "LCH-1_5_5_4": {
+  "label": "Synthetic Fibre",
+  "tip": "Syntetisk fiber brukt som overflatemateriale, f.eks. kunstgress på en idrettsbane."
+ },
+ "LCH-1_5_6": {
+  "label": "Mineral Material",
+  "tip": "Naturlige steinmaterialer hentet fra steinbrudd, elveleier, strender og lignende kilder, brukt uten kjemisk bearbeiding, f.eks. grus eller skifer."
+ },
+ "LCH-1_5_6_1": {
+  "label": "Natural Stone",
+  "tip": "Naturstein brukt som overflatemateriale, f.eks. brostein eller steinheller."
+ },
+ "LCH-1_5_6_2": {
+  "label": "Slate",
+  "tip": "Skifer, en naturstein som kan spaltes i tynne, flate lag og ofte brukes som taktekking på eldre hus."
+ },
+ "LCH-1_5_6_3": {
+  "label": "Pebbles, Gravel",
+  "tip": "Løse små steiner brukt på flater, f.eks. en grusvei eller et tak dekket med singel."
+ },
+ "LCH-1_5_6_4": {
+  "label": "Sand",
+  "tip": "Sand brukt som overflatemateriale, f.eks. på en idrettsplass eller en sti."
+ },
+ "LCH-1_5_6_5": {
+  "label": "Ashes, Slag",
+  "tip": "Aske eller slagg, restene etter forbrenning eller metallsmelting, brukt som overflatemateriale, f.eks. på en grusbane av slagg."
+ },
+ "LCH-1_5_7": {
+  "label": "Organic",
+  "tip": "Overflatematerialer av planteopprinnelse brukt på tak eller bakken, f.eks. treshingel eller stråtak."
+ },
+ "LCH-1_5_7_1": {
+  "label": "Wood",
+  "tip": "Tre brukt som overflatemateriale, f.eks. treshingel, terrassebord eller gangbaner av tre."
+ },
+ "LCH-1_5_7_2": {
+  "label": "Reed, Straw, Leaves",
+  "tip": "Plantestengler eller blader brukt som overflatemateriale, f.eks. et stråtak av takrør eller halm."
+ },
+ "LCH-1_6": {
+  "label": "Artificial Surface Material Arrangement",
+  "tip": "Samler måtene overflatematerialer er lagt på bakken eller tak, f.eks. som et sammenhengende lag, som belegningsstein eller som overlappende takstein."
+ },
+ "LCH-1_6_1": {
+  "label": "Seamless Sealing",
+  "tip": "Materiale lagt som ett sammenhengende lag uten skjøter, f.eks. asfaltdekket på en vei."
+ },
+ "LCH-1_6_2": {
+  "label": "Closed Pavement",
+  "tip": "Belegning av enkeltdeler lagt tett sammen med fuger, men uten åpninger, f.eks. en brolagt gågate."
+ },
+ "LCH-1_6_3": {
+  "label": "Permeable Paving, Grass Pavers",
+  "tip": "Belegningsstein lagt med små åpninger slik at regnvann kan sige ned i bakken, f.eks. gressarmeringsstein på en parkeringsplass."
+ },
+ "LCH-1_6_4": {
+  "label": "Tiles",
+  "tip": "Belegning eller taktekking lagt som fliser eller takstein, som delvis kan overlappe, f.eks. et takstein-tak."
+ },
+ "LCH-1_7": {
+  "label": "Building Greening Type",
+  "tip": "Samler typer vegetasjon som vokser på bygninger, hovedsakelig på tak og eventuelt på vegger."
+ },
+ "LCH-1_7_1": {
+  "label": "Greened Roof",
+  "tip": "Et tak dekket med levende planter, f.eks. et grønt tak på et kontorbygg."
+ },
+ "LCH-1_7_1_1": {
+  "label": "Low Growing Roof Vegetation",
+  "tip": "Et grønt tak med lave planter som urter, moser, lav eller dvergbusker."
+ },
+ "LCH-1_7_1_2": {
+  "label": "High Growing Roof Vegetation",
+  "tip": "Et grønt tak med høyere vedaktige planter som trær og busker, som ofte danner en takhage."
+ },
+ "LCH-1_8": {
+  "label": "Transportation Network Characteristics",
+  "tip": "Samler opplysninger som beskriver transportarealer, som typer veier og stier og typer havner."
+ },
+ "LCH-1_8_1": {
+  "label": "Road Network Type",
+  "tip": "Samler typer veier og stier etter hovedbruk, fra motorveier til gangstier og sykkelfelt."
+ },
+ "LCH-1_8_1_1": {
+  "label": "Fast Transit Road, Highway",
+  "tip": "Veier bygget for rask langdistansetrafikk, f.eks. motorveier og motortrafikkveier."
+ },
+ "LCH-1_8_1_2": {
+  "label": "Pedestrian Zone",
+  "tip": "Et område forbeholdt gående, noen ganger også syklister, der motortrafikk er forbudt eller begrenset, f.eks. en handlegate."
+ },
+ "LCH-1_8_1_3": {
+  "label": "Associated Walk- Or Cycleway",
+  "tip": "En gangsti eller et sykkelfelt langs en vei, noen ganger skilt fra veien med en smal grøntstripe."
+ },
+ "LCH-1_8_1_4": {
+  "label": "Walk- and Cycleway",
+  "tip": "En sti som deles av gående og syklende og går i egen trasé, borte fra veier."
+ },
+ "LCH-1_8_1_5": {
+  "label": "Cycleway",
+  "tip": "En sti eller et felt bare for sykler, uten gående eller biler, f.eks. et eget sykkelfelt."
+ },
+ "LCH-1_8_1_6": {
+  "label": "Walkway",
+  "tip": "En sti som bare er ment for gående, f.eks. en gangsti."
+ },
+ "LCH-1_8_1_7": {
+  "label": "Open Square",
+  "tip": "Et åpent, ofte rektangulært eller rundt område i gatenettet, f.eks. et torg eller en stor rundkjøring."
+ },
+ "LCH-1_8_4": {
+  "label": "Harbour Type",
+  "tip": "Samler typer havneområder der skip og båter legger til, lastes og losses, f.eks. godshavner, småbåthavner og verft."
+ },
+ "LCH-1_8_4_1": {
+  "label": "Cargo Port",
+  "tip": "En havn der handelsvarer skipes inn og ut, vanligvis med containerterminaler."
+ },
+ "LCH-1_8_4_2": {
+  "label": "Passenger Port",
+  "tip": "En havn der folk går om bord og i land, f.eks. en ferje- eller cruiseterminal."
+ },
+ "LCH-1_8_4_3": {
+  "label": "Fishing Port",
+  "tip": "En havn som brukes av fiskebåter som leverer fangsten sin fra havet."
+ },
+ "LCH-1_8_4_4": {
+  "label": "Naval Port",
+  "tip": "En havn som betjener militære fartøy, f.eks. havnen på en marinebase."
+ },
+ "LCH-1_8_4_5": {
+  "label": "Marina",
+  "tip": "En havn for lystbåter og sportsbåter brukt til rekreasjon og fritid."
+ },
+ "LCH-1_8_4_6": {
+  "label": "Local Multifunctional Harbour",
+  "tip": "En lokal havn som ikke er begrenset til én type fartøy, og som tjener flere formål samtidig."
+ },
+ "LCH-1_8_4_7": {
+  "label": "Shipyard",
+  "tip": "Et område ved sjøen eller en elv der skip bygges, vedlikeholdes eller repareres, enten flytende eller i tørrdokk."
+ },
+ "LCH-1_8_4_8": {
+  "label": "Jetty",
+  "tip": "En lang konstruksjon som stikker ut fra land, der fartøy legger til for å laste, losse eller la passasjerer gå om bord og i land."
+ },
+ "LCH-2": {
+  "label": "Physical Characteristics",
+  "tip": "Samler fysiske egenskaper ved selve landet, som grunn som er permanent frossen."
+ },
+ "LCH-2_1": {
+  "label": "Permafrost Zone",
+  "tip": "Områder der bakken holder seg frossen i minst to år på rad, typisk i polarområder eller høyfjell."
+ },
+ "LCH-3": {
+  "label": "Biotic Vegetation Characteristics",
+  "tip": "Samler opplysninger som beskriver planter og vegetasjon, f.eks. bladform, om bladene felles, levetid, vekstform og artens opprinnelse."
+ },
+ "LCH-3_1": {
+  "label": "Leaf Form",
+  "tip": "Samler de grunnleggende bladformene som brukes til å skille trær og busker fra hverandre, f.eks. nåler eller brede blader."
+ },
+ "LCH-3_1_1": {
+  "label": "Needle Leaved",
+  "tip": "Trær og busker med tynne, nåleformede blader, f.eks. furu, gran eller edelgran."
+ },
+ "LCH-3_1_2": {
+  "label": "Broad Leaved",
+  "tip": "Planter med brede, flate blader, f.eks. eik, bøk eller lønn."
+ },
+ "LCH-3_1_3": {
+  "label": "Palm Leaved",
+  "tip": "Planter med de store vifte- eller fjærformede bladene som er typiske for palmer, f.eks. palmetrær."
+ },
+ "LCH-3_1_4": {
+  "label": "Non-Leafy",
+  "tip": "Planter som ikke har blader i det hele tatt, f.eks. mange kaktuser som bruker grønne stengler i stedet."
+ },
+ "LCH-3_2": {
+  "label": "Foliage Persistence",
+  "tip": "Grupperer planter etter om de feller bladene eller nålene hver sesong eller beholder dem i flere år."
+ },
+ "LCH-3_2_1": {
+  "label": "Evergreen",
+  "tip": "Planter som beholder bladene eller nålene i flere år, f.eks. gran eller kristtorn."
+ },
+ "LCH-3_2_2": {
+  "label": "Deciduous",
+  "tip": "Planter som mister bladene eller nålene ved slutten av hver vekstsyklus, vanligvis hvert år, f.eks. bøk eller lerk."
+ },
+ "LCH-3_2_2_1": {
+  "label": "Winter Deciduous",
+  "tip": "Planter som feller bladene hvert år for å tåle kalde vintertemperaturer, f.eks. eik eller bjørk."
+ },
+ "LCH-3_2_2_2": {
+  "label": "Summer Deciduous",
+  "tip": "Planter som feller bladene hvert år før eller under varme somre for å unngå å tørke ut."
+ },
+ "LCH-3_3": {
+  "label": "Leaf Anatomy",
+  "tip": "Samler kjennetegn ved bladets ytre oppbygning, som hvordan overflaten eller hinnen er bygget opp."
+ },
+ "LCH-3_3_1": {
+  "label": "Sclerophyllous",
+  "tip": "Planter med små, harde, læraktige eller voksaktige blader som er tilpasset lange tørre og varme perioder, f.eks. oliventrær eller korkeik."
+ },
+ "LCH-3_4": {
+  "label": "Phenological Plant Life Span",
+  "tip": "Grupperer planter etter hvor lenge de lever, fra én sesong til mange år."
+ },
+ "LCH-3_4_1": {
+  "label": "Annual Plant",
+  "tip": "En plante som fullfører hele livssyklusen sin i løpet av én vekstsesong, f.eks. mange kornarter eller sommerblomster."
+ },
+ "LCH-3_4_2": {
+  "label": "Biennial Plant",
+  "tip": "En plante med en livssyklus som strekker seg over to år, og som blomstrer og setter frø det andre året."
+ },
+ "LCH-3_4_3": {
+  "label": "Perennial Plant",
+  "tip": "En plante som overlever ugunstige årstider som vinteren og lever i mer enn to år."
+ },
+ "LCH-3_4_4": {
+  "label": "Ephemeral Plant",
+  "tip": "En plante som gjennomgår flere livssykluser i løpet av én vekstsesong og kan formere seg raskt."
+ },
+ "LCH-3_5": {
+  "label": "Plant Location",
+  "tip": "Grupperer planter etter hvor de vokser: på land, på andre planter, under vann eller i vannoverflaten."
+ },
+ "LCH-3_5_1": {
+  "label": "Terrestrial Plant",
+  "tip": "Planter som vokser på fast grunn, inkludert våtmarksplanter som takrør som står i vann."
+ },
+ "LCH-3_5_2": {
+  "label": "Epiphyte Plant",
+  "tip": "En plante som vokser på en annen plante for støtte, og som henter fuktighet og næring fra luft, regn eller organisk rusk i stedet for fra vertsplanten."
+ },
+ "LCH-3_5_3": {
+  "label": "Aquatic Submerged Plant",
+  "tip": "Vannplanter som hovedsakelig lever under overflaten uten å nå opp til den, f.eks. alger."
+ },
+ "LCH-3_5_4": {
+  "label": "Aquatic Emergent Plant",
+  "tip": "Vannplanter som hovedsakelig flyter på vannoverflaten, f.eks. vannliljer."
+ },
+ "LCH-3_6": {
+  "label": "Growth Form, Habit",
+  "tip": "Samler de overordnede formene planter vokser i, og beskriver hvordan stammer og greiner er ordnet."
+ },
+ "LCH-3_6_1": {
+  "label": "Erect Growth, Single Stem",
+  "tip": "En vedaktig plante med én opprett hovedstamme, som et typisk tre."
+ },
+ "LCH-3_6_2": {
+  "label": "Open, Spreading, Dense Growth, Multi-Stem",
+  "tip": "En vedaktig plante med flere stammer som vokser fra bakken oppover og utover, f.eks. busker og kratt."
+ },
+ "LCH-3_6_3": {
+  "label": "Prostrate, Creaping",
+  "tip": "Planter med greiner eller skudd som ligger på eller like over bakken og brer seg sideveis i stedet for oppover."
+ },
+ "LCH-3_6_4": {
+  "label": "Clump-Forming",
+  "tip": "Planter som vokser som en kompakt tue eller et kratt der skuddene brer seg ut fra midten, f.eks. bambus, starr eller enkelte gress."
+ },
+ "LCH-3_6_5": {
+  "label": "Cushion, Mat-Forming",
+  "tip": "Lave, kompakte planter som danner puter eller matter med tettpakkede greiner, og som finnes i alpine og arktiske miljøer."
+ },
+ "LCH-3_6_6": {
+  "label": "Climbing",
+  "tip": "Planter som klatrer på andre planter eller gjenstander for støtte fordi de mangler kraftige stengler, f.eks. eføy eller vinranke."
+ },
+ "LCH-3_7": {
+  "label": "Raunkiaer Life Form",
+  "tip": "Grupperer planter etter Raunkiærs system, som deler dem inn etter hvor knoppene overlever den ugunstige årstiden, f.eks. høyt over bakken eller under jorda."
+ },
+ "LCH-3_7_1": {
+  "label": "Phanerophyte",
+  "tip": "En livsform etter Raunkiær for planter med hvileknopper godt over bakken på vedaktige skudd, f.eks. trær og høye busker."
+ },
+ "LCH-3_7_2": {
+  "label": "Epiphyte",
+  "tip": "En livsform etter Raunkiær for planter som vokser på andre planter i stedet for å ha røtter i jorda."
+ },
+ "LCH-3_7_3": {
+  "label": "Chamaephyte",
+  "tip": "En livsform etter Raunkiær for lave planter med hvileknopper like over bakken, f.eks. dvergbusker."
+ },
+ "LCH-3_7_4": {
+  "label": "Hemicryptophyte",
+  "tip": "En livsform etter Raunkiær for planter med hvileknopper rett i jordoverflaten, f.eks. mange gress."
+ },
+ "LCH-3_7_5": {
+  "label": "Cryptophyte",
+  "tip": "En livsform etter Raunkiær for planter med hvileknopper som overlever under jorda eller under vann, f.eks. løkplanter."
+ },
+ "LCH-3_7_6": {
+  "label": "Therophyte",
+  "tip": "En livsform etter Raunkiær for planter som bare overlever den ugunstige årstiden som frø, f.eks. ettårige urter."
+ },
+ "LCH-3_7_7": {
+  "label": "Aerophyte",
+  "tip": "En livsform etter Raunkiær for planter som lever i luften uten røtter i jorda, og som tar opp vann og næring fra luften."
+ },
+ "LCH-3_8": {
+  "label": "Vegetation Cover Transition",
+  "tip": "Samler retningen vegetasjonsdekket endrer seg i: enten naturlig gjenvekst eller forringelse over tid."
+ },
+ "LCH-3_8_1": {
+  "label": "Natural Succession",
+  "tip": "Areal der vegetasjonen vokser til av seg selv gjennom naturlig suksesjon, f.eks. nedlagte jorder som gror igjen med kratt."
+ },
+ "LCH-3_8_2": {
+  "label": "Vegetation Degradation",
+  "tip": "Areal der vegetasjonsdekket blir fattigere eller tynnere over tid."
+ },
+ "LCH-3_9": {
+  "label": "Plant Species Origin",
+  "tip": "Grupperer planter etter opprinnelse sett i forhold til hvor de vokser nå, f.eks. stedegne, innførte, invasive eller genmodifiserte."
+ },
+ "LCH-3_9_1": {
+  "label": "Native Plant",
+  "tip": "En planteart som har vokst naturlig i denne regionen i lang tid, men ikke nødvendigvis bare her."
+ },
+ "LCH-3_9_2": {
+  "label": "Non-Native Plant",
+  "tip": "En planteart som normalt ikke finnes i denne regionen."
+ },
+ "LCH-3_9_3": {
+  "label": "Endemic Plant",
+  "tip": "En planteart som bare finnes i akkurat denne regionen og ingen andre steder, på alle skalaer fra et lite leveområde til et kontinent."
+ },
+ "LCH-3_9_4": {
+  "label": "Invasive Plant",
+  "tip": "En plante fra et annet sted som sprer seg til et nytt område, ofte hjulpet av menneskelig transport, og fortrenger stedegne planter."
+ },
+ "LCH-3_9_5": {
+  "label": "Migratory Plant",
+  "tip": "En planteart som gradvis vandrer inn i et naboområde fordi forholdene i det opprinnelige leveområdet endrer seg, f.eks. på grunn av klimaet."
+ },
+ "LCH-3_9_6": {
+  "label": "Genetically Modified Plant",
+  "tip": "En plante der genene er endret, f.eks. kulturplanter modifisert for høyere avling eller bedre tørketoleranse."
+ },
+ "LCH-3_10": {
+  "label": "Plant Species Type",
+  "tip": "Samler måter å registrere hvilke plantearter som finnes på, etter INSPIRE-standarden for artsutbredelse."
+ },
+ "LCH-3_10_1": {
+  "label": "Plant Species",
+  "tip": "Registrerer navnet på den konkrete plantearten som vokser i et område."
+ },
+ "LCH-3_11": {
+  "label": "Plant Community Type",
+  "tip": "Samler måter å registrere hvilket plantesamfunn som vokser i et område på; fortsatt under ferdigstilling, muligens etter ordningen til European Vegetation Survey."
+ },
+ "LCH-3_11_1": {
+  "label": "Plant Community",
+  "tip": "Registrerer plantesamfunnet, altså en typisk gruppe arter som vokser sammen, f.eks. et bøkeskogsamfunn."
+ },
+ "LCH-3_12": {
+  "label": "Plant Growing Season",
+  "tip": "Samler opplysninger om den naturlige vekstsesongen for ville og lokale planter. Vekstsesonger for jordbruksvekster registreres et annet sted."
+ },
+ "LCH-3_12_1": {
+  "label": "Plant Growing Season Ongoing",
+  "tip": "Angir om den naturlige vekstsesongen for en plante eller et plantesamfunn pågår nå. Gjelder ikke vekstsesonger for jordbruksvekster."
+ },
+ "LCH-3_13": {
+  "label": "Crown Cover Density",
+  "tip": "Måler hvor mye av et område som sett ovenfra er dekket av trekroner eller buskkroner, oppgitt i prosent (%)."
+ },
+ "LCH-4": {
+  "label": "Water Characteristics",
+  "tip": "Samler opplysninger som beskriver vannflater eller har med vann å gjøre, som hvor naturlig en vannforekomst er og hvor ofte den har vann."
+ },
+ "LCH-4_1": {
+  "label": "Water Body Formation",
+  "tip": "Grupperer vannforekomster etter hvor naturlige de er, fra urørte elver og innsjøer til helt menneskeskapte kanaler."
+ },
+ "LCH-4_1_1": {
+  "label": "Natural Water Body",
+  "tip": "En elv eller innsjø i naturlig tilstand, uten kunstige bredder og uten demninger eller terskler som styrer vannføringen."
+ },
+ "LCH-4_1_2": {
+  "label": "Controlled, Regulated, Heavily Modified Water Body",
+  "tip": "En elv eller innsjø formet av menneskeskapte konstruksjoner som holder breddene på plass eller styrer vannstanden, f.eks. de fleste farbare elver."
+ },
+ "LCH-4_1_3": {
+  "label": "Man-Made Water Body",
+  "tip": "En helt kunstig vannforekomst som ikke ville eksistert uten mennesker, f.eks. en skipskanal eller et vanningsmagasin."
+ },
+ "LCH-4_2": {
+  "label": "Hydrological Water Regime",
+  "tip": "Grupperer innlandsvann etter hvor ofte og hvor lenge de har eller fører vann, f.eks. permanent eller sesongvis. Brukes ikke for hav- eller tidevannsområder."
+ },
+ "LCH-4_2_1": {
+  "label": "Dry Water Regime",
+  "tip": "Et elve- eller innsjøleie som vanligvis er tørt, og der vann bare sjelden renner etter kraftig regn, f.eks. en wadi i et ørkenområde."
+ },
+ "LCH-4_2_2": {
+  "label": "Ephemeral, Episodic Water Regime",
+  "tip": "Vann opptrer bare under eller etter regn og slutter så å renne igjen, selv om et visst sesongmønster fortsatt kan sees, f.eks. en bekk som renner etter uvær."
+ },
+ "LCH-4_2_3": {
+  "label": "Intermittent, Seasonal Water Regime",
+  "tip": "Vann er til stede en del av hvert år, vanligvis i regntiden eller under snøsmeltingen, f.eks. en bekk som tørker ut hver sommer."
+ },
+ "LCH-4_2_4": {
+  "label": "Perennial Water Regime",
+  "tip": "Vann er til stede hele året, selv om vannstanden stiger og synker, f.eks. en stor elv eller en permanent innsjø."
+ },
+ "LCH-4_3": {
+  "label": "Water Dynamics",
+  "tip": "Samler beskrivelser av om vannet i en vannforekomst renner eller står stille, fra raskt rennende elver til stillestående dammer."
+ },
+ "LCH-4_3_1": {
+  "label": "Running Water",
+  "tip": "Vann som hele tiden er i bevegelse med en strøm, slik at det stadig fornyes og kan grave bort eller avsette løsmasser, f.eks. en elv eller bekk."
+ },
+ "LCH-4_3_2": {
+  "label": "Almost Standing Water",
+  "tip": "Vann som beveger seg så sakte at det gir lite eller ingen erosjon, vanligvis i svært flatt terreng, f.eks. en kanal eller en dreneringsgrøft."
+ },
+ "LCH-4_3_3": {
+  "label": "Standing Water",
+  "tip": "Stille vann helt uten strøm, f.eks. en innsjø, dam eller vannpytt."
+ },
+ "LCH-4_4": {
+  "label": "Soil Moisture Regime, Wetness",
+  "tip": "Samler klasser som beskriver hvor våt eller tørr jorda er, fra arealer dekket av grunt vann til ørkenjord nesten uten fuktighet."
+ },
+ "LCH-4_4_1": {
+  "label": "Aquatic, Water At Surface",
+  "tip": "Land som ikke er en vannforekomst, men som er så vått at grunt vann dekker overflaten, f.eks. deler av et sump- eller myrområde."
+ },
+ "LCH-4_4_2": {
+  "label": "Waterlogged, Saturated Ground",
+  "tip": "Vannmettet jord der nesten alle porene er fylt med vann, ofte fordi grunnvannet står høyt eller det regner ofte."
+ },
+ "LCH-4_4_3": {
+  "label": "Wet",
+  "tip": "Jord som er våt hele året, med vann i mange av porene, men fortsatt noe luft, ofte tilført vann fra grunnvann nær overflaten."
+ },
+ "LCH-4_4_4": {
+  "label": "Seasonally Wet",
+  "tip": "Jord som bare er våt en del av året, f.eks. i en regntid eller etter sesongmessige oversvømmelser."
+ },
+ "LCH-4_4_5": {
+  "label": "Mesic",
+  "tip": "Jord med jevn, moderat tilgang på fuktighet, nok til at plantene unngår tørkestress; typisk for tempererte områder med jevnt fordelt nedbør."
+ },
+ "LCH-4_4_6": {
+  "label": "Semi-Dry",
+  "tip": "Jord der regnfulle og tørre perioder veksler, men de tørre periodene dominerer; vannet renner raskt bort og lite holdes tilbake for plantene."
+ },
+ "LCH-4_4_7": {
+  "label": "Dry",
+  "tip": "Jord der plantene knapt har tilgang på fuktighet gjennom året, og tørkeperioder kan vare i årevis; bare hardfør vegetasjon overlever."
+ },
+ "LCH-4_4_8": {
+  "label": "Very Dry",
+  "tip": "Jord som er så tørr at ingen vegetasjon kan vokse og nesten intet liv finnes, som i ekte ørkener."
+ },
+ "LCH-4_4_9": {
+  "label": "Xeric",
+  "tip": "Jordfuktighet som er typisk for middelhavsklima, med kjølige, våte vintre og varme, tørre somre."
+ },
+ "LCH-4_5": {
+  "label": "Wetness Source",
+  "tip": "Samler mulige kilder til vannet som gjør landet vått, som regn, overflatevann eller grunnvann."
+ },
+ "LCH-4_5_1": {
+  "label": "Rainfed Source",
+  "tip": "Land der fuktigheten kommer fra nedbør."
+ },
+ "LCH-4_5_2": {
+  "label": "Surface Water Source",
+  "tip": "Land der fuktigheten kommer fra overflatevann som renner inn, f.eks. fra en elv i nærheten eller fra avrenning."
+ },
+ "LCH-4_5_3": {
+  "label": "Subterranean, Groundwater Source",
+  "tip": "Land der fuktigheten kommer fra grunnvann som stiger opp gjennom jorda nedenfra."
+ },
+ "LCH-4_6": {
+  "label": "Salinity",
+  "tip": "Samler klasser for hvor salt vann eller jord er, fra saltmettet saltlake til praktisk talt saltfritt regnvann. Oppgis vanligvis i promille."
+ },
+ "LCH-4_6_1": {
+  "label": "Brine",
+  "tip": "Vann som er mettet eller nesten mettet med salt, med 50 promille eller mer, f.eks. Dødehavet."
+ },
+ "LCH-4_6_2": {
+  "label": "Saline",
+  "tip": "Saltvann slik det finnes i havene og i saltsjøer, med 30 til 50 promille salt, f.eks. Atlanterhavet."
+ },
+ "LCH-4_6_3": {
+  "label": "Brackish",
+  "tip": "Vann som er saltere enn ferskvann, men mindre salt enn sjøvann (5 til 30 promille), f.eks. elvemunninger, laguner eller Østersjøen."
+ },
+ "LCH-4_6_4": {
+  "label": "Fresh",
+  "tip": "Vann med svært lite salt (0,1 til 0,5 promille), f.eks. de fleste elver og grunnvann; drikkevann ligger i nedre del av spennet."
+ },
+ "LCH-4_6_5": {
+  "label": "Ultra Fresh",
+  "tip": "Vann som er praktisk talt fritt for salt, som regn, snø eller dugg før det tar opp andre stoffer."
+ },
+ "LCH-4_7": {
+  "label": "pH Value",
+  "tip": "Måler hvor surt eller basisk vann er, på en skala fra 0 (surt) til 14 (basisk), der 7 er nøytralt som rent vann."
+ },
+ "LCH-4_8": {
+  "label": "Tidal Phenomena",
+  "tip": "Samler egenskaper ved kystområder som regelmessig oversvømmes og tørrlegges av tidevannet."
+ },
+ "LCH-4_8_1": {
+  "label": "Tidal Influence",
+  "tip": "Angir om et areal påvirkes av tidevannet, eventuelt med den typiske stigningen og synkingen av vannstanden."
+ },
+ "LCH-4_8_2": {
+  "label": "Tidal Range",
+  "tip": "Måler høydeforskjellen mellom fjære og flo på et sted, i meter."
+ },
+ "LCH-4_9": {
+  "label": "Groundwater",
+  "tip": "Samler egenskaper ved grunnvann, det vil si vannet som finnes under bakken i jord og berg."
+ },
+ "LCH-4_9_1": {
+  "label": "Groundwater Table Level",
+  "tip": "Måler hvor langt under bakkeoverflaten grunnvannet (grunnvannsspeilet) ligger, i meter."
+ },
+ "LCH-4_10": {
+  "label": "Snow Characteristics",
+  "tip": "Samler egenskaper som beskriver snødekte overflater."
+ },
+ "LCH-4_10_1": {
+  "label": "Snow Height",
+  "tip": "Måler dybden på snøen som ligger på bakken, i meter."
+ },
+ "LCH-4_11": {
+  "label": "Ice Characteristics",
+  "tip": "Samler egenskaper ved isdekte overflater på land eller vann; foreløpig en plassholder for framtidige oppføringer."
+ },
+ "LCH-5": {
+  "label": "Land Management",
+  "tip": "Samler informasjon om hvordan mennesker forvalter og driver jorda, som driftsmetoder, dyrkingspraksis og hvilke vekster som dyrkes."
+ },
+ "LCH-5_1": {
+  "label": "Agricultural Land Management",
+  "tip": "Samler egenskaper ved hvordan jordbruksareal drives, blant annet dyrkingsformer, driftspraksis, installasjoner, arbeid på jordet og vekstslag."
+ },
+ "LCH-5_1_1": {
+  "label": "Agricultural Cultivation Form",
+  "tip": "Samler hovedformene jordbruksareal har, formet av hva som dyrkes og hvordan jorda drives: dyrket mark og drevet permanent grasmark."
+ },
+ "LCH-5_1_1_1": {
+  "label": "Cropland",
+  "tip": "Jordbruksareal som brukes til å plante, dyrke og høste vekster, både åkre med ettårige vekster og frukthager eller vinmarker; drevet grasmark holdes utenfor."
+ },
+ "LCH-5_1_1_1_1": {
+  "label": "Arable Crop Land",
+  "tip": "Åkre som pløyes eller klargjøres for såing av ettårige vekster, ofte i vekstskifte, f.eks. hveteåkre; omfatter også brakkmark og rismarker."
+ },
+ "LCH-5_1_1_1_2": {
+  "label": "Permanent Crop Land",
+  "tip": "Areal tilplantet med langlivede, for det meste treaktige vekster, ofte i jevne rader, f.eks. vinmarker, olivenlunder eller frukthager."
+ },
+ "LCH-5_1_1_2": {
+  "label": "Managed Permanent Grassland",
+  "tip": "Grasmark som holdes i flere år på rad for å dyrke gras eller andre urteaktige planter til dyrefôr eller energi, f.eks. en slåtteeng; den pløyes sjelden."
+ },
+ "LCH-5_1_2": {
+  "label": "Cultivation Practice",
+  "tip": "Samler de overordnede driftsformene som brukes på arealet, som vekstskifte, plantasjer eller agroforestry (skogjordbruk), inkludert dyrkingssykluser og planteoppsett."
+ },
+ "LCH-5_1_2_1": {
+  "label": "Crop Rotation",
+  "tip": "Ulike vekster dyrkes på samme jorde i en planlagt rekkefølge over flere år; gjelder hovedsakelig areal med ettårige vekster."
+ },
+ "LCH-5_1_2_2": {
+  "label": "No Crop Rotation",
+  "tip": "Den samme veksten dyrkes på et jorde år etter år over lang tid, i stedet for å veksle mellom vekster."
+ },
+ "LCH-5_1_2_3": {
+  "label": "Plantation",
+  "tip": "Store eiendommer som dyrker salgsvekster i rader med industrielle metoder rettet mot høye avlinger, f.eks. en stor fruktplantasje med planter bundet opp i ståltråd."
+ },
+ "LCH-5_1_2_4": {
+  "label": "Extensive Cultivation Practice",
+  "tip": "Landbruk med lav intensitet, f.eks. tradisjonelle frukthager med spredte frukt-, nøtte- eller oliventrær, ofte med gras under og verdifulle for dyre- og plantelivet."
+ },
+ "LCH-5_1_2_5": {
+  "label": "Agroforestry",
+  "tip": "Trær kombinert med jordbruk på samme areal, der husdyr beiter eller vekster dyrkes mellom spredte trær, f.eks. den spanske dehesaen."
+ },
+ "LCH-5_1_2_6": {
+  "label": "Shifting Cultivation",
+  "tip": "Svedjebruk, hovedsakelig i tropene: skog ryddes og brennes, dyrkes i noen år og får deretter vokse til igjen før syklusen gjentas."
+ },
+ "LCH-5_1_2_7": {
+  "label": "Intercropping",
+  "tip": "Dyrking av to eller flere vekster samtidig på samme jorde for å utnytte plassen bedre, f.eks. høye nøttetrær med en skyggetålende vekst under."
+ },
+ "LCH-5_1_2_8": {
+  "label": "Kitchen Garden",
+  "tip": "Små parseller med frukt, grønnsaker og urter som dyrkes hovedsakelig til husholdningens eget bruk og ikke for salg."
+ },
+ "LCH-5_1_2_9": {
+  "label": "Paddy Field Cultivation",
+  "tip": "Ris dyrket på marker som er oversvømt en del av sesongen; den eneste metoden for risdyrking som brukes i Europa."
+ },
+ "LCH-5_1_3": {
+  "label": "Cultivation Installation",
+  "tip": "Samler tekniske installasjoner på jordbruksareal som brukes til å fremme plantevekst, øke avlingene eller beskytte vekstene, som veksthus eller beskyttelsesnett."
+ },
+ "LCH-5_1_3_1": {
+  "label": "Greenhouse Under Glass or Foil",
+  "tip": "Vekster dyrket under permanent glass eller montert plast, der bonden styrer temperatur, lys og vann, f.eks. et tomatveksthus."
+ },
+ "LCH-5_1_3_2": {
+  "label": "Under Foil On Ground",
+  "tip": "Vekster dekket av plastduk som ligger direkte på bakken eller plantene, noe som gir et varmt, skjermet mikroklima, f.eks. tidlige jordbær eller asparges."
+ },
+ "LCH-5_1_3_3": {
+  "label": "Plantation Protection Net",
+  "tip": "Nett spent over vekstene, for det meste over frukthager eller andre flerårige kulturer, for å beskytte dem mot f.eks. fugler eller hagl."
+ },
+ "LCH-5_1_3_4": {
+  "label": "Espalier, Trellis, Lattice",
+  "tip": "Frukttrær eller busker som formes flate langs et stativ ved at greinene beskjæres og bindes opp, slik at de vokser i ryddige rader."
+ },
+ "LCH-5_1_3_5": {
+  "label": "Hydroculture",
+  "tip": "Dyrking av planter uten jord, med røttene i en næringsrik vannløsning, noen ganger støttet av et inert materiale, f.eks. hydroponisk salat."
+ },
+ "LCH-5_1_3_6": {
+  "label": "Vertical Farming",
+  "tip": "Innendørs dyrking av vekster på flere etasjer stablet over hverandre, i en bygning med flere etasjer eller på reoler i et veksthus."
+ },
+ "LCH-5_1_4": {
+  "label": "Cultivation Measure and Activities",
+  "tip": "Samler det faste arbeidet på jordet som holder jordbruksarealet fruktbart og produktivt fra planting til høsting, som pløying, gjødsling og vanning."
+ },
+ "LCH-5_1_4_1": {
+  "label": "Ploughing and Tillage",
+  "tip": "Samler alternativer som beskriver om et jorde pløyes og, hvis det er kjent, i hvilken retning i forhold til hellingen."
+ },
+ "LCH-5_1_4_1_1": {
+  "label": "No Ploughing",
+  "tip": "Jordet pløyes ikke; jorda får ligge urørt i stedet for å bli vendt før såing."
+ },
+ "LCH-5_1_4_1_2": {
+  "label": "Ploughing Applied, Direction Unspecified",
+  "tip": "Jordet pløyes, men pløyeretningen er ikke kjent eller ikke registrert."
+ },
+ "LCH-5_1_4_1_3": {
+  "label": "Ploughing Across The Slope",
+  "tip": "Fårene går langs hellingen og følger høydekotene, noe som bremser vann som renner nedover."
+ },
+ "LCH-5_1_4_1_4": {
+  "label": "Ploughing Oblique Direction",
+  "tip": "Fårene går diagonalt over hellingen, verken langs høydekotene eller rett nedover."
+ },
+ "LCH-5_1_4_1_5": {
+  "label": "Ploughing in Direction of Slope",
+  "tip": "Fårene går rett opp og ned bakken, slik vann ville rent nedover."
+ },
+ "LCH-5_1_4_2": {
+  "label": "Fertilization",
+  "tip": "Samler alternativer for om og hvordan arealet gjødsles, dvs. tilføres næring fra planterester, husdyrgjødsel eller kjemiske produkter for å holde jorda fruktbar."
+ },
+ "LCH-5_1_4_2_1": {
+  "label": "No Fertilizing",
+  "tip": "Arealet får ikke gjødsel."
+ },
+ "LCH-5_1_4_2_2": {
+  "label": "Fertilization Applied, Type Unspecified",
+  "tip": "Arealet gjødsles, men hvilken type gjødsel som brukes er ikke kjent."
+ },
+ "LCH-5_1_4_2_3": {
+  "label": "Organic Fertilizer",
+  "tip": "Naturlig gjødsel som plantemateriale eller husdyrgjødsel som spres på eller pløyes ned i jordet."
+ },
+ "LCH-5_1_4_2_3_1": {
+  "label": "Animal Manure",
+  "tip": "Møkk eller husdyrgjødsel som spres på eller pløyes ned i jordet som naturlig gjødsel."
+ },
+ "LCH-5_1_4_2_3_2": {
+  "label": "Green Manure",
+  "tip": "Plantemateriale som dyrkes på eller fraktes til et jorde og pløyes ned for å gi næring til jorda, f.eks. en fangvekst sådd mellom to hovedvekster."
+ },
+ "LCH-5_1_4_2_4": {
+  "label": "Synthetic Fertilizer",
+  "tip": "Fabrikkproduserte gjødselslag laget av mineraler ved industrielle kjemiske prosesser, f.eks. nitrogengjødsel i kornform."
+ },
+ "LCH-5_1_4_3": {
+  "label": "Weed Control",
+  "tip": "Samler alternativer for om og hvordan uønskede planter som konkurrerer med en vekst om vann, lys og næring, bekjempes."
+ },
+ "LCH-5_1_4_3_1": {
+  "label": "No Weed Control",
+  "tip": "Det gjøres ingen tiltak mot ugras på dette arealet."
+ },
+ "LCH-5_1_4_3_2": {
+  "label": "Weed Control Applied, Method Unspecified",
+  "tip": "Ugras bekjempes, men metoden som brukes er ikke kjent."
+ },
+ "LCH-5_1_4_3_3": {
+  "label": "Mechanical or Biological Weed Control",
+  "tip": "Ugras bekjempes mekanisk, f.eks. ved jordarbeiding, eller biologisk ved hjelp av naturlige fiender."
+ },
+ "LCH-5_1_4_3_4": {
+  "label": "Chemical Weed Control",
+  "tip": "Ugras bekjempes med kjemikalier som ugrasmidler (herbicider)."
+ },
+ "LCH-5_1_4_4": {
+  "label": "Pest Control",
+  "tip": "Samler alternativer for om og hvordan vekster beskyttes mot insekter eller andre organismer som skader dem og reduserer avlingene."
+ },
+ "LCH-5_1_4_4_1": {
+  "label": "No Pest Control",
+  "tip": "Det gjøres ingen tiltak mot skadedyr på dette arealet."
+ },
+ "LCH-5_1_4_4_2": {
+  "label": "Pest Control Applied, Method Unspecified",
+  "tip": "Skadedyr bekjempes, men metoden som brukes er ikke kjent."
+ },
+ "LCH-5_1_4_4_3": {
+  "label": "Mechanical or Biological Pest Control",
+  "tip": "Skadedyr bekjempes mekanisk, f.eks. med feller, eller biologisk ved hjelp av naturlige fiender."
+ },
+ "LCH-5_1_4_4_4": {
+  "label": "Chemical Pest Control",
+  "tip": "Skadedyr bekjempes med kjemikalier som plantevernmidler."
+ },
+ "LCH-5_1_4_5": {
+  "label": "Irrigation",
+  "tip": "Samler alternativer for om arealet vannes kunstig for å hjelpe vekstene, og med hvilken metode, som spredere eller dryppslanger."
+ },
+ "LCH-5_1_4_5_1": {
+  "label": "No Irrigation",
+  "tip": "Arealet vannes ikke kunstig; vekstene er bare avhengige av naturlig tilført vann."
+ },
+ "LCH-5_1_4_5_2": {
+  "label": "Irrigation Applied, Method Unspecified",
+  "tip": "Arealet vannes, men vanningsmetoden er ikke kjent."
+ },
+ "LCH-5_1_4_5_3": {
+  "label": "Gravity Surface Irrigation",
+  "tip": "Vannet renner over jordet ved hjelp av tyngdekraften, gjennom små kanaler eller fårer mellom vekstene eller ved at hele teigen settes under vann."
+ },
+ "LCH-5_1_4_5_4": {
+  "label": "Sprinkler Irrigation",
+  "tip": "Vann sprøytes under trykk over jordet som kunstig regn, fra mobile eller faste spredere."
+ },
+ "LCH-5_1_4_5_5": {
+  "label": "Irrigation Carousel",
+  "tip": "En lang vanningsarm roterer rundt et midtpunkt og sprøyter vann i en sirkel; slik oppstår de runde grønne jordene man ser fra lufta."
+ },
+ "LCH-5_1_4_5_6": {
+  "label": "Drip Irrigation",
+  "tip": "Vann tilføres hver plante dråpe for dråpe gjennom tynne, perforerte slanger på bakken, eller som en fin tåke fra mikrospredere."
+ },
+ "LCH-5_1_4_5_7": {
+  "label": "Subsurface Drip Irrigation",
+  "tip": "Vann tilføres plantene gjennom perforerte rør eller slanger som er gravd ned i bakken, i eller under rotsonen."
+ },
+ "LCH-5_1_4_5_8": {
+  "label": "Manual Irrigation",
+  "tip": "Plantene vannes for hånd, f.eks. med hageslange eller vannkanne."
+ },
+ "LCH-5_1_4_6": {
+  "label": "Irrigation Water Source",
+  "tip": "Samler stedene vanningsvannet hentes fra, som brønner, magasiner eller elver."
+ },
+ "LCH-5_1_4_6_1": {
+  "label": "Groundwater",
+  "tip": "Vanningsvann som pumpes opp fra vannførende lag under bakken, vanligvis gjennom brønner."
+ },
+ "LCH-5_1_4_6_2": {
+  "label": "Reservoir",
+  "tip": "Vanningsvann hentet fra et lagret vannvolum, f.eks. en oppdemt kunstig innsjø, en naturlig innsjø eller en regnvannstank."
+ },
+ "LCH-5_1_4_6_3": {
+  "label": "Water Course",
+  "tip": "Vanningsvann som tas direkte fra en rennende elv eller bekk."
+ },
+ "LCH-5_1_4_7": {
+  "label": "Drainage",
+  "tip": "Samler alternativer for om og hvordan overskuddsvann ledes bort fra jordbruksareal gjennom drensrør eller grøfter, slik at grunnvannsnivået senkes."
+ },
+ "LCH-5_1_4_7_1": {
+  "label": "No Drainage",
+  "tip": "Det utføres ingen drenering på dette arealet."
+ },
+ "LCH-5_1_4_7_2": {
+  "label": "Drainage Applied, Method Unspecified",
+  "tip": "Arealet ser ut til å være drenert, men metoden er ikke kjent."
+ },
+ "LCH-5_1_4_7_3": {
+  "label": "Open Ditch Drainage",
+  "tip": "Land som dreneres med lange, åpne grøfter som vannet siver inn i fra jorda rundt."
+ },
+ "LCH-5_1_4_7_4": {
+  "label": "Subsurface Tube Drainage",
+  "tip": "Land som dreneres med perforerte rør gravd ned under overflaten, som samler opp vannet og leder det bort."
+ },
+ "LCH-5_1_4_7_5": {
+  "label": "Filled Ditch Drainage",
+  "tip": "Land som dreneres med grøfter fylt med løst materiale som grus, i flukt med bakken slik at de lett kan krysses."
+ },
+ "LCH-5_1_4_8": {
+  "label": "Mowing",
+  "tip": "Samler informasjon om slått av et areal, særlig hvor ofte det slås i løpet av året."
+ },
+ "LCH-5_1_4_8_1": {
+  "label": "Mowing Intensity",
+  "tip": "Samler klasser som beskriver hvor intensivt arealet slås, fra ingen slått til flere slåtter i året."
+ },
+ "LCH-5_1_4_8_1_1": {
+  "label": "No Mowing",
+  "tip": "Arealet slås ikke."
+ },
+ "LCH-5_1_4_8_1_2": {
+  "label": "Mowing Applied, Frequency Unspecified",
+  "tip": "Arealet slås, men hvor ofte er ikke kjent."
+ },
+ "LCH-5_1_4_8_1_3": {
+  "label": "Extensive Mowing",
+  "tip": "Slått med lav intensitet: arealet slås én gang i året, f.eks. en tradisjonell slåtteeng."
+ },
+ "LCH-5_1_4_8_1_4": {
+  "label": "Medium Intensity Mowing",
+  "tip": "Arealet slås to ganger i året."
+ },
+ "LCH-5_1_4_8_1_5": {
+  "label": "Intensive Mowing",
+  "tip": "Arealet slås mer enn to ganger i året."
+ },
+ "LCH-5_1_4_8_2": {
+  "label": "Mowing Frequency",
+  "tip": "Angir hvor mange ganger i året et areal slås, oppgitt som et antall."
+ },
+ "LCH-5_1_4_9": {
+  "label": "Shrub Clearance",
+  "tip": "Fjerning av busker og unge trær fra grasmark for å hindre at den gror igjen med kratt eller skog og holde den åpen, ofte for beite."
+ },
+ "LCH-5_1_4_10": {
+  "label": "Biomass Burning",
+  "tip": "Avbrenning av uønskede planter på jordbruksareal for å holde veksten nede; asken som blir igjen, beriker også jorda."
+ },
+ "LCH-5_1_4_11": {
+  "label": "Liming",
+  "tip": "Spredning av kalk (kalsiumkarbonat) på arealet for å gjøre jorda mindre sur; brukes mest i barskog, men også på jordbruksareal."
+ },
+ "LCH-5_1_4_12": {
+  "label": "Pruning",
+  "tip": "Målrettet kapping av greiner, kvister, knopper eller røtter for å forme plantene og bedre helse eller avling, f.eks. beskjæring av frukttrær eller vinranker."
+ },
+ "LCH-5_1_4_13": {
+  "label": "Set Aside Parcel",
+  "tip": "En jordbruksteig som midlertidig tas ut av produksjon i én eller flere sesonger for at jorda skal hvile, noen ganger som del av et vekstskifte."
+ },
+ "LCH-5_1_5": {
+  "label": "Cultivation Purpose",
+  "tip": "Samler grunnene til at vekster dyrkes, som til mat, dyrefôr, industri eller energi; samme vekst kan ha ulike formål på ulike jorder."
+ },
+ "LCH-5_1_5_1": {
+  "label": "Alimentary Crop",
+  "tip": "Vekster dyrket som mat for mennesker, f.eks. grønnsaker, korn eller frukt, enten de spises ferske eller bearbeidet. Fôrvekster er ikke med."
+ },
+ "LCH-5_1_5_1_1": {
+  "label": "Grain Production Crop",
+  "tip": "Vekster dyrket for å høste korn til menneskemat, f.eks. hvete til brød."
+ },
+ "LCH-5_1_5_1_2": {
+  "label": "Table Fruit Crop",
+  "tip": "Vekster dyrket for at hele fruktene skal kunne spises, f.eks. epler eller bordruer."
+ },
+ "LCH-5_1_5_1_3": {
+  "label": "Liquefication, Fermentation or Brewing of Crop",
+  "tip": "Vekster dyrket for å presses, gjæres eller brygges, f.eks. til juice, vin, matolje eller smaksekstrakter."
+ },
+ "LCH-5_1_5_2": {
+  "label": "Fodder Crop",
+  "tip": "Vekster dyrket som fôr til husdyr, f.eks. fôrbete, silomais eller luserne."
+ },
+ "LCH-5_1_5_2_1": {
+  "label": "Harvested For Silage",
+  "tip": "Fôrvekster som etter høsting lagres i en silo eller en tett plasttildekket stakk, der gjæring konserverer dem som surfôr til dyrene."
+ },
+ "LCH-5_1_5_2_2": {
+  "label": "Harvested For Dry Fodder",
+  "tip": "Gras eller lignende planter som slås og blir liggende på jordet for å tørke til høy eller halm, en måte å konservere dyrefôr på."
+ },
+ "LCH-5_1_5_2_3": {
+  "label": "Harvested Green For Direct Forage",
+  "tip": "Gras eller lignende planter som slås friske og grønne og gis til dyrene med en gang."
+ },
+ "LCH-5_1_5_2_4": {
+  "label": "Temporary Grasses And Grazings",
+  "tip": "Gras eller grasblandinger sådd til beite, høy eller surfôr som del av et vekstskifte, og som ligger fra ett til under fem år før de pløyes opp."
+ },
+ "LCH-5_1_5_3": {
+  "label": "Industrial Crop",
+  "tip": "Vekster dyrket som råvarer for industri eller produksjon, f.eks. bomull eller lin til lintøy."
+ },
+ "LCH-5_1_5_4": {
+  "label": "Energy Crop",
+  "tip": "Vekster dyrket for å produsere energi, f.eks. mais som brukes i et biogassanlegg."
+ },
+ "LCH-5_1_5_4_1": {
+  "label": "Bio Gas Crop",
+  "tip": "Vekster dyrket for å brukes i biogassanlegg til energiproduksjon."
+ },
+ "LCH-5_1_5_4_2": {
+  "label": "Liquid Bio Fuel Crop",
+  "tip": "Vekster dyrket for å lage flytende biodrivstoff, f.eks. rapsolje, eller bioetanol fra sukkerrør eller mais."
+ },
+ "LCH-5_1_5_4_3": {
+  "label": "Solid Bio Fuel Crop",
+  "tip": "Vekster dyrket for å produsere fast biobrensel, f.eks. hurtigvoksende trær som høstes som energived."
+ },
+ "LCH-5_1_5_5": {
+  "label": "Ornamental Plants",
+  "tip": "Planter dyrket til pynt eller landskapsforming, f.eks. trær og busker fra planteskoler som senere plantes i parker, hager eller på offentlige plasser."
+ },
+ "LCH-5_1_5_6": {
+  "label": "Functional Crop",
+  "tip": "Vekster dyrket hovedsakelig for en nyttig funksjon annet enn mat, fôr, industri eller energi, som å beskytte jorda; kan kombineres med andre formål."
+ },
+ "LCH-5_1_5_6_1": {
+  "label": "Soil Protective Cover Crop",
+  "tip": "Vekster dyrket for å dekke jorda og beskytte den mot erosjon eller uttørking."
+ },
+ "LCH-5_1_5_6_2": {
+  "label": "Soil Nutrient Storage Crop",
+  "tip": "Vekster dyrket for å berike jorda med næringsstoffer som naturlig nitrogen, f.eks. kløver."
+ },
+ "LCH-5_1_5_6_3": {
+  "label": "Biodiversity Conservation Crop",
+  "tip": "Vekster dyrket for å beskytte, bevare eller gjenopprette det biologiske mangfoldet, f.eks. blomsterstriper som gir insekter levevilkår."
+ },
+ "LCH-5_1_5_6_4": {
+  "label": "Carbon Sequestration Crop",
+  "tip": "Vekster dyrket hovedsakelig for å ta opp karbondioksid fra lufta og lagre det i plantene eller i jorda."
+ },
+ "LCH-5_1_5_7": {
+  "label": "Seed Production Crop",
+  "tip": "Vekster dyrket for å produsere såfrø til framtidig såing."
+ },
+ "LCH-5_1_6": {
+  "label": "Crop Type",
+  "tip": "Grupperer vekster etter vekstform eller etter hvilken del av planten som høstes, som korn, belgvekster eller rotvekster, i stedet for etter bruk."
+ },
+ "LCH-5_1_6_1": {
+  "label": "Arable Crops",
+  "tip": "Vekster dyrket på pløyd mark, vanligvis ettårige, her delt inn i korn, belgvekster, fôrbelgvekster og rotvekster."
+ },
+ "LCH-5_1_6_1_1": {
+  "label": "Cereals",
+  "tip": "Vekster i grasfamilien som dyrkes for kornet, f.eks. hvete, bygg, mais eller ris."
+ },
+ "LCH-5_1_6_1_1_1": {
+  "label": "Common Wheat and Spelt",
+  "tip": "Vanlig brødhvete og det nært beslektede, eldre kornslaget spelt."
+ },
+ "LCH-5_1_6_1_1_2": {
+  "label": "Durum Wheat",
+  "tip": "Hard hvete, typen som hovedsakelig brukes til pasta og semulegryn."
+ },
+ "LCH-5_1_6_1_1_3": {
+  "label": "Rye",
+  "tip": "Et hardført kornslag som brukes f.eks. i rugbrød."
+ },
+ "LCH-5_1_6_1_1_4": {
+  "label": "Barley",
+  "tip": "Et kornslag som brukes til dyrefôr, malting og ølbrygging."
+ },
+ "LCH-5_1_6_1_1_5": {
+  "label": "Oats",
+  "tip": "Et kornslag som brukes til dyrefôr og matvarer som grøt og havregryn."
+ },
+ "LCH-5_1_6_1_1_6": {
+  "label": "Maize",
+  "tip": "Et høyt kornslag som dyrkes for kolbene, til dyrefôr eller energi."
+ },
+ "LCH-5_1_6_1_1_7": {
+  "label": "Rice",
+  "tip": "Et kornslag som dyrkes for kornene, vanligvis på oversvømte rismarker."
+ },
+ "LCH-5_1_6_1_1_8": {
+  "label": "Millet",
+  "tip": "Småfrøede korngras som dyrkes for kornene og brukes til mat og til fugle- eller dyrefôr."
+ },
+ "LCH-5_1_6_1_1_9": {
+  "label": "Other Cereals",
+  "tip": "Kornvekster som ikke er oppført særskilt, f.eks. rughvete (triticale) eller sorghum."
+ },
+ "LCH-5_1_6_1_2": {
+  "label": "Pulses and Protein Crops",
+  "tip": "Belgvekster som dyrkes for de proteinrike, tørre frøene, f.eks. erter, bønner, linser eller soya."
+ },
+ "LCH-5_1_6_1_2_1": {
+  "label": "Peas",
+  "tip": "Ertplanter dyrket for frøene, som høstes tørre eller ferske."
+ },
+ "LCH-5_1_6_1_2_2": {
+  "label": "Beans",
+  "tip": "Bønneplanter dyrket for frøene, f.eks. åkerbønner eller kidneybønner."
+ },
+ "LCH-5_1_6_1_2_3": {
+  "label": "Lentils",
+  "tip": "En belgvekst som dyrkes for sine små, linseformede, spiselige frø."
+ },
+ "LCH-5_1_6_1_2_4": {
+  "label": "Sweet Lupins",
+  "tip": "Lupinsorter med lite bitterstoffer, dyrket for de proteinrike frøene som brukes til mat eller dyrefôr."
+ },
+ "LCH-5_1_6_1_2_5": {
+  "label": "Soya",
+  "tip": "Soyabønner, en belgvekst som dyrkes for de protein- og oljerike bønnene, som brukes i mat og dyrefôr."
+ },
+ "LCH-5_1_6_1_2_6": {
+  "label": "Chickpeas",
+  "tip": "En belgvekst som dyrkes for sine runde, spiselige frø, som brukes f.eks. i hummus."
+ },
+ "LCH-5_1_6_1_2_7": {
+  "label": "Peanuts",
+  "tip": "Jordnøtter, en belgvekst der belgene modnes under jorda; til tross for navnet ikke en ekte nøtt."
+ },
+ "LCH-5_1_6_1_2_8": {
+  "label": "Other Dry Pulses",
+  "tip": "Belgvekster dyrket for tørre frø som ikke er oppført særskilt, f.eks. vikker eller skolm."
+ },
+ "LCH-5_1_6_1_3": {
+  "label": "Clover, Vetch, Lupins, Lucerne",
+  "tip": "Belgvekster som for det meste dyrkes som grønnfôr til husdyr, og som også tilfører jorda nitrogen, f.eks. kløver eller luserne."
+ },
+ "LCH-5_1_6_1_4": {
+  "label": "Root And Tuber Crops",
+  "tip": "Vekster dyrket for sine røtter eller knoller under jorda, f.eks. poteter, sukkerbeter eller gulrøtter."
+ },
+ "LCH-5_1_6_1_4_1": {
+  "label": "Potatoes",
+  "tip": "Potetplanter dyrket for de stivelsesrike knollene under jorda."
+ },
+ "LCH-5_1_6_1_4_2": {
+  "label": "Sweet Potatoes",
+  "tip": "En vekst som dyrkes for sine søte, stivelsesrike rotknoller; ikke nært beslektet med vanlig potet."
+ },
+ "LCH-5_1_6_1_4_3": {
+  "label": "Sugar Beet",
+  "tip": "En åkervekst som dyrkes for den tykke, hvite roten, som foredles til vanlig sukker."
+ },
+ "LCH-5_1_6_1_4_4": {
+  "label": "Fodder Beet",
+  "tip": "En stor bete som dyrkes på jordbruksarealer som dyrefôr og ikke til mat for mennesker, f.eks. til storfe om vinteren."
+ },
+ "LCH-5_1_6_1_4_5": {
+  "label": "Carrot",
+  "tip": "Den velkjente oransje rotgrønnsaken, som dyrkes på åkeren for den spiselige pælerota."
+ },
+ "LCH-5_1_6_1_4_6": {
+  "label": "Parsnip",
+  "tip": "En blek, gulrotlignende rotgrønnsak som dyrkes på åkeren for den søtlige, spiselige roten."
+ },
+ "LCH-5_1_6_1_4_7": {
+  "label": "Horseradish",
+  "tip": "En plante som dyrkes for den skarpe roten, som rives og brukes som sterkt tilbehør, f.eks. pepperrotsaus."
+ },
+ "LCH-5_1_6_1_4_8": {
+  "label": "Radish",
+  "tip": "En hurtigvoksende grønnsak som dyrkes for den sprø, pepperaktige roten og ofte spises rå i salat."
+ },
+ "LCH-5_1_6_1_4_9": {
+  "label": "Beetroot",
+  "tip": "En rød bete som dyrkes som grønnsak for den runde, dyprøde, spiselige roten."
+ },
+ "LCH-5_1_6_1_4_10": {
+  "label": "White Turnip",
+  "tip": "En rotgrønnsak med hvit, rundaktig rot som dyrkes på åkeren til mat eller noen ganger til dyrefôr."
+ },
+ "LCH-5_1_6_1_4_11": {
+  "label": "Celery Root",
+  "tip": "Også kalt knollselleri: en sellerisort som dyrkes for den store, knudrete, spiselige roten og ikke for stilkene."
+ },
+ "LCH-5_1_6_1_5": {
+  "label": "Bulb Vegetable Crops",
+  "tip": "Omfatter grønnsaker som dyrkes for de spiselige løkene eller løklignende stenglene, f.eks. kepaløk, hvitløk og purre."
+ },
+ "LCH-5_1_6_1_5_1": {
+  "label": "Onions",
+  "tip": "En vanlig løkgrønnsak som dyrkes på åkeren for den lagdelte løken med kraftig smak, som brukes i matlaging."
+ },
+ "LCH-5_1_6_1_5_2": {
+  "label": "Garlic",
+  "tip": "En løkvekst som dyrkes for de skarpe fedd, som er mye brukt til å smaksette mat."
+ },
+ "LCH-5_1_6_1_5_3": {
+  "label": "Leeks",
+  "tip": "En mild grønnsak i slekt med løk, som dyrkes for den lange hvite og grønne stengelen, f.eks. til supper."
+ },
+ "LCH-5_1_6_1_6": {
+  "label": "Cole Crops, Brassica oleracea",
+  "tip": "Omfatter grønnsaker foredlet fra villkål, f.eks. hodekål, brokkoli, blomkål og rosenkål."
+ },
+ "LCH-5_1_6_1_6_1": {
+  "label": "White, Green, Red Cabbage",
+  "tip": "Hodedannende kålsorter med hvite, grønne eller røde blader, som dyrkes på åkeren til ferskvare eller surkål."
+ },
+ "LCH-5_1_6_1_6_2": {
+  "label": "Brussels Sprout",
+  "tip": "En slektning av kål som dyrkes for de små bladknoppene som vokser langs den høye stengelen."
+ },
+ "LCH-5_1_6_1_6_3": {
+  "label": "Stem Cabbage, Kohlrabi",
+  "tip": "En slektning av kål som dyrkes for den fortykkede, runde stengelen, som spises som grønnsak; kjent som knutekål."
+ },
+ "LCH-5_1_6_1_6_4": {
+  "label": "Cauliflower",
+  "tip": "En slektning av kål som dyrkes for det tette, hvite hodet av uutviklede blomsterknopper."
+ },
+ "LCH-5_1_6_1_6_5": {
+  "label": "Broccoli",
+  "tip": "En slektning av kål som dyrkes for de grønne hodene av blomsterknopper og stilkene."
+ },
+ "LCH-5_1_6_1_6_6": {
+  "label": "Savoy Cabbage",
+  "tip": "En kålsort med krusete, rynkete grønne blader, som dyrkes som vintergrønnsak."
+ },
+ "LCH-5_1_6_1_7": {
+  "label": "Leaf, Stalk, Flowering Vegetable Crops",
+  "tip": "Omfatter grønnsaker som dyrkes for bladene, stilkene eller blomsterdelene, f.eks. salat, spinat, asparges og artisjokk."
+ },
+ "LCH-5_1_6_1_7_1": {
+  "label": "Lettuces, Salads",
+  "tip": "Bladgrønnsaker som dyrkes for å spises friske, f.eks. hodesalat og andre salatsorter."
+ },
+ "LCH-5_1_6_1_7_2": {
+  "label": "Asparagus",
+  "tip": "En flerårig grønnsak som dyrkes for de unge skuddene, som høstes om våren."
+ },
+ "LCH-5_1_6_1_7_3": {
+  "label": "Spinach",
+  "tip": "En grønn bladgrønnsak som dyrkes for de møre, mørkegrønne bladene."
+ },
+ "LCH-5_1_6_1_7_4": {
+  "label": "Rods Celery",
+  "tip": "Selleri som dyrkes for de lange, sprø bladstilkene, i motsetning til selleri som dyrkes for roten."
+ },
+ "LCH-5_1_6_1_7_5": {
+  "label": "Rhubarb",
+  "tip": "En flerårig plante som dyrkes for de tykke, sure røde eller grønne stilkene, som ofte brukes i desserter."
+ },
+ "LCH-5_1_6_1_7_6": {
+  "label": "Artichoke",
+  "tip": "En tistellignende plante som dyrkes for de store, spiselige blomsterknoppene."
+ },
+ "LCH-5_1_6_1_7_7": {
+  "label": "Romanesco",
+  "tip": "En blomkållignende grønnsak med lysegrønne, spiralformede buketter, som dyrkes for det spiselige hodet."
+ },
+ "LCH-5_1_6_1_8": {
+  "label": "Fruiting Vegetable Crops",
+  "tip": "Omfatter grønnsaksplanter som dyrkes for fruktene, f.eks. tomater, paprika og auberginer."
+ },
+ "LCH-5_1_6_1_8_1": {
+  "label": "Tomato",
+  "tip": "En utbredt grønnsaksplante som dyrkes for de saftige røde fruktene, på friland eller i veksthus."
+ },
+ "LCH-5_1_6_1_8_2": {
+  "label": "Bell Pepper",
+  "tip": "Søt, mild paprika som dyrkes for de store, fargerike fruktene, f.eks. rød, gul eller grønn paprika."
+ },
+ "LCH-5_1_6_1_8_3": {
+  "label": "Chili Pepper",
+  "tip": "Pepperplanter som dyrkes for de små, sterke fruktene, som brukes friske, tørkede eller som krydder."
+ },
+ "LCH-5_1_6_1_8_4": {
+  "label": "Eggplant",
+  "tip": "Også kalt eggplante: en plante som dyrkes for den blanke, oftest lilla frukten, som spises som grønnsak."
+ },
+ "LCH-5_1_6_1_9": {
+  "label": "Cucurbit Crops",
+  "tip": "Omfatter vekster i gresskarfamilien som vokser på krypende ranker, f.eks. agurk, squash, meloner og gresskar."
+ },
+ "LCH-5_1_6_1_9_1": {
+  "label": "Cucumbers",
+  "tip": "En rankevekst som dyrkes for de lange grønne fruktene, som spises friske eller syltet."
+ },
+ "LCH-5_1_6_1_9_2": {
+  "label": "Zucchini",
+  "tip": "Også kalt zucchini: et sommergresskar som dyrkes for de unge grønne fruktene."
+ },
+ "LCH-5_1_6_1_9_3": {
+  "label": "Melons",
+  "tip": "Rankevekster som dyrkes for de store, søte fruktene, f.eks. vannmelon eller cantaloupe."
+ },
+ "LCH-5_1_6_1_9_4": {
+  "label": "Pumpkins",
+  "tip": "Rankevekster som dyrkes for de store, oftest oransje fruktene, som brukes til mat, dyrefôr eller pynt."
+ },
+ "LCH-5_1_6_1_10": {
+  "label": "Oilseed or Fibre Crops",
+  "tip": "Omfatter åkervekster som hovedsakelig dyrkes for olje fra frøene eller for plantefibre, f.eks. solsikke, raps, bomull og hamp. Noen industrivekster som tobakk og humle hører også hjemme her."
+ },
+ "LCH-5_1_6_1_10_1": {
+  "label": "Tobacco",
+  "tip": "En åkervekst som dyrkes for de store bladene, som tørkes og brukes til sigaretter og andre tobakksvarer."
+ },
+ "LCH-5_1_6_1_10_2": {
+  "label": "Hops",
+  "tip": "En klatreplante som dyrkes på høye stativer av ståltråd for de kongleformede blomstene, som hovedsakelig brukes til å smaksette øl."
+ },
+ "LCH-5_1_6_1_10_3": {
+  "label": "Rape and Turnip Rape",
+  "tip": "Oljevekster i korsblomstfamilien, kjent for knallgule åkrer om våren, som dyrkes for olje, f.eks. raps (canola)."
+ },
+ "LCH-5_1_6_1_10_4": {
+  "label": "Sunflower",
+  "tip": "En høy plante med store gule blomsterkurver, som dyrkes for frøene, som presses til olje eller spises."
+ },
+ "LCH-5_1_6_1_10_5": {
+  "label": "Linseed, Oil Flax",
+  "tip": "Linsorter som hovedsakelig dyrkes for frøene, som gir linolje og brukes som mat."
+ },
+ "LCH-5_1_6_1_10_6": {
+  "label": "Cotton",
+  "tip": "En buskaktig vekst som dyrkes for de myke, hvite fibrene rundt frøene, som brukes til tekstiler."
+ },
+ "LCH-5_1_6_1_10_7": {
+  "label": "Flax",
+  "tip": "En slank plante som dyrkes for fibrene i stenglene, som brukes til å lage lin (lerret)."
+ },
+ "LCH-5_1_6_1_10_8": {
+  "label": "Hemp",
+  "tip": "En hurtigvoksende plante som dyrkes for de sterke stengelfibrene og frøene, f.eks. til tau, tekstiler eller olje."
+ },
+ "LCH-5_1_6_1_10_9": {
+  "label": "Other Oilseed or Fibre Crops",
+  "tip": "Olje- eller fibervekster som ikke passer inn i de mer spesifikke typene som er oppført ved siden av, som solsikke eller bomull."
+ },
+ "LCH-5_1_6_1_11": {
+  "label": "Aromatic, Medicinal, Culinary Herbs",
+  "tip": "Urter som dyrkes på åkeren for duft, medisin eller matlaging, f.eks. lavendel, kamille, persille eller basilikum."
+ },
+ "LCH-5_1_6_1_12": {
+  "label": "Flowers and Ornamental Plants",
+  "tip": "Planter som dyrkes kommersielt for blomstene eller prydverdien, f.eks. tulipaner, roser eller utplantingsplanter."
+ },
+ "LCH-5_1_6_1_13": {
+  "label": "Strawberries",
+  "tip": "Lavtvoksende planter som dyrkes på åkeren eller i plasttunneler for de søte røde bærene; her regnet som en åkervekst."
+ },
+ "LCH-5_1_6_1_14": {
+  "label": "Sugarcane",
+  "tip": "Et høyt tropisk gress som dyrkes for de tykke stråene, som knuses for å utvinne saft til sukker eller biodrivstoff."
+ },
+ "LCH-5_1_6_1_99": {
+  "label": "Other Arable Crops",
+  "tip": "Åkervekster, dyrket på jord som pløyes eller bearbeides jevnlig, som ikke passer inn i noen av de mer spesifikke vekstgruppene som er oppført."
+ },
+ "LCH-5_1_6_2": {
+  "label": "Meadow Grasses And Herbs",
+  "tip": "Gress og urteaktige planter som dyrkes eller skjøttes på enger, hovedsakelig til høy, surfôr eller beite."
+ },
+ "LCH-5_1_6_3": {
+  "label": "Permanent Crops",
+  "tip": "Omfatter vekster som står i jorda i mange år og høstes gjentatte ganger, f.eks. frukthager, vinmarker og olivenlunder."
+ },
+ "LCH-5_1_6_3_1": {
+  "label": "Pome Fruits",
+  "tip": "Omfatter frukt fra frukthager med fruktkjøtt rundt et kjernehus med små frø, f.eks. epler og pærer."
+ },
+ "LCH-5_1_6_3_1_1": {
+  "label": "Apple",
+  "tip": "Frukttrær som dyrkes for epler, en av de vanligste fruktvekstene i Europa."
+ },
+ "LCH-5_1_6_3_1_2": {
+  "label": "Pear",
+  "tip": "Frukttrær som dyrkes for pærer, søte frukter med kjernehus som hos epler."
+ },
+ "LCH-5_1_6_3_1_3": {
+  "label": "Quince",
+  "tip": "Små trær som dyrkes for kvede, en hard, duftende frukt som som regel kokes til syltetøy eller gelé."
+ },
+ "LCH-5_1_6_3_1_4": {
+  "label": "Medlar",
+  "tip": "Små trær som dyrkes for mispel, en brunaktig frukt som tradisjonelt spises først når den har blitt myk etter innhøstingen."
+ },
+ "LCH-5_1_6_3_1_5": {
+  "label": "Pomegranate",
+  "tip": "Busker eller små trær som dyrkes for granatepler, runde frukter fulle av saftige røde frø."
+ },
+ "LCH-5_1_6_3_2": {
+  "label": "Drupes, Stone-Like Fruits",
+  "tip": "Omfatter frukt fra trær med mykt fruktkjøtt rundt en enkelt hard stein, f.eks. kirsebær, plommer, fersken og aprikos."
+ },
+ "LCH-5_1_6_3_2_1": {
+  "label": "Sweet Cherry",
+  "tip": "Frukttrær som dyrkes for søtkirsebær, som spises friske som dessertfrukt."
+ },
+ "LCH-5_1_6_3_2_2": {
+  "label": "Sour Cherry",
+  "tip": "Trær som dyrkes for surkirsebær, syrlige frukter som mest brukes til saft, syltetøy eller baking."
+ },
+ "LCH-5_1_6_3_2_3": {
+  "label": "Plum",
+  "tip": "Frukttrær som dyrkes for plommer, saftig steinfrukt som spises fersk, tørkes til svisker eller destilleres."
+ },
+ "LCH-5_1_6_3_2_4": {
+  "label": "Mirabelle, Spilling",
+  "tip": "Trær som dyrkes for små plommelignende frukter, f.eks. den gule mirabelleplommen."
+ },
+ "LCH-5_1_6_3_2_5": {
+  "label": "Peach, Nectarine",
+  "tip": "Frukttrær som dyrkes for fersken og nektariner, saftig steinfrukt; nektariner har glatt skall."
+ },
+ "LCH-5_1_6_3_2_6": {
+  "label": "Apricot",
+  "tip": "Frukttrær som dyrkes for aprikoser, liten oransje steinfrukt som spises fersk eller tørket."
+ },
+ "LCH-5_1_6_3_2_7": {
+  "label": "Avocado",
+  "tip": "Trær som dyrkes for avokado, kremete grønne frukter med én stor stein."
+ },
+ "LCH-5_1_6_3_2_8": {
+  "label": "Mango",
+  "tip": "Tropiske trær som dyrkes for mango, søte frukter med oransje fruktkjøtt rundt en stor, flat stein."
+ },
+ "LCH-5_1_6_3_2_9": {
+  "label": "Litchi",
+  "tip": "Subtropiske trær som dyrkes for litchi, små frukter med ru, rødt skall og hvitt, saftig fruktkjøtt."
+ },
+ "LCH-5_1_6_3_2_10": {
+  "label": "Date Fruit",
+  "tip": "Daddelpalmer som dyrkes på plantasjer for de søte fruktene, f.eks. i ørkenoaser."
+ },
+ "LCH-5_1_6_3_2_11": {
+  "label": "Oil Palm",
+  "tip": "Tropiske palmer som dyrkes på plantasjer for fruktene, som presses til palmeolje."
+ },
+ "LCH-5_1_6_3_3": {
+  "label": "Nuts",
+  "tip": "Omfatter trær og busker som dyrkes for de spiselige nøttene, f.eks. valnøtter, hasselnøtter og mandler."
+ },
+ "LCH-5_1_6_3_3_1": {
+  "label": "Walnuts",
+  "tip": "Trær som dyrkes for valnøtter, nøtter med hardt skall som brukes til mat og olje."
+ },
+ "LCH-5_1_6_3_3_2": {
+  "label": "Chestnuts",
+  "tip": "Edelkastanjetrær som dyrkes for de spiselige nøttene, som ofte ristes om høsten."
+ },
+ "LCH-5_1_6_3_3_3": {
+  "label": "Hazelnuts",
+  "tip": "Busker eller små trær som dyrkes for hasselnøtter, f.eks. til sjokoladepålegg og baking."
+ },
+ "LCH-5_1_6_3_3_4": {
+  "label": "Cashew Nuts",
+  "tip": "Tropiske trær som dyrkes for cashewnøtter, som henger under en kjøttfull frukt kalt casheweple."
+ },
+ "LCH-5_1_6_3_3_5": {
+  "label": "Brazil Nuts",
+  "tip": "Høye tropiske trær som dyrkes eller høstes for paranøtter, store frø som ligger tettpakket i en hard kapsel."
+ },
+ "LCH-5_1_6_3_3_6": {
+  "label": "Pekka Nuts",
+  "tip": "Viser trolig til pekannøtter, som dyrkes på store trær for de fyldige, spiselige nøttene."
+ },
+ "LCH-5_1_6_3_3_7": {
+  "label": "Pistachios",
+  "tip": "Trær som dyrkes i varme, tørre områder for pistasjnøtter, grønne nøtter i et oppsprukket skall."
+ },
+ "LCH-5_1_6_3_3_8": {
+  "label": "Almond",
+  "tip": "Frukttrær som dyrkes for mandler, nøtter som spises hele eller brukes i baking og mandelmelk."
+ },
+ "LCH-5_1_6_3_3_9": {
+  "label": "Coconuts",
+  "tip": "Kokospalmer som dyrkes på tropiske plantasjer for de store nøttene, som brukes til mat, olje og fiber."
+ },
+ "LCH-5_1_6_3_4": {
+  "label": "Citrus Fruits",
+  "tip": "Omfatter trær som dyrkes for saftige frukter delt i båter med aromatisk skall, f.eks. appelsiner, sitroner og mandariner."
+ },
+ "LCH-5_1_6_3_4_1": {
+  "label": "Oranges",
+  "tip": "Sitrustrær som dyrkes for appelsiner, den mest dyrkede sitrusfrukten, som spises fersk eller presses til juice."
+ },
+ "LCH-5_1_6_3_4_2": {
+  "label": "Lemons",
+  "tip": "Sitrustrær som dyrkes for sitroner, sure gule frukter som brukes til saft og smakstilsetning."
+ },
+ "LCH-5_1_6_3_4_3": {
+  "label": "Limes",
+  "tip": "Sitrustrær som dyrkes for lime, små grønne, sure frukter som brukes i matlaging og drikke."
+ },
+ "LCH-5_1_6_3_4_4": {
+  "label": "Pomelos",
+  "tip": "Sitrustrær som dyrkes for pomelo, den største sitrusfrukten, med tykt skall og mildt fruktkjøtt."
+ },
+ "LCH-5_1_6_3_4_5": {
+  "label": "Grapefruits",
+  "tip": "Sitrustrær som dyrkes for grapefrukt, store frukter med en litt bitter smak."
+ },
+ "LCH-5_1_6_3_4_6": {
+  "label": "Mandarine",
+  "tip": "Sitrustrær som dyrkes for mandariner, små, lettskrelte søte appelsiner."
+ },
+ "LCH-5_1_6_3_4_7": {
+  "label": "Clementine",
+  "tip": "Sitrustrær som dyrkes for klementiner, små, oftest steinfrie mandarinlignende frukter."
+ },
+ "LCH-5_1_6_3_5": {
+  "label": "Berry Crops",
+  "tip": "Omfatter busker og planter som dyrkes for små, myke frukter, f.eks. bringebær, rips og blåbær."
+ },
+ "LCH-5_1_6_3_5_1": {
+  "label": "Raspberries",
+  "tip": "Planter med lange skudd som dyrkes for bringebær, myke røde bær som spises friske eller frosne."
+ },
+ "LCH-5_1_6_3_5_2": {
+  "label": "Blackberries",
+  "tip": "Tornete eller tornløse skudd som dyrkes for bjørnebær, mørke, saftige bær."
+ },
+ "LCH-5_1_6_3_5_3": {
+  "label": "Currants",
+  "tip": "Busker som dyrkes for rips og solbær, små røde, hvite eller svarte bær som brukes til saft og syltetøy."
+ },
+ "LCH-5_1_6_3_5_4": {
+  "label": "Gooseberries",
+  "tip": "Tornete busker som dyrkes for stikkelsbær, syrlige grønne eller rødlige bær."
+ },
+ "LCH-5_1_6_3_5_5": {
+  "label": "Blueberries",
+  "tip": "Busker som dyrkes for blåbær, små søte blå bær, ofte på sur jord."
+ },
+ "LCH-5_1_6_3_5_6": {
+  "label": "Cranberries",
+  "tip": "Lave, krypende planter som dyrkes for tranebær, sure røde bær, ofte i oversvømte bed eller myrer."
+ },
+ "LCH-5_1_6_3_5_7": {
+  "label": "Juniper",
+  "tip": "Eviggrønne busker som dyrkes for einebær, som brukes som krydder og til å smaksette gin."
+ },
+ "LCH-5_1_6_3_5_8": {
+  "label": "Elderberries",
+  "tip": "Busker som dyrkes for hyllebær og hylleblomster, som brukes til sirup, saft og vin."
+ },
+ "LCH-5_1_6_3_5_9": {
+  "label": "Cornel",
+  "tip": "Busker eller små trær som dyrkes for kornell (kornelkirsebær), små røde, syrlige frukter."
+ },
+ "LCH-5_1_6_3_5_10": {
+  "label": "Passion Fruit",
+  "tip": "Klatreplanter som dyrkes i varme områder for pasjonsfrukt, med geléaktige, aromatiske frø."
+ },
+ "LCH-5_1_6_3_6": {
+  "label": "Grapes",
+  "tip": "Vinmarker der vinranker dyrkes for vin, spisedruer eller rosiner."
+ },
+ "LCH-5_1_6_3_7": {
+  "label": "Olives",
+  "tip": "Olivenlunder med langlivede trær som dyrkes for oliven, som spises eller presses til olivenolje."
+ },
+ "LCH-5_1_6_3_8": {
+  "label": "Other Fleshy Fruits",
+  "tip": "Omfatter andre trær og planter som dyrkes for myke, saftige frukter, f.eks. bananer, fiken, kiwi og papaya."
+ },
+ "LCH-5_1_6_3_8_1": {
+  "label": "Banana",
+  "tip": "Store tropiske planter som dyrkes på plantasjer for bananklaser."
+ },
+ "LCH-5_1_6_3_8_2": {
+  "label": "Fig Fruit",
+  "tip": "Trær som dyrkes for fiken, myke søte frukter som spises friske eller tørkede."
+ },
+ "LCH-5_1_6_3_8_3": {
+  "label": "Kiwi",
+  "tip": "Klatreplanter som dyrkes på espalier for kiwi, frukter med brunt, lodent skall og grønt fruktkjøtt."
+ },
+ "LCH-5_1_6_3_8_4": {
+  "label": "Papaya",
+  "tip": "Tropiske planter som dyrkes for papaya, store frukter med oransje fruktkjøtt og svarte frø."
+ },
+ "LCH-5_1_6_3_8_5": {
+  "label": "Ananas",
+  "tip": "Ananas, en tropisk plante som dyrkes på åkeren for den store, piggete, søte frukten."
+ },
+ "LCH-5_1_6_3_8_6": {
+  "label": "Custard Apple",
+  "tip": "Tropiske trær som dyrkes for kremepler, frukter med søtt, kremet hvitt fruktkjøtt."
+ },
+ "LCH-5_1_6_3_8_7": {
+  "label": "Prickly Pear",
+  "tip": "Kaktuser som dyrkes for de spiselige fruktene, kjent som fikenkaktus, vanlige i Middelhavsområdet."
+ },
+ "LCH-5_1_6_3_8_8": {
+  "label": "Persimmon",
+  "tip": "Trær som dyrkes for persimon (kaki), oransje frukter som er søte når de er helt modne."
+ },
+ "LCH-5_1_6_3_9": {
+  "label": "Exotic Aromatic and Spice Crops",
+  "tip": "Omfatter tropiske flerårige planter som dyrkes for drikke, krydder og smakstilsetninger, f.eks. kaffe, kakao, vanilje og pepper."
+ },
+ "LCH-5_1_6_3_9_1": {
+  "label": "Coffee Bush",
+  "tip": "Busker som dyrkes på tropiske plantasjer for kaffebønner, frøene inne i de røde bærene."
+ },
+ "LCH-5_1_6_3_9_2": {
+  "label": "Cocoa Tree",
+  "tip": "Tropiske trær som dyrkes for kakaobønner, råvaren til sjokolade."
+ },
+ "LCH-5_1_6_3_9_3": {
+  "label": "Pepper",
+  "tip": "Klatreplanter som dyrkes for pepperkorn, som tørkes til svart, hvit eller grønn pepper."
+ },
+ "LCH-5_1_6_3_9_4": {
+  "label": "Cinnamon Tree",
+  "tip": "Tropiske trær som dyrkes for den indre barken, som tørkes og blir til krydderet kanel."
+ },
+ "LCH-5_1_6_3_9_5": {
+  "label": "Vanilla",
+  "tip": "En klatrende orkidé som dyrkes i tropene for frøkapslene, som behandles og blir til vanilje."
+ },
+ "LCH-5_1_6_3_9_6": {
+  "label": "Cloves",
+  "tip": "Tropiske trær som dyrkes for de tørkede blomsterknoppene, som brukes som krydderet nellik."
+ },
+ "LCH-5_1_6_3_9_7": {
+  "label": "Cardamom",
+  "tip": "En tropisk plante i ingefærfamilien som dyrkes for de aromatiske frøkapslene, som brukes som krydder."
+ },
+ "LCH-5_1_6_3_9_8": {
+  "label": "Ginger",
+  "tip": "En tropisk plante som dyrkes for den krydrede jordstengelen (rhizom), som brukes fersk eller tørket i matlaging."
+ },
+ "LCH-5_1_6_3_10": {
+  "label": "Leaf Crops from Woody Plants",
+  "tip": "Omfatter busker og trær som dyrkes for å høste bladene, f.eks. tebusker."
+ },
+ "LCH-5_1_6_3_10_1": {
+  "label": "Tea Bush",
+  "tip": "Eviggrønne busker som dyrkes på plantasjer, ofte i åssider, for bladene som brukes til å lage te."
+ },
+ "LCH-5_1_6_3_10_2": {
+  "label": "Coca Bush",
+  "tip": "Busker som hovedsakelig dyrkes i Andesfjellene for kokablader, som tygges, brukes til te eller foredles."
+ },
+ "LCH-5_1_6_3_10_3": {
+  "label": "Mate Tree",
+  "tip": "Søramerikanske trær som dyrkes for bladene, som brukes til å lage mate, en koffeinholdig urtedrikk."
+ },
+ "LCH-5_1_6_3_11": {
+  "label": "Woody Plant Nursery",
+  "tip": "Arealer der unge trær og busker dyrkes fram for salg eller utplanting, f.eks. en planteskole for hager eller skogbruk."
+ },
+ "LCH-5_1_6_3_12": {
+  "label": "Christmas Trees",
+  "tip": "Plantefelt med unge bartrær, f.eks. edelgran eller gran, som dyrkes for å bli hogd og solgt som juletrær."
+ },
+ "LCH-5_1_6_3_13": {
+  "label": "Herbaceous Biomass Crops",
+  "tip": "Langlivede, ikke-treaktige planter som dyrkes for å produsere biomasse til energi eller materialer, f.eks. Miscanthus, Silphium eller Sorghum."
+ },
+ "LCH-5_1_6_3_14": {
+  "label": "Woody Biomass Crops",
+  "tip": "Hurtigvoksende trær eller busker som plantes for å produsere trebiomasse, f.eks. vier eller poppel som høstes med korte mellomrom."
+ },
+ "LCH-5_1_6_3_99": {
+  "label": "Other Permanent Crops",
+  "tip": "Flerårige vekster, som står i jorda i mange år, som ikke passer inn i noen av de mer spesifikke gruppene som er oppført."
+ },
+ "LCH-5_1_6_4": {
+  "label": "Mushrooms",
+  "tip": "Dyrket sopp, som oftest dyrkes innendørs på spesielle substrater, f.eks. sjampinjong eller østerssopp."
+ },
+ "LCH-5_1_6_5": {
+  "label": "Aquatic Crops",
+  "tip": "Omfatter vekster som dyrkes i vann og ikke på tørt land, f.eks. dyrkede alger."
+ },
+ "LCH-5_1_6_5_1": {
+  "label": "Algae Crops",
+  "tip": "Alger som dyrkes i dammer, tanker eller i sjøen, f.eks. tang og tare eller mikroalger til mat, fôr eller drivstoff."
+ },
+ "LCH-5_1_6_98": {
+  "label": "Fallow Land",
+  "tip": "Tidligere jordbruksareal som har ligget ubrukt i minst 3 år eller for godt, uten vekstdekke og ikke lenger med i et vekstskifte."
+ },
+ "LCH-5_1_6_99": {
+  "label": "Unspecified Crop",
+  "tip": "Brukes når et skifte tydelig er i jordbruksdrift, men det ikke er kjent hvilken vekst som dyrkes der."
+ },
+ "LCH-5_1_7": {
+  "label": "Plant Growth Stage",
+  "tip": "Omfatter stadiene en vekst går gjennom i løpet av sesongen, fra såing og spiring via blomstring og modning til etter innhøsting."
+ },
+ "LCH-5_1_7_1": {
+  "label": "Sowing The Seeds",
+  "tip": "Stadiet rett etter at frøene er sådd på åkeren, før spirer eller plantevekst er synlig."
+ },
+ "LCH-5_1_7_2": {
+  "label": "Germination, Sprouting",
+  "tip": "Det tidlige stadiet da frøene begynner å vokse og de første spirene kommer til syne."
+ },
+ "LCH-5_1_7_3": {
+  "label": "Vegetative Phase",
+  "tip": "Stadiet da spirene vokser til unge planter og danner blader og skudd, f.eks. korn som danner sideskudd (busking)."
+ },
+ "LCH-5_1_7_4": {
+  "label": "Reproductive Phase",
+  "tip": "Stadiet da vekstene danner hoder, aks eller blomster, f.eks. hvete som skyter aks."
+ },
+ "LCH-5_1_7_5": {
+  "label": "Ripening Phase",
+  "tip": "Stadiet da vekstene danner frukt eller korn og modnes, hvoretter plantene begynner å eldes og visne."
+ },
+ "LCH-5_1_7_6": {
+  "label": "Harvested Empty Field",
+  "tip": "En høstet åker som ligger bar, uten planterester og foreløpig uten ny vekst av ugras."
+ },
+ "LCH-5_1_7_7": {
+  "label": "Crop Residues",
+  "tip": "En høstet åker der det ligger igjen rester, f.eks. halm, stubb eller nedfallsfrukt. Det kan forekomme sammen med ny spiring på åkeren."
+ },
+ "LCH-5_1_7_8": {
+  "label": "Resprouting on Harvested Field",
+  "tip": "En høstet åker som blir grønn igjen fordi ugras eller spilte frø fra veksten spirer av seg selv. Det kan forekomme sammen med planterester."
+ },
+ "LCH-5_1_8": {
+  "label": "Crop Season",
+  "tip": "Omfatter beskrivelser av når på året vekster dyrkes, f.eks. sommer- eller vintersesong, og hvor mange vekstsesonger en åker har."
+ },
+ "LCH-5_1_8_1": {
+  "label": "Crop Season Ongoing",
+  "tip": "Angir at en vekst for tiden står på arealet og at vekstsesongen ennå ikke er over."
+ },
+ "LCH-5_1_8_2": {
+  "label": "Summer Crop Season",
+  "tip": "Vekster som sås om våren og vokser gjennom de varme månedene, f.eks. mais som høstes på sensommeren eller om høsten."
+ },
+ "LCH-5_1_8_3": {
+  "label": "Winter Crop Season",
+  "tip": "Vekster som sås om høsten og står på åkeren over vinteren, f.eks. høsthvete som høstes sommeren etter."
+ },
+ "LCH-5_1_8_4": {
+  "label": "Year-round Crop Season",
+  "tip": "Vekster som dyrkes kontinuerlig gjennom hele året og ikke bare i én sesong."
+ },
+ "LCH-5_1_8_5": {
+  "label": "Number Of Crop Seasons",
+  "tip": "Antall separate vekstsesonger på det samme arealet, vanligvis regnet per år."
+ },
+ "LCH-5_1_9": {
+  "label": "Crop Rotation Element",
+  "tip": "Omfatter rollene en vekst kan ha i et vekstskifte, som hovedvekst, etterfølgende vekst, følgevekst eller fangvekst."
+ },
+ "LCH-5_1_9_1": {
+  "label": "Main Crop",
+  "tip": "Årets første og viktigste vekst, vanligvis sådd etter fjorårets innhøsting, som normalt gir høyest avling."
+ },
+ "LCH-5_1_9_2": {
+  "label": "Secondary Crop",
+  "tip": "En andre eller tredje vekst som sås etter at årets hovedvekst er høstet; avlingen er vanligvis lavere enn om den var sådd høsten før."
+ },
+ "LCH-5_1_9_3": {
+  "label": "Side Crop",
+  "tip": "En ekstra vekst som dyrkes samtidig ved siden av hoved- eller etterfølgende vekst, f.eks. for å bedre jorda eller det biologiske mangfoldet, og som også høstes."
+ },
+ "LCH-5_1_9_4": {
+  "label": "Cover Crop",
+  "tip": "En etterfølgende vekst som hovedsakelig dyrkes for å beskytte og berike jorda, f.eks. mot erosjon, og ikke for avlingens verdi."
+ },
+ "LCH-5_1_10": {
+  "label": "Cultivation Strategy",
+  "tip": "Omfatter overordnede driftsformer i jordbruket og metodene som hører til, f.eks. konvensjonelt eller økologisk landbruk."
+ },
+ "LCH-5_1_10_1": {
+  "label": "Conventional Farming",
+  "tip": "Jordbruk som bygger på kunstgjødsel, ugrasmidler, plantevernmidler og tunge maskiner for å oppnå høyest mulig avling."
+ },
+ "LCH-5_1_10_2": {
+  "label": "Organic Farming",
+  "tip": "Jordbruk som unngår kunstgjødsel og kjemiske plantevernmidler, og som bruker naturlig gjødsel som grønngjødsel og biologisk eller mekanisk skadedyrbekjempelse."
+ },
+ "LCH-5_1_11": {
+  "label": "Grazing",
+  "tip": "Omfatter opplysninger om hvorvidt et areal beites av husdyr og hvor intensivt, etter EUs system for landbruksstøtte (IACS)."
+ },
+ "LCH-5_1_11_1": {
+  "label": "Grazing Intensity",
+  "tip": "Omfatter nivåer som beskriver hvor hardt et areal beites av dyr, fra ingen beiting til beiting med ukjent eller lav intensitet."
+ },
+ "LCH-5_1_11_1_1": {
+  "label": "No Grazing",
+  "tip": "Areal der det ikke er observert beiting av husdyr."
+ },
+ "LCH-5_1_11_1_2": {
+  "label": "Grazing Present, Intensity Unspecified",
+  "tip": "Areal der husdyr beiter, men der det ikke er kjent hvor mange dyr eller hvor intensivt."
+ },
+ "LCH-5_1_11_1_3": {
+  "label": "Extensive, Freerange Grazing",
+  "tip": "Beiting med lav intensitet med høyst to storfeenheter per hektar, f.eks. noen få storfe som går fritt på beite."
+ },
+ "LCH-5_1_11_1_4": {
+  "label": "Intensive Grazing",
+  "tip": "Beite med stor dyretetthet, her definert som mer enn 2 husdyrenheter per hektar, f.eks. en beitemark med mange melkekyr."
+ },
+ "LCH-5_1_11_2": {
+  "label": "Grazing Lifestock per ha",
+  "tip": "Angir hvor mange beitedyr, målt i husdyrenheter, som holdes på hver hektar av et bestemt areal."
+ },
+ "LCH-5_1_11_3": {
+  "label": "Grazing Cycle",
+  "tip": "Samler måtene beitingen fordeles over året på, fra helårsbeite til sesongbeite, rotasjonsbeite eller bare sporadisk beiting."
+ },
+ "LCH-5_1_11_3_1": {
+  "label": "All Year-round Grazing",
+  "tip": "Dyrene beiter på arealet hele året og ikke bare i visse årstider, f.eks. hardføre sauer som går ute i alle måneder."
+ },
+ "LCH-5_1_11_3_2": {
+  "label": "Seasonal Grazing",
+  "tip": "Dyrene beiter på arealet bare i en del av året, f.eks. storfe som slippes på sommerbeite i fjellet."
+ },
+ "LCH-5_1_11_3_3": {
+  "label": "Rotational Grazing, Paddocks",
+  "tip": "Dyrene flyttes etter tur mellom inngjerdede deler av beitet (beiteskifter), slik at hver del får tid til å vokse opp igjen før den beites på nytt."
+ },
+ "LCH-5_1_11_3_4": {
+  "label": "Occasional Grazing",
+  "tip": "Areal som dyr bare beiter av og til, uten fast mønster, f.eks. en eng som brukes til beite enkelte år."
+ },
+ "LCH-5_1_11_3_5": {
+  "label": "Unmanaged Natural Grazing",
+  "tip": "Beiting som skjer uten at mennesker styrer den, f.eks. ville eller frittgående dyr som spiser naturlig vegetasjon."
+ },
+ "LCH-5_1_11_4": {
+  "label": "Grazing Routine",
+  "tip": "Samler tidspunktene på døgnet når dyrene er ute og beiter: om dagen, om natten eller hele døgnet."
+ },
+ "LCH-5_1_11_4_1": {
+  "label": "Day Grazing",
+  "tip": "Dyrene slippes ut på beite om dagen og holdes i fjøs eller innhegning om natten."
+ },
+ "LCH-5_1_11_4_2": {
+  "label": "Night Grazing",
+  "tip": "Dyrene beiter bare om natten og holdes et annet sted om dagen."
+ },
+ "LCH-5_1_11_4_3": {
+  "label": "Day and Night Grazing",
+  "tip": "Dyrene blir værende på beitet og beiter både dag og natt."
+ },
+ "LCH-5_1_11_5": {
+  "label": "Lifestock Species Type",
+  "tip": "Samler dyreslagene som beiter på et areal, som storfe, sau, geit, hest eller fjørfe."
+ },
+ "LCH-5_1_11_5_1": {
+  "label": "Cattle",
+  "tip": "Areal som beites av kyr, okser eller annet storfe, f.eks. et beite for kjøttfe eller melkekyr."
+ },
+ "LCH-5_1_11_5_2": {
+  "label": "Horses",
+  "tip": "Areal som beites av hester, f.eks. en hestehage eller eng der hester holdes."
+ },
+ "LCH-5_1_11_5_3": {
+  "label": "Deer",
+  "tip": "Areal som beites av hjortedyr, f.eks. et inngjerdet område der hjort oppdrettes eller holdes."
+ },
+ "LCH-5_1_11_5_4": {
+  "label": "Pigs, Boars",
+  "tip": "Areal der griser eller villsvin beiter og roter i jorda, f.eks. frilandsgris i skog eller på jorder."
+ },
+ "LCH-5_1_11_5_5": {
+  "label": "Sheep",
+  "tip": "Areal som beites av sauer, f.eks. høytliggende beiter eller lier som brukes til sauehold."
+ },
+ "LCH-5_1_11_5_6": {
+  "label": "Goats",
+  "tip": "Areal som beites av geiter, f.eks. karrige, kratt-tilgrodde skråninger som brukes til geitehold."
+ },
+ "LCH-5_1_11_5_7": {
+  "label": "Poultry",
+  "tip": "Areal der høns, ender, gjess eller annet fjørfe finner mat utendørs, f.eks. en luftegård for frittgående fjørfe."
+ },
+ "LCH-5_1_11_5_8": {
+  "label": "Other Grazing Animals",
+  "tip": "Beitedyr som ikke er oppført særskilt, f.eks. esler, lamaer eller alpakkaer."
+ },
+ "LCH-5_2": {
+  "label": "Forest Land Management",
+  "tip": "Samler måtene skog forvaltes på: treets alder, treslagsblanding, hogst- og forynglingsmetoder og hva virket brukes til."
+ },
+ "LCH-5_2_1": {
+  "label": "Forest Age Structure",
+  "tip": "Beskriver hvordan trærnes alder er blandet i et skogbestand, noe som gjenspeiler hvordan det er plantet, skjøttet og hogd."
+ },
+ "LCH-5_2_1_1": {
+  "label": "Even-Aged Stands",
+  "tip": "Skogbestand der alle trærne er omtrent like gamle, som regel fordi de ble plantet samtidig, f.eks. et ensartet granplantefelt."
+ },
+ "LCH-5_2_1_2": {
+  "label": "Uneven-Aged Stands",
+  "tip": "Skogbestand med trær i ulik alder som vokser side om side."
+ },
+ "LCH-5_2_1_3": {
+  "label": "All-Aged Stands, Old-Growth Forest",
+  "tip": "Skog som hovedsakelig består av selvsådde, stedegne trær der alders- og treslagsblandingen er et resultat av naturlig vekst, f.eks. gammelskog i et strengt vernet skogreservat."
+ },
+ "LCH-5_2_2": {
+  "label": "Forest Age Stage",
+  "tip": "Inndeler skog etter omtrent hvor gamle trærne er på observasjonstidspunktet, fra småplanter til voksne trær."
+ },
+ "LCH-5_2_2_1": {
+  "label": "Seedlings",
+  "tip": "Svært unge trær i de første vekstårene, omtrent opp til rundt 5 år, f.eks. en nylig gjenplantet hogstflate."
+ },
+ "LCH-5_2_2_2": {
+  "label": "Young or Mid-Aged Trees",
+  "tip": "Trær i et tidlig vekststadium, som en grov rettesnor omtrent 5 til 15 år, ikke lenger småplanter, men heller ikke fullvoksne."
+ },
+ "LCH-5_2_2_3": {
+  "label": "Grown-Up or Mature Trees",
+  "tip": "Fullvoksne trær, som en rettesnor omtrent 20 år og eldre; et tre regnes som voksent når det begynner å sette blomster eller frukt."
+ },
+ "LCH-5_2_3": {
+  "label": "Forest Composition",
+  "tip": "Angir om et skogbestand inneholder en blanding av treslag eller hovedsakelig består av ett treslag."
+ },
+ "LCH-5_2_3_1": {
+  "label": "Mixed Forest Stands",
+  "tip": "Skog der flere treslag vokser sammen, f.eks. eik, bøk og agnbøk i samme bestand."
+ },
+ "LCH-5_2_3_2": {
+  "label": "Unmixed Forest Stands",
+  "tip": "Skog som hovedsakelig består av ett treslag, enten den er plantet som monokultur eller har vokst slik naturlig, f.eks. et rent furubestand."
+ },
+ "LCH-5_2_4": {
+  "label": "Forestry Practice",
+  "tip": "Samler de viktigste overordnede strategiene for å dyrke og hogge skog, som stubbeskuddskog, høgskog eller en blanding av de to."
+ },
+ "LCH-5_2_4_1": {
+  "label": "Coppice, Low Forest",
+  "tip": "Tradisjonelt drevet skog, som regel løvskog, der trærne kappes ned hvert 15. til 25. år og skyter nye skudd fra stubbene."
+ },
+ "LCH-5_2_4_2": {
+  "label": "Coppice-Standard Combination",
+  "tip": "Skog som kombinerer stubbeskuddskog, som jevnlig kappes ned til stubbene, med høyere trær som får vokse opp til høgskog over den."
+ },
+ "LCH-5_2_4_3": {
+  "label": "High Forest",
+  "tip": "Skog av høye trær med rette stammer, vokst opp fra frø eller plantede småplanter, som oftest danner et sluttet kronetak når de er voksne, f.eks. en bøke- eller granskog."
+ },
+ "LCH-5_2_5": {
+  "label": "Forestry Rotation System",
+  "tip": "Inndeler skog etter hvor lenge trærne får vokse før de hogges, fra svært korte sykluser til kontinuerlig skogdekke."
+ },
+ "LCH-5_2_5_1": {
+  "label": "Short Rotation Coppice (SRC) Plantation",
+  "tip": "Svært tette beplantninger av hurtigvoksende trær, som regel pil eller poppel, som hogges hvert 2. til 5. år og får skyte nye skudd fra stubbene."
+ },
+ "LCH-5_2_5_2": {
+  "label": "Short Rotation Forestry (SRF) Plantation",
+  "tip": "Trær som plantes og hogges når de når omtrent 10 til 20 cm stammediameter, vanligvis etter 6 til 20 år, ofte til energivirke."
+ },
+ "LCH-5_2_5_3": {
+  "label": "Intermediate or Long Rotation Forestry",
+  "tip": "Den vanligste forvaltningssyklusen i skogbruket, der trærne hogges når bestandene er rundt 40 til 50 år gamle eller eldre."
+ },
+ "LCH-5_2_5_4": {
+  "label": "Continuous Cover Forestry",
+  "tip": "Skog som holdes permanent skogkledd ved at enkelttrær hogges i stedet for flatehogst, som regel med en blanding av treslag og aldre."
+ },
+ "LCH-5_2_6": {
+  "label": "Forest Rejuvenation",
+  "tip": "Samler måtene en skog fornyer seg på etter hogst eller forstyrrelser, enten ved at mennesker planter og sår eller ved naturlig gjenvekst."
+ },
+ "LCH-5_2_6_1": {
+  "label": "Planted Rejuvenation",
+  "tip": "Skogforyngelse satt i gang av mennesker, som bevisst planter unge trær eller sår frø, f.eks. gjenplanting av småplanter etter hogst."
+ },
+ "LCH-5_2_6_2": {
+  "label": "Natural Forest Succession",
+  "tip": "Skogforyngelse som skjer naturlig, ved at trærne formerer seg fra egne frø og frukter uten at mennesker planter."
+ },
+ "LCH-5_2_6_2_1": {
+  "label": "Self-Seeded Forest Succession",
+  "tip": "Naturlig gjenvekst av skog der trærne sprer seg ved å slippe eller spre sine egne frø, f.eks. bjørkeplanter som dukker opp i en glenne."
+ },
+ "LCH-5_2_6_2_2": {
+  "label": "Re-Sprouting Forest",
+  "tip": "Naturlig gjenvekst av nye skudd fra røtter, greiner eller en kappet eller avbrukket stubbe, f.eks. etter stubbehogst."
+ },
+ "LCH-5_2_7": {
+  "label": "Silvicultural Measure",
+  "tip": "Samler skjøtselstiltak for skogtrær og skogsjord som skal holde dem friske og i god vekst, som tynning, kvisting eller grøfting."
+ },
+ "LCH-5_2_7_1": {
+  "label": "Forest Cleaning, Weeding",
+  "tip": "Fjerning av konkurrerende planter, som ugras eller uønskede unge trær, rundt småplantene i de første årene av en ny skog."
+ },
+ "LCH-5_2_7_2": {
+  "label": "Forest Thinning",
+  "tip": "Fjerning av noen trær i et bestand slik at de beste får mer lys, vann, næring og plass til å vokse."
+ },
+ "LCH-5_2_7_3": {
+  "label": "Forest Pruning",
+  "tip": "Målrettet fjerning av deler av trær, som greiner, knopper eller røtter, for å styre veksten eller fjerne døde eller skadde deler."
+ },
+ "LCH-5_2_7_4": {
+  "label": "Ring-Barking, Girdling",
+  "tip": "Å skjære en ring i barken rundt stammen på et tre, noe som stanser næringstransporten og får treet til å dø gradvis."
+ },
+ "LCH-5_2_7_5": {
+  "label": "Interplanting",
+  "tip": "Planting av unge trær av andre treslag i en ensartet skog for å gjøre den mer blandet, f.eks. å plante inn bøk i et furuplantefelt."
+ },
+ "LCH-5_2_7_6": {
+  "label": "Dead Wood Removal",
+  "tip": "Fjerning av liggende eller stående døde trær og greiner fra en skog."
+ },
+ "LCH-5_2_7_7": {
+  "label": "Forest Irrigation",
+  "tip": "Kunstig vanning av skogtrær, f.eks. for å hjelpe unge plantefelt gjennom tørre perioder."
+ },
+ "LCH-5_2_7_8": {
+  "label": "Forest Drainage",
+  "tip": "Drenering av våt skogsmark med grøfter eller rør slik at trærne kan vokse bedre."
+ },
+ "LCH-5_2_7_9": {
+  "label": "Forest Liming",
+  "tip": "Spredning av kalk på skogsjorda for å redusere surheten, f.eks. i områder rammet av sur nedbør."
+ },
+ "LCH-5_2_7_10": {
+  "label": "Forest Firebreak",
+  "tip": "En stripe ryddet for trær og brennbar vegetasjon i eller rundt en skog, som skal stanse eller bremse spredningen av skogbranner."
+ },
+ "LCH-5_2_8": {
+  "label": "Silvicultural Harvest and Regeneration Method",
+  "tip": "Samler de vanlige metodene for tømmerhogst, som i skogbruket henger nært sammen med hvordan skogen deretter fornyes."
+ },
+ "LCH-5_2_8_1": {
+  "label": "Clearcutting",
+  "tip": "Hogst av alle trærne på et areal på én gang, uten at noen blir stående, f.eks. en ferdig hogd del av et plantefelt som venter på gjenplanting."
+ },
+ "LCH-5_2_8_2": {
+  "label": "Shelterwood Cutting",
+  "tip": "Gradvis hogst av voksne trær, noen få om gangen og jevnt fordelt over arealet, slik at de gjenstående trærne gir ly for den unge gjenveksten."
+ },
+ "LCH-5_2_8_3": {
+  "label": "Femel Cutting",
+  "tip": "Hogst av voksne trær over flere år i spredte grupper eller flekker, slik at det oppstår øyaktige åpninger der nye trær vokser opp."
+ },
+ "LCH-5_2_8_4": {
+  "label": "Strip Cutting",
+  "tip": "Gradvis hogst av en voksen skog i striper, med start i ytterkanten av arealet og videre innover år for år."
+ },
+ "LCH-5_2_8_5": {
+  "label": "Selection Cutting",
+  "tip": "Hogst av bare utvalgte trær som er hogstmodne, mens resten får vokse videre, slik at skogen hele tiden forblir skogkledd."
+ },
+ "LCH-5_2_8_6": {
+  "label": "Coppicing",
+  "tip": "Gjentatt kapping av trestammer like over bakken slik at det vokser nye skudd fra stubben, som høstes igjen i senere omløp."
+ },
+ "LCH-5_2_8_7": {
+  "label": "Pollarding",
+  "tip": "Kapping av tretoppen noen meter over bakken slik at treet skyter mange tynne skudd, f.eks. til lauvfôr eller pent formede gatetrær."
+ },
+ "LCH-5_2_9": {
+  "label": "Forest Product Type",
+  "tip": "Inndeler skog etter hva trærne brukes til: virke, fiber, energi eller andre produkter enn tre, som kork eller harpiks."
+ },
+ "LCH-5_2_9_1": {
+  "label": "Wood Product",
+  "tip": "Skog der hovedproduktet er selve treverket, enten som byggemateriale, brensel eller fiber til papir."
+ },
+ "LCH-5_2_9_1_1": {
+  "label": "Timber Wood",
+  "tip": "Tre som hogges for bruk som konstruksjonsmateriale, f.eks. til møbler, bygninger eller bruer."
+ },
+ "LCH-5_2_9_1_2": {
+  "label": "Energy Wood",
+  "tip": "Tre som hogges for å brennes til energi eller gjøres om til trekull, f.eks. ved."
+ },
+ "LCH-5_2_9_1_3": {
+  "label": "Wood Fibre",
+  "tip": "Tre som hogges for å framstille cellulose, råstoffet til tremasse og papir."
+ },
+ "LCH-5_2_9_2": {
+  "label": "Non-Wood Product",
+  "tip": "Produkter fra skogen som har biologisk opphav, men ikke er tre, f.eks. kork, harpiks, gummi, bambus eller juletrær."
+ },
+ "LCH-5_2_9_2_1": {
+  "label": "Cork",
+  "tip": "Bark som høstes fra korkeik og brukes til produkter som vinkorker og isolasjonsplater."
+ },
+ "LCH-5_2_9_2_2": {
+  "label": "Resin",
+  "tip": "Klebrig plantesaft som samles ved å lage et hull i trestammen og fange opp harpiksen treet produserer for å tette såret."
+ },
+ "LCH-5_2_9_2_3": {
+  "label": "Latex, Natural Rubber",
+  "tip": "Melkeaktig saft som samles fra sår i barken på gummitrær, som for det meste dyrkes på tropiske plantasjer, og som brukes til å lage naturgummi."
+ },
+ "LCH-5_2_9_2_4": {
+  "label": "Incense",
+  "tip": "Aromatisk harpiks fra Boswellia-trær, som brennes for å gi duftende røyk ved religiøse eller rituelle seremonier."
+ },
+ "LCH-5_2_9_2_5": {
+  "label": "Myrrh",
+  "tip": "Gummiharpiks fra små, tornete Commiphora-trær, brukt gjennom århundrer som parfyme, røkelse og medisin."
+ },
+ "LCH-5_2_10": {
+  "label": "Forest History Type",
+  "tip": "Inndeler skog etter opprinnelse og historie: urørt urskog, naturlig gjenvokst skog eller skog plantet av mennesker."
+ },
+ "LCH-5_2_10_1": {
+  "label": "Primary or Virgin Forest",
+  "tip": "Skog av stedegne trær som har fornyet seg naturlig og ikke viser tydelige spor etter menneskelig aktivitet, f.eks. urørt gammelskog."
+ },
+ "LCH-5_2_10_2": {
+  "label": "Secondary or Naturally Regenerated Forest",
+  "tip": "Skog som har vokst opp igjen naturlig, men viser tydelige spor etter tidligere menneskelig aktivitet, f.eks. etter plukkhogst, jordbruk eller menneskeskapte branner."
+ },
+ "LCH-5_2_10_3": {
+  "label": "Reforestation",
+  "tip": "Gjenetablering av skog ved planting eller såing på areal som allerede brukes som skog, f.eks. gjenplanting etter flatehogst eller stormskader."
+ },
+ "LCH-5_2_10_4": {
+  "label": "Afforestation",
+  "tip": "Etablering av ny skog ved planting eller såing på areal som ikke var skog fra før, f.eks. på tidligere jordbruksareal eller gressmark."
+ },
+ "LCH-5_2_11": {
+  "label": "Forest Tree Species",
+  "tip": "Inndeler skog etter de viktigste treslagene som vokser der, oppført med vitenskapelig slektsnavn, som Quercus (eik) eller Pinus (furu)."
+ },
+ "LCH-5_2_11_1": {
+  "label": "Abies",
+  "tip": "Edelgran, eviggrønne bartrær med flate nåler og oppreiste kongler, f.eks. vanlig edelgran."
+ },
+ "LCH-5_2_11_2": {
+  "label": "Acer",
+  "tip": "Lønn, løvtrær kjent for fliket blad og vingede frø, f.eks. platanlønn."
+ },
+ "LCH-5_2_11_3": {
+  "label": "Aesculus",
+  "tip": "Hestekastanje, løvtrær med store, håndformede blad og blanke brune kastanjer."
+ },
+ "LCH-5_2_11_4": {
+  "label": "Alnus",
+  "tip": "Or, løvtrær som ofte vokser langs elver og på fuktig mark, f.eks. svartor."
+ },
+ "LCH-5_2_11_5": {
+  "label": "Betula",
+  "tip": "Bjørk, løvtrær som ofte kjennes igjen på den lyse, flassende barken, f.eks. hengebjørk."
+ },
+ "LCH-5_2_11_6": {
+  "label": "Carpinus",
+  "tip": "Agnbøk, løvtrær med svært hardt treverk, ofte å finne i blandingsskog og hekker."
+ },
+ "LCH-5_2_11_7": {
+  "label": "Castanea",
+  "tip": "Edelkastanje, løvtrær som dyrkes for de spiselige nøttene og det holdbare treverket."
+ },
+ "LCH-5_2_11_8": {
+  "label": "Cedrus",
+  "tip": "Seder, store eviggrønne bartrær med nåler i knipper, f.eks. libanonseder."
+ },
+ "LCH-5_2_11_9": {
+  "label": "Corylus",
+  "tip": "Hassel, små løvtrær eller busker som gir hasselnøtter og ofte drives som stubbeskudd."
+ },
+ "LCH-5_2_11_10": {
+  "label": "Cupressoideae",
+  "tip": "Trær i sypressfamilien, eviggrønne bartrær med skjellformede blad, f.eks. sypresser og einer."
+ },
+ "LCH-5_2_11_11": {
+  "label": "Eucalyptus",
+  "tip": "Eukalyptus, hurtigvoksende eviggrønne løvtrær som opprinnelig kommer fra Australia og ofte dyrkes på plantasjer."
+ },
+ "LCH-5_2_11_12": {
+  "label": "Fagus",
+  "tip": "Bøk, løvtrær med glatt grå bark som ofte danner tette skoger, f.eks. vanlig bøk."
+ },
+ "LCH-5_2_11_13": {
+  "label": "Fraxinus",
+  "tip": "Ask, løvtrær med finnete, sammensatte blad, f.eks. vanlig ask."
+ },
+ "LCH-5_2_11_14": {
+  "label": "Ginkgo",
+  "tip": "Ginkgo, en eldgammel treart med vifteformede blad, ofte plantet i parker og langs gater."
+ },
+ "LCH-5_2_11_15": {
+  "label": "Juglans",
+  "tip": "Valnøtt, løvtrær som dyrkes for nøttene og det verdifulle treverket."
+ },
+ "LCH-5_2_11_16": {
+  "label": "Larix",
+  "tip": "Lerk, bartrær som uvanlig nok feller nålene om høsten, f.eks. europalerk."
+ },
+ "LCH-5_2_11_17": {
+  "label": "Picea",
+  "tip": "Gran, eviggrønne bartrær med korte nåler og hengende kongler, f.eks. vanlig gran."
+ },
+ "LCH-5_2_11_18": {
+  "label": "Pinus",
+  "tip": "Furu, eviggrønne bartrær med lange nåler i bunter, f.eks. vanlig furu."
+ },
+ "LCH-5_2_11_19": {
+  "label": "Platanus",
+  "tip": "Platan, store løvtrær med flekkete, flassende bark, vanlige langs bygater."
+ },
+ "LCH-5_2_11_20": {
+  "label": "Populus",
+  "tip": "Poppel, hurtigvoksende løvtrær, inkludert osp, ofte plantet for virke eller langs veier."
+ },
+ "LCH-5_2_11_21": {
+  "label": "Pseudotsuga",
+  "tip": "Douglasgran, høye, hurtigvoksende bartrær som opprinnelig kommer fra Nord-Amerika og er mye plantet for tømmer."
+ },
+ "LCH-5_2_11_22": {
+  "label": "Quercus",
+  "tip": "Eik, langlivede løvtrær som bærer eikenøtter, f.eks. sommereik eller korkeik."
+ },
+ "LCH-5_2_11_23": {
+  "label": "Salix",
+  "tip": "Pil og selje, løvtrær og busker som vanligvis vokser på fuktige steder og også dyrkes som energivekster med kort omløpstid."
+ },
+ "LCH-5_2_11_24": {
+  "label": "Taxus",
+  "tip": "Barlind, saktevoksende eviggrønne bartrær med mørke nåler og røde, bærlignende frukter."
+ },
+ "LCH-5_2_11_25": {
+  "label": "Tilia",
+  "tip": "Lind, løvtrær med hjerteformede blad og duftende blomster."
+ },
+ "LCH-5_2_11_26": {
+  "label": "Ulmus",
+  "tip": "Alm, løvtrær med ru, skjeve blad, hvorav mange er hardt rammet av almesyke."
+ },
+ "LCH-5_3": {
+  "label": "Industrial Land Management",
+  "tip": "Samler kjennetegn ved areal som brukes til industri, særlig hvordan gruvedriften foregår og hvilke råstoffer som utvinnes."
+ },
+ "LCH-5_3_1": {
+  "label": "Mining Technique",
+  "tip": "Samler metodene som brukes for å utvinne råstoffer fra grunnen, som dagbrudd, underjordiske gruver eller fracking."
+ },
+ "LCH-5_3_1_1": {
+  "label": "Surface Open Pit Mining",
+  "tip": "Utvinning av materialer fra et stort åpent hull gravd ned fra overflaten, f.eks. et kulldagbrudd eller et steinbrudd."
+ },
+ "LCH-5_3_1_2": {
+  "label": "Underground Mining",
+  "tip": "Utvinning av materialer gjennom tunneler og sjakter under overflaten, f.eks. en dyp kull- eller malmgruve."
+ },
+ "LCH-5_3_1_3": {
+  "label": "Under Water Mining",
+  "tip": "Utvinning av materialer under vann, f.eks. mudring av sand og grus fra en innsjø eller elvebunn."
+ },
+ "LCH-5_3_1_4": {
+  "label": "Salines Extraction Site",
+  "tip": "Et sted der salt utvinnes fra saltvann, f.eks. grunne fordampningsbassenger langs en kyst."
+ },
+ "LCH-5_3_1_5": {
+  "label": "Leaching, Solution Mining",
+  "tip": "Utvinning av mineraler ved å løse dem opp med væsker som pumpes ned i grunnen eller helles over malm, og deretter samle opp løsningen, f.eks. ved enkelte salt- eller urangruver."
+ },
+ "LCH-5_3_1_6": {
+  "label": "Fracking",
+  "tip": "Frigjøring av olje eller gass fra dype bergarter ved å pumpe inn væske under høyt trykk slik at berget sprekker opp."
+ },
+ "LCH-5_3_2": {
+  "label": "Mining Product Type",
+  "tip": "Samler typene råstoffer som tas ut fra gruver og uttakssteder, fra brensel som kull til metallmalm og stein."
+ },
+ "LCH-5_3_2_1": {
+  "label": "Fossil Hydrocarbon Fuels",
+  "tip": "Brensel dannet av rester av planter og dyr fra lenge siden, utvunnet fra grunnen, f.eks. kull, råolje eller naturgass."
+ },
+ "LCH-5_3_2_1_1": {
+  "label": "Hard Coal",
+  "tip": "Hardt, svart og energirikt kull, som regel utvunnet dypt under jorda og brukt til kraftproduksjon og stålframstilling."
+ },
+ "LCH-5_3_2_1_2": {
+  "label": "Coal Lignite",
+  "tip": "Brunkull, et mykt kull av lavere kvalitet som ofte graves ut i store dagbrudd."
+ },
+ "LCH-5_3_2_1_3": {
+  "label": "Peat",
+  "tip": "Delvis nedbrutt plantemateriale fra myrer, som graves ut og tørkes til brensel eller hagebruk."
+ },
+ "LCH-5_3_2_1_4": {
+  "label": "Crude Oil",
+  "tip": "Petroleum i rå, uraffinert form som pumpes opp fra underjordiske reservoarer, f.eks. fra oljebrønner."
+ },
+ "LCH-5_3_2_1_5": {
+  "label": "Oil Sands",
+  "tip": "Sand eller sandstein mettet med en tykk, tjæreaktig olje, som utvinnes og bearbeides for å få petroleum."
+ },
+ "LCH-5_3_2_1_6": {
+  "label": "Bituminous Rocks",
+  "tip": "Bergarter som inneholder bitumen eller oljerikt materiale, f.eks. oljeskifer, og som utvinnes som kilde til brensel."
+ },
+ "LCH-5_3_2_1_7": {
+  "label": "Mineral Gas",
+  "tip": "Naturgass utvunnet fra underjordiske forekomster, hovedsakelig brukt til oppvarming og kraftproduksjon."
+ },
+ "LCH-5_3_2_2": {
+  "label": "Metal Ores",
+  "tip": "Bergarter som utvinnes fordi de inneholder metaller det lønner seg å utvinne, f.eks. jern-, kobber- eller sjeldne jordarters malm."
+ },
+ "LCH-5_3_2_2_1": {
+  "label": "Iron Ores",
+  "tip": "Jernrik bergart som utvinnes som råstoff til framstilling av jern og stål."
+ },
+ "LCH-5_3_2_2_2": {
+  "label": "Nonferrous Metal Ores",
+  "tip": "Malm av andre metaller enn jern, f.eks. kobber, sink, bly, aluminium eller gull."
+ },
+ "LCH-5_3_2_2_3": {
+  "label": "Rare Earths",
+  "tip": "Malm av en gruppe spesielle metaller som brukes i elektronikk, magneter og batterier, f.eks. neodym."
+ },
+ "LCH-5_3_2_3": {
+  "label": "Non-Metallic Minerals",
+  "tip": "Mineraler som utvinnes til annet enn metall, f.eks. bygningsstein, grus, salt eller edelsteiner."
+ },
+ "LCH-5_3_2_3_1": {
+  "label": "Stones and Earths",
+  "tip": "Stein, sand, grus, leire og lignende materialer som graves ut hovedsakelig til bygg og anlegg, f.eks. fra et grustak eller steinbrudd."
+ },
+ "LCH-5_3_2_3_2": {
+  "label": "Chemical Minerals",
+  "tip": "Mineraler som utvinnes som råstoff for kjemisk industri eller gjødselindustrien, f.eks. kalisalt eller salt."
+ },
+ "LCH-5_3_2_3_2_1": {
+  "label": "Salt",
+  "tip": "Steinsalt eller havsalt utvunnet fra gruver, saltlake eller fordampningsbassenger, brukt i mat, industri og til strøing av veier."
+ },
+ "LCH-5_3_2_3_3": {
+  "label": "Precious And Semi-Precious Stones",
+  "tip": "Edelsteiner som utvinnes til smykker eller pynt, f.eks. diamanter, rubiner eller ametyster."
+ },
+ "LCH-5_3_2_4": {
+  "label": "Other Mining Material",
+  "tip": "Utvunnede materialer som ikke passer inn i noen av de andre produktgruppene som er oppført her."
+ },
+ "LCH-5_4": {
+  "label": "Terrain Modification and Land Engineering Measure",
+  "tip": "Samler måter mennesker omformer terrenget eller setter opp konstruksjoner på det, f.eks. terrasser, planerte skibakker eller skredsikring."
+ },
+ "LCH-5_4_1": {
+  "label": "Terraced Terrain",
+  "tip": "Skråninger som er omformet til en rekke flate trinn, oftest for å kunne dyrkes, f.eks. vin- eller risterrasser i en li."
+ },
+ "LCH-5_4_2": {
+  "label": "Artificial Terrain Modification",
+  "tip": "Terreng som er kraftig omformet ved masseflytting, f.eks. bratt terreng som er planert ut eller skråninger formet til skiløyper."
+ },
+ "LCH-5_4_3": {
+  "label": "Artificial Snow Preparation",
+  "tip": "Areal, som regel skibakker, som dekkes med kunstsnø fra snøkanoner for å bedre skiforholdene og forlenge sesongen."
+ },
+ "LCH-5_4_4": {
+  "label": "Snow Farming Area",
+  "tip": "Områder der snø samles om vinteren og dekkes med isolerende materiale slik at den holder seg gjennom sommeren, f.eks. til skibakkene neste sesong."
+ },
+ "LCH-5_4_5": {
+  "label": "Avalanche Prevention or Protection Installation",
+  "tip": "Konstruksjoner som hindrer at snøskred løsner eller beskytter områder mot dem, f.eks. snøskjermer eller fangforbygninger i fjellsider."
+ },
+ "LCH-5_5": {
+  "label": "Administrative Regulations, Use Constraints",
+  "tip": "Samler lovregler og begrensninger for hvordan areal kan brukes eller ferdes på, som verneområder og adgangsbegrensninger."
+ },
+ "LCH-5_5_1": {
+  "label": "Access Restriction",
+  "tip": "Inndeler areal etter hvem som har adgang, fra åpen allmenn ferdsel til rene militære soner."
+ },
+ "LCH-5_5_1_1": {
+  "label": "Civil, Open",
+  "tip": "Areal som er åpent for allmennheten og som alle kan ferdes på, f.eks. en offentlig park eller en allmenning."
+ },
+ "LCH-5_5_1_2": {
+  "label": "Civil and Military",
+  "tip": "Areal som både sivile og militære kan bruke og ferdes på, f.eks. et felles øvingsområde med offentlige stier."
+ },
+ "LCH-5_5_1_3": {
+  "label": "Temporary Restricted",
+  "tip": "Areal som er stengt for ferdsel i en begrenset periode, f.eks. etter en alvorlig naturkatastrofe eller en forurensningshendelse."
+ },
+ "LCH-5_5_1_4": {
+  "label": "Military Only, Restricted",
+  "tip": "Areal som bare militære har adgang til, mens andre holdes ute eller bare slippes inn med særskilt tillatelse, f.eks. en militærbase."
+ },
+ "LCH-5_5_2": {
+  "label": "Protected Area Type",
+  "tip": "Samler typene juridisk vernestatus et område kan ha, f.eks. naturreservater, nasjonalparker eller Natura 2000-områder."
+ },
+ "LCH-5_5_2_1": {
+  "label": "Nature Conservation Area",
+  "tip": "Areal under strengt lovfestet naturvern, der mange aktiviteter som jordbruk, bygging eller bålbrenning er forbudt."
+ },
+ "LCH-5_5_2_2": {
+  "label": "Landscape Conservation Area",
+  "tip": "Vernet areal der aktiviteter som jordbruk og skogbruk er tillatt i en viss grad, men der landskapets preg må bevares."
+ },
+ "LCH-5_5_2_3": {
+  "label": "Natura2000",
+  "tip": "Områder som etter europeisk regelverk er oppført som del av Natura 2000-nettverket av verneområder for naturen."
+ },
+ "LCH-5_5_2_4": {
+  "label": "Birds Retrieval Area",
+  "tip": "Områder med strenge ferdselsbegrensninger for å beskytte fugler, enten hele året eller i hekketiden."
+ },
+ "LCH-5_5_2_5": {
+  "label": "Biosphere Reserve",
+  "tip": "Områder utpekt av UNESCO for å forvalte natur og menneskelig kultur sammen, ofte med en strengt vernet kjerne og mindre regulerte ytre soner."
+ },
+ "LCH-5_5_2_6": {
+  "label": "Geopark",
+  "tip": "Områder utpekt av UNESCO med internasjonalt viktig geologi, som forvaltes med tanke på vern, formidling og bærekraftig utvikling."
+ },
+ "LCH-5_5_2_7": {
+  "label": "National Park",
+  "tip": "Et større område som forvaltes av en myndighet hovedsakelig for å bevare naturen, ofte kombinert med friluftsliv og tilbud til besøkende."
+ },
+ "LCH-5_5_2_8": {
+  "label": "Other Protected Area Type",
+  "tip": "Verneområder med en juridisk status som ikke dekkes av de andre typene som er oppført her."
+ },
+ "LCH-6": {
+  "label": "Status, Condition",
+  "tip": "Samler kjennetegn som beskriver nåværende tilstand for et areal og, hvis det er skadet, årsaken til det."
+ },
+ "LCH-6_1": {
+  "label": "Land Use Status",
+  "tip": "Samler betegnelser som beskriver hvilken tilstand et areal er i når det gjelder bruk, f.eks. under bygging, ute av bruk eller forlatt."
+ },
+ "LCH-6_1_1": {
+  "label": "Under Construction",
+  "tip": "Areal som er i ferd med å bli gjort om til menneskeskapte flater, f.eks. en byggeplass med utgraving eller masseflytting der den endelige bruken allerede er bestemt."
+ },
+ "LCH-6_1_2": {
+  "label": "Never Been in Use",
+  "tip": "Areal som ikke er i bruk og ikke viser synlige spor etter at mennesker noen gang har brukt det."
+ },
+ "LCH-6_1_3": {
+  "label": "Out of Use",
+  "tip": "Areal som midlertidig ikke er i bruk, men som trolig vil bli tatt i bruk igjen, f.eks. en fabrikktomt som står på vent."
+ },
+ "LCH-6_1_4": {
+  "label": "Abandoned",
+  "tip": "Areal som ikke lenger er i bruk og ikke kan fylle sitt opprinnelige formål uten store utbedringer, f.eks. en forfallen industritomt."
+ },
+ "LCH-6_1_5": {
+  "label": "Clear Cut",
+  "tip": "Areal der trær eller busker nylig er fjernet, f.eks. et nyhogd skogfelt."
+ },
+ "LCH-6_1_6": {
+  "label": "Collapsed, Destroyed, Damaged",
+  "tip": "Markerer objekter som ikke lenger er intakte eller brukbare fordi de er ødelagt eller har kollapset, for det meste bygninger, konstruksjoner eller forsyningsanlegg, f.eks. en bygning som ligger i ruiner."
+ },
+ "LCH-6_1_7": {
+  "label": "Managed Nature Restoration",
+  "tip": "Områder som bevisst føres tilbake til en naturlig eller naturnær tilstand, f.eks. ved å fjerne fast dekke, rydde opp i forurenset grunn, så planter eller gjenopprette naturlig fuktighet i jorda."
+ },
+ "LCH-6_2": {
+  "label": "Damage Reason",
+  "tip": "Samler de mulige årsakene til skade på et område, fra naturfarer som flom eller jordskjelv til menneskeskapte skader som forurensning eller riving."
+ },
+ "LCH-6_2_1": {
+  "label": "Geological Or Hydrological",
+  "tip": "Skade forårsaket av prosesser i den faste jordskorpen eller i vann, f.eks. jordskjelv, vulkanutbrudd, skred eller flom."
+ },
+ "LCH-6_2_1_1": {
+  "label": "Tsunami",
+  "tip": "Skade fra en lang, kraftig bølge i havet eller i en stor innsjø som når land, f.eks. utløst av et jordskjelv under havbunnen eller et skred ut i en innsjø."
+ },
+ "LCH-6_2_1_2": {
+  "label": "Volcanic Eruption",
+  "tip": "Skade fra en vulkan som slipper ut varm magma, aske og gasser, inkludert direkte følger som askefall, eksplosjoner og raske, varme vulkanske strømmer."
+ },
+ "LCH-6_2_1_3": {
+  "label": "Earthquake",
+  "tip": "Skade fra risting i bakken når spenninger i jordskorpen plutselig utløses, sammen med direkte følger som at jorda blir myk og mister bæreevnen."
+ },
+ "LCH-6_2_1_4": {
+  "label": "Subsidence and Collapse",
+  "tip": "Skade fra at grunnen synker eller raser sammen, hovedsakelig bevegelse nedover når forvitret eller sammenpresset berg eller jord ikke lenger kan bære sin egen vekt."
+ },
+ "LCH-6_2_1_5": {
+  "label": "Landslide",
+  "tip": "Skade fra jord, stein og annet materiale som beveger seg nedover når en skråning svikter, f.eks. utglidninger, steinsprang eller flomskred."
+ },
+ "LCH-6_2_1_6": {
+  "label": "Snow Avalanche",
+  "tip": "Skade fra en stor snømasse som raskt glir ned en skråning og ofte river med seg trær og stein på veien."
+ },
+ "LCH-6_2_1_7": {
+  "label": "Flood",
+  "tip": "Skade fra vann som dekker land som vanligvis er tørt, f.eks. en elv som går over sine bredder, en styrtflom eller en tidevannsflom."
+ },
+ "LCH-6_2_2": {
+  "label": "Meteorological Or Climatological",
+  "tip": "Samler skader forårsaket av vær eller mer langvarige klimaforhold, f.eks. tørke, hetebølger, stormer eller lynnedslag."
+ },
+ "LCH-6_2_2_1": {
+  "label": "Drought",
+  "tip": "Skade fra en lang, utbredt periode med mindre vann enn vanlig på grunn av klimavariasjoner; ikke det samme som et naturlig tørt klima."
+ },
+ "LCH-6_2_2_2": {
+  "label": "Extreme Temperatures",
+  "tip": "Skade fra uvanlig varme eller kalde perioder som varer lenger enn normalt, f.eks. hetebølger eller kuldebølger med frost."
+ },
+ "LCH-6_2_2_3": {
+  "label": "Storm Damage",
+  "tip": "Skade fra voldsom vind med høy hastighet, som tornadoer eller orkaner, f.eks. trær som har blåst over ende i en skog."
+ },
+ "LCH-6_2_2_4": {
+  "label": "Lightning",
+  "tip": "Skade fra lynnedslag, de elektriske utladningene som vanligvis henger sammen med tordenskyer, men som også kan skje under tørre forhold."
+ },
+ "LCH-6_2_2_5": {
+  "label": "Storm Surge",
+  "tip": "Skade fra sjøvann som presses inn over land av en storm eller en plutselig endring i lufttrykket, f.eks. under en orkan; behandles atskilt fra andre flommer."
+ },
+ "LCH-6_2_3": {
+  "label": "Fire",
+  "tip": "Samler skader forårsaket av brann som bryter ut og sprer seg, enten over bakken i vegetasjonen eller under overflaten."
+ },
+ "LCH-6_2_3_1": {
+  "label": "Forest Fire, Wildfire",
+  "tip": "Skade fra brann som sprer seg over vegetasjonsdekt land, som skog og annen tresatt mark, f.eks. en skogbrann om sommeren; planlagt, kontrollert brenning er ikke med."
+ },
+ "LCH-6_2_3_2": {
+  "label": "Underground Fire",
+  "tip": "Skade fra brann som brenner under bakkeoverflaten, typisk i jord rik på torv eller kull, f.eks. en ulmende torvbrann."
+ },
+ "LCH-6_2_4": {
+  "label": "Biological",
+  "tip": "Samler skader forårsaket av levende organismer eller det de produserer, f.eks. skadeinsekter, sykdommer eller beitende dyr."
+ },
+ "LCH-6_2_4_1": {
+  "label": "Insect Infestation",
+  "tip": "Skade forårsaket av store mengder insekter som angriper planter eller trær, f.eks. barkbiller som dreper flekker av skog."
+ },
+ "LCH-6_2_4_2": {
+  "label": "Mould Infestation",
+  "tip": "Skade forårsaket av mugg eller lignende sopp som sprer seg på planter, materialer eller bygninger."
+ },
+ "LCH-6_2_4_3": {
+  "label": "Epidemic",
+  "tip": "Skade fra et sykdomsutbrudd som sprer seg raskt blant mennesker, dyr eller planter i et område."
+ },
+ "LCH-6_2_4_4": {
+  "label": "Allergens",
+  "tip": "Biologiske stoffer, som pollen, som kan gi allergiske reaksjoner hos mange mennesker i et område."
+ },
+ "LCH-6_2_4_5": {
+  "label": "Animal Browsing, Overgrazing",
+  "tip": "Vegetasjon skadet av dyr som biter av plantedeler eller beiter så hardt, til og med river opp røtter, at plantene ikke kan komme seg igjen."
+ },
+ "LCH-6_2_4_6": {
+  "label": "Animal Trampling",
+  "tip": "Skade på plantedekket forårsaket av dyr som gang på gang går over det, f.eks. bare stier tråkket opp av husdyr."
+ },
+ "LCH-6_2_5": {
+  "label": "Cosmic",
+  "tip": "Samler skader som har sin opprinnelse i verdensrommet, som meteorittnedslag eller stråling."
+ },
+ "LCH-6_2_5_1": {
+  "label": "Meteorite Impact",
+  "tip": "Skade forårsaket av fast materiale fra verdensrommet som treffer jordoverflaten, f.eks. et krater etter en meteoritt."
+ },
+ "LCH-6_2_5_2": {
+  "label": "Magnetic Disruption",
+  "tip": "Skade knyttet til forstyrrelser i jordas magnetfelt forårsaket fra verdensrommet, f.eks. under kraftige solstormer."
+ },
+ "LCH-6_2_5_3": {
+  "label": "Solar and Cosmic Radiation",
+  "tip": "Skade fra stråling som kommer fra verdensrommet, som ultrafiolett lys eller gammastråler."
+ },
+ "LCH-6_2_6": {
+  "label": "Contamination Or Pollution",
+  "tip": "Samler skader forårsaket av skadelige stoffer i grunnen, vannet eller lufta, f.eks. kjemikalier, olje, radioaktivitet eller plast."
+ },
+ "LCH-6_2_6_1": {
+  "label": "Radioactive Contamination",
+  "tip": "Land eller vann forurenset av radioaktivt materiale, f.eks. områder rammet av en atomulykke."
+ },
+ "LCH-6_2_6_2": {
+  "label": "Chemical, Toxic Pollution",
+  "tip": "Land eller vann forurenset av skadelige kjemikalier eller giftige stoffer, f.eks. avfall fra industriområder."
+ },
+ "LCH-6_2_6_3": {
+  "label": "Soil Salinization",
+  "tip": "Jord skadet av en opphopning av salter, noe som hemmer plantevekst og kan gjøre jordbruksarealer mindre produktive."
+ },
+ "LCH-6_2_6_4": {
+  "label": "Oil contaminated",
+  "tip": "Land eller vann forurenset av olje, f.eks. etter en lekkasje fra en rørledning eller et oljeutslipp langs en kyst."
+ },
+ "LCH-6_2_6_5": {
+  "label": "Explosives Contamination",
+  "tip": "Områder forurenset av militær ammunisjon eller industrielle sprengstoffer, f.eks. et tidligere skytefelt med udetonerte granater."
+ },
+ "LCH-6_2_6_6": {
+  "label": "Plastic pollution",
+  "tip": "Områder forurenset av plast, enten store biter med søppel eller bittesmå mikroplastpartikler."
+ },
+ "LCH-6_2_7": {
+  "label": "Intentional Or Accidental Structural Damage",
+  "tip": "Samler skader på bygninger og andre konstruksjoner forårsaket av mennesker, enten med vilje eller ved et uhell, f.eks. riving eller forsømmelse."
+ },
+ "LCH-6_2_7_1": {
+  "label": "Structural Decay",
+  "tip": "Skade fra konstruksjoner som sakte forfaller over tid, f.eks. en forlatt bygning som smuldrer opp fordi den ikke vedlikeholdes."
+ },
+ "LCH-6_2_7_2": {
+  "label": "Demolition, Explosion",
+  "tip": "Skade fra konstruksjoner som med vilje rives eller sprenges, eller fra en eksplosjon."
+ },
+ "LCH-6_3": {
+  "label": "Degenerative Process",
+  "tip": "Samler langsomme prosesser som sliter ned eller forringer land over tid, f.eks. jorderosjon, ørkenspredning eller smeltende isbreer."
+ },
+ "LCH-6_3_1": {
+  "label": "Deforestation",
+  "tip": "Tap av tredekke, enten av naturlige årsaker eller på grunn av menneskelig aktivitet, f.eks. tørke, stormer, flatehogst eller jorderosjon."
+ },
+ "LCH-6_3_2": {
+  "label": "Soil Erosion",
+  "tip": "Tap av fruktbart matjordlag som føres bort av vind, rennende vann eller tyngdekraft, f.eks. jord som vaskes av en åker etter kraftig regn."
+ },
+ "LCH-6_3_3": {
+  "label": "Desertification",
+  "tip": "Vegetasjonsdekt land som gradvis blir til ørken, typisk etter år med lite nedbør kombinert med press fra mennesker eller dyr, som forsalting av jord."
+ },
+ "LCH-6_3_4": {
+  "label": "Glacier Melting",
+  "tip": "Områder der isbreer har krympet i utstrekning eller tykkelse ved smelting fordi gjennomsnittstemperaturen stiger."
+ },
+ "LCH-7": {
+  "label": "Geographical Characteristics",
+  "tip": "Samler egenskaper som beskriver hvor et område ligger geografisk, f.eks. naturtype, høydesone, klima, landskapsmessige omgivelser og terreng."
+ },
+ "LCH-7_1": {
+  "label": "Habitat Context",
+  "tip": "Samler typer naturlige eller menneskepregede omgivelser der mennesker, dyr og planter lever, i stor grad etter de europeiske EUNIS-habitattypene."
+ },
+ "LCH-7_1_1": {
+  "label": "Marine Habitats",
+  "tip": "Habitater i havet, fra grunne kystfarvann til dyphavsbunnen, f.eks. ålegrasenger eller rev."
+ },
+ "LCH-7_1_2": {
+  "label": "Coastal Habitats",
+  "tip": "Habitater langs kysten der land møter hav, f.eks. strender, sanddyner, klipper ved sjøen og rullesteinsstrender."
+ },
+ "LCH-7_1_3": {
+  "label": "Inland Surface Waters Habitats",
+  "tip": "Habitater i og rundt ferskvann på land, f.eks. innsjøer, dammer, elver og bekker."
+ },
+ "LCH-7_1_4": {
+  "label": "Mires, Bogs and Fens",
+  "tip": "Våte habitater med vannmettet, ofte torvholdig grunn, f.eks. høymyrer eller jordvannsmyrer som får vann fra grunnvannet."
+ },
+ "LCH-7_1_5": {
+  "label": "Grasslands and Lands Dominated By Forbs, Mosses Or Lichens",
+  "tip": "Åpne habitater der gress, urter, moser eller lav dominerer i stedet for trær eller busker, f.eks. enger og beitemark."
+ },
+ "LCH-7_1_6": {
+  "label": "Heathland, Scrub and Tundra",
+  "tip": "Habitater dominert av lave vedaktige planter eller vegetasjon tilpasset kulde, f.eks. lyngheier, krattmark eller arktisk tundra."
+ },
+ "LCH-7_1_7": {
+  "label": "Woodland, Forest and Other Wooded Land",
+  "tip": "Habitater dominert av trær, fra tette skoger til mer åpen tresatt mark, f.eks. bøkeskog eller furuskog."
+ },
+ "LCH-7_1_8": {
+  "label": "Inland Unvegetated Or Sparsely Vegetated Habitats",
+  "tip": "Habitater i innlandet med bart eller svært glissent plantedekke, f.eks. bergblotninger, ur, sandområder eller snøfonner."
+ },
+ "LCH-7_1_9": {
+  "label": "Regularly Or Recently Cultivated Agricultural, Horticultural and Domestic Habitats",
+  "tip": "Habitater skapt og holdt ved like gjennom jordbruk, hagebruk eller bruk rundt boliger, f.eks. åkrer, frukthager eller private hager."
+ },
+ "LCH-7_1_10": {
+  "label": "Constructed, Industrial and Other Artificial Habitats",
+  "tip": "Habitater skapt eller sterkt preget av menneskelig bygging og industri, f.eks. bygninger, veier, steinbrudd eller avfallsfyllinger."
+ },
+ "LCH-7_1_11": {
+  "label": "Habitat Complexes",
+  "tip": "Områder satt sammen av flere ulike habitattyper som er tett blandet og behandles som én enhet, f.eks. et elvedelta."
+ },
+ "LCH-7_1_12": {
+  "label": "Lagoon",
+  "tip": "Grunt kystvann som er skilt fra havet av en barriere som en sandbanke, ofte med brakkvann."
+ },
+ "LCH-7_1_13": {
+  "label": "Estuary",
+  "tip": "Den brede munningen av en elv der ferskvann blandes med sjøvann og tidevannet når inn i landet."
+ },
+ "LCH-7_1_14": {
+  "label": "Marine Inlet, Fjord",
+  "tip": "En smal havarm som strekker seg inn i landet, f.eks. en lang, bratt fjord gravd ut av isbreer."
+ },
+ "LCH-7_1_15": {
+  "label": "Coastal Salt Marsh",
+  "tip": "Lavtliggende kystland dekket av salttolerante planter og jevnlig oversvømt av sjøvann ved flo."
+ },
+ "LCH-7_1_16": {
+  "label": "Intertidal Flat",
+  "tip": "Flate strekninger av mudder eller sand som dekkes av havet ved flo og blottlegges ved fjære, f.eks. mudderflater."
+ },
+ "LCH-7_2": {
+  "label": "Height Zone",
+  "tip": "Samler høydesoner i fjellområder, der temperatur, fuktighet og vegetasjon endrer seg trinnvis med økende høyde."
+ },
+ "LCH-7_2_1": {
+  "label": "Planar Zone",
+  "tip": "Lavland med flate, slette områder og de vanlige temperaturene for det lokale klimaet; ideelt for jordbruk og bosetting."
+ },
+ "LCH-7_2_2": {
+  "label": "Collin Zone",
+  "tip": "Kupert land med svakt bølgende terreng, vanligvis den øvre grensen for vinmarker; også kalt kollin sone."
+ },
+ "LCH-7_2_3": {
+  "label": "Submontane Zone",
+  "tip": "Sone med mer markert relieff, daler og middels høye topper, der dyrking av vekster er sjelden, om den forekommer i det hele tatt."
+ },
+ "LCH-7_2_4": {
+  "label": "Montane Zone",
+  "tip": "Tydelig kjøligere sone på toppene av mellomhøye fjellkjeder, som danner overgangen mot høyfjellet."
+ },
+ "LCH-7_2_5": {
+  "label": "High Montane Zone",
+  "tip": "Øvre grense for løvskog, der bartrær dominerer; steder her er bare bebodd deler av året."
+ },
+ "LCH-7_2_6": {
+  "label": "Subalpine Zone",
+  "tip": "Overgangssone ved skogens øvre kant, der spredte trær går over i dvergfuru."
+ },
+ "LCH-7_2_7": {
+  "label": "Alpine Zone",
+  "tip": "Sone mellom tregrensen og snøgrensen, der vegetasjonen er begrenset til lave urter, gress og dvergbusker, f.eks. alpine enger."
+ },
+ "LCH-7_2_8": {
+  "label": "Nival Zone",
+  "tip": "Høyeste høydesone, dekket av snø eller is hele eller mesteparten av året, der isbreer dannes og planter i praksis mangler."
+ },
+ "LCH-7_3": {
+  "label": "Geographical Context",
+  "tip": "Samler beskrivelser av de bredere omgivelsene et område ligger i, f.eks. by, landsbygd, kyst eller fjell, der grensene ofte er uklare."
+ },
+ "LCH-7_3_1": {
+  "label": "Inland Context",
+  "tip": "Land så langt fra kysten at det ikke lenger påvirkes direkte av havet; det motsatte av en kystbeliggenhet."
+ },
+ "LCH-7_3_2": {
+  "label": "Coastal Context",
+  "tip": "Land nær havkysten, der nærheten til havet former ting som havner, byer, industri og turisme."
+ },
+ "LCH-7_3_3": {
+  "label": "Island Context",
+  "tip": "Land på en øy, påvirket av havet rundt og av transportforbindelsene til fastlandet; en øy kan selv ha innlands- og kystdeler."
+ },
+ "LCH-7_3_4": {
+  "label": "Oceanic Context",
+  "tip": "Åpent hav langt fra enhver kystlinje, fra kanten av kontinentalsokkelen og ut til dyphavsområder."
+ },
+ "LCH-7_3_5": {
+  "label": "Urban Context",
+  "tip": "Omgivelser med byer og deres forsteder, der bebygde områder og transportnett dominerer landskapet og mange mennesker bor."
+ },
+ "LCH-7_3_6": {
+  "label": "Rural Context",
+  "tip": "Landsbygd dominert av jordbruksland eller skog, der det finnes landsbyer, men ingen store byer, og befolkningstettheten er middels til lav."
+ },
+ "LCH-7_3_7": {
+  "label": "Riparian Context",
+  "tip": "Land langs elvebredder, som regel flatt og utsatt for skiftende vannstand og flom, ofte med fuktighetselskende planter som vier."
+ },
+ "LCH-7_3_8": {
+  "label": "Mountain Context",
+  "tip": "Land formet av fjell, inkludert dalene mellom dem, med bratt terreng og flere klima- og vegetasjonssoner."
+ },
+ "LCH-7_4": {
+  "label": "Geomorphological Landform Type",
+  "tip": "Samler formen på landoverflaten, f.eks. en dal, en sanddyne eller et platå; for tiden en plassholder der landformen skrives som fritekst."
+ },
+ "LCH-7_4_1": {
+  "label": "Geomorphological Landform",
+  "tip": "En fritekstmerknad som navngir landformen på et sted, f.eks. «morene» eller «elveterrasse», siden det ennå ikke finnes noen fast liste over landformer."
+ },
+ "LCH-7_5": {
+  "label": "Littoral Zone",
+  "tip": "Samler beltene langs en strandlinje, ved havet, en innsjø eller en elv, sortert etter hvor ofte de står under vann."
+ },
+ "LCH-7_5_1": {
+  "label": "Epilittoral",
+  "tip": "Belte over strandlinjen som vannet ikke når direkte; bare høyt grunnvann og fuktig, noen ganger salt jord påvirker det, i tillegg til sjeldne, ekstreme stormflo."
+ },
+ "LCH-7_5_2": {
+  "label": "Supralittoral",
+  "tip": "Sprutsone like over vannlinjen, sjelden dekket av vann, men fuktet av sjøsprøyt fra bølger; oversvømmes bare ved storm eller flom."
+ },
+ "LCH-7_5_3": {
+  "label": "Eulittoral, Intertidal",
+  "tip": "Sone mellom lavvann og høyvann som jevnlig dekkes og blottlegges av tidevannet på kysten eller av skiftende vannstand langs elver og innsjøer."
+ },
+ "LCH-7_5_4": {
+  "label": "Infralittoral, Sublittoral",
+  "tip": "Sone under lavvannslinjen som normalt alltid står under vann, både på kysten og i elver og innsjøer; også kalt subtidal."
+ },
+ "LCH-7_6": {
+  "label": "Physical Climate Zone",
+  "tip": "Samler jordas store klimasoner, nyttig f.eks. for å angi hvilket klima en kulturplante eller plantetype naturlig hører hjemme i."
+ },
+ "LCH-7_6_1": {
+  "label": "Tropical Climate Zone",
+  "tip": "Varm klimasone nær ekvator, varm hele året, f.eks. der man finner regnskog eller bananplantasjer."
+ },
+ "LCH-7_6_2": {
+  "label": "Subtropical Climate Zone",
+  "tip": "Klimasone mellom tropene og den tempererte sonen, med varme somre og milde vintre, f.eks. rundt Middelhavet."
+ },
+ "LCH-7_6_3": {
+  "label": "Temperate Climate Zone",
+  "tip": "Klimasone med moderate temperaturer og tydelige årstider, som det meste av Sentral- og Vest-Europa."
+ },
+ "LCH-7_6_4": {
+  "label": "Polar and Subpolar Climate Zone",
+  "tip": "Kald klimasone ved og rundt polene, med lange vintre og korte, kjølige somre, f.eks. Arktis."
+ },
+ "LCH-7_7": {
+  "label": "Terrain Characteristics",
+  "tip": "Samler målbare egenskaper ved terrengets form, som høyde, bratthet og retningen terrenget vender mot."
+ },
+ "LCH-7_7_1": {
+  "label": "Terrain Parameters",
+  "tip": "Samler måleverdier som beskriver terrenget i et punkt, nemlig høyde, helning og eksposisjon, vanligvis lagret som rutenettdata (raster)."
+ },
+ "LCH-7_7_1_1": {
+  "label": "Terrain Elevation",
+  "tip": "Terrengets høyde over havet, målt i meter."
+ },
+ "LCH-7_7_1_2": {
+  "label": "Terrain Slope",
+  "tip": "Hvor bratt terrenget stiger, altså helningsvinkelen, oppgitt i grader."
+ },
+ "LCH-7_7_1_3": {
+  "label": "Terrain Aspect, Exposition",
+  "tip": "Himmelretningen en skråning vender mot, oppgitt i grader fra 0 til 360, der 0 er nord, 90 øst, 180 sør og 270 vest."
+ },
+ "LCH-8": {
+  "label": "Spatial Characteristics",
+  "tip": "Samler egenskaper som beskriver hvordan ting er ordnet innenfor et område, f.eks. blandede eller ensartede mønstre, hekker eller veinett."
+ },
+ "LCH-8_1": {
+  "label": "Spatial Distribution Pattern",
+  "tip": "Samler todimensjonale mønstre som viser hvordan ulike arealdekkeelementer er fordelt og forholder seg til hverandre innenfor et område."
+ },
+ "LCH-8_1_1": {
+  "label": "Homogeneous, Evenly Textured",
+  "tip": "Område som er ensartet overalt, der hvert punkt er av samme slag og har jevn tekstur, f.eks. gresset på en fotballbane."
+ },
+ "LCH-8_1_2": {
+  "label": "Heterogeneous, Mixed, Unevenly Textured",
+  "tip": "Område der flere ulike elementer er blandet ganske jevnt sammen, noe som gir en ujevn, flekkete tekstur, f.eks. trær og busker om hverandre."
+ },
+ "LCH-8_1_3": {
+  "label": "Mosaic Pattern",
+  "tip": "Område satt sammen av tydelig avgrensede flekker, hver ensartet i seg selv, men klart forskjellig fra naboene, f.eks. et lappeteppe av små jorder."
+ },
+ "LCH-8_1_4": {
+  "label": "Scattered Pattern",
+  "tip": "Et element som bare forekommer her og der, ujevnt fordelt og ikke dominerende, f.eks. spredte trær på en beitemark."
+ },
+ "LCH-8_1_5": {
+  "label": "Regular Spacing",
+  "tip": "Objekter plassert med jevne, like avstander fra hverandre, f.eks. hus i et planlagt boligfelt eller trær i en frukthage."
+ },
+ "LCH-8_2": {
+  "label": "Linear Feature Pattern",
+  "tip": "Samler smale, linjeformede landskapselementer som er for små til å kartlegges hver for seg, men som likevel preger et områdes karakter, f.eks. hekker eller steingjerder."
+ },
+ "LCH-8_2_1": {
+  "label": "Hedge Rows",
+  "tip": "Et areal som er omgitt eller delt opp av flere hekker, noe som gir det et oppstykket preg; finnes mest i jordbruksområder."
+ },
+ "LCH-8_2_2": {
+  "label": "Rows of Trees",
+  "tip": "Et areal som er omgitt av eller inneholder flere trerekker, f.eks. levegger på landet eller alleer i byer."
+ },
+ "LCH-8_2_3": {
+  "label": "Stone Walls",
+  "tip": "Et areal som er omgitt av eller inneholder flere tradisjonelle tørrmurte steingjerder, typisk for gamle jordbrukslandskap."
+ },
+ "LCH-8_3": {
+  "label": "Linear Technical Network",
+  "tip": "Samler nett av linjeformede tekniske anlegg som går gjennom et område og preger utseendet, f.eks. små veier, grøfter, gjerder eller rørledninger."
+ },
+ "LCH-8_3_1": {
+  "label": "Roads Or Railways",
+  "tip": "Viser at et område inneholder et gjenkjennelig nett av veier eller jernbaner, selv om den nøyaktige plasseringen ikke er kjent."
+ },
+ "LCH-8_3_2": {
+  "label": "Pipelines",
+  "tip": "Viser at et område inneholder én rørledning eller et nett av dem, selv om den nøyaktige plasseringen ikke er kjent."
+ },
+ "LCH-8_4": {
+  "label": "Vertical Position",
+  "tip": "Samler den vertikale plasseringen til et objekt i forhold til bakken: på overflaten, hevet over den eller under den."
+ },
+ "LCH-8_4_1": {
+  "label": "On Ground Surface",
+  "tip": "Et objekt som ligger direkte på bakkeoverflaten, f.eks. en vei på gatenivå."
+ },
+ "LCH-8_4_2": {
+  "label": "Suspended, Elevated",
+  "tip": "Et objekt som er hevet over bakken eller henger over den, f.eks. en bro, en høybane eller luftledninger."
+ },
+ "LCH-8_4_3": {
+  "label": "Under Ground",
+  "tip": "Et objekt som ligger under bakkeoverflaten, f.eks. en tunnel, en T-banelinje eller et nedgravd rør."
+ },
+ "LCH-9": {
+  "label": "Object Characteristics",
+  "tip": "Samler mål for objekter, som størrelse, hvor ofte de forekommer og når eller hvor lenge noe skjer; brukes alltid sammen med en annen klasse."
+ },
+ "LCH-9_1": {
+  "label": "Geometric Parameters",
+  "tip": "Samler størrelsesmål for objekter, som areal, lengde, bredde, høyde og andel av et område som dekkes."
+ },
+ "LCH-9_1_1": {
+  "label": "Object Area Size",
+  "tip": "Arealet til et objekt i kvadratmeter, oppgitt som et fra–til-intervall; for en eksakt verdi er begge endene like."
+ },
+ "LCH-9_1_1_1": {
+  "label": "Object Area Size Value From",
+  "tip": "Nedre grense for intervallet for et objekts areal, i kvadratmeter."
+ },
+ "LCH-9_1_1_2": {
+  "label": "Object Area Size Value To",
+  "tip": "Øvre grense for intervallet for et objekts areal, i kvadratmeter."
+ },
+ "LCH-9_1_2": {
+  "label": "Object Length",
+  "tip": "Lengden til et objekt i meter, oppgitt som et fra–til-intervall; for en eksakt verdi er begge endene like."
+ },
+ "LCH-9_1_2_1": {
+  "label": "Object Length Value From",
+  "tip": "Nedre grense for intervallet for et objekts lengde, i meter."
+ },
+ "LCH-9_1_2_2": {
+  "label": "Object Length Value To",
+  "tip": "Øvre grense for intervallet for et objekts lengde, i meter."
+ },
+ "LCH-9_1_3": {
+  "label": "Object Width",
+  "tip": "Bredden til et objekt i meter, oppgitt som et fra–til-intervall; for en eksakt verdi er begge endene like."
+ },
+ "LCH-9_1_3_1": {
+  "label": "Object Width Value From",
+  "tip": "Nedre grense for intervallet for et objekts bredde, i meter."
+ },
+ "LCH-9_1_3_2": {
+  "label": "Object Width Value To",
+  "tip": "Øvre grense for intervallet for et objekts bredde, i meter."
+ },
+ "LCH-9_1_4": {
+  "label": "Object Height",
+  "tip": "Hvor høyt et objekt rager over bakken (ikke høyde over havet), i meter, oppgitt som et fra–til-intervall."
+ },
+ "LCH-9_1_4_1": {
+  "label": "Object Height Value From",
+  "tip": "Nedre grense for intervallet for et objekts høyde over bakken, i meter."
+ },
+ "LCH-9_1_4_2": {
+  "label": "Object Height Value To",
+  "tip": "Øvre grense for intervallet for et objekts høyde over bakken, i meter."
+ },
+ "LCH-9_1_5": {
+  "label": "Area Coverage",
+  "tip": "Andelen av et større område som tas opp av et bestemt dekke eller en bestemt bruk, som et prosentintervall, f.eks. trær som dekker 30 til 40 % av en park."
+ },
+ "LCH-9_1_5_1": {
+  "label": "Area Coverage Value From",
+  "tip": "Nedre grense for intervallet for hvor mange prosent av et område som dekkes av et bestemt dekke eller en bestemt bruk, i %."
+ },
+ "LCH-9_1_5_2": {
+  "label": "Area Coverage Value To",
+  "tip": "Øvre grense for intervallet for hvor mange prosent av et område som dekkes av et bestemt dekke eller en bestemt bruk, i %."
+ },
+ "LCH-9_2": {
+  "label": "Occurrence Type",
+  "tip": "Samler måter å angi hvor mange eller hvor mye av noe som finnes i et område på: som prosentandel, som antall eller bare som til stede."
+ },
+ "LCH-9_2_1": {
+  "label": "Percentage Occurrence",
+  "tip": "Andelen av bestemte objekter blant alle atskilte objekter i et område, oppgitt som et prosentintervall, f.eks. hvor stor andel av bygningene som er bolighus."
+ },
+ "LCH-9_2_1_1": {
+  "label": "Percentage Occurrence Value From",
+  "tip": "Nedre grense for intervallet for prosentandelen av bestemte objekter blant alle objekter i et område, i %."
+ },
+ "LCH-9_2_1_2": {
+  "label": "Percentage Occurrence Value To",
+  "tip": "Øvre grense for intervallet for prosentandelen av bestemte objekter blant alle objekter i et område, i %."
+ },
+ "LCH-9_2_2": {
+  "label": "Countable Occurrence",
+  "tip": "Absolutt antall av bestemte objekter i et område, oppgitt som et fra–til-intervall, f.eks. hvor mange vindturbiner som står på et jorde."
+ },
+ "LCH-9_2_2_1": {
+  "label": "Countable Occurrence Value From",
+  "tip": "Nedre grense for intervallet for hvor mange av objektene som forekommer i området, som et enkelt antall."
+ },
+ "LCH-9_2_2_2": {
+  "label": "Countable Occurrence Value To",
+  "tip": "Øvre grense for intervallet for hvor mange av objektene som forekommer i området, som et enkelt antall."
+ },
+ "LCH-9_2_3": {
+  "label": "Present Occurrence",
+  "tip": "Registrerer bare at noe finnes i et område når det nøyaktige antallet eller mengden ikke kan oppgis."
+ },
+ "LCH-9_3": {
+  "label": "Temporal Parameters",
+  "tip": "Samler tidsopplysninger om ting i et område, som datoen for en hendelse, hvor lenge noe varer eller hvor ofte det gjentar seg."
+ },
+ "LCH-9_3_1": {
+  "label": "Instant Event Date",
+  "tip": "Datoen for en plutselig, kortvarig hendelse som endrer landskapet, f.eks. en storm, oppgitt som dagnummer regnet fra 1. januar."
+ },
+ "LCH-9_3_1_1": {
+  "label": "Instant Event Date Value From",
+  "tip": "Starten på et kort tidsvindu der en plutselig hendelse skjedde, oppgitt som dag i året."
+ },
+ "LCH-9_3_1_2": {
+  "label": "Instant Event Date Value To",
+  "tip": "Slutten på et kort tidsvindu der en plutselig hendelse skjedde, oppgitt som dag i året."
+ },
+ "LCH-9_3_2": {
+  "label": "Duration",
+  "tip": "Hvor lenge en situasjon varer, regnet i dager, f.eks. vekstsyklusen til en kulturplante, en byggeplass eller en flom."
+ },
+ "LCH-9_3_2_1": {
+  "label": "Duration Value From",
+  "tip": "Nedre grense for intervallet for hvor lenge en situasjon varer, i dager."
+ },
+ "LCH-9_3_2_2": {
+  "label": "Duration Value To",
+  "tip": "Øvre grense for intervallet for hvor lenge en situasjon varer, i dager."
+ },
+ "LCH-9_3_3": {
+  "label": "Period",
+  "tip": "Et tidsrom avgrenset av en uttrykkelig startdato og sluttdato, f.eks. månedene et jorde ligger brakk."
+ },
+ "LCH-9_3_3_1": {
+  "label": "Period Start Date",
+  "tip": "Første dag i en periode, oppgitt som dagnummer i året, fra 1 for 1. januar til 365 for 31. desember."
+ },
+ "LCH-9_3_3_1_1": {
+  "label": "Period Start Date Value From",
+  "tip": "Tidligst mulige start på en periode, oppgitt som dag i året; brukes når den nøyaktige startdatoen er usikker."
+ },
+ "LCH-9_3_3_1_2": {
+  "label": "Period Start Date Value To",
+  "tip": "Senest mulige start på en periode, oppgitt som dag i året; brukes når den nøyaktige startdatoen er usikker."
+ },
+ "LCH-9_3_3_2": {
+  "label": "Period End Date",
+  "tip": "Siste dag i en periode, oppgitt som dagnummer i året regnet fra 1. januar."
+ },
+ "LCH-9_3_3_2_1": {
+  "label": "Period End Date Value From",
+  "tip": "Tidligst mulige slutt på en periode, oppgitt som dag i året; brukes når den nøyaktige sluttdatoen er usikker."
+ },
+ "LCH-9_3_3_2_2": {
+  "label": "Period End Date Value To",
+  "tip": "Senest mulige slutt på en periode, oppgitt som dag i året; brukes når den nøyaktige sluttdatoen er usikker."
+ },
+ "LCH-9_3_4": {
+  "label": "Recurring Frequency",
+  "tip": "Hvor mange ganger per år noe endrer seg eller gjentar seg, f.eks. hvor ofte en eng slås."
+ },
+ "LCH-9_3_4_1": {
+  "label": "Recurring Frequency Value From",
+  "tip": "Nedre grense for intervallet for hvor mange ganger per år noe gjentar seg, som et enkelt antall."
+ },
+ "LCH-9_3_4_2": {
+  "label": "Recurring Frequency Value To",
+  "tip": "Øvre grense for intervallet for hvor mange ganger per år noe gjentar seg, som et enkelt antall."
+ }
+}

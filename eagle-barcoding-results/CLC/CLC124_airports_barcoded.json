@@ -1,0 +1,56 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "1.2.4",
+  "class_label": "Airports",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-124.html",
+  "class_description": "Definition:\nAirports installations: runways, buildings and associated land. This class is assigned for any kind of ground facilities that serve airborne transportation.\nThis class is applicable for:\n- civil and military airports with sealed runway;\n- sport airports with concrete or asphalt runways;\n- flying schools used for pilot’s training programme of civil aviation;\n- abandoned airports where artificial structures are still present and no evidence of other use is recognizable.\nThis class includes:\n- take-off and landing runways (concrete, asphalt)\n- terminals, hangars, service and storing buildings and in-door spaces;\n- technical installations (radars, antennas, towers);\n- parking lots and lay-by areas;\n- adjacent grass areas, or dispersed trees and shrubs within fenced buffer zone of airport.\nThis class is not applicable for:\n- airports with non-sealed (usually grass-covered) runways used for sports, agriculture and forestry (e.g. spreading of fertilizers and chemical materials) (class 142).\n- military airfields without sealed runway as part of military infrastructure (class 121);\n- abandoned airports where artificial structures are no longer visible and evidence of other use is recognizable (class according to actual cover/use).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1_1",
+      "name": "Buildings",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_1_2",
+      "name": "Specific Structures and Facilities",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_1_3",
+      "name": "Open Sealed Surfaces",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2",
+      "name": "Biotic, Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-4_1_3",
+      "name": "Air Transport",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

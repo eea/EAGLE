@@ -1,0 +1,91 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "3.3.2",
+  "class_label": "Bare rock",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-332.html",
+  "class_description": "Definition:\nScree, cliffs, rock outcrops, including areas of active erosion, rocks and reef flats situated above the high-water mark, inland salt planes.\nThis class is applicable for:\n- naturally sparsely vegetated or non-vegetated areas where at least 90 % of the land surface is covered by rocks;\n- stable rocks with limestone pavements, block litter and mountain-top-debris;\n- non-vegetated limestone pavement;\n- sites and products of recent volcanic activities, volcanic ash and lapilli fields, barren lava fields;\n- non-vegetated supra-littoral rocky zones,\n- inland hard salt planes;\n- areas with loss of vegetation due to erosion, recent mud flows, landslides, rock avalanches;\n- non-vegetated abandoned mineral extraction sites.\nThis class includes:\n- bare rock, large mineral fragments (boulders, scree, lapilli) occupying at least 90% of the area;\n- scattered vegetation occupying < 10% of area.\nThis class is not applicable for:\n- mineral extractions sites (class 131)\n- mine dumps, deposits of artificial solid waste materials (class 132);\n- white dunes (class 331);\n- mediolittoral rocky sea beds (class 423);\n- bare rocks with 10-30% cover of scattered trees (class 324);\n- sparse shrubland on rocky terrain with dominating shrub cover (class 322, 323);\n- moraines and gravel beds (class 331)\n- sparsely vegetated rocky areas with 10-50% vegetation cover (class 333).\nThis class excludes:\n- sand and gravel (class 331)\n- artificial and waste material (class 132).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_1_1",
+      "name": "Bare Rock",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_1_2",
+      "name": "Hard Pan",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_1_1",
+      "name": "Boulders, Stones",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2_2_3_1",
+      "name": "Inorganic Deposits",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2",
+      "name": "Biotic, Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_3_1_1",
+      "name": "Surface Open Pit Mining",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_8",
+      "name": "Inland Unvegetated Or Sparsely Vegetated Habitats",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_1",
+      "name": "Inland Context",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_2",
+      "name": "Coastal Context",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_3_8",
+      "name": "Mountain Context",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "1.2.1",
+  "class_label": "Industrial or commercial units",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-121.html",
+  "class_description": "Definition:\nBuildings, other built-up structures and artificial surfaces (with concrete, asphalt, tarmacadam, or stabilised like e.g. beaten earth) occupy most of the area. It can also contain vegetation (most likely grass) or other non-sealed surfaces. This class is assigned for land units that are under industrial or commercial use or serve for public service facilities.\nClarification:\nThe class 121 has a strong focus on land use information, which is the key criterion to identify this class. In this class many different land cover types can occur, so it does not necessarily indicate precise information on land cover for a particular given situation in landscape, in particular the degree of imperviousness.\nThis class is applicable for:\n- all kinds of industrial and production complexes\n- commercial complexes\n- exposition sites, fair sites\n- large shopping centres\n- research and development establishments (laboratories, testing pistes, test fields)\n- community services\n- security and law and order services, fire stations, penal establishments\n- military/defence, including military airfields without sealed runway\n- science and education (schools, universities)\n- health services (hospitals, spas)\n- social welfare institutions (old people's home, convalescent homes, orphanages, etc.)\n- refugee camps consisting mainly of non-permanent structures (container houses, tents)\n- large scale or industrialized agricultural installations (livestock farms, co-operatives)\n- on-shore aquaculture facilities\n- energy production and distribution facilities\n- power plants (nuclear, fossil combustibles)\n- renewable energy installations (wind farms if turbines are < 300 m distance from each other, solar panels, geothermal plants, biomass, hydroelectric plants and dams, including pumped-storage hydroelectric power stations)\n- electricity transformers\n- utilities\n- waste water treatment plants (industrial or biological), including ponds of biological water treatment plants\n- recycling centres\n- drinking water supply facilities\n- telecommunication networks (relay stations for TV, telescopes, radar stations)\n- motor circuits inside industrial unit areas used for test purposes\n- caravan parking used for commercial activities\n- abandoned industrial/commercial/military or any other of the above listed sites where buildings are still present and associated land that shows traces of corresponding activities\n- industrial and commercial units < 25 ha associated with port activities\nThis class includes:\n- buildings of all sizes, from single buildings to large halls, which serve for the applicable purposes mentioned above\n- any specific technical structures and facilities (e.g. storage tanks, antennas, refineries, pipelines)\n- agro-industrial and on-shore aquaculture structures: storage for crops, fodder or machinery; silos; stables; barns, basins, water tanks;\n- parking lots;\n- roads and railways inside industrial sites;\n- associated open sealed surfaces (e.g. storage areas);\n- associated green areas, lay-by areas or unsealed surfaces\n- greenhouses in commercial garden centres for product selling purposes\n- mineral extraction sites and dump sites < 25 ha, associated to industrial units\n- raw material waiting to be used, stored inside or neighbouring industrial facilities\nThis class is not applicable for:\n- residential areas (class 111 or 112);\n- mixed fabric of residential and industrial / commercial activities (class 112);\n- military outdoor training grounds in use or abandoned; it must be mapped according to its actual land cover (usually classes under forest and semi-natural areas like 31x, 321, 322, 323, 324, 333).\n- military ports (class 123) and military airports with sealed runway (class 124)\n- extractive industry, extraction sites (class 131);\n- oil terminals inside port activities (class 123);\n- industrial/public liquid and solid waste (132);\n- dockyards (class 123);\n- merchant departments belonging to private or public services (class 11x);\n- places of worship: convents, monasteries, etc. (class 142);\n- off shore (floating) aquaculture facilities for fish, shellfish or macroalgae production (class 512 or 523);\n- abandoned industrial/commercial/military or any other of the above listed sites where artificial structures are no longer visible and/or evidence of other use is recognizable (class according to actual cover/use).\nThis class excludes:\n- off-shore aquaculture installations, such as floating cages and tanks, buoy lines (class 512 or 523)",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_1_1",
+      "name": "Sealed Artificial Surfaces and Constructions",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_1_2_1",
+      "name": "Open Non-Sealed Artificial Surfaces",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-1_2",
+      "name": "Natural Material Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2",
+      "name": "Biotic, Vegetation",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-2",
+      "name": "Secondary Production Sector",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-3_1",
+      "name": "Commercial Services",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-3_2",
+      "name": "Financial, Professional and Information Services",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-3_3",
+      "name": "Community Services",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-5_1",
+      "name": "Permanent Residential",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-5_2",
+      "name": "Residential Use With Other Compatible Uses",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-5_3_1",
+      "name": "Temporary Residential, Permanent Structure",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    }
+  ]
+}

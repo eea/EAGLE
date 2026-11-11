@@ -4,7 +4,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,900&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: CLMS-portal look. Green utility bar, white masthead, breadcrumb, title with rule,
    tab strip, then block panels (tree) on the left and a sticky concept sheet on the right. */
@@ -47,7 +47,21 @@ a{color:var(--green-ink)}
 .topbar{background:var(--green);color:var(--on-green);position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
 .topbar .wrap{display:flex;align-items:center;gap:16px;min-height:44px;padding-block:6px}
 .topbar .ver{font-size:13px;letter-spacing:.04em;opacity:.95;white-space:nowrap}
-.search{position:relative;flex:1;max-width:560px;margin-left:auto}
+.search{position:relative;width:100%}
+.slot-top{flex:1;max-width:560px;margin-left:auto;min-width:0}
+.finder{background:var(--tint);border:1px solid var(--line);border-top:3px solid var(--green);padding:18px 20px 16px;margin:22px 0;display:flex;flex-direction:column;gap:10px}
+.finder-h{font-size:17px;font-weight:700;color:var(--navy)}
+.slot-main{min-height:56px}
+.finder .search input{height:56px;font-size:18px;padding:0 48px 0 50px;border:2px solid var(--green);background:#fff;box-shadow:var(--shadow)}
+.finder .search input:focus{outline:none;border-color:var(--green-deep);box-shadow:0 0 0 4px var(--tint-2)}
+.finder .search .ico{left:16px;width:22px;height:22px}
+.finder .search kbd{right:14px;font-size:13px}
+.finder .search .clear{right:10px;width:34px;height:34px;font-size:22px}
+.finder-foot{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:14px}
+.try{color:var(--muted)}
+.try-chip{border:1px solid var(--line);background:var(--surface);color:var(--green-ink);font:inherit;font-size:13.5px;padding:3px 10px;cursor:pointer}
+.try-chip:hover{border-color:var(--green);background:var(--tint-2)}
+.finder-note{color:var(--muted);flex-basis:100%;margin-top:4px}
 .search input{width:100%;height:34px;border:0;border-radius:0;padding:0 36px 0 38px;font:inherit;font-size:15px;background:#fff;color:#1F2A33}
 .search input::placeholder{color:#7A858D}
 .search .ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--green-ink);pointer-events:none}
@@ -68,9 +82,14 @@ mark{background:var(--tint-2);color:inherit;padding:0 1px;box-shadow:inset 0 -2p
 .mast{background:var(--surface);border-bottom:1px solid var(--line)}
 .mast .wrap{display:flex;align-items:center;gap:20px;padding-block:18px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
-.brand svg{width:46px;height:46px;flex:none}
-.brand .t1{font-size:22px;font-weight:900;letter-spacing:.06em;color:var(--green-ink);line-height:1}
-.brand .t2{font-size:15px;font-weight:700;color:var(--green-ink);line-height:1.2}
+.brand svg{width:250px;height:auto;flex:none;display:block;overflow:visible}
+.logo-sm,.logo-lg,.logo-big{font-family:var(--f-body)}
+.logo-sm{font-weight:700;font-size:19px;fill:var(--navy);letter-spacing:.01em}
+.logo-big{font-style:italic;font-weight:900;font-size:74px;fill:var(--green);stroke:var(--navy);stroke-width:3.2px;stroke-linejoin:round;paint-order:stroke fill}
+.logo-lg{font-weight:700;font-size:19px;fill:var(--green-ink)}
+.logo-rule{stroke:var(--green);stroke-width:2.5px;stroke-linecap:round}
+.prod{display:flex;flex-direction:column;gap:3px;min-width:0}
+.prod .pname{font-size:18px;font-weight:700;color:var(--navy);line-height:1.2}
 .sep{width:1px;align-self:stretch;background:var(--line)}
 .mast .src{font-size:13px;color:var(--muted);max-width:52ch;line-height:1.4}
 .mast nav{margin-left:auto;display:flex;gap:22px;flex-wrap:wrap}
@@ -143,6 +162,7 @@ ul.tree ul.tree{margin-left:17px;padding-left:10px;border-left:1px dashed var(--
 .qm{flex:none;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--green-ink);background:none;color:var(--green-ink);font:700 11px/1 var(--f-body);display:inline-grid;place-items:center;cursor:help;padding:0;margin-left:2px;vertical-align:1px}
 .qm:hover,.qm[aria-expanded="true"]{background:var(--green);border-color:var(--green);color:#fff}
 .lab .qm{margin-left:6px}
+.qm-lg{width:22px;height:22px;font-size:13px;margin-left:8px;vertical-align:3px}
 .tip{position:fixed;z-index:60;max-width:min(320px,calc(100vw - 24px));background:var(--navy);color:var(--bg);padding:10px 12px 11px;font-size:14px;line-height:1.45;box-shadow:0 6px 24px rgba(0,0,0,.22);pointer-events:none}
 .tip b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--tip-head);margin-bottom:3px}
 .tip::before{content:"";position:absolute;left:var(--ax,16px);width:10px;height:10px;background:inherit;transform:rotate(45deg);top:-5px}
@@ -204,7 +224,13 @@ footer p{margin:0;max-width:70ch}
   .tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
   .topbar .ver{display:none}
   .search kbd{display:none}
+  .finder{padding:14px 14px 12px}
+  .finder .search input{font-size:16px;padding-left:44px}
+  .finder .search .ico{left:12px}
   .mast nav,.sep,.mast .src{display:none}
+  .brand svg{width:180px}
+  .prod .pname{font-size:15px}
+  .mast .wrap{gap:14px;padding-block:12px}
   .bhead{padding:16px 14px 10px;grid-template-columns:auto minmax(0,1fr)}
   .btools{grid-column:1/-1;order:3}
   .classes{padding:4px 10px 14px}
@@ -217,22 +243,23 @@ footer p{margin:0;max-width:70ch}
 </head><body>
 <div class="topbar"><div class="wrap">
   <span class="ver">EAGLE data model · version <span id="ver"></span></span>
-  <div class="search" role="search">
-    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    <input id="q" type="text" autocomplete="off" spellcheck="false" placeholder="Search classes, codes, definitions… e.g. vineyard, LCC-2_1" aria-label="Search the EAGLE vocabulary" aria-controls="results" aria-expanded="false" role="combobox">
-    <kbd id="kbd">/</kbd>
-    <button class="clear" id="clear" type="button" aria-label="Clear search" hidden>×</button>
-    <div class="results" id="results" role="listbox" hidden></div>
-  </div>
+  <div class="slot-top" id="slotTop"></div>
 </div></div>
 
 <header class="mast"><div class="wrap">
-  <a class="brand" href="#" id="home">
-    <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="23" fill="var(--green)"/><path d="M9 30c6-3 10-3 15 0s9 3 15 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M9 23c6-3 10-3 15 0s9 3 15 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".75"/><path d="M12 16c5-2.5 8.5-2.5 12 0s7 2.5 12 0" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".5"/></svg>
-    <span><span class="t1">EAGLE</span><br><span class="t2">Vocabulary Browser</span></span>
+  <a class="brand" href="#" id="home" aria-label="EAGLE, EIONET Action Group: Land Monitoring in Europe. Back to overview">
+    <svg viewBox="0 0 320 114" role="img" aria-hidden="true">
+      <text class="logo-sm" x="20" y="20">EIONET Action Group</text>
+      <text class="logo-big" x="6" y="86" textLength="300" lengthAdjust="spacingAndGlyphs">EAGLE</text>
+      <line class="logo-rule" x1="14" y1="105" x2="62" y2="105"/>
+      <text class="logo-lg" x="314" y="111" text-anchor="end">Land Monitoring in Europe</text>
+    </svg>
   </a>
   <span class="sep" aria-hidden="true"></span>
-  <span class="src">Land cover components, land use attributes and land characteristics of the EAGLE data model, linked to the EIONET Data Dictionary.</span>
+  <div class="prod">
+    <span class="pname">Vocabulary Browser</span>
+    <span class="src">Land cover components, land use attributes and land characteristics of the EAGLE data model, linked to the EIONET Data Dictionary.</span>
+  </div>
   <nav aria-label="External resources">
     <a href="https://dd.eionet.europa.eu/vocabulary/landcover/eagle/" target="_blank" rel="noopener">EIONET Data Dictionary ↗</a>
   </nav>
@@ -241,7 +268,26 @@ footer p{margin:0;max-width:70ch}
 <main class="wrap">
   <ol class="crumbs" id="crumbs" aria-label="You are here"></ol>
   <h1 id="title">EAGLE vocabulary</h1>
-  <div class="note">Wondering where a class sits in the model? <b>Select any top-level class</b> to open its subclasses, or use the search bar to jump straight to a concept. Every entry links to the <a href="https://dd.eionet.europa.eu/vocabulary/landcover/eagle/" target="_blank" rel="noopener">EIONET Data Dictionary</a>.</div>
+  <section class="finder" aria-labelledby="finder-h">
+    <label class="finder-h" id="finder-h" for="q">Find a class in the EAGLE vocabulary</label>
+    <div class="slot-main" id="slotMain">
+      <div class="search" role="search">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="text" autocomplete="off" spellcheck="false" placeholder="Search by name, code or keyword, e.g. vineyard, glacier, LUA-1_1" aria-label="Search the EAGLE vocabulary" aria-controls="results" aria-expanded="false" role="combobox">
+    <kbd id="kbd">/</kbd>
+    <button class="clear" id="clear" type="button" aria-label="Clear search" hidden>×</button>
+    <div class="results" id="results" role="listbox" hidden></div>
+  </div>
+    </div>
+    <div class="finder-foot">
+      <span class="try">Try:</span>
+      <button type="button" class="try-chip" data-try="vineyard">vineyard</button>
+      <button type="button" class="try-chip" data-try="glacier">glacier</button>
+      <button type="button" class="try-chip" data-try="soil sealing">soil sealing</button>
+      <button type="button" class="try-chip" data-try="LUA-1_1">LUA-1_1</button>
+      <span class="finder-note">Or open a top-level class below. Every entry links to the <a href="https://dd.eionet.europa.eu/vocabulary/landcover/eagle/" target="_blank" rel="noopener">EIONET Data Dictionary</a>.</span>
+    </div>
+  </section>
   <div class="tabs" role="tablist" id="tabs"></div>
   <div class="main">
     <div class="blocks" id="blocks"></div>
@@ -283,7 +329,7 @@ const ancestors = c => { const a=[]; let n=by.get(c); while(n && n.p){ a.unshift
 function descCount(c){ let n=0; const st=[...kids.get(c)]; while(st.length){ const x=st.pop(); n++; st.push(...kids.get(x)); } return n; }
 const DESC = new Map(); RAW.c.forEach(o=>DESC.set(o.c, descCount(o.c)));
 const norm = s => (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
-RAW.c.forEach(o=>{ o._l=norm(o.l); o._c=o.c.toLowerCase(); o._i=norm(o.i.join(' | ')); o._d=norm(o.d); o._x=norm(o.x); o._s=norm(o.s); });
+RAW.c.forEach(o=>{ o._l=norm(o.l); o._c=o.c.toLowerCase(); o._i=norm(o.i.join(' | ')); o._d=norm(o.d); o._x=norm(o.x); });
 
 const esc = s => String(s??'').replace(/[&<>"']/g, ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const toHash = c => c.replace(/_/g,'-');
@@ -363,6 +409,12 @@ blocksEl.addEventListener('click', e=>{
   select(c, {scroll:false});
 });
 
+// ---------- hash links (silently skipped where the host page forbids history changes, e.g. sandboxed previews) ----------
+function setHash(h){
+  try{ history.replaceState(null,'',h || (location.pathname+location.search)); }
+  catch(err){ /* about:srcdoc previews block history; deep links still work on a normal web page */ }
+}
+
 // ---------- selection & detail ----------
 const detailEl = document.getElementById('detail');
 function select(c, {scroll=true, flash=false, push=true}={}){
@@ -375,7 +427,7 @@ function select(c, {scroll=true, flash=false, push=true}={}){
   }
   renderDetail(); renderCrumbs();
   detailEl.classList.add('open');
-  if(push){ const h='#'+toHash(c); if(location.hash!==h) history.replaceState(null,'',h); }
+  if(push){ const h='#'+toHash(c); if(location.hash!==h) setHash(h); }
 }
 function reveal(c, opts={}){
   const b = blockOf(c);
@@ -399,10 +451,9 @@ function renderDetail(){
     <div class="dhead"><span class="eb">${esc(b.name)}</span><button class="dclose" type="button" aria-label="Close details" data-close>×</button></div>
     <div class="dbody">
       <div class="dpath">${anc.map(a=>`<button type="button" data-go="${esc(a)}">${esc(by.get(a).l)}</button><span class="s">/</span>`).join('')}</div>
-      <h2>${esc(o.l)}</h2>
+      <h2>${esc(o.l)}${o.s?`<button class="qm qm-lg" type="button" data-tip="${esc(o.c)}" aria-label="What is ${esc(o.l)}?" aria-expanded="false">?</button>`:''}</h2>
       <dl class="facts">${facts.map(f=>`<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join('')}</dl>
-      ${o.s?`<div class="sec"><h3>In plain words</h3><p class="plain">${esc(o.s)}</p></div>`:''}
-      ${o.d?`<div class="sec"><h3>Official definition</h3>${o.d.split(/\n+/).map(p=>`<p>${esc(p)}</p>`).join('')}</div>`:''}
+      ${o.d?`<div class="sec"><h3>Definition</h3>${o.d.split(/\n+/).map(p=>`<p>${esc(p)}</p>`).join('')}</div>`:''}
       ${FLAGGED.has(o.c)?`<p class="flag">In the source file, this definition appears to belong to a neighbouring concept. Check the EIONET entry for the authoritative text.</p>`:''}
       ${o.i.length?`<div class="sec"><h3>Includes</h3><div class="chips">${o.i.map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div></div>`:''}
       ${o.x?`<div class="sec"><h3>Excludes</h3>${o.x.split(/\n+/).map(p=>`<p>${esc(p)}</p>`).join('')}</div>`:''}
@@ -480,7 +531,7 @@ function renderCrumbs(){
   }
   crumbsEl.innerHTML = parts.join('');
 }
-function goHome(){ selected=null; expanded.clear(); history.replaceState(null,'',location.pathname+location.search); setTab('ALL'); renderDetail(); window.scrollTo({top:0}); }
+function goHome(){ selected=null; expanded.clear(); setHash(''); setTab('ALL'); renderDetail(); window.scrollTo({top:0}); }
 crumbsEl.addEventListener('click', e=>{ const g=e.target.closest('[data-go]'); if(g) reveal(g.dataset.go); else if(e.target.closest('[data-home]')) goHome(); });
 document.getElementById('home').addEventListener('click', e=>{ e.preventDefault(); goHome(); });
 
@@ -493,7 +544,7 @@ function search(raw){
   const out = [];
   for(const o of RAW.c){
     if(!o.p) { /* block roots */ }
-    const hay = o._l+' '+o._c+' '+o._i+' '+o._d+' '+o._x+' '+o._s;
+    const hay = o._l+' '+o._c+' '+o._i+' '+o._d+' '+o._x;
     if(!toks.every(t=>hay.includes(t))) continue;
     let sc = 0, why = null;
     if(o._c===s) sc+=1000; else if(o._c.startsWith(s)) sc+=400;
@@ -503,7 +554,6 @@ function search(raw){
     else if(toks.some(t=>o._i.includes(t))){ sc+=80; why={k:'Includes',t:o.i.filter(x=>toks.some(t=>norm(x).includes(t))).join(', ')}; }
     else if(toks.some(t=>o._d.includes(t))){ sc+=20; why={k:'Definition',t:snippet(o.d,toks)}; }
     else if(toks.some(t=>o._x.includes(t))){ sc+=10; why={k:'Excludes',t:snippet(o.x,toks)}; }
-    else if(toks.some(t=>o._s.includes(t))){ sc+=5; why={k:'In plain words',t:snippet(o.s,toks)}; }
     sc -= ancestors(o.c).length*2;
     out.push({o,sc,why});
   }
@@ -543,7 +593,7 @@ function setActive(i){
   active=i; resEl.querySelectorAll('.res').forEach(b=>b.setAttribute('aria-selected', String(+b.dataset.i===i)));
   const el=document.getElementById('res-'+i); if(el){ el.scrollIntoView({block:'nearest'}); q.setAttribute('aria-activedescendant','res-'+i); }
 }
-function pick(i){ const h=hits[i]; if(!h) return; resEl.hidden=true; q.setAttribute('aria-expanded','false'); reveal(h.o.c); }
+function pick(i){ const h=hits[i]; if(!h) return; q.blur(); resEl.hidden=true; q.setAttribute('aria-expanded','false'); reveal(h.o.c); }
 let tmr; q.addEventListener('input', ()=>{ clearTimeout(tmr); tmr=setTimeout(renderResults,90); });
 q.addEventListener('focus', ()=>{ if(q.value.trim()) renderResults(); });
 q.addEventListener('keydown', e=>{
@@ -556,11 +606,23 @@ q.addEventListener('keydown', e=>{
 resEl.addEventListener('mousedown', e=>e.preventDefault());
 resEl.addEventListener('click', e=>{ const b=e.target.closest('.res'); if(b) pick(+b.dataset.i); });
 clearBtn.addEventListener('click', ()=>{ q.value=''; renderResults(); q.focus(); });
-document.addEventListener('click', e=>{ if(!e.target.closest('.search')){ resEl.hidden=true; q.setAttribute('aria-expanded','false'); } });
+document.addEventListener('click', e=>{ if(!e.target.closest('.search') && !e.target.closest('[data-try]')){ resEl.hidden=true; q.setAttribute('aria-expanded','false'); } });
 document.addEventListener('keydown', e=>{
   if(e.key==='/' && document.activeElement!==q && !/input|textarea/i.test(document.activeElement.tagName)){ e.preventDefault(); q.focus(); q.select(); }
   if(e.key==='Escape' && detailEl.classList.contains('open') && document.activeElement!==q) detailEl.classList.remove('open');
 });
+
+// ---------- search placement: big in the page, docked in the green bar once scrolled past ----------
+const searchEl = document.querySelector('.search'), slotMain = document.getElementById('slotMain'), slotTop = document.getElementById('slotTop');
+function dock(top){
+  const target = top?slotTop:slotMain; if(searchEl.parentElement===target) return;
+  const hadFocus = document.activeElement===q; target.appendChild(searchEl);
+  if(hadFocus) q.focus({preventScroll:true});
+}
+if('IntersectionObserver' in window){
+  new IntersectionObserver(([en])=>{ dock(!en.isIntersecting && en.boundingClientRect.top<60); }, {rootMargin:'-50px 0px 0px 0px'}).observe(slotMain);
+}
+document.querySelectorAll('[data-try]').forEach(b=>b.addEventListener('click',()=>{ q.value=b.dataset.try; q.focus(); renderResults(); }));
 
 // ---------- boot ----------
 window.addEventListener('hashchange', ()=>{ const c=fromHash(location.hash); if(c && c!==selected) reveal(c,{push:false}); });

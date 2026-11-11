@@ -1,0 +1,70 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "3.2.3",
+  "class_label": "Sclerophyllous vegetation",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-323.html",
+  "class_description": "Definition:\nBushy sclerophyllous vegetation in a climax stage of development, including maquis, matorral and garrigue.\nThis class is applicable for:\n- Maquis, matorral, garrigue and thermo-Mediterranean brushes, characterized by shrubs of sclerophyllous character, with hard leaves and short internodes, usually evergreen.\n- matorral of arid zone with pre-desert brushes and tall Ziziphus lotus;\n- laurel matorral with Laurus nobilis;\n- cypress matorral with native or planted cypressus;\n- garrigues characterized by Quercus, Juniperus, Cistus, Lavandula, Rosmarinus, Euphorbia, Genista, Erica, Laurus etc. species\n- tree-spurge formation with dense stands of Euphorbia dendroides in thermo-Mediterranean area;\n- palmetto brush formations with dominating Chamaerops humilis;\n- pre-desert scrub with halo-nitrophyllous scrubs and gypsum scrubs: jujube brush (Ziziphus lotus), shrubs of African affinities (spiny brush formation of acacia);\n- abandoned olive groves\n- agricultural crops abandoned for > 3 years, where the above listed ligneous/semi-ligneous vegetation covers > 50 % of the surface;\n- abandoned agro-forestry systems (dehesa, montado) where non-permanent crops are replaced by overgrowth of sclerophyllous shrubs.\nThis class includes:\n- sclerophyllous shrubs and low shrubs, dominating the area;\n- scattered sclerophyllous trees covering < 30% of area;\n- herbaceous vegetation (grasses and herbs);\n- outcrops of bare natural surfaces (rocks, scree, sand, soil) covering <50% of area.\nThis class is not applicable for:\n- arborescent matorrals that are pre- or post-broad-leaved evergreen forest formations with more or less dense tree cover. Characterized bya usually thick high evergreen shrub stratum organised around evergreen oaks (Quercus suber/ilex/rotundifolia), olive trees or pines with > 30 % crown cover (class 311). If the crown cover is < 30 %, it is assigned to class 324.\n- sclerophyllous vegetation under anthropogenic process of afforestation, usually recognizable by rows of plantations following topographic contour lines (class 324);\n- sparse sclerophyllous shrubs where bare rocks cover >50% of the area (class 333).\nThis class excludes:\n- shrub species typical of temperate, Atlantic, alpine, arctic moors and heathlands (class 322).",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2",
+      "name": "Natural Material Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_1",
+      "name": "Trees",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2_1",
+      "name": "Regular Bushes",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_1_1",
+      "name": "Grasses, Sedges, Rushes, Cereals",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_2",
+      "name": "Non-Graminoids, Forbs, Ferns",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_5",
+      "name": "Other Primary Production",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-3_3_1",
+      "name": "Sclerophyllous",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

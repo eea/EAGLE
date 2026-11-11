@@ -1,0 +1,364 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "3.2.1",
+  "class_label": "Natural grassland",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-321.html",
+  "class_description": "Definition:\nGrasslands under no or moderate human influence. Low productivity grasslands. Often situated in areas of rough, uneven ground, steep slopes; frequently including rocky areas or patches of other (semi-)natural vegetation.\nClarification:\nNatural grasslands are areas with herbaceous vegetation (maximum height is 150 cm and gramineous species are prevailing) covering at least 50 % of the surface. Besides herbaceous vegetation, areas of shrub formations, of scattered trees and of mineral outcrops also occur. Often under nature conservation. In this context the term ”natural” indicates that vegetation is developed under a minimum human interference,(not mowed, drained, irrigated, sown, fertilized or stimulated by chemicals, which might influence production of biomass). Even though the human interference cannot be completely discarded in quoted areas, it does not suppress the natural development or species composition of the meadows. Maintenance mowing and shrub clearance for prevention of woody overgrowth due to natural succession is tolerated. Sporadic extensive grazing with low livestock unit/ha is possible. Typical visible characteristics: large extent, irregular shape, usually in distant location from larger settlements.\nThis class is applicable for:\n- permanent grasslands of natural origin, under minimum human influence, with close to natural or semi-natural botanical composition, such as:\n- natural grasslands, meadows, steppes on any type of soil (calcareous / acid / neutral, rock / gravel / sand / loess), humid or dry growing conditions, on lowland , riverine, montane, subalpine, alpine, boreal habitats,\n- natural grasslands with sporadically occurring ligneous vegetation (trees and shrubs) if it does not cover > 30 % of the considered surface;\n- saline grasslands grown on temporary wet areas of saline soils;\n- humid meadows where sedges, rushes, thistles, nettles cover > 25 % of the parcel;\n- herbaceous grass covered composed of not palatable gramineous species such as Molinia spp.and Brachypodium spp.;\n- grasslands found on calcareous soils with a high proportion of calcicole species of limestone, chalk machair or karst;\n- grasslands that can be extensively grazed, but never sown nor otherwise managed by application of fertilizers, pesticides, drainage or reseeding except by burning;\n- high-productive Alpine grasslands far from houses, crops and farming activities;\n- herbaceous military training areas;\n- grasslands with a yearly productivity less than 1.500 units of fodder/ha;\n- grasslands under nature conservation with only maintenance cultivation;\n- derelict natural grassland where ligneous vegetation covers < 50 % of the area, trees occupying <30%;\n- natural grasslands formed by process of natural succession / colonization on agricultural land abandoned for time long enough for development of a near natural species composition;\n- seeding of areas of lupin (Lupinus nootkatesis) and grasses for reclamation and erosion control of large, barren areas in Iceland.\nThis class includes:\n- herbaceous vegetation with > 50% cover, dominated by grasses;\n- scattered woody vegetation with < 50% cover, trees occupying <30% of area;\n- bare rocks or bare natural surfaces covering < 50 % of the area.\nThis class is not applicable for:\n- permanent grasslands under intensive agricultural use (class 231);\n- degraded grass-dominated vegetation of abandoned or ruderal areas, leftover areas around human settlements, under no agricultural use, but with strong human disturbance (class 231);\n- derelict grassland where semi-ligneous/ligneous vegetation covers at least 50% of the parcel (class 322, 323, 324);\n- grey dunes (class 331);\n- natural grasslands where natural bare surfaces (rock, pebble, sand, salt plane) cover 50-90% of area (class 333);\n- swampy grassland (class 411);\n- humid meadows where hygrophyle plant species cover at least 25 % of the parcel (class 411);\n- salt meadows under occasional tidal influence (class 421)\n- fallow land (class 211).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2",
+      "name": "Natural Material Surfaces",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_1",
+      "name": "Trees",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2_1",
+      "name": "Regular Bushes",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1_2_2",
+      "name": "Dwarf Shrubs",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_1_1",
+      "name": "Grasses, Sedges, Rushes, Cereals",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2_2",
+      "name": "Non-Graminoids, Forbs, Ferns",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_5",
+      "name": "Other Primary Production",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_1_1",
+      "name": "Arable Crop Land",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_1_2",
+      "name": "Permanent Crop Land",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_2",
+      "name": "Managed Permanent Grassland",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_1_1",
+      "name": "No Ploughing",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_1_2",
+      "name": "Ploughing Applied, Direction Unspecified",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_1_3",
+      "name": "Ploughing Across The Slope",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_1_4",
+      "name": "Ploughing Oblique Direction",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_1_5",
+      "name": "Ploughing in Direction of Slope",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_2_1",
+      "name": "No Fertilizing",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_2_2",
+      "name": "Fertilization Applied, Type Unspecified",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_2_3_1",
+      "name": "Animal Manure",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_2_3_2",
+      "name": "Green Manure",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_2_4",
+      "name": "Synthetic Fertilizer",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_3_1",
+      "name": "No Weed Control",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_3_3",
+      "name": "Mechanical or Biological Weed Control",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_3_4",
+      "name": "Chemical Weed Control",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_4_1",
+      "name": "No Pest Control",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_4_3",
+      "name": "Mechanical or Biological Pest Control",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_4_4",
+      "name": "Chemical Pest Control",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_1",
+      "name": "No Irrigation",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_2",
+      "name": "Irrigation Applied, Method Unspecified",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_3",
+      "name": "Gravity Surface Irrigation",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_4",
+      "name": "Sprinkler Irrigation",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_5",
+      "name": "Irrigation Carousel",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_6",
+      "name": "Drip Irrigation",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_7",
+      "name": "Subsurface Drip Irrigation",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_5_8",
+      "name": "Manual Irrigation",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_7_1",
+      "name": "No Drainage",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_7_2",
+      "name": "Drainage Applied, Method Unspecified",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_7_3",
+      "name": "Open Ditch Drainage",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_7_4",
+      "name": "Subsurface Tube Drainage",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_7_5",
+      "name": "Filled Ditch Drainage",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_8_1_1",
+      "name": "No Mowing",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_8_1_2",
+      "name": "Mowing Applied, Frequency Unspecified",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_8_1_3",
+      "name": "Extensive Mowing",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_8_1_4",
+      "name": "Medium Intensity Mowing",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_4_8_1_5",
+      "name": "Intensive Mowing",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_11_1_1",
+      "name": "No Grazing",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_11_1_2",
+      "name": "Grazing Present, Intensity Unspecified",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_11_1_3",
+      "name": "Extensive, Freerange Grazing",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_11_1_4",
+      "name": "Intensive Grazing",
+      "bcv": null,
+      "excluded": true,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_5",
+      "name": "Grasslands and Lands Dominated By Forbs, Mosses Or Lichens",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}

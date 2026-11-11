@@ -1,0 +1,126 @@
+{
+  "dataset_name": "Corine Land Cover (CLC) 2018",
+  "dataset_type": "vector",
+  "spatial_coverage": "European Environment Agency (38+UK)",
+  "reference_year": "2018",
+  "time_range": "01.01.2017 - 31.12.2018",
+  "class_resolution": null,
+  "class_mmu": "25 ha",
+  "class_code": "2.4.1",
+  "class_label": "Annual crops associated with permanent crops",
+  "class_description_source": "https://land.copernicus.eu/content/corine-land-cover-nomenclature-guidelines/html/index-clc-241.html",
+  "class_description": "Definition:\nCultivated land parcels with non-permanent crops (mostly arable land) associated with permanent crops (fruit trees or olive trees or vines) on the same parcel.\nClarification:\nPermanent crops (fruit trees or olive trees or vines) are either in juxtaposition with arable crops or located along the border of the parcels. The occupation rate of non-permanent crops is > 50 %.\nThis class is applicable for:\n- non-permanent crop areas shaded by a fairly closed canopy of fruit trees or olive trees or vines;\n- non-permanent crop areas that are bordered by a reticulated structure of fruit tree lines, vine lines;\n- vines mixed with arable land and/or meadows within a single parcel.\nThis class includes:\n- woody crops (fruit trees or shrubs, olives) in combination with\n- either non-permanent crops;\n- or permanent grass surfaces;\n- optionally with scattered patches of greenery.\nThis class is not applicable for:\n- permanent crops associated with fruit trees (classes 22x);\n- non-permanent crops associated with forest trees in an agro-forestry system (class 244);\n- mosaic of permanent crop and non-permanent crop parcels where none of the constituents occupy >75% (class 242);\n- mosaic of fruit trees or vineyards or olives and non-permanent crops, where one of the permanent crops occupy > 50% (classes 22x)\n- meadows or pastures with scattered forest trees (class 231).\nThis class excludes:\n-",
+  "barcoding_created_by": "Renner Thomas",
+  "barcoding_created_at": "08.10.2026",
+  "EAGLE_matrix_version": "3.2",
+  "EAGLE_matrix_url": "https://land.copernicus.eu/en/technical-library/eagle-matrix-3_2/@@download/file",
+  "barcoding_source": "CLCplus Core",
+  "barcoding_source_url": "https://clcplus-core.land.copernicus.eu/datacatalogue/ingestion/91a20905-e4c0-47ab-badb-9866ab9d1d99",
+  "barcoding_result": [
+    {
+      "code": "LCC-1_2_2_2",
+      "name": "Bare Soils",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_1",
+      "name": "Woody Vegetation",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCC-2_2",
+      "name": "Herbaceous Vegetation",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LUA-1_1_1",
+      "name": "Commercial Crop Production",
+      "bcv": 5,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_1_1",
+      "name": "Arable Crop Land",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_1_2",
+      "name": "Permanent Crop Land",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_1_2",
+      "name": "Managed Permanent Grassland",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_2_1",
+      "name": "Crop Rotation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_2_2",
+      "name": "No Crop Rotation",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_2_4",
+      "name": "Extensive Cultivation Practice",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-5_1_2_7",
+      "name": "Intercropping",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_9",
+      "name": "Regularly Or Recently Cultivated Agricultural, Horticultural and Domestic Habitats",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-7_1_11",
+      "name": "Habitat Complexes",
+      "bcv": 2,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-8_1_2",
+      "name": "Heterogeneous, Mixed, Unevenly Textured",
+      "bcv": 3,
+      "excluded": false,
+      "factor": 1.0
+    },
+    {
+      "code": "LCH-8_1_4",
+      "name": "Scattered Pattern",
+      "bcv": 1,
+      "excluded": false,
+      "factor": 1.0
+    }
+  ]
+}
