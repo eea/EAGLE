@@ -21,7 +21,7 @@ st.set_page_config(page_title="EAGLE Eye", page_icon="🦅", layout="wide", init
 st.markdown(
     """<style>
     header[data-testid="stHeader"], [data-testid="stToolbar"], [data-testid="stDecoration"] { display: none; }
-    [data-testid="stMainBlockContainer"], .block-container { padding-top: 1.2rem; padding-bottom: 1rem; }
+    [data-testid="stMainBlockContainer"], .block-container { padding-top: 0rem; padding-bottom: 1rem; }
     :root { --ee-lcc: #23904f; --ee-lua: #7b3fc4; --ee-lch: #a98200; }
     @media (prefers-color-scheme: dark) { :root { --ee-lcc: #5fd08a; --ee-lua: #b68cf2; --ee-lch: #f0c63c; } }
     .ee-legend { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: -.4rem 0 .8rem; font-size: 1rem; }
