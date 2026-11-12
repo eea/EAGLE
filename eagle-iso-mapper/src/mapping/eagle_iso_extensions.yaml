@@ -1,0 +1,70 @@
+# Extension vocabulary for what ISO 19144-2 / the FAO LChS profile does not define.
+#
+# ISO 19144-2 (LCML) has no code lists for irrigation types, irrigation water sources or irrigation regimes,
+# and no structure for land use (ISO 19144-3 is a separate schema) or for general land characteristics.
+# The code lists below are therefore a project extension in the style of ISO 19144 code lists
+# (lowerCamelCase identifiers). UML: docs/diagrams/irrigation-extension.puml
+#
+# Anything written from this file is NOT part of a published ISO schema: the FAO LChS tool may not import it.
+# `LchsXmlGenerator(extensions=False)` writes the plain LCML subset only.
+
+code_lists:
+  IrrigationType:
+    flood: "Whole parcel is flooded"
+    basin: "Water is held in levelled basins"
+    furrow: "Water runs along furrows between crop rows"
+    borderStrip: "Water flows over sloping, bordered strips"
+    sprinkler: "Water is sprayed under pressure as artificial rain"
+    centerPivot: "Sprinkler lateral circles around a centre point (EAGLE: irrigation carousel)"
+    linearMove: "Sprinkler lateral moves in a straight line across the field"
+    drip: "Water is led to the plants drop by drop through perforated tubes on the ground"
+    microSprinkler: "Low-volume micro-sprayers close to the plants"
+    subsurfaceDrip: "Drip tubes or tapes buried at or below root level"
+    other: "Another method not listed"
+    # Not in the first proposal; needed to carry EAGLE LCH-5_1_4_5 without loss.
+    gravitySurface: "Surface irrigation by gravity, method not further specified (EAGLE level; parent of flood, basin, furrow, borderStrip)"
+    manual: "Water is applied by hand"
+    unspecified: "Irrigation is applied, the method is unknown or unspecified"
+  WaterSource:
+    surfaceWater: "Rivers, streams, canals, lakes"
+    groundwater: "Wells, boreholes"
+    reservoir: "Storage reservoir or dam"
+    recycledWater: "Treated waste water"
+    desalinatedWater: "Desalinated sea or brackish water"
+    mixed: "More than one source"
+    unknown: "Source unknown"
+  IrrigationRegime:  # no EAGLE concept feeds this list yet
+    permanent: "Irrigated all year"
+    seasonal: "Irrigated in a season"
+    supplemental: "Irrigation supplements rainfall"
+    intermittent: "Irrigated at irregular intervals"
+    emergency: "Irrigated only in drought emergencies"
+
+# EAGLE land characteristic -> irrigation attributes. `irrigated` says whether the concept states irrigation.
+# The match is `exact` unless a comment says broader.
+irrigation:
+  LCH-5_1_4_5_1: {irrigated: false}                                      # No Irrigation
+  LCH-5_1_4_5_2: {irrigated: true, irrigationType: unspecified}          # Irrigation Applied, Method Unspecified
+  LCH-5_1_4_5_3: {irrigated: true, irrigationType: gravitySurface}       # Gravity Surface Irrigation (broader than flood/basin/furrow/borderStrip)
+  LCH-5_1_4_5_4: {irrigated: true, irrigationType: sprinkler}            # Sprinkler Irrigation
+  LCH-5_1_4_5_5: {irrigated: true, irrigationType: centerPivot}          # Irrigation Carousel
+  LCH-5_1_4_5_6: {irrigated: true, irrigationType: drip}                 # Drip Irrigation (its micro-sprayers are narrower: microSprinkler)
+  LCH-5_1_4_5_7: {irrigated: true, irrigationType: subsurfaceDrip}       # Subsurface Drip Irrigation
+  LCH-5_1_4_5_8: {irrigated: true, irrigationType: manual}               # Manual Irrigation
+  LCH-5_1_4_6_1: {waterSource: groundwater}                              # Groundwater
+  LCH-5_1_4_6_2: {waterSource: reservoir}                                # Reservoir
+  LCH-5_1_4_6_3: {waterSource: surfaceWater}                             # Water Course (narrower than surface water)
+
+# EAGLE land characteristic -> species of an LCML floristic aspect (written by the plain LCML subset too).
+species:
+  LCH-5_1_6_1_1_7: Oryza sativa      # Rice Character
+  LCH-5_1_6_1_10_2: Humulus lupulus  # Hops Character
+
+# Characteristic class by EAGLE code prefix (the longest prefix wins, on code segment boundaries).
+characteristic_classes:
+  LCH-5_1_4_5: LC_IrrigationCharacteristic
+  LCH-5_1_4_6: LC_IrrigationCharacteristic
+  LCH-4_2: LC_WaterRegimeCharacteristic
+  LCH-5_1_4: LC_CultivationCharacteristic
+  LCH-5: LC_ManagementCharacteristic
+default_characteristic_class: LC_GeneralCharacteristic

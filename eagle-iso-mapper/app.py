@@ -210,6 +210,15 @@ with tab1:
 
     app_logger.set_container(log_eagle)
 
+    include_extensions = st.checkbox(
+        "Include land use and all land characteristics (extension)",
+        value=True,
+        key="include_extensions",
+        help="ISO 19144-2 (LChS) only carries land cover plus irrigation, rice and hops. Land use (LU_LandUse) and every other "
+        "characteristic, with irrigation code lists, are written as a project extension in the style of ISO 19144 "
+        "(see docs/diagrams/irrigation-extension.puml). The FAO LChS tool may not import them: switch off for the plain LChS subset.",
+    )
+
     if st.button("Map to ISO", disabled=not is_valid, type="primary"):
         try:
             # Erste Live-Nachricht ausgeben
@@ -221,7 +230,8 @@ with tab1:
             xml_string_bytes = run_eagle_to_iso_mapping(
                 excel_workbook=wb,
                 sheet_name=st.session_state.selected_sheet,
-                log_callback=app_logger.log
+                log_callback=app_logger.log,
+                include_extensions=include_extensions
             )
 
             st.session_state.mapped_data = xml_string_bytes

@@ -34,7 +34,7 @@ In the EAGLE matrix, relationships between components are encoded using integer 
 ### 3. Coverage Factors ↔ ISO Quantitative Cover Ranges
 
 * **EAGLE Approach:** EAGLE matrices often aggregate coverage into discrete factor indices (e.g., factor `055` representing 30%–80% sealing; factor `075` representing >75% crop coverage).
-* **ISO 19144 Approach:** Uses explicit numerical ranges via `<cover>` elements (`<CoverMin>` and `<CoverMax>` or paired relational `<cover>` tags).
+* **ISO 19144 Approach:** One cover *range* per element. There are no `<minCoverage>` / `<maxCoverage>` elements: the LChS XML writes the range as two repeated `<cover>` elements, the first being the minimum and the second the maximum percentage (the FAO LChS export of "30-80% sealed" contains `<cover>30</cover><cover>80</cover>`). `LC_HorizontalPatterns` does the same for `cover` and `occurrence`. This is read from the FAO reference file in `testdata/iso`, not from the text of the standard.
 * **The Bridge Crosswalk:**
   * **EAGLE ➔ ISO:** Reconstructs the quantitative threshold range from factor strings (e.g., `055` $\rightarrow$ `min: 30%, max: 80%`; `075` $\rightarrow$ `min: 75%, max: 100%`).
   * **ISO ➔ EAGLE:** Evaluates the `min`/`max` cover boundaries and derives the standardized EAGLE factor representation.
@@ -51,8 +51,20 @@ LC_Legend
 ├── LC_HorizontalPatterns (horizontal_pattern_id, class_id)
 ├── LC_Strata (stratumID, HPID, presenceType: "Fixed")
 ├── LC_Properties (StratumID, BlockReference: "LC_BuiltUpSurface", elementPresenceType, cover)
-└── LC_Characteristics (StratumID, CharacteristicReference, irrigationType, speciesName)
+├── LC_Characteristics (StratumID, CharacteristicReference, irrigationType, speciesName)
+├── LC_Characteristics [extension] (CharacteristicReference: LC_IrrigationCharacteristic | LC_WaterRegimeCharacteristic | LC_CultivationCharacteristic | LC_ManagementCharacteristic | LC_GeneralCharacteristic, CharacteristicCode, elementPresenceType, irrigated, irrigationType, waterSource)
+└── LU_LandUse [extension] (class_id, LandUseCode, hilucsCode, LandUseLabel, elementPresenceType, functionalRelationship, temporalRelationship)
 ```
+
+### 5. Land Use, Land Characteristics and Irrigation (Extension)
+
+The FAO LChS profile of ISO 19144-2 carries land cover, and irrigation, rice and hops only as characteristics of vegetation. Land use belongs to ISO 19144-3 (LUML), a separate schema, and no ISO code lists exist for irrigation types, irrigation water sources or irrigation regimes. The mapper therefore writes, **as a project extension in the style of ISO 19144 and not as a published schema**:
+
+* every EAGLE land use attribute as `LU_LandUse` (HILUCS code from the EAGLE code),
+* every land characteristic as `LC_Characteristics`, classed by EAGLE code prefix (`src/mapping/eagle_iso_extensions.yaml`),
+* irrigation as one `LC_IrrigationCharacteristic` per class with the code lists `IrrigationType`, `WaterSource` and `IrrigationRegime` (UML: [diagrams/irrigation-extension.puml](diagrams/irrigation-extension.puml)).
+
+Bar code value `X` becomes presence type `Precluded`, for characteristics and land use as for land cover. Whether the FAO LChS tool imports these elements is untested; `include_extensions=False` (a checkbox in the web tool) writes the plain LChS subset. The reverse direction (XML to Excel) does not read the extension elements yet.
 
 * **XPath Resilience:** The parser is namespace-agnostic and supports both relational multi-table structures and single-hierarchy XML exports.
 * **Extensibility:** To map custom regional EAGLE codes to LCML descriptors, simply add a row to `src/mapping/eagle_iso_sssom.yaml`. No Python code changes are required.

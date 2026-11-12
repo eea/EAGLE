@@ -14,12 +14,10 @@ TEXT = "Land covered by grassland, with trees that may also occur, without bare 
 needs_mapper = pytest.mark.skipif(not isoexport.available(), reason="eagle-iso-mapper not found next to eagle-eye")
 
 
-def test_plan_separates_what_the_mapper_can_write():
+def test_every_bar_coded_element_is_sent_to_the_mapper():
     plan = isoexport.plan_export(analyze(NATURAL_GRASSLAND))
-    assert {"LCC-2_2_1", "LCC-2_1_1", "LCC-1_2_1_1"} <= set(plan.written)
-    reasons = " ".join(plan.not_written)
-    assert "LCH-8_1_4 Scattered Pattern" in reasons  # a characteristic the mapper does not write
-    assert "LCH-5_1_4_5_2" in reasons and "excluded" in reasons  # excluded irrigation must not turn into irrigation
+    assert {"LCC-2_2_1", "LCC-2_1_1", "LCH-8_1_4", "LCH-5_1_4_5_2"} <= set(plan.written)  # land cover, a characteristic, an excluded one
+    assert plan.to_send["LCH-5_1_4_5_2"] == "X"
 
 
 def test_matrix_has_the_layout_the_mapper_reads():
@@ -52,6 +50,28 @@ def test_lchs_xml_from_the_mapper():
 
 
 @needs_mapper
-def test_excluded_irrigation_is_not_written_as_a_characteristic():
+def test_excluded_irrigation_is_not_written_as_irrigation():
     export = isoexport.to_lchs_xml(analyze("Arable land that is not irrigated."))
     assert b"irrigationType" not in export.xml
+
+
+@needs_mapper
+def test_land_use_and_characteristics_reach_the_xml():
+    root = ET.fromstring(isoexport.to_lchs_xml(analyze(NATURAL_GRASSLAND)).xml)
+    assert any(c.findtext("CharacteristicCode") == "LCH-8_1_4" for c in root.iterfind(".//LC_Characteristics"))
+
+
+@needs_mapper
+def test_generated_class_texts_say_corine_not_eagle():
+    export = isoexport.to_lchs_xml(analyze(TEXT))
+    (cls,) = ET.fromstring(export.xml).iterfind(".//LC_Class")
+    assert cls.findtext("class_name") == "Corine class"
+    assert "EAGLE" not in (cls.findtext("class_name") + cls.findtext("class_description")).upper()
+
+
+@needs_mapper
+def test_cover_is_written_as_a_min_max_pair():
+    export = isoexport.to_lchs_xml(analyze(TEXT))
+    for prop in ET.fromstring(export.xml).iterfind(".//LC_Properties"):
+        low, high = (int(c.text) for c in prop.findall("cover"))  # exactly two <cover>: minimum, maximum
+        assert 0 <= low <= high <= 100

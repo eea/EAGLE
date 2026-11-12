@@ -269,14 +269,9 @@ def export_panel(analysis):
     plan = isoexport.plan_export(analysis, vocab)
     name = st.text_input("Class name", state.doc_name, key=f"export_name_{state.doc_name}")
     code = st.text_input("Class code", "", placeholder="e.g. CLC321 (default: derived from the name)", key=f"export_code_{state.doc_name}")
-    st.caption(f"{len(plan.written)} of {len(plan.written) + len(plan.not_written)} bar coded elements go into the XML.")
+    st.caption(f"{len(plan.written)} bar coded elements are sent to the eagle-iso-mapper.")
     for note in plan.notes:
         st.caption(f"⚠️ {note}")
-    if plan.not_written:
-        with st.expander(f"Not in the XML ({len(plan.not_written)})"):
-            st.caption("The eagle-iso-mapper writes land cover components and irrigation / rice / hops characteristics.")
-            for line in plan.not_written:
-                st.caption(f"· {line}")
     st.download_button(
         "⬇ Download LChS XML",
         data=lambda: isoexport.to_lchs_xml(analysis, vocab, code, name).xml,

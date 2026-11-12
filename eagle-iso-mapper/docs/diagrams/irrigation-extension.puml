@@ -1,0 +1,104 @@
+@startuml
+' Irrigation / characteristic extension in the style of ISO 19144 (project extension, not a published schema).
+' Based on the proposal from the demo feedback session; deviations are marked (*).
+' Code lists are populated from src/mapping/eagle_iso_extensions.yaml.
+
+skinparam classAttributeIconSize 0
+
+class LC_LandCover <<FeatureType>> {
+  +identifier : CharacterString
+  +name : CharacterString
+  +description : CharacterString
+}
+
+abstract class LC_Element <<Type>> {
+  ' (*) ISO 19144-2 / LChS carries the cover as a range (two <cover> elements: min, max), not a single Real
+  +cover : Range<Percent>
+  +elementPresenceType : PresenceType
+}
+
+class LC_VegetationElement <<Type>>
+class LC_AbioticElement <<Type>>
+class LC_WaterElement <<Type>>
+
+abstract class LC_Characteristic <<Type>> {
+  +name : CharacterString
+  +code : CharacterString
+  +elementPresenceType : PresenceType
+}
+
+class LC_IrrigationCharacteristic <<DataType>> {
+  +irrigated : Boolean
+  +irrigatedAreaPercent : Real
+}
+class LC_WaterRegimeCharacteristic <<DataType>>
+class LC_CultivationCharacteristic <<DataType>>
+class LC_ManagementCharacteristic <<DataType>>
+' (*) most of the 787 EAGLE characteristics (built-up, physical, spatial, status ...) fit none of the four classes above
+class LC_GeneralCharacteristic <<DataType>>
+
+class IrrigationType <<CodeList>> {
+  flood
+  basin
+  furrow
+  borderStrip
+  sprinkler
+  centerPivot
+  linearMove
+  drip
+  microSprinkler
+  subsurfaceDrip
+  other
+  ' (*) added to carry EAGLE LCH-5_1_4_5 without loss
+  gravitySurface
+  manual
+  unspecified
+}
+
+class WaterSource <<CodeList>> {
+  surfaceWater
+  groundwater
+  reservoir
+  recycledWater
+  desalinatedWater
+  mixed
+  unknown
+}
+
+class IrrigationRegime <<CodeList>> {
+  permanent
+  seasonal
+  supplemental
+  intermittent
+  emergency
+}
+
+' (*) land use is ISO 19144-3 (LUML); written as LU_LandUse until a schema is agreed
+class LU_LandUse <<Type>> {
+  +landUseCode : CharacterString
+  +hilucsCode : CharacterString
+  +elementPresenceType : PresenceType
+  +functionalRelationship : FunctionalRelationship
+  +temporalRelationship : TemporalRelationship
+}
+
+LC_LandCover *-- "1..*" LC_Element
+LC_LandCover *-- "0..*" LU_LandUse
+
+LC_Element <|-- LC_VegetationElement
+LC_Element <|-- LC_AbioticElement
+LC_Element <|-- LC_WaterElement
+
+LC_Element *-- "0..*" LC_Characteristic
+
+LC_Characteristic <|-- LC_IrrigationCharacteristic
+LC_Characteristic <|-- LC_WaterRegimeCharacteristic
+LC_Characteristic <|-- LC_CultivationCharacteristic
+LC_Characteristic <|-- LC_ManagementCharacteristic
+LC_Characteristic <|-- LC_GeneralCharacteristic
+
+LC_IrrigationCharacteristic --> "0..*" IrrigationType : irrigationType
+LC_IrrigationCharacteristic --> "0..*" WaterSource : waterSource
+LC_IrrigationCharacteristic --> "0..*" IrrigationRegime : irrigationRegime
+
+@enduml

@@ -53,9 +53,8 @@ read another folder (e.g. a mounted volume on a hosted deployment).
   FAO LChS tool. The conversion is done by the sibling project `eagle-iso-mapper` (set
   `EAGLE_ISO_MAPPER_DIR` if it is not next to `eagle-eye`): the class is written as a
   one-class EAGLE barcoding matrix, which the mapper converts with its SSSOM crosswalk.
-  The mapper writes land cover components and irrigation / rice / hops characteristics;
-  the export dialog lists what it cannot carry (land use attributes, other
-  characteristics, excluded characteristics). The first export after starting the app waits
+  EAGLE Eye sends every bar coded element; what the XML carries (land cover, land use,
+  characteristics) is up to the mapper and its options. The first export after starting the app waits
   for the mapper to finish importing (it is loaded in the background at start).
 
 ## How it works

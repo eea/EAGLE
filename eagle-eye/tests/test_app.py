@@ -102,9 +102,9 @@ def test_bar_code_value_can_be_set_and_cleared_by_hand(app):
     assert app.session_state["overrides"] == []
 
 
-def test_export_panel_lists_what_the_xml_cannot_carry(app):
+def test_export_panel_says_how_many_elements_are_sent(app):
     captions = " ".join(c.value for c in app.caption)
-    assert "bar coded elements go into the XML" in captions
+    assert "bar coded elements are sent to the eagle-iso-mapper" in captions
 
 
 def example_box(at):

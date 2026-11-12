@@ -85,7 +85,7 @@ Key architectural decisions in the export workflow include:
 
 * **Single Source of Truth for Mapping Rules:** All schema transformations remain centralized within `eagle-iso-mapper`'s LinkML model and SSSOM crosswalk; EAGLE Eye is strictly responsible for generating the bar code matrix.
 * **Accurate Representation of Excluded Elements:** Previously, the mapper translated BCV `X` as *Exclusive*, which misrepresented its semantics in ISO 19144-2. The upstream LinkML schema and generated models were extended with a `Precluded` presence type so that excluded elements are accurately preserved.
-* **Transparent Coverage Reporting:** Because the mapper currently exports Land Cover Components and select characteristics (irrigation, rice, and hops) while omitting Land Use Attributes and other characteristics, the export dialog explicitly lists any omitted elements so users are never presented with a silently incomplete XML file.
+* **Independent Tools:** EAGLE Eye sends every bar coded element and uses nothing of the mapper but `run_eagle_to_iso_mapping`; which of them the XML carries (land cover, land use, characteristics, irrigation code lists) is decided and documented by the mapper, which stays usable as a web tool of its own.
 * **Non-Blocking Initialization:** Because loading the LinkML and mapping libraries introduces noticeable latency, the mapper module is initialized in a background thread at application startup.
 
 ## User Interface Evolution

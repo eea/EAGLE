@@ -5,10 +5,9 @@ the class as a column of an EAGLE barcoding matrix (the vertical Excel layout th
 reads: element rows with their bar code values), and the mapper turns that matrix into
 the LChS XML. Mapping rules (SSSOM crosswalk, presence types) therefore stay in one place.
 
-The mapper writes land cover components (LCC) as LC_Properties and a few land
-characteristics (irrigation, rice, hops) as LC_Characteristics. Land use attributes and
-other characteristics are read but not written by the mapper; `IsoExport.not_written`
-lists them so the export is never silently incomplete.
+The mapper decides what the LChS XML carries (land cover, and with its extensions land use
+and the land characteristics); EAGLE Eye sends every bar coded element and uses nothing of the
+mapper but its pipeline entry point.
 """
 
 import io
@@ -32,8 +31,7 @@ _MAPPER_FILES = {
     "MAPPING_CONFIG_PATH": "src/mapping/eagle_iso_sssom.yaml",
     "LINKML_MODEL_PATH": "src/model/eagle-iso-mapping.linkml.yaml",
 }
-# What LchsXmlGenerator writes for land characteristics (see its generate_xml).
-_WRITTEN_CHARACTERISTICS = re.compile(r"irrigation|rice|hops", re.IGNORECASE)
+DEFAULT_CLASS_NAME = "Corine class"
 
 
 class IsoExportError(Exception):
@@ -42,11 +40,10 @@ class IsoExportError(Exception):
 
 @dataclass
 class ExportPlan:
-    """What of the analysis the LChS XML can carry."""
+    """What of the analysis is sent to the mapper."""
 
     to_send: dict[str, str] = field(default_factory=dict)  # element code -> bar code value, for the matrix
-    written: list[str] = field(default_factory=list)  # element codes that appear in the XML
-    not_written: list[str] = field(default_factory=list)  # "code label (reason)" the mapper cannot express
+    written: list[str] = field(default_factory=list)  # element codes sent to the mapper
     notes: list[str] = field(default_factory=list)
 
 
@@ -111,26 +108,10 @@ def build_matrix(coded: dict[str, str], vocab: Vocabulary, class_code: str, clas
 
 
 def plan_export(analysis: Analysis, vocab: Vocabulary | None = None) -> ExportPlan:
-    """Decide, without running the mapper, which elements go into the XML and which cannot."""
+    """The elements to send to the mapper: every bar coded one. An element both stated and excluded keeps the stated value."""
     vocab = vocab or load_vocabulary()
     coded, notes = _coded_elements(analysis, vocab)
-    plan = ExportPlan(notes=notes)
-    for code, bcv in coded.items():
-        concept = vocab.get(code)
-        label = f"{code} {concept.label}"
-        if concept.block == "LCC":
-            plan.to_send[code] = bcv
-            plan.written.append(code)
-        elif concept.block == "LCH" and bcv != "X" and _WRITTEN_CHARACTERISTICS.search(concept.label):
-            plan.to_send[code] = bcv
-            plan.written.append(code)
-        elif concept.block == "LUA":
-            plan.not_written.append(f"{label} (land use is not part of the LChS XML the mapper writes)")
-        elif bcv == "X":
-            plan.not_written.append(f"{label} (an excluded characteristic cannot be expressed)")
-        else:
-            plan.not_written.append(f"{label} (characteristic not covered by the mapper)")
-    return plan
+    return ExportPlan(to_send=dict(coded), written=list(coded), notes=notes)
 
 
 def warm_up() -> None:
@@ -138,10 +119,15 @@ def warm_up() -> None:
     threading.Thread(target=lambda: available() and _mapper(), daemon=True).start()
 
 
-def to_lchs_xml(analysis: Analysis, vocab: Vocabulary | None = None, class_code: str = "", class_name: str = "") -> IsoExport:
+def to_lchs_xml(
+    analysis: Analysis,
+    vocab: Vocabulary | None = None,
+    class_code: str = "",
+    class_name: str = "",
+) -> IsoExport:
     vocab = vocab or load_vocabulary()
     plan = plan_export(analysis, vocab)
-    class_name = class_name.strip() or "EAGLE Eye class"
+    class_name = class_name.strip() or DEFAULT_CLASS_NAME
     class_code = class_code.strip() or re.sub(r"[^A-Za-z0-9]+", "", class_name).upper()[:16] or "CLASS"
     log: list[str] = []
     run = _mapper()

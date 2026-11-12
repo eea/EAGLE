@@ -18,6 +18,7 @@ from src.python.generated.eagle_iso_models import (
     FunctionalRelationshipEnum,
     TemporalRelationshipEnum
 )
+from src.mapping import extensions
 from src.mapping.sssom_engine import sssom_resolver
 
 
@@ -31,6 +32,22 @@ class EagleXslxParser:
         self.workbook = workbook
         self.sheet = self.workbook[sheet_name]
         self.log = log_callback
+
+    @staticmethod
+    def _block_of(code: str, label: str) -> Optional[str]:
+        """LCC, LUA or LCH. The code prefix wins: a land use or characteristic whose label says
+        "land cover" must not become a land cover component."""
+        prefix = code.upper()[:3]
+        if prefix in ("LCC", "LUA", "LCH"):
+            return prefix
+        lowered = label.lower()
+        if "land cover" in lowered:
+            return "LCC"
+        if "land use" in lowered:
+            return "LUA"
+        if "land characteristic" in lowered:
+            return "LCH"
+        return None
 
     def extract_land_units(self) -> List[LandUnit]:
         self.log("Identifying Class Codes and Names from sheet...")
@@ -115,8 +132,9 @@ class EagleXslxParser:
                 elif barcode_str in BarCodeValueEnum.__members__:
                     bcv_enum = BarCodeValueEnum[barcode_str]
 
-                # Component categorization
-                if code_str.startswith("LCC") or "land cover" in label_str.lower():
+                # Component categorization: the code prefix decides, the label only when there is no code
+                kind = self._block_of(code_str, label_str)
+                if kind == "LCC":
                     # Check for duplicates
                     already_exists = any(
                         c.uri == uri_str or (c.label and c.label == label_str)
@@ -146,7 +164,7 @@ class EagleXslxParser:
 
                         class_data["land_cover_components"].append(comp)
 
-                elif code_str.startswith("LUA") or "land use" in label_str.lower():
+                elif kind == "LUA":
                     # Extract HILUCS code from code_str (e.g. LUA-5_1 -> 5.1)
                     hilucs_code = None
                     if code_str.startswith("LUA-"):
@@ -155,6 +173,9 @@ class EagleXslxParser:
                     lua = LandUseAttribute(
                         uri=uri_str or None,
                         label=label_str,
+                        code=code_str or None,
+                        bcv_operator=bcv_enum,
+                        iso_presence_type=iso_presence,
                         hilucs_code=hilucs_code,
                         iso_function_type=sssom_match.get("object_label") if sssom_match else None,
                         functional_relationship=FunctionalRelationshipEnum.Primary if barcode_str in ["3", "5"] else FunctionalRelationshipEnum.Secondary,
@@ -162,16 +183,19 @@ class EagleXslxParser:
                     )
                     class_data["land_use_attributes"].append(lua)
 
-                elif code_str.startswith("LCH") or "land characteristic" in label_str.lower():
+                elif kind == "LCH":
                     char_type = "Context"
-                    if "irrigation" in label_str.lower():
+                    if extensions.characteristic_class(code_str) == extensions.IRRIGATION_CLASS:
                         char_type = "Irrigation"
-                    elif any(s in label_str.lower() for s in ["rice", "hops", "species"]):
+                    elif extensions.species(code_str):
                         char_type = "FloristicAspect"
 
                     lch = LandCharacteristic(
                         uri=uri_str or None,
                         label=label_str,
+                        code=code_str or None,
+                        bcv_operator=bcv_enum,
+                        iso_presence_type=iso_presence,
                         characteristic_type=char_type
                     )
                     class_data["land_characteristics"].append(lch)
@@ -199,13 +223,149 @@ class LchsXmlGenerator:
     Produces the standard relational structure supported by ISO 19144 tools.
     """
 
-    def __init__(self, log_callback=print):
+    def __init__(self, log_callback=print, include_extensions: bool = True):
+        """`include_extensions=False` writes only what the FAO LChS profile of ISO 19144-2 knows: land cover
+        components, and irrigation / rice / hops characteristics. `include_extensions=True` also writes
+        land use (LU_LandUse) and every other land characteristic, with the irrigation code lists
+        of eagle_iso_extensions.yaml. Those are a project extension, not a published ISO schema."""
         self.log = log_callback
+        self.include_extensions = include_extensions
+
+    @staticmethod
+    def _presence(item) -> str:
+        presence = getattr(item, "iso_presence_type", None)
+        return getattr(presence, "value", str(presence)) if presence else "Fixed"
+
+    @staticmethod
+    def _text(parent: ET.Element, tag: str, value) -> None:
+        ET.SubElement(parent, tag).text = str(value)
+
+    def _block_reference(self, comp) -> str:
+        sssom_match = sssom_resolver.resolve_eagle_to_iso(comp.uri, comp.label)
+        if sssom_match:
+            return sssom_resolver._normalize_curie(sssom_match.get("object_id", ""))
+        # Fallback clean label
+        return f"LC_{re.sub(r'[^a-zA-Z0-9]', '', comp.label or 'Vegetation')}"
+
+    def _host_block(self, unit: LandUnit) -> str:
+        """The land cover element a characteristic is attached to: the first biotic one, else the first."""
+        components = unit.land_cover_components or []
+        biotic = [c for c in components if isinstance(c, BioticComponent)]
+        host = (biotic or components or [None])[0]
+        return self._block_reference(host) if host else "LC_Graminoid"
 
     def _prettify(self, elem: ET.Element) -> bytes:
         rough_string = ET.tostring(elem, encoding="utf-8")
         reparsed = minidom.parseString(rough_string)
         return reparsed.toprettyxml(indent="  ", encoding="utf-8")
+
+    # ------------------------------------------------------------------ characteristics
+
+    def _floristic_aspect(self, objects: ET.Element, idx: int, host: str, species: str, presence: Optional[str] = None) -> None:
+        elem = ET.SubElement(objects, "LC_Characteristics")
+        self._text(elem, "StratumID", idx)
+        self._text(elem, "BlockReference", host)
+        self._text(elem, "CharacteristicReference", extensions.FLORISTIC_CLASS)
+        self._text(elem, "CharacteristicLabel", "Floristic Aspects")
+        if presence:
+            self._text(elem, "elementPresenceType", presence)
+        self._text(elem, "speciesName", species)
+
+    def _write_lcml_characteristics(self, objects: ET.Element, idx: int, unit: LandUnit) -> None:
+        """Plain LCML subset: irrigation (as the FAO cultivated & managed vegetation characteristic), rice, hops."""
+        for char in unit.land_characteristics or []:
+            if self._presence(char) == "Precluded":
+                continue  # the plain profile cannot say "no sprinkler irrigation"
+            species = extensions.species(char.code)
+            if extensions.states_irrigation(char.code):
+                irr_elem = ET.SubElement(objects, "LC_Characteristics")
+                self._text(irr_elem, "StratumID", idx)
+                self._text(irr_elem, "BlockReference", "LC_Graminoid")
+                self._text(irr_elem, "CharacteristicReference", "LC_CultivatedAndManagedVegetationCharacteristics")
+                self._text(irr_elem, "CharacteristicLabel", "Cultivated & Managed Vegetation")
+                irr_type = extensions.irrigation(char.code)["irrigationType"]
+                self._text(irr_elem, "irrigationType", irr_type[:1].upper() + irr_type[1:])
+            elif species:
+                self._floristic_aspect(objects, idx, "LC_Graminoid", species)
+
+    def _write_characteristics(self, objects: ET.Element, idx: int, unit: LandUnit) -> None:
+        """Every land characteristic. Irrigation concepts are merged into one LC_IrrigationCharacteristic
+        (a stated one and a precluded one at most), as the extension model has one per land cover element."""
+        host = self._host_block(unit)
+        irrigation = []
+        for char in unit.land_characteristics or []:
+            species = extensions.species(char.code)
+            klass = extensions.characteristic_class(char.code)
+            if species:
+                self._floristic_aspect(objects, idx, host, species, self._presence(char))
+            elif klass == extensions.IRRIGATION_CLASS:
+                irrigation.append(char)
+            else:
+                elem = ET.SubElement(objects, "LC_Characteristics")
+                self._text(elem, "StratumID", idx)
+                self._text(elem, "BlockReference", host)
+                self._text(elem, "CharacteristicReference", klass)
+                self._text(elem, "CharacteristicLabel", char.label or char.code or "")
+                if char.code:
+                    self._text(elem, "CharacteristicCode", char.code)
+                if char.uri:
+                    self._text(elem, "CharacteristicURI", char.uri)
+                self._text(elem, "elementPresenceType", self._presence(char))
+        for precluded in (False, True):
+            members = [c for c in irrigation if (self._presence(c) == "Precluded") == precluded]
+            if members:
+                self._write_irrigation(objects, idx, host, members, precluded)
+
+    def _write_irrigation(self, objects: ET.Element, idx: int, host: str, members: list, precluded: bool) -> None:
+        facts = [extensions.irrigation(c.code) or {} for c in members]
+        types = list(dict.fromkeys(f["irrigationType"] for f in facts if "irrigationType" in f))
+        sources = list(dict.fromkeys(f["waterSource"] for f in facts if "waterSource" in f))
+        if precluded:
+            # Excluding irrigation in general means "not irrigated"; excluding a method or a source keeps that value.
+            irrigated = False if "unspecified" in types else None
+            types = [t for t in types if t != "unspecified"]
+        else:
+            stated = [f["irrigated"] for f in facts if "irrigated" in f]
+            irrigated = any(stated) if stated else None
+            if len(types) > 1:
+                types = [t for t in types if t != "unspecified"]
+
+        elem = ET.SubElement(objects, "LC_Characteristics")
+        self._text(elem, "StratumID", idx)
+        self._text(elem, "BlockReference", host)
+        self._text(elem, "CharacteristicReference", extensions.IRRIGATION_CLASS)
+        self._text(elem, "CharacteristicLabel", "Irrigation")
+        for char in members:
+            self._text(elem, "CharacteristicCode", char.code)
+        self._text(elem, "elementPresenceType", "Precluded" if precluded else self._strongest(members))
+        if irrigated is not None:
+            self._text(elem, "irrigated", str(irrigated).lower())
+        for value in types:
+            self._text(elem, "irrigationType", value)
+        for value in sources:
+            self._text(elem, "waterSource", value)
+
+    def _strongest(self, members: list) -> str:
+        order = ["Fixed", "Exclusive", "Conditional", "Optional"]
+        presences = [self._presence(c) for c in members]
+        return min(presences, key=lambda p: order.index(p) if p in order else len(order))
+
+    # ------------------------------------------------------------------ land use
+
+    def _write_land_use(self, objects: ET.Element, idx: int, lua) -> None:
+        elem = ET.SubElement(objects, "LU_LandUse")
+        self._text(elem, "class_id", idx)
+        if lua.code:
+            self._text(elem, "LandUseCode", lua.code)
+        if lua.hilucs_code:
+            self._text(elem, "hilucsCode", lua.hilucs_code)
+        self._text(elem, "LandUseLabel", lua.label or lua.code or "")
+        if lua.uri:
+            self._text(elem, "LandUseURI", lua.uri)
+        self._text(elem, "elementPresenceType", self._presence(lua))
+        for tag, value in (("functionalRelationship", lua.functional_relationship), ("temporalRelationship", lua.temporal_relationship)):
+            if value:
+                self._text(elem, tag, getattr(value, "value", value))
 
     def generate_xml(self, land_units: List[LandUnit]) -> bytes:
         root = ET.Element(
@@ -231,7 +391,7 @@ class LchsXmlGenerator:
             ET.SubElement(c_elem, "legend_id").text = "1"
             ET.SubElement(c_elem, "class_id").text = str(idx)
             ET.SubElement(c_elem, "class_name").text = unit.name or unit.id
-            ET.SubElement(c_elem, "class_description").text = f"EAGLE Class {unit.id}"
+            ET.SubElement(c_elem, "class_description").text = f"Corine class {unit.id}"
             ET.SubElement(c_elem, "class_map_code").text = unit.id
 
         # 2. Horizontal Patterns
@@ -260,22 +420,14 @@ class LchsXmlGenerator:
                 continue
 
             for comp in unit.land_cover_components:
-                sssom_match = sssom_resolver.resolve_eagle_to_iso(comp.uri, comp.label)
-                if sssom_match:
-                    obj_id = sssom_match.get("object_id", "")
-                    block_ref = sssom_resolver._normalize_curie(obj_id)
-                else:
-                    # Fallback clean label
-                    clean_name = re.sub(r'[^a-zA-Z0-9]', '', comp.label or "Vegetation")
-                    block_ref = f"LC_{clean_name}"
-
-                presence_str = getattr(comp.iso_presence_type, "value", str(comp.iso_presence_type)) if comp.iso_presence_type else "Fixed"
-
                 prop_elem = ET.SubElement(objects, "LC_Properties")
                 ET.SubElement(prop_elem, "StratumID").text = str(idx)
-                ET.SubElement(prop_elem, "BlockReference").text = block_ref
-                ET.SubElement(prop_elem, "elementPresenceType").text = presence_str
+                ET.SubElement(prop_elem, "BlockReference").text = self._block_reference(comp)
+                ET.SubElement(prop_elem, "elementPresenceType").text = self._presence(comp)
 
+                # ISO 19144-2 models the cover as one range. LChS serialises that range as two
+                # repeated <cover> elements: the first is the minimum, the second the maximum
+                # percentage (the FAO LChS export of "30-80% sealed" has <cover>30</cover><cover>80</cover>).
                 c_min = comp.min_cover if comp.min_cover is not None else 0
                 c_max = comp.max_cover if comp.max_cover is not None else 100
                 ET.SubElement(prop_elem, "cover").text = str(c_min)
@@ -283,33 +435,21 @@ class LchsXmlGenerator:
 
         # 5. Characteristics (Land Characteristics)
         for idx, unit in enumerate(land_units, 1):
-            if not unit.land_characteristics:
-                continue
+            if self.include_extensions:
+                self._write_characteristics(objects, idx, unit)
+            else:
+                self._write_lcml_characteristics(objects, idx, unit)
 
-            for char in unit.land_characteristics:
-                lbl = (char.label or "").lower()
-                if "irrigation" in lbl:
-                    irr_elem = ET.SubElement(objects, "LC_Characteristics")
-                    ET.SubElement(irr_elem, "StratumID").text = str(idx)
-                    ET.SubElement(irr_elem, "BlockReference").text = "LC_Graminoid"
-                    ET.SubElement(irr_elem, "CharacteristicReference").text = "LC_CultivatedAndManagedVegetationCharacteristics"
-                    ET.SubElement(irr_elem, "CharacteristicLabel").text = "Cultivated & Managed Vegetation"
-                    irr_type = "Sprinkler" if "sprinkler" in lbl else "Unspecified"
-                    ET.SubElement(irr_elem, "irrigationType").text = irr_type
-
-                elif any(sp in lbl for sp in ["rice", "hops"]):
-                    sp_elem = ET.SubElement(objects, "LC_Characteristics")
-                    ET.SubElement(sp_elem, "StratumID").text = str(idx)
-                    ET.SubElement(sp_elem, "BlockReference").text = "LC_Graminoid"
-                    ET.SubElement(sp_elem, "CharacteristicReference").text = "LC_FloristicAspectsCharacteristic"
-                    ET.SubElement(sp_elem, "CharacteristicLabel").text = "Floristic Aspects"
-                    species = "Oryza sativa" if "rice" in lbl else "Humulus lupulus"
-                    ET.SubElement(sp_elem, "speciesName").text = species
+        # 6. Land use (extension: ISO 19144-3 LUML is a separate schema the LChS profile does not carry)
+        if self.include_extensions:
+            for idx, unit in enumerate(land_units, 1):
+                for lua in unit.land_use_attributes or []:
+                    self._write_land_use(objects, idx, lua)
 
         return self._prettify(root)
 
 
-def run_eagle_to_iso_mapping(excel_workbook: openpyxl.Workbook, sheet_name: str, log_callback=print) -> bytes:
+def run_eagle_to_iso_mapping(excel_workbook: openpyxl.Workbook, sheet_name: str, log_callback=print, include_extensions: bool = True) -> bytes:
     log_callback("Initializing EagleXslxParser with SSSOM Resolver...")
     parser = EagleXslxParser(excel_workbook, sheet_name, log_callback)
 
@@ -317,6 +457,6 @@ def run_eagle_to_iso_mapping(excel_workbook: openpyxl.Workbook, sheet_name: str,
     land_units = parser.extract_land_units()
 
     log_callback(f"Successfully processed {len(land_units)} Land Units. Generating ISO 19144 XML...")
-    generator = LchsXmlGenerator(log_callback)
+    generator = LchsXmlGenerator(log_callback, include_extensions=include_extensions)
 
     return generator.generate_xml(land_units)
