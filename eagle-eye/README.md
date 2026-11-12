@@ -17,6 +17,8 @@ Left: the text, with every recognised term highlighted. Right: the class pane wi
 EAGLE elements found. Click a highlight to light up its class on the right, or click a
 class to light up all its mentions in the text.
 
+How it came about (inputs, preparation, mapping, ISO output): [docs/process.md](docs/process.md).
+
 ## Run
 
 ```bash
