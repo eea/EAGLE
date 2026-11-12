@@ -5,6 +5,7 @@ from typing import Tuple, List
 import openpyxl
 import xml.etree.ElementTree as ET
 import yaml
+from streamlit_ace import st_ace
 
 from src.config import settings
 from src.mapping.eagle_to_iso import run_eagle_to_iso_mapping
@@ -93,7 +94,7 @@ if "app_ready" not in st.session_state:
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
             # Hier den Pfad zu deinem Logo (PNG/JPG/SVG)
-            st.image("images/project-logo_small.webp", use_container_width=False, width=200)
+            st.image("images/project-logo_small.webp", width=200)
         # 2. Text darunter
         st.markdown("<h2 style='text-align: center; color: #333;'>LChS Transformation Engine</h2>", unsafe_allow_html=True)
         st.markdown("<p style='text-align: center; color: #888;'>Initialisiere Systemressourcen...</p>", unsafe_allow_html=True)
@@ -297,7 +298,7 @@ with tab3:
         if sssom_resolver.msdf is not None and not sssom_resolver.msdf.df.empty:
             summary_cols = ["subject_id", "subject_label", "predicate_id", "object_id", "object_label"]
             available_cols = [c for c in summary_cols if c in sssom_resolver.msdf.df.columns]
-            st.dataframe(sssom_resolver.msdf.df[available_cols], use_container_width=True, height=260)
+            st.dataframe(sssom_resolver.msdf.df[available_cols], width='stretch', height=260)
     except Exception as e:
         st.warning(f"Could not render SSSOM summary table: {e}")
 
@@ -309,10 +310,27 @@ with tab3:
     else:
         current_yaml = ""
 
-    new_yaml = st.text_area("Edit SSSOM YAML", value=current_yaml, height=300)
+    # A form: typing in the editor does not rerun the page, the text is sent when "Save" is pressed
+    with st.form("sssom_form", border=False):
+        st.caption("Edit SSSOM YAML")
+        new_yaml = st_ace(
+            value=current_yaml,
+            language="yaml",
+            theme="tomorrow_night" if st.context.theme.type == "dark" else "github",
+            height=300,
+            font_size=13,
+            tab_size=2,
+            show_gutter=True,
+            wrap=False,
+            auto_update=True,
+            key="sssom_editor",
+        )
+        save_sssom = st.form_submit_button("Save SSSOM Crosswalk")
 
-    if st.button("Save SSSOM Crosswalk"):
+    if save_sssom:
         try:
+            if new_yaml is None:
+                raise ValueError("the editor sent no text")
             yaml.safe_load(new_yaml)
             with open(settings.SSSOM_CONFIG_PATH, "w", encoding="utf-8") as f:
                 f.write(new_yaml)
@@ -348,7 +366,7 @@ if st.session_state.mapped_data is not None:
         file_name=st.session_state.mapped_filename,
         mime=mime_type,
         type="primary",
-        use_container_width=False
+        width='content'
     )
 else:
     st.info("Download will be available after successful mapping.")

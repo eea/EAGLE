@@ -19,6 +19,7 @@ from src.python.generated.eagle_iso_models import (
     TemporalRelationshipEnum
 )
 from src.mapping import extensions
+from src.mapping.cover import CoverItem, balance_stratum
 from src.mapping.sssom_engine import sssom_resolver
 
 
@@ -148,6 +149,7 @@ class EagleXslxParser:
                         comp_kwargs = dict(
                             uri=uri_str or None,
                             label=label_str,
+                            code=code_str or None,
                             bcv_operator=bcv_enum,
                             iso_presence_type=iso_presence,
                             min_cover=cov_min,
@@ -290,7 +292,7 @@ class LchsXmlGenerator:
 
     def _write_characteristics(self, objects: ET.Element, idx: int, unit: LandUnit) -> None:
         """Every land characteristic. Irrigation concepts are merged into one LC_IrrigationCharacteristic
-        (a stated one and a precluded one at most), as the extension model has one per land cover element."""
+        per presence type (the either-or methods and a mandatory water source differ in presence)."""
         host = self._host_block(unit)
         irrigation = []
         for char in unit.land_characteristics or []:
@@ -311,12 +313,14 @@ class LchsXmlGenerator:
                 if char.uri:
                     self._text(elem, "CharacteristicURI", char.uri)
                 self._text(elem, "elementPresenceType", self._presence(char))
-        for precluded in (False, True):
-            members = [c for c in irrigation if (self._presence(c) == "Precluded") == precluded]
-            if members:
-                self._write_irrigation(objects, idx, host, members, precluded)
+        by_presence: Dict[str, list] = {}
+        for char in irrigation:
+            by_presence.setdefault(self._presence(char), []).append(char)
+        for presence, members in by_presence.items():
+            self._write_irrigation(objects, idx, host, members, presence)
 
-    def _write_irrigation(self, objects: ET.Element, idx: int, host: str, members: list, precluded: bool) -> None:
+    def _write_irrigation(self, objects: ET.Element, idx: int, host: str, members: list, presence: str) -> None:
+        precluded = presence == "Precluded"
         facts = [extensions.irrigation(c.code) or {} for c in members]
         types = list(dict.fromkeys(f["irrigationType"] for f in facts if "irrigationType" in f))
         sources = list(dict.fromkeys(f["waterSource"] for f in facts if "waterSource" in f))
@@ -337,18 +341,13 @@ class LchsXmlGenerator:
         self._text(elem, "CharacteristicLabel", "Irrigation")
         for char in members:
             self._text(elem, "CharacteristicCode", char.code)
-        self._text(elem, "elementPresenceType", "Precluded" if precluded else self._strongest(members))
+        self._text(elem, "elementPresenceType", presence)
         if irrigated is not None:
             self._text(elem, "irrigated", str(irrigated).lower())
         for value in types:
             self._text(elem, "irrigationType", value)
         for value in sources:
             self._text(elem, "waterSource", value)
-
-    def _strongest(self, members: list) -> str:
-        order = ["Fixed", "Exclusive", "Conditional", "Optional"]
-        presences = [self._presence(c) for c in members]
-        return min(presences, key=lambda p: order.index(p) if p in order else len(order))
 
     # ------------------------------------------------------------------ land use
 
@@ -419,7 +418,14 @@ class LchsXmlGenerator:
             if not unit.land_cover_components:
                 continue
 
-            for comp in unit.land_cover_components:
+            # All elements of a class share one stratum: their covers must fit 100% (see cover.py)
+            ranges, warnings = balance_stratum([
+                CoverItem(c.code, self._presence(c), c.min_cover, c.max_cover) for c in unit.land_cover_components
+            ])
+            for warning in warnings:
+                self.log(f"⚠️ {unit.id}: {warning}")
+
+            for comp, (c_min, c_max) in zip(unit.land_cover_components, ranges):
                 prop_elem = ET.SubElement(objects, "LC_Properties")
                 ET.SubElement(prop_elem, "StratumID").text = str(idx)
                 ET.SubElement(prop_elem, "BlockReference").text = self._block_reference(comp)
@@ -428,8 +434,6 @@ class LchsXmlGenerator:
                 # ISO 19144-2 models the cover as one range. LChS serialises that range as two
                 # repeated <cover> elements: the first is the minimum, the second the maximum
                 # percentage (the FAO LChS export of "30-80% sealed" has <cover>30</cover><cover>80</cover>).
-                c_min = comp.min_cover if comp.min_cover is not None else 0
-                c_max = comp.max_cover if comp.max_cover is not None else 100
                 ET.SubElement(prop_elem, "cover").text = str(c_min)
                 ET.SubElement(prop_elem, "cover").text = str(c_max)
 

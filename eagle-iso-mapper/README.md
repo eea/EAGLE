@@ -28,11 +28,15 @@ This application provides a highly resilient, automated, bi-directional translat
 
 > 📘 **Detailed Workflow Documentation:** > For extensive technical specifications, execution pipelines, and generated AsciiDoc/PlantUML architecture diagrams, please refer to the [workflow documentation](docs/Readme.adoc)
 
+> 🗺️ **Mapping rules:** what is written and read in each direction, cover ranges and the 100% rule, the land use / characteristics / irrigation extension: [docs/mapping.md](docs/mapping.md)
+
 ---
 
 ## 3. Web Application User Guide (Streamlit UI)
 
 The web frontend is built using Streamlit and organized into three main functional tabs to isolate processing contexts.
+
+![EAGLE ➔ ISO tab](docs/images/app-excel-to-iso.jpg)
 
 ### Tab 1: 📊 EAGLE ➔ ISO (Excel to XML)
 * **Purpose:** Convert an EAGLE barcoding matrix (Excel) into a fully populated, hierarchical LChS ISO XML document.
@@ -41,6 +45,7 @@ The web frontend is built using Streamlit and organized into three main function
   2. The application will perform immediate structured checking to verify that the sheet layout matches the expected matrix headers.
   3. Once validation passes, the **Map to ISO** button becomes active.
   4. Click the button to execute the reverse-mapping algorithm. Real-time extraction logs will appear below.
+  5. The checkbox *Include land use and all land characteristics (extension)* also writes land use and every land characteristic (with irrigation code lists); switch it off for the plain LChS subset. See [docs/mapping.md](docs/mapping.md).
 
 ### Tab 2: 📄 ISO ➔ EAGLE (XML to Excel)
 * **Purpose:** Transform an official LChS Export XML (including deep relational multi-table structures) back into an EAGLE matrix barcoding sheet.
@@ -55,7 +60,9 @@ The web frontend is built using Streamlit and organized into three main function
 ### Tab 3: ⚙️ Admin (Configuration Viewer & Editor)
 * **Purpose:** Manage the schema foundation and vocabulary runtime aliases without altering underlying Python files.
 * **Functional Sections:**
-  1. **Mapping Aliases Editor (`mappings.yaml`):** Provides an interactive text area to live-edit runtime lookup records. If downstream LChS software introduces unexpected vocabulary variations (e.g., custom naming wildcards like `LC_MicroAlgae`), developers or administrators can explicitly cluster them under standard EAGLE categories (like `Algae`) using a clean list syntax. Clicking **Save Mapping Aliases** instantly applies changes to active parser memory.
+  1. **SSSOM Crosswalk Editor (`eagle_iso_sssom.yaml`):** A table of the crosswalk plus a YAML editor with syntax highlighting, line numbers and code folding. If downstream LChS software introduces unexpected vocabulary variations (e.g., custom naming wildcards like `LC_MicroAlgae`), developers or administrators can add a mapping row to a standard EAGLE concept. **Save SSSOM Crosswalk** checks the text as YAML, writes the file and reloads the crosswalk into the active parser; invalid YAML is rejected and the file stays untouched.
+
+     ![SSSOM crosswalk table and YAML editor](docs/images/app-config-sssom-editor.jpg)
   2. **LinkML Model Viewer (`eagle-lcml-mapping.linkml.yaml`):** Displays a read-only instance of the active system core configuration. This guarantees structural alignment by allowing data scientists to quickly double-check explicit constraints, allowed Enums, and automatic derivation rules defined at the system level.
 
 ### Shared Workspace: Logs & Export

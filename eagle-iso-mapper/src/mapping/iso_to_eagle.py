@@ -18,6 +18,7 @@ from src.python.generated.eagle_iso_models import (
     FunctionalRelationshipEnum,
     TemporalRelationshipEnum
 )
+from src.mapping import extensions
 from src.mapping.sssom_engine import sssom_resolver
 
 
@@ -132,12 +133,27 @@ class LchsXmlParser:
                 st_key = stratum_id.strip()
                 if st_key not in stratum_to_chars:
                     stratum_to_chars[st_key] = []
+                irrigated = (char.findtext("irrigated") or "").strip().lower()
                 stratum_to_chars[st_key].append({
                     "ref": char.findtext("CharacteristicReference"),
                     "label": char.findtext("CharacteristicLabel"),
                     "irrigation_type": char.findtext("irrigationType"),
-                    "species_name": char.findtext("speciesName")
+                    "species_name": char.findtext("speciesName"),
+                    # extension elements (see eagle_iso_extensions.yaml)
+                    "codes": [e.text.strip() for e in char.findall("CharacteristicCode") if e.text and e.text.strip()],
+                    "uri": char.findtext("CharacteristicURI"),
+                    "presence": char.findtext("elementPresenceType"),
+                    "irrigated": {"true": True, "false": False}.get(irrigated),
+                    "irrigation_types": [e.text for e in char.findall("irrigationType") if e.text],
+                    "water_sources": [e.text for e in char.findall("waterSource") if e.text],
                 })
+
+        # 5b. Land use (LU_LandUse, extension), per class
+        class_to_uses: Dict[str, List[LandUseAttribute]] = {}
+        for use in self.root.findall(".//LU_LandUse"):
+            c_key = (use.findtext("class_id") or "").strip()
+            if c_key:
+                class_to_uses.setdefault(c_key, []).append(self._land_use(use))
 
         # 6. Map to LandUnit Pydantic objects using SSSOM
         land_units: List[LandUnit] = []
@@ -206,30 +222,65 @@ class LchsXmlParser:
 
                 # Process Characteristics for this stratum
                 for char in stratum_to_chars.get(st_id, []):
-                    irr = char.get("irrigation_type")
-                    sp = char.get("species_name")
-                    if irr:
-                        characteristics.append(LandCharacteristic(
-                            label=f"Irrigation ({irr})",
-                            characteristic_type="Irrigation"
-                        ))
-                    if sp:
-                        characteristics.append(LandCharacteristic(
-                            label=f"Species: {sp}",
-                            characteristic_type="FloristicAspect"
-                        ))
+                    for characteristic in self._characteristics(char):
+                        if characteristic.code is None or characteristic.code not in {c.code for c in characteristics}:
+                            characteristics.append(characteristic)
 
             unit = LandUnit(
                 id=class_dict["id"],
                 name=class_dict["name"],
                 geometry_type="Polygon",
                 land_cover_components=components,
-                land_use_attributes=[],
+                land_use_attributes=class_to_uses.get(c_id, []),
                 land_characteristics=characteristics
             )
             land_units.append(unit)
 
         return land_units
+
+    @staticmethod
+    def _presence_fields(presence: Optional[str]) -> Dict[str, Any]:
+        """BCV and ISO presence of an element that states its presence type; nothing for plain LChS ones."""
+        if not presence or not presence.strip():
+            return {}
+        bcv = sssom_resolver.map_presence_to_bcv(presence.strip())
+        return {"bcv_operator": bcv, "iso_presence_type": sssom_resolver.map_bcv_to_presence(bcv.value.replace("BCV_", ""))}
+
+    def _land_use(self, use: ET.Element) -> LandUseAttribute:
+        def enum_value(enum, text):
+            return enum(text.strip()) if text and text.strip() in enum.__members__ else None
+
+        return LandUseAttribute(
+            uri=use.findtext("LandUseURI"),
+            label=use.findtext("LandUseLabel"),
+            code=use.findtext("LandUseCode"),
+            hilucs_code=use.findtext("hilucsCode"),
+            functional_relationship=enum_value(FunctionalRelationshipEnum, use.findtext("functionalRelationship")),
+            temporal_relationship=enum_value(TemporalRelationshipEnum, use.findtext("temporalRelationship")),
+            **self._presence_fields(use.findtext("elementPresenceType")),
+        )
+
+    def _characteristics(self, char: Dict[str, Any]) -> List[LandCharacteristic]:
+        """The EAGLE land characteristics one LC_Characteristics element stands for."""
+        presence = self._presence_fields(char.get("presence"))
+        precluded = (char.get("presence") or "").strip() == "Precluded"
+        result: List[LandCharacteristic] = []
+        is_irrigation = char.get("ref") == extensions.IRRIGATION_CLASS or bool(char.get("irrigation_types")) or char.get("irrigated") is not None or bool(char.get("water_sources"))
+        species = char.get("species_name")
+
+        if is_irrigation:
+            codes = char["codes"] or extensions.irrigation_codes(char.get("irrigated"), char.get("irrigation_types") or [], char.get("water_sources") or [], precluded)
+            for code in codes:
+                result.append(LandCharacteristic(code=code, label=extensions.irrigation_label(code) or code, characteristic_type="Irrigation", **presence))
+            if not codes and char.get("irrigation_type"):  # a value EAGLE has no concept for
+                result.append(LandCharacteristic(label=f"Irrigation ({char['irrigation_type']})", characteristic_type="Irrigation", **presence))
+        elif species:
+            code = extensions.species_code(species)
+            result.append(LandCharacteristic(code=code, label=f"Species: {species}", characteristic_type="FloristicAspect", **presence))
+        else:
+            for code in char["codes"]:
+                result.append(LandCharacteristic(code=code, uri=char.get("uri"), label=char.get("label") or code, characteristic_type="Context", **presence))
+        return result
 
     def _extract_hierarchical(self, use_fuzzy: bool) -> List[LandUnit]:
         land_units: List[LandUnit] = []
@@ -371,13 +422,25 @@ class EagleExcelExporter:
         taxonomy = list(self.DEFAULT_TAXONOMY)
         existing_codes = set(item[1] for item in taxonomy)
 
+        def add_row(uri, code, label, level):
+            """A concept row at the end of its section (LCC, LUA or LCH)."""
+            if code in existing_codes:
+                return
+            section = [i for i, item in enumerate(taxonomy) if item[1][:3] == code[:3]]
+            taxonomy.insert(section[-1] + 1 if section else len(taxonomy), (uri or "", code, label or code, level, False))
+            existing_codes.add(code)
+
+        def level_of(code):
+            return len(code.split("-", 1)[1].split("_")) if "-" in code else 3
+
         for unit in land_units:
             for comp in (unit.land_cover_components or []):
                 sssom_match = sssom_resolver.resolve_eagle_to_iso(comp.uri, comp.label)
                 code = sssom_match["subject_id"].replace("eagle:", "") if sssom_match else "LCC-Custom"
-                if code not in existing_codes:
-                    taxonomy.append((comp.uri or "", code, comp.label or code, 3, False))
-                    existing_codes.add(code)
+                add_row(comp.uri, code, comp.label, 3)
+            for item in list(unit.land_use_attributes or []) + list(unit.land_characteristics or []):
+                if item.code:
+                    add_row(item.uri, item.code, item.label, level_of(item.code))
 
         # Write taxonomy rows and values
         current_row = 6
@@ -422,13 +485,19 @@ class EagleExcelExporter:
                     if factor:
                         self.sheet.cell(row=current_row, column=col_factor, value=factor)
 
-                # Check LandCharacteristics
-                for char in (unit.land_characteristics or []):
-                    char_lbl = (char.label or "").lower()
-                    if ("irrigation" in char_lbl and "irrigation" in label.lower()) or \
-                       ("rice" in char_lbl and "rice" in label.lower()) or \
-                       ("hops" in char_lbl and "hops" in label.lower()):
-                        self.sheet.cell(row=current_row, column=col_barcode, value="X" if any(s in char_lbl for s in ["rice", "hops"]) else 2)
+                # Land use and characteristics are matched by EAGLE code
+                for item in list(unit.land_use_attributes or []) + list(unit.land_characteristics or []):
+                    if not item.code or item.code != code:
+                        continue
+                    bcv = item.bcv_operator
+                    if bcv is not None:
+                        value = getattr(bcv, "value", str(bcv)).replace("BCV_", "")
+                    else:  # plain LChS XML does not state a presence: irrigation selective, species excluded
+                        value = "X" if extensions.species(code) else "2"
+                    try:
+                        self.sheet.cell(row=current_row, column=col_barcode, value=int(value))
+                    except ValueError:
+                        self.sheet.cell(row=current_row, column=col_barcode, value=value)
 
             current_row += 1
 

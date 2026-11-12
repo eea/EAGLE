@@ -30,6 +30,7 @@ classes:
     slots:
       - uri
       - label
+      - code
       - bcv_operator
       - iso_presence_type
       - min_cover

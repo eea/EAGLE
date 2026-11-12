@@ -237,6 +237,106 @@ def test_characteristic_class_is_chosen_on_code_segment_boundaries():
     assert extensions.characteristic_class("LCH-8_1_4") == "LC_GeneralCharacteristic"
 
 
+def _matrix_rows(excel_bytes, column=5):
+    ws = openpyxl.load_workbook(io.BytesIO(excel_bytes), data_only=True).active
+    return {ws.cell(r, 2).value: ws.cell(r, column).value for r in range(6, ws.max_row + 1) if ws.cell(r, column).value not in (None, "SEGMENT HEADING")}
+
+
+def test_extension_elements_come_back_into_the_eagle_matrix():
+    rows = [
+        ("LCC-2_2_1", "Graminoids, Grass-Like", 3),
+        ("LUA-1_1_1", "Commercial Crop Production", 3),
+        ("LUA-5_1", "Permanent Residential", "X"),
+        ("LCH-5_1_4_5_5", "Irrigation Carousel", 2),
+        ("LCH-5_1_4_5_6", "Drip Irrigation", 2),
+        ("LCH-5_1_4_6_1", "Groundwater", 3),
+        ("LCH-8_1_4", "Scattered Pattern", 1),
+        ("LCH-4_2_4", "Perennial Water Regime", "X"),
+        ("LCH-5_1_6_1_1_7", "Rice Character", 1),
+    ]
+    xml_bytes = run_eagle_to_iso_mapping(_matrix(rows), "M", lambda m: None)
+    back = _matrix_rows(run_iso_to_eagle_mapping(xml_bytes, lambda m: None, use_fuzzy=True))
+    for code, _, bcv in rows:
+        assert str(back[code]) == str(bcv), code
+    levels = {r[1]: r[3] for r in openpyxl.load_workbook(io.BytesIO(run_iso_to_eagle_mapping(xml_bytes, lambda m: None))).active.iter_rows(min_row=6, values_only=True)}
+    assert levels["LCH-8_1_4"] == 3 and levels["LCH-5_1_4_5_5"] == 5  # level from the code
+
+
+def test_irrigation_without_codes_is_read_by_its_code_list_values():
+    """Irrigation written by another tool: only irrigated / irrigationType / waterSource, in any case."""
+    for irrigation_type, code in (("Sprinkler", "LCH-5_1_4_5_4"), ("flood", "LCH-5_1_4_5_3"), ("microSprinkler", "LCH-5_1_4_5_6")):
+        root = ET.fromstring(run_eagle_to_iso_mapping(_matrix([("LCC-2_2_1", "Graminoids, Grass-Like", 3)]), "M", lambda m: None))
+        char = ET.SubElement(root.find("objects"), "LC_Characteristics")
+        for tag, text in (("StratumID", "1"), ("BlockReference", "LC_Graminoid"), ("CharacteristicReference", "LC_IrrigationCharacteristic"), ("elementPresenceType", "Fixed"), ("irrigationType", irrigation_type), ("waterSource", "groundwater")):
+            ET.SubElement(char, tag).text = text
+        back = _matrix_rows(run_iso_to_eagle_mapping(ET.tostring(root), lambda m: None))
+        assert back[code] == 3 and back["LCH-5_1_4_6_1"] == 3
+
+
+def test_plain_lchs_file_still_reads_irrigation_and_species():
+    back = _matrix_rows(run_iso_to_eagle_mapping(TEST_XML_PATH.read_bytes(), lambda m: None), column=7)  # class 2 of the FAO sample
+    assert back["LCH-5_1_4_5_4"] == 2 and back["LCH-5_1_6_1_1_7"] == "X"
+
+
+def test_precluded_cover_does_not_come_back_as_a_factor():
+    wb = _matrix([("LCC-2_2_1", "Graminoids, Grass-Like", 3), ("LCC-2_1_1", "Trees", "X")])
+    ws = openpyxl.load_workbook(io.BytesIO(run_iso_to_eagle_mapping(run_eagle_to_iso_mapping(wb, "M", lambda m: None), lambda m: None))).active
+    factors = {ws.cell(r, 2).value: ws.cell(r, 6).value for r in range(6, ws.max_row + 1)}
+    assert factors["LCC-2_1_1"] is None
+
+
+# ---------------------------------------------------------------- the covers of a stratum add up to 100%, never more
+
+from src.mapping.cover import CoverItem, balance_stratum  # noqa: E402
+
+
+def test_precluded_elements_cover_nothing():
+    ranges, _ = balance_stratum([CoverItem("LCC-2_1_1", "Fixed", None, None), CoverItem("LCC-1_2_2_2", "Precluded", None, None)])
+    assert ranges == [(0, 100), (0, 0)]
+
+
+def test_minima_above_100_are_scaled_down():
+    ranges, warnings = balance_stratum([CoverItem("LCC-2_1_1", "Fixed", 75, 100), CoverItem("LCC-2_2_1", "Fixed", 75, 100)])
+    assert sum(low for low, _ in ranges) <= 100 and ranges == [(50, 100), (50, 100)]
+    assert "150%" in warnings[0]
+
+
+def test_a_general_element_is_not_added_to_its_specific_ones():
+    """Vegetation (75-100%) next to Graminoids (75-100%) is the same cover, not 150%."""
+    ranges, warnings = balance_stratum([CoverItem("LCC-2", "Fixed", 75, 100), CoverItem("LCC-2_2_1", "Fixed", 75, 100)])
+    assert ranges == [(75, 100), (75, 100)] and warnings == []
+
+
+def test_exclusive_alternatives_count_once():
+    ranges, warnings = balance_stratum([CoverItem("LCC-2_1_1", "Exclusive", 75, 100), CoverItem("LCC-2_2_1", "Exclusive", 75, 100)])
+    assert ranges == [(75, 100), (75, 100)] and warnings == []
+
+
+def test_ranges_are_clamped_and_unreachable_totals_are_reported():
+    ranges, warnings = balance_stratum([CoverItem("LCC-1_1_1", "Fixed", -5, 80), CoverItem("LCC-2_1_1", "Fixed", 90, 70)])
+    assert ranges[0] == (0, 80) and ranges[1][0] <= ranges[1][1] <= 100
+    ranges, warnings = balance_stratum([CoverItem("LCC-1_1_1", "Fixed", 30, 60)])
+    assert "60%" in warnings[0]
+
+
+def test_generated_strata_never_require_more_than_100_percent():
+    rows = [(f"LCC-2_{n}", f"Element {n}", 3) for n in (1, 2, 4)]
+    logs = []
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix(rows, factor_for={code: "0.875" for code, _, _ in rows}), "M", logs.append))
+    minima = [int(p.findall("cover")[0].text) for p in root.iterfind(".//LC_Properties")]
+    assert minima and sum(minima) <= 100
+    assert any("scaled down" in line for line in logs)
+
+
+def test_every_generated_cover_range_is_ordered_and_within_100():
+    root = ET.fromstring(run_eagle_to_iso_mapping(openpyxl.load_workbook(TEST_EXCEL_PATH, data_only=True), "CLC-all 3 Classes", lambda m: None))
+    for prop in root.iterfind(".//LC_Properties"):
+        low, high = (int(c.text) for c in prop.findall("cover"))
+        assert 0 <= low <= high <= 100
+        if prop.findtext("elementPresenceType") == "Precluded":
+            assert (low, high) == (0, 0)
+
+
 def test_roundtrip_survives_the_extension_elements():
     wb = _matrix([("LCC-2_2_1", "Graminoids, Grass-Like", 3), ("LUA-1_1", "Agriculture", 3), ("LCH-5_1_4_5_4", "Sprinkler Irrigation", 3), ("LCH-8_1_4", "Scattered Pattern", 1)])
     xml_bytes = run_eagle_to_iso_mapping(wb, "M", lambda m: None)

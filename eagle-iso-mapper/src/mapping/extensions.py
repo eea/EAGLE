@@ -21,6 +21,9 @@ def load() -> Dict[str, Any]:
         for key, code_list in (("irrigationType", "IrrigationType"), ("waterSource", "WaterSource")):
             if key in attrs and attrs[key] not in data["code_lists"][code_list]:
                 raise ValueError(f"{EXTENSIONS_PATH.name}: {code} uses {attrs[key]!r}, which is not in the {code_list} code list")
+    for value, code in data.get("reverse_irrigation_type", {}).items():
+        if value not in data["code_lists"]["IrrigationType"] or code not in data["irrigation"]:
+            raise ValueError(f"{EXTENSIONS_PATH.name}: reverse_irrigation_type {value!r} -> {code!r} is not a known value and code")
     return data
 
 
@@ -51,3 +54,29 @@ def characteristic_class(code: Optional[str]) -> str:
 def states_irrigation(code: Optional[str]) -> bool:
     """True for the concepts the plain LCML subset writes as irrigation (not 'No Irrigation', not the water source)."""
     return bool((irrigation(code) or {}).get("irrigated"))
+
+
+def irrigation_label(code: Optional[str]) -> Optional[str]:
+    return (irrigation(code) or {}).get("label")
+
+
+def irrigation_codes(irrigated: Optional[bool], irrigation_types, water_sources, precluded: bool = False) -> list[str]:
+    """EAGLE codes for what an LC_IrrigationCharacteristic states (XML -> EAGLE); the inverse of the table above.
+
+    Identifiers are compared ignoring case (the FAO profile writes "Sprinkler"). Values with no EAGLE concept
+    of their own map to the nearest one; a water source EAGLE does not know is dropped."""
+    data = load()
+    by_type = {a["irrigationType"].lower(): code for code, a in data.get("irrigation", {}).items() if "irrigationType" in a}
+    by_type.update({v.lower(): code for v, code in data.get("reverse_irrigation_type", {}).items()})
+    by_source = {a["waterSource"].lower(): code for code, a in data.get("irrigation", {}).items() if "waterSource" in a}
+    codes = [by_type[t.strip().lower()] for t in irrigation_types if t and t.strip().lower() in by_type]
+    codes += [by_source[w.strip().lower()] for w in water_sources if w and w.strip().lower() in by_source]
+    if irrigated is False and not codes:
+        codes = ["LCH-5_1_4_5_2" if precluded else "LCH-5_1_4_5_1"]  # "not irrigated" is "No Irrigation", or irrigation excluded
+    return list(dict.fromkeys(codes))
+
+
+def species_code(name: Optional[str]) -> Optional[str]:
+    """The EAGLE code of a floristic species name (XML -> EAGLE), compared ignoring case."""
+    wanted = (name or "").strip().lower()
+    return next((code for code, species_name in load().get("species", {}).items() if species_name.lower() == wanted), None)

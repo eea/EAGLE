@@ -41,19 +41,28 @@ code_lists:
     emergency: "Irrigated only in drought emergencies"
 
 # EAGLE land characteristic -> irrigation attributes. `irrigated` says whether the concept states irrigation.
-# The match is `exact` unless a comment says broader.
 irrigation:
-  LCH-5_1_4_5_1: {irrigated: false}                                      # No Irrigation
-  LCH-5_1_4_5_2: {irrigated: true, irrigationType: unspecified}          # Irrigation Applied, Method Unspecified
-  LCH-5_1_4_5_3: {irrigated: true, irrigationType: gravitySurface}       # Gravity Surface Irrigation (broader than flood/basin/furrow/borderStrip)
-  LCH-5_1_4_5_4: {irrigated: true, irrigationType: sprinkler}            # Sprinkler Irrigation
-  LCH-5_1_4_5_5: {irrigated: true, irrigationType: centerPivot}          # Irrigation Carousel
-  LCH-5_1_4_5_6: {irrigated: true, irrigationType: drip}                 # Drip Irrigation (its micro-sprayers are narrower: microSprinkler)
-  LCH-5_1_4_5_7: {irrigated: true, irrigationType: subsurfaceDrip}       # Subsurface Drip Irrigation
-  LCH-5_1_4_5_8: {irrigated: true, irrigationType: manual}               # Manual Irrigation
-  LCH-5_1_4_6_1: {waterSource: groundwater}                              # Groundwater
-  LCH-5_1_4_6_2: {waterSource: reservoir}                                # Reservoir
-  LCH-5_1_4_6_3: {waterSource: surfaceWater}                             # Water Course (narrower than surface water)
+  LCH-5_1_4_5_1: {label: No Irrigation, irrigated: false}
+  LCH-5_1_4_5_2: {label: "Irrigation Applied, Method Unspecified", irrigated: true, irrigationType: unspecified}
+  LCH-5_1_4_5_3: {label: Gravity Surface Irrigation, irrigated: true, irrigationType: gravitySurface}  # broader than flood/basin/furrow/borderStrip
+  LCH-5_1_4_5_4: {label: Sprinkler Irrigation, irrigated: true, irrigationType: sprinkler}
+  LCH-5_1_4_5_5: {label: Irrigation Carousel, irrigated: true, irrigationType: centerPivot}
+  LCH-5_1_4_5_6: {label: Drip Irrigation, irrigated: true, irrigationType: drip}  # its micro-sprayers are narrower: microSprinkler
+  LCH-5_1_4_5_7: {label: Subsurface Drip Irrigation, irrigated: true, irrigationType: subsurfaceDrip}
+  LCH-5_1_4_5_8: {label: Manual Irrigation, irrigated: true, irrigationType: manual}
+  LCH-5_1_4_6_1: {label: Groundwater, waterSource: groundwater}
+  LCH-5_1_4_6_2: {label: Reservoir, waterSource: reservoir}
+  LCH-5_1_4_6_3: {label: Water Course, waterSource: surfaceWater}  # narrower than surface water
+
+# Code list values with no concept of their own in EAGLE, read back (XML -> EAGLE) as the nearest EAGLE concept.
+reverse_irrigation_type:
+  flood: LCH-5_1_4_5_3
+  basin: LCH-5_1_4_5_3
+  furrow: LCH-5_1_4_5_3
+  borderStrip: LCH-5_1_4_5_3
+  linearMove: LCH-5_1_4_5_4
+  microSprinkler: LCH-5_1_4_5_6
+  other: LCH-5_1_4_5_2
 
 # EAGLE land characteristic -> species of an LCML floristic aspect (written by the plain LCML subset too).
 species:

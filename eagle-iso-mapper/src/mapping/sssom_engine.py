@@ -278,7 +278,7 @@ class SSSOMResolver:
             return "055"
         if c_min == 75 and c_max == 100:
             return "075"
-        if c_min == 0 and c_max == 100:
+        if c_min == 0 and c_max in (0, 100):  # unrestricted, or precluded: no factor
             return None
 
         if c_min is not None and c_max is not None:
