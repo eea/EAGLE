@@ -23,13 +23,41 @@ from src.mapping.cover import CoverItem, balance_stratum
 from src.mapping.sssom_engine import sssom_resolver
 
 
+def load_matrix(source, sheet_name: str, log_callback=None) -> openpyxl.Workbook:
+    """The values of one sheet of an EAGLE workbook, as a small in-memory workbook.
+
+    A full `load_workbook` parses every sheet with all its styles, which takes about 15-30 seconds
+    for the multi-megabyte EAGLE workbooks. Reading the one sheet that is mapped, values only and
+    in streaming mode, takes about half a second and gives the parser the same cells."""
+    source_wb = openpyxl.load_workbook(source, read_only=True, data_only=True)
+    try:
+        if sheet_name not in source_wb.sheetnames:
+            raise ValueError(f"Sheet '{sheet_name}' not found; the workbook has {', '.join(source_wb.sheetnames)}.")
+        if log_callback:
+            log_callback(f"Workbook has {len(source_wb.sheetnames)} sheets; reading only '{sheet_name}'...")
+        wb = openpyxl.Workbook()
+        ws = wb.active
+        ws.title = sheet_name
+        for row_idx, row in enumerate(source_wb[sheet_name].iter_rows(min_row=1, min_col=1, values_only=True), 1):
+            for col_idx, value in enumerate(row, 1):
+                if value is not None:
+                    ws.cell(row=row_idx, column=col_idx, value=value)
+        if log_callback:
+            log_callback(f"Read sheet '{sheet_name}': {ws.max_row} rows x {ws.max_column} columns.")
+        return wb
+    finally:
+        source_wb.close()
+
+
 class EagleXslxParser:
     """
     Parses vertical EAGLE Matrix Barcoding sheets into validated LandUnit Pydantic objects.
     Uses SSSOM crosswalk for semantic bridging between EAGLE codes/labels and ISO concepts.
     """
 
-    def __init__(self, workbook: openpyxl.Workbook, sheet_name: str, log_callback=print):
+    def __init__(self, workbook: openpyxl.Workbook, sheet_name: str, log_callback=print, progress_callback=None):
+        """`progress_callback(fraction, message)` is called while the rows are parsed (fraction 0..1)."""
+        self.progress = progress_callback or (lambda fraction, message: None)
         self.workbook = workbook
         self.sheet = self.workbook[sheet_name]
         self.log = log_callback
@@ -89,7 +117,14 @@ class EagleXslxParser:
 
         # 3. Iterate over concept rows
         start_row = name_row + 4  # usually row 6 or 7
+        total_rows = max(1, self.sheet.max_row - start_row + 1)
+        report_every = max(1, total_rows // 10)
         for row_idx in range(start_row, self.sheet.max_row + 1):
+            done = row_idx - start_row
+            if done % report_every == 0:
+                self.progress(done / total_rows, f"Parsing taxonomy rows {done}/{total_rows}")
+                if done:
+                    self.log(f"Parsed {done}/{total_rows} taxonomy rows ({100 * done // total_rows}%)...")
             uri_val = self.sheet.cell(row=row_idx, column=1).value
             code_val = self.sheet.cell(row=row_idx, column=2).value
             label_val = self.sheet.cell(row=row_idx, column=3).value
@@ -215,6 +250,12 @@ class EagleXslxParser:
             )
             validated_units.append(unit)
 
+        self.progress(1.0, "Taxonomy rows parsed")
+        for unit in validated_units:
+            self.log(
+                f"  {unit.id}: {len(unit.land_cover_components)} land cover, "
+                f"{len(unit.land_use_attributes)} land use, {len(unit.land_characteristics)} characteristics"
+            )
         self.log(f"Successfully constructed {len(validated_units)} validated LandUnits.")
         return validated_units
 
@@ -225,12 +266,13 @@ class LchsXmlGenerator:
     Produces the standard relational structure supported by ISO 19144 tools.
     """
 
-    def __init__(self, log_callback=print, include_extensions: bool = True):
+    def __init__(self, log_callback=print, include_extensions: bool = True, progress_callback=None):
         """`include_extensions=False` writes only what the FAO LChS profile of ISO 19144-2 knows: land cover
         components, and irrigation / rice / hops characteristics. `include_extensions=True` also writes
         land use (LU_LandUse) and every other land characteristic, with the irrigation code lists
         of eagle_iso_extensions.yaml. Those are a project extension, not a published ISO schema."""
         self.log = log_callback
+        self.progress = progress_callback or (lambda fraction, message: None)
         self.include_extensions = include_extensions
 
     @staticmethod
@@ -383,6 +425,7 @@ class LchsXmlGenerator:
         objects = ET.SubElement(root, "objects")
 
         self.log(f"Generating ISO 19144 XML for {len(land_units)} Land Units...")
+        self.progress(0.0, "Writing classes, patterns and strata")
 
         # 1. Classes
         for idx, unit in enumerate(land_units, 1):
@@ -415,6 +458,7 @@ class LchsXmlGenerator:
 
         # 4. Properties (Land Cover Components)
         for idx, unit in enumerate(land_units, 1):
+            self.progress(0.2 + 0.5 * (idx - 1) / len(land_units), f"Writing land cover of class {unit.id} ({idx}/{len(land_units)})")
             if not unit.land_cover_components:
                 continue
 
@@ -437,8 +481,11 @@ class LchsXmlGenerator:
                 ET.SubElement(prop_elem, "cover").text = str(c_min)
                 ET.SubElement(prop_elem, "cover").text = str(c_max)
 
+        self.log(f"Land cover written for {len(land_units)} classes. Writing characteristics...")
+
         # 5. Characteristics (Land Characteristics)
         for idx, unit in enumerate(land_units, 1):
+            self.progress(0.7 + 0.2 * (idx - 1) / len(land_units), f"Writing characteristics of class {unit.id} ({idx}/{len(land_units)})")
             if self.include_extensions:
                 self._write_characteristics(objects, idx, unit)
             else:
@@ -446,21 +493,36 @@ class LchsXmlGenerator:
 
         # 6. Land use (extension: ISO 19144-3 LUML is a separate schema the LChS profile does not carry)
         if self.include_extensions:
+            self.progress(0.9, "Writing land use")
+            self.log("Writing land use...")
             for idx, unit in enumerate(land_units, 1):
                 for lua in unit.land_use_attributes or []:
                     self._write_land_use(objects, idx, lua)
 
-        return self._prettify(root)
+        self.progress(0.95, "Formatting XML")
+        result = self._prettify(root)
+        self.progress(1.0, "XML ready")
+        return result
 
 
-def run_eagle_to_iso_mapping(excel_workbook: openpyxl.Workbook, sheet_name: str, log_callback=print, include_extensions: bool = True) -> bytes:
+def run_eagle_to_iso_mapping(
+    excel_workbook: openpyxl.Workbook,
+    sheet_name: str,
+    log_callback=print,
+    include_extensions: bool = True,
+    progress_callback=None,
+) -> bytes:
+    """`progress_callback(fraction, message)`: 0..1 over the whole run (parsing the rows takes most of it)."""
+    report = progress_callback or (lambda fraction, message: None)
     log_callback("Initializing EagleXslxParser with SSSOM Resolver...")
-    parser = EagleXslxParser(excel_workbook, sheet_name, log_callback)
+    parser = EagleXslxParser(excel_workbook, sheet_name, log_callback, lambda f, m: report(0.05 + 0.75 * f, m))
 
     log_callback("Extracting and semantically validating data into LandUnits...")
     land_units = parser.extract_land_units()
 
     log_callback(f"Successfully processed {len(land_units)} Land Units. Generating ISO 19144 XML...")
-    generator = LchsXmlGenerator(log_callback, include_extensions=include_extensions)
+    generator = LchsXmlGenerator(
+        log_callback, include_extensions=include_extensions, progress_callback=lambda f, m: report(0.8 + 0.2 * f, m)
+    )
 
     return generator.generate_xml(land_units)

@@ -7,9 +7,26 @@ import xml.etree.ElementTree as ET
 import yaml
 from streamlit_ace import st_ace
 
+from types import SimpleNamespace
+
 from src.config import settings
-from src.mapping.eagle_to_iso import run_eagle_to_iso_mapping
-from src.mapping.iso_to_eagle import run_iso_to_eagle_mapping
+
+
+@st.cache_resource(show_spinner=False)
+def load_engine() -> SimpleNamespace:
+    """The mapping engine. Importing it (pandas, sssom) takes 20-30 seconds, so it is not done before the
+    page is drawn: the splash screen shows while this runs, once per server process."""
+    from src.mapping.eagle_to_iso import load_matrix, run_eagle_to_iso_mapping
+    from src.mapping.iso_to_eagle import run_iso_to_eagle_mapping
+    from src.mapping.sssom_engine import sssom_resolver
+
+    return SimpleNamespace(
+        load_matrix=load_matrix,
+        run_eagle_to_iso_mapping=run_eagle_to_iso_mapping,
+        run_iso_to_eagle_mapping=run_iso_to_eagle_mapping,
+        sssom_resolver=sssom_resolver,
+    )
+
 
 # Session State initialisieren
 if "log_messages" not in st.session_state:
@@ -37,8 +54,8 @@ class LiveLogger:
         timestamp = time.strftime("%H:%M:%S")
         st.session_state.log_messages.append(f"[{timestamp}] {msg}")
 
-        # Limit auf 15 Zeilen für den Live-Effekt
-        if len(st.session_state.log_messages) > 15:
+        # Limit auf 40 Zeilen (Zeilenfortschritt, Klassenübersicht und Cover-Warnungen sollen sichtbar bleiben)
+        if len(st.session_state.log_messages) > 40:
             st.session_state.log_messages.pop(0)
 
         # UI Update aufrufen
@@ -96,13 +113,12 @@ if "app_ready" not in st.session_state:
             # Hier den Pfad zu deinem Logo (PNG/JPG/SVG)
             st.image("images/project-logo_small.webp", width=200)
         # 2. Text darunter
-        st.markdown("<h2 style='text-align: center; color: #333;'>LChS Transformation Engine</h2>", unsafe_allow_html=True)
-        st.markdown("<p style='text-align: center; color: #888;'>Initialisiere Systemressourcen...</p>", unsafe_allow_html=True)
+        st.markdown("<h2 style='text-align: center;'>LChS Transformation Engine</h2>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; opacity: 0.6;'>Initialisiere Systemressourcen...</p>", unsafe_allow_html=True)
 
         with col2:
-            st.progress(100)
-
-        time.sleep(0.6)  # Display splash screen briefly during first startup
+            with st.spinner("Loading the mapping engine (pandas, SSSOM): the first start takes about half a minute..."):
+                load_engine()
 
         # 4. DIE MAGIE: Wir leeren den Platzhalter.
         # Der Splash-Screen verschwindet sofort, OHNE dass die Seite neu lädt!
@@ -110,6 +126,8 @@ if "app_ready" not in st.session_state:
 
     # Wir merken uns, dass wir fertig sind, damit der Splash bei Button-Klicks nicht wiederkommt
     st.session_state.app_ready = True
+
+engine = load_engine()  # instant once loaded (it is cached for all sessions)
 
 st.title("🦅 EAGLE ↔️ ISO 19144-2 Mapper")
 
@@ -220,20 +238,30 @@ with tab1:
         "(see docs/diagrams/irrigation-extension.puml). The FAO LChS tool may not import them: switch off for the plain LChS subset.",
     )
 
+    progress_slot = st.empty()
     if st.button("Map to ISO", disabled=not is_valid, type="primary"):
+        bar = progress_slot.progress(0.0, text="Reading the sheet...")
+
+        def on_progress(fraction: float, message: str):
+            bar.progress(min(max(fraction, 0.0), 1.0), text=message)
+
         try:
             # Erste Live-Nachricht ausgeben
             app_logger.log("Loading EAGLE matrix source file...")
 
-            wb = openpyxl.load_workbook(uploaded_excel, data_only=True)
+            uploaded_excel.seek(0)
+            # only the selected sheet, values only: the other sheets of the workbook are never parsed
+            wb = engine.load_matrix(uploaded_excel, st.session_state.selected_sheet, app_logger.log)
 
             # Execute Mapping, passing the live logging function as a callback
-            xml_string_bytes = run_eagle_to_iso_mapping(
+            xml_string_bytes = engine.run_eagle_to_iso_mapping(
                 excel_workbook=wb,
                 sheet_name=st.session_state.selected_sheet,
                 log_callback=app_logger.log,
-                include_extensions=include_extensions
+                include_extensions=include_extensions,
+                progress_callback=on_progress,
             )
+            progress_slot.empty()
 
             st.session_state.mapped_data = xml_string_bytes
             st.session_state.mapped_filename = uploaded_excel.name.replace(".xlsx", "_mapped.xml")
@@ -241,6 +269,7 @@ with tab1:
             st.success("Done!")
 
         except Exception as e:
+            progress_slot.empty()
             app_logger.log(f"ERROR: {str(e)}")
             st.error("Aborting due to error.")
 
@@ -273,7 +302,7 @@ with tab2:
     app_logger.set_container(log_iso)
 
     if st.button("Map to EAGLE", disabled=not is_valid, type="primary"):
-        result_bytes = run_iso_to_eagle_mapping(
+        result_bytes = engine.run_iso_to_eagle_mapping(
             uploaded_xml.getvalue(),
             log_callback=app_logger.log,
             use_fuzzy=use_fuzzy,
@@ -293,8 +322,8 @@ with tab3:
     st.markdown("Semantic mappings between EAGLE and ISO 19144 (LCML/LUML).")
 
     # Show SSSOM table summary
+    sssom_resolver = engine.sssom_resolver
     try:
-        from src.mapping.sssom_engine import sssom_resolver
         if sssom_resolver.msdf is not None and not sssom_resolver.msdf.df.empty:
             summary_cols = ["subject_id", "subject_label", "predicate_id", "object_id", "object_label"]
             available_cols = [c for c in summary_cols if c in sssom_resolver.msdf.df.columns]

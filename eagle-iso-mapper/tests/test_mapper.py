@@ -341,3 +341,65 @@ def test_roundtrip_survives_the_extension_elements():
     wb = _matrix([("LCC-2_2_1", "Graminoids, Grass-Like", 3), ("LUA-1_1", "Agriculture", 3), ("LCH-5_1_4_5_4", "Sprinkler Irrigation", 3), ("LCH-8_1_4", "Scattered Pattern", 1)])
     xml_bytes = run_eagle_to_iso_mapping(wb, "M", lambda m: None)
     assert run_iso_to_eagle_mapping(xml_bytes, lambda m: None, use_fuzzy=True)
+
+
+# ---------------------------------------------------------------- loading only the sheet that is mapped
+
+from src.mapping.eagle_to_iso import load_matrix  # noqa: E402
+
+
+def test_load_matrix_gives_the_parser_the_same_cells_as_a_full_load(tmp_path):
+    wb = openpyxl.Workbook()
+    wb.active.title = "Notes"
+    wb["Notes"]["A1"] = "a lot of text that is never mapped " * 50
+    ws = wb.create_sheet("Matrix")
+    ws["A3"], ws["C4"], ws["E1"], ws["E2"] = "starts at row 3", "column C", "C1", "Name"  # leading empty rows and columns
+    path = tmp_path / "m.xlsx"
+    wb.save(path)
+
+    fast = load_matrix(path, "Matrix")
+    full = openpyxl.load_workbook(path, data_only=True)["Matrix"]
+    assert fast.sheetnames == ["Matrix"]
+    for r in range(1, full.max_row + 1):
+        for c in range(1, full.max_column + 1):
+            assert fast["Matrix"].cell(r, c).value == full.cell(r, c).value
+
+
+def test_load_matrix_names_the_sheets_when_the_one_asked_for_is_missing(tmp_path):
+    path = tmp_path / "m.xlsx"
+    wb = openpyxl.Workbook()
+    wb.active.title = "Only"
+    wb.save(path)
+    with pytest.raises(ValueError, match="Only"):
+        load_matrix(path, "Missing")
+
+
+def test_mapping_a_loaded_sheet_equals_mapping_the_full_workbook():
+    sheet = "CLC-all 3 Classes"
+    fast = run_eagle_to_iso_mapping(load_matrix(TEST_EXCEL_PATH, sheet), sheet, lambda m: None)
+    full = run_eagle_to_iso_mapping(openpyxl.load_workbook(TEST_EXCEL_PATH, data_only=True), sheet, lambda m: None)
+    assert fast == full
+
+
+# ---------------------------------------------------------------- progress while mapping
+
+def test_mapping_reports_steady_progress_and_a_log_line_per_class():
+    sheet = "CLC-all 3 Classes"
+    logs, steps = [], []
+    wb = load_matrix(TEST_EXCEL_PATH, sheet, logs.append)
+    run_eagle_to_iso_mapping(wb, sheet, logs.append, progress_callback=lambda f, m: steps.append((f, m)))
+
+    fractions = [f for f, _ in steps]
+    assert fractions == sorted(fractions) and 0 <= fractions[0] < 0.2 and fractions[-1] == 1.0
+    assert len({m for _, m in steps}) > 5  # not one jump: many distinct steps with their own message
+    text = "\n".join(logs)
+    assert "reading only 'CLC-all 3 Classes'" in text and "Read sheet" in text
+    assert "Parsed " in text  # rows
+    for code in ("C112", "C212", "C322"):
+        assert f"{code}:" in text  # per class summary
+    assert "Writing land use" in text
+
+
+def test_progress_is_optional():
+    wb = _matrix([("LCC-2_1_1", "Trees", 3)])
+    assert run_eagle_to_iso_mapping(wb, "M", lambda m: None)

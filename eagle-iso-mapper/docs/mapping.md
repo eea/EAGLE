@@ -112,9 +112,15 @@ Not read back: `functionalRelationship` / `temporalRelationship` (the matrix has
 
 ![EAGLE ➔ ISO tab with the extension checkbox](images/app-excel-to-iso.jpg)
 
-The log shows each step live, including the cover warnings of [section 2](#2-cover-ranges-and-the-100-rule) (screenshot taken while a 2.3 MB matrix was being mapped):
+The log and a progress bar show each step live: the sheet that is read, the taxonomy rows parsed (in tenths), a summary per class (land cover / land use / characteristics), the cover warnings of [section 2](#2-cover-ranges-and-the-100-rule), and the writing of land cover, characteristics and land use. The screenshot shows a finished run of a 2.3 MB workbook:
 
-![Uploaded matrix, sheet selection and live log](images/app-excel-upload-and-log.jpg)
+![Live log of a finished mapping](images/app-excel-mapping-log.jpg)
+
+**Speed.** Three things used to make the app feel stuck:
+
+* *Excel import.* A full `openpyxl.load_workbook` parses every sheet with all its styles, which took 15 s (about 27 s in the app) for the 2.3 MB EAGLE workbook. The app now lists the sheet names from a read-only open (which only parses the workbook index) and reads only the **selected sheet, values only** (`load_matrix`, about 0.5 s). The other sheets, which may hold a lot of text, are never parsed. The result is identical: the mapping of the loaded sheet equals the mapping of the full workbook (tested), and a whole run takes about 2 s.
+* *Start-up.* Importing `pandas` and `sssom` takes 20-30 s. It used to happen before anything was drawn (blank page); now the splash screen with a "loading the mapping engine" spinner shows after a few seconds, and the engine is loaded once per server process.
+* *Progress.* Parsing and writing report their progress (`progress_callback(fraction, message)` in `run_eagle_to_iso_mapping`) and the log keeps the last 40 lines instead of 15.
 
 **ISO ➔ EAGLE** takes an LChS XML file, plain or with the extension elements ([section 4](#4-iso--eagle)).
 
