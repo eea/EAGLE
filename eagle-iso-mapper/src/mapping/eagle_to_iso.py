@@ -18,7 +18,7 @@ from src.python.generated.eagle_iso_models import (
     FunctionalRelationshipEnum,
     TemporalRelationshipEnum
 )
-from src.mapping import extensions
+from src.mapping import extensions, fao
 from src.mapping.cover import CoverItem, balance_stratum
 from src.mapping.sssom_engine import sssom_resolver
 
@@ -312,6 +312,20 @@ class LchsXmlGenerator:
     def _text(parent: ET.Element, tag: str, value) -> None:
         ET.SubElement(parent, tag).text = str(value)
 
+    def _block(self, parent: ET.Element, reference: str) -> None:
+        """BlockID and BlockReference, as the FAO tool writes them (it joins on the numeric BlockID)."""
+        block_id = fao.block_id(reference)
+        if block_id is not None:
+            self._text(parent, "BlockID", block_id)
+        self._text(parent, "BlockReference", reference)
+
+    def _characteristic(self, parent: ET.Element, reference: str, label: str) -> None:
+        characteristic_id = fao.characteristic_id(reference)
+        if characteristic_id is not None:
+            self._text(parent, "CharacteristicID", characteristic_id)
+        self._text(parent, "CharacteristicReference", reference)
+        self._text(parent, "CharacteristicLabel", label)
+
     def _block_reference(self, comp, unit_id: str = "", warn: bool = True) -> str:
         """The ISO block of a land cover component: by EAGLE code (own row, else nearest ancestor), for
         components without a code by label. A concept with no known ISO block is written under a name
@@ -363,9 +377,8 @@ class LchsXmlGenerator:
     def _floristic_aspect(self, objects: ET.Element, idx: int, host: str, species: str, presence: Optional[str] = None, bcv: Optional[str] = None) -> None:
         elem = ET.SubElement(objects, "LC_Characteristics")
         self._text(elem, "StratumID", idx)
-        self._text(elem, "BlockReference", host)
-        self._text(elem, "CharacteristicReference", extensions.FLORISTIC_CLASS)
-        self._text(elem, "CharacteristicLabel", "Floristic Aspects")
+        self._block(elem, host)
+        self._characteristic(elem, extensions.FLORISTIC_CLASS, "Floristic Aspects")
         if presence:
             self._text(elem, "elementPresenceType", presence)
         if bcv:
@@ -391,9 +404,8 @@ class LchsXmlGenerator:
                     self.log(f"{unit.id}: {method} irrigation has no FAO irrigation type (Surface, Sprinkler, Drip); written without a type")
                 irr_elem = ET.SubElement(objects, "LC_Characteristics")
                 self._text(irr_elem, "StratumID", idx)
-                self._text(irr_elem, "BlockReference", "LC_Graminoid")
-                self._text(irr_elem, "CharacteristicReference", "LC_CultivatedAndManagedVegetationCharacteristics")
-                self._text(irr_elem, "CharacteristicLabel", "Cultivated & Managed Vegetation")
+                self._block(irr_elem, "LC_Graminoid")
+                self._characteristic(irr_elem, "LC_CultivatedAndManagedVegetationCharacteristics", "Cultivated & Managed Vegetation")
                 if fao_type:
                     self._text(irr_elem, "irrigationType", fao_type)
             elif species:
@@ -414,9 +426,8 @@ class LchsXmlGenerator:
             else:
                 elem = ET.SubElement(objects, "LC_Characteristics")
                 self._text(elem, "StratumID", idx)
-                self._text(elem, "BlockReference", host)
-                self._text(elem, "CharacteristicReference", klass)
-                self._text(elem, "CharacteristicLabel", char.label or char.code or "")
+                self._block(elem, host)
+                self._characteristic(elem, klass, char.label or char.code or "")
                 if char.code:
                     self._text(elem, "CharacteristicCode", char.code)
                 if char.uri:
@@ -447,9 +458,8 @@ class LchsXmlGenerator:
 
         elem = ET.SubElement(objects, "LC_Characteristics")
         self._text(elem, "StratumID", idx)
-        self._text(elem, "BlockReference", host)
-        self._text(elem, "CharacteristicReference", extensions.IRRIGATION_CLASS)
-        self._text(elem, "CharacteristicLabel", "Irrigation")
+        self._block(elem, host)
+        self._characteristic(elem, extensions.IRRIGATION_CLASS, "Irrigation")
         for char in members:
             self._text(elem, "CharacteristicCode", char.code)
         self._text(elem, "elementPresenceType", presence)
@@ -554,7 +564,7 @@ class LchsXmlGenerator:
                 comp, (c_min, c_max) = entry["comp"], entry["cover"]
                 prop_elem = ET.SubElement(objects, "LC_Properties")
                 ET.SubElement(prop_elem, "StratumID").text = str(idx)
-                ET.SubElement(prop_elem, "BlockReference").text = entry["block"]
+                self._block(prop_elem, entry["block"])
                 if self.include_extensions and comp.code:  # lets ISO -> EAGLE return the exact concept, not just its block
                     ET.SubElement(prop_elem, "EagleCode").text = comp.code
                     ET.SubElement(prop_elem, "EagleLabel").text = comp.label or comp.code

@@ -31,6 +31,7 @@ profile = {
     "source": "FAO LChS tool, public/components/DataSources (LC_Blocks, LC_Options, Block_Block_LookUp, Block_Characteristic-LookUp)",
     "blocks": [
         {
+            "id": i,
             "reference": b["block_reference"],
             "label": b["block_label"],
             "parent": blocks[parents[i]]["block_reference"] if parents.get(i) else None,
@@ -40,6 +41,10 @@ profile = {
     ],
     "element_presence_types": [{"option": o["option"], "label": o["label"]} for o in options["element_presence_types"]],
     "irrigation_types": [{"option": o["option"], "label": o["label"]} for o in options["irrigationTypes"]],
+    "characteristic_ids": {
+        name: next(i for i, ref in characteristics.items() if ref == name)
+        for name in ("LC_CultivatedAndManagedVegetationCharacteristics", "LC_FloristicAspectsCharacteristic")
+    },
     "characteristic_hosts": {
         name: sorted(hosts[name])
         for name in ("LC_CultivatedAndManagedVegetationCharacteristics", "LC_FloristicAspectsCharacteristic")

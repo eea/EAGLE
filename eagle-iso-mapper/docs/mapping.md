@@ -2,7 +2,7 @@
 
 This page describes how the mapper turns an EAGLE barcoding matrix into LChS XML (ISO 19144-2 / LCML) and back. The crosswalk itself lives in `src/mapping/eagle_iso_sssom.yaml`; the extension vocabulary (land use, characteristics, irrigation code lists) in `src/mapping/eagle_iso_extensions.yaml`. For the standards background see [standards-usage.md](standards-usage.md).
 
-Contents: [1. EAGLE ➔ ISO](#1-eagle--iso) · [2. Cover](#2-cover-ranges-and-the-100-rule) · [3. Extension](#3-land-use-characteristics-and-irrigation-extension) · [4. ISO ➔ EAGLE](#4-iso--eagle) · [5. Not verified](#5-not-verified--open-points)
+Contents: [FAO import](#6-importing-into-the-fao-lchs-tool-lchsfaoorg) · [1. EAGLE ➔ ISO](#1-eagle--iso) · [2. Cover](#2-cover-ranges-and-the-100-rule) · [3. Extension](#3-land-use-characteristics-and-irrigation-extension) · [4. ISO ➔ EAGLE](#4-iso--eagle) · [5. Not verified](#5-not-verified--open-points)
 
 ## 1. EAGLE ➔ ISO
 
@@ -131,7 +131,13 @@ Not read back: `functionalRelationship` / `temporalRelationship` (the matrix has
 * The `closeMatch` and `broadMatch` rows (for example Open Sealed Surfaces → Non-Built-Up Surface) are our judgement of the FAO block library, not a published crosswalk.
 * The irrigation list is a proposal: `gravitySurface`, `manual` and `unspecified` were added, and `LC_GeneralCharacteristic` was added as a fifth characteristic class because most EAGLE characteristics (built-up, physical, spatial, status) fit none of the four proposed ones.
 
-## 6. Web app
+## 6. Importing into the FAO LChS tool (lchs.fao.org)
+
+* **Use the extension `.lchs`.** The tool chooses its importer from the file extension. `.lchs` is its native format (the relational `LC_Legend` / `objects` structure this mapper writes) and is read without translation. A file ending in `.xml` is treated as an LCML/LCCS export and needs a translator that the tool does not have: *"no translator available for XML"*. The web apps now offer `….lchs` for download (the mapper's ISO ➔ EAGLE tab accepts `.lchs` and `.xml`).
+* **Numeric ids.** The tool joins properties and characteristics to its block library by `BlockID` and `CharacteristicID`, not by name. Every `LC_Properties` and `LC_Characteristics` therefore carries the id of its block (and of the FAO characteristics) from the tool's own library (`src/mapping/fao_lchs_profile.json`); the sample export in `testdata` is from an older library in which `LC_BareSoil` was 1030 instead of today's 1029.
+* **Extension elements** (land use, other characteristics, `EagleCode`, `EagleBcv`, irrigation code lists) are not part of the tool's format; switch them off for an import (*plain LChS subset*) and test the extended file separately.
+
+## 7. Web app
 
 `streamlit run app.py` (or `python run.py`) opens three tabs: *EAGLE ➔ ISO*, *ISO ➔ EAGLE* and *Mapping & Schema Config*.
 

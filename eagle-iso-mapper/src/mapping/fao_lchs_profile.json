@@ -2,206 +2,247 @@
   "source": "FAO LChS tool, public/components/DataSources (LC_Blocks, LC_Options, Block_Block_LookUp, Block_Characteristic-LookUp)",
   "blocks": [
     {
+      "id": 1001,
       "reference": "LC_VegetationElement",
       "label": "Vegetation",
       "parent": null
     },
     {
+      "id": 1002,
       "reference": "LC_AbioticElement",
       "label": "Abiotic Surfaces",
       "parent": null
     },
     {
+      "id": 1003,
       "reference": "LC_GrowthForm",
       "label": "Growth Forms",
       "parent": "LC_VegetationElement"
     },
     {
+      "id": 1004,
       "reference": "LC_WoodyGrowthForm",
       "label": "Woody Growth Forms",
       "parent": "LC_GrowthForm"
     },
     {
+      "id": 1005,
       "reference": "LC_Tree",
       "label": "Trees",
       "parent": "LC_WoodyGrowthForm"
     },
     {
+      "id": 1006,
       "reference": "LC_Shrub",
       "label": "Shrubs",
       "parent": "LC_WoodyGrowthForm"
     },
     {
+      "id": 1007,
       "reference": "LC_HerbaceousGrowthForm",
       "label": "Herbaceous Growth Forms",
       "parent": "LC_GrowthForm"
     },
     {
+      "id": 1008,
       "reference": "LC_Forbs",
       "label": "Forbs",
       "parent": "LC_HerbaceousGrowthForm"
     },
     {
+      "id": 1009,
       "reference": "LC_Graminoid",
       "label": "Graminoids",
       "parent": "LC_HerbaceousGrowthForm"
     },
     {
+      "id": 1010,
       "reference": "LC_LichenAndMoss",
       "label": "Lichen & Mosses",
       "parent": "LC_GrowthForm"
     },
     {
+      "id": 1011,
       "reference": "LC_Lichen",
       "label": "Lichen",
       "parent": "LC_LichenAndMoss"
     },
     {
+      "id": 1012,
       "reference": "LC_Moss",
       "label": "Mosses",
       "parent": "LC_LichenAndMoss"
     },
     {
+      "id": 1013,
       "reference": "LC_Algae",
       "label": "Algae",
       "parent": "LC_GrowthForm"
     },
     {
+      "id": 1014,
       "reference": "LC_ArtificialSurfaceElement",
       "label": "Artificial Surfaces",
       "parent": "LC_AbioticElement"
     },
     {
+      "id": 1015,
       "reference": "LC_NonBuiltUpSurface",
       "label": "Non-Built-Up Surface",
       "parent": "LC_ArtificialSurfaceElement"
     },
     {
+      "id": 1016,
       "reference": "LC_DumpSite",
       "label": "Dump Site",
       "parent": "LC_NonBuiltUpSurface"
     },
     {
+      "id": 1017,
       "reference": "LC_Extraction",
       "label": "Extraction",
       "parent": "LC_NonBuiltUpSurface"
     },
     {
+      "id": 1018,
       "reference": "LC_BuiltUpSurface",
       "label": "Built-Up Surface",
       "parent": "LC_ArtificialSurfaceElement"
     },
     {
+      "id": 1019,
       "reference": "LC_NonLinearSurface",
       "label": "Non-Linear Surface",
       "parent": "LC_BuiltUpSurface"
     },
     {
+      "id": 1020,
       "reference": "LC_Building",
       "label": "Building",
       "parent": "LC_NonLinearSurface"
     },
     {
+      "id": 1021,
       "reference": "LC_OtherConstruction",
       "label": "Other Construction",
       "parent": "LC_NonLinearSurface"
     },
     {
+      "id": 1022,
       "reference": "LC_OtherArtificialSurface",
       "label": "Other Artificial Surface",
       "parent": "LC_NonLinearSurface"
     },
     {
+      "id": 1023,
       "reference": "LC_LinearSurface",
       "label": "Linear Surface",
       "parent": "LC_BuiltUpSurface"
     },
     {
+      "id": 1024,
       "reference": "LC_NaturalSurfaceElement",
       "label": "Natural Surfaces",
       "parent": "LC_AbioticElement"
     },
     {
+      "id": 1025,
       "reference": "LC_RocksSurfaceElement",
       "label": "Rocks Surface",
       "parent": "LC_NaturalSurfaceElement"
     },
     {
+      "id": 1026,
       "reference": "LC_BareRock",
       "label": "Bare Rock",
       "parent": "LC_RocksSurfaceElement"
     },
     {
+      "id": 1027,
       "reference": "LC_Hardpan",
       "label": "Hardpan",
       "parent": "LC_RocksSurfaceElement"
     },
     {
+      "id": 1028,
       "reference": "LC_SoilSandDepositsSurfaceElement",
       "label": "Soils & Sand Deposits Surface",
       "parent": "LC_NaturalSurfaceElement"
     },
     {
+      "id": 1029,
       "reference": "LC_BareSoil",
       "label": "Bare Soil",
       "parent": "LC_SoilSandDepositsSurfaceElement"
     },
     {
+      "id": 1030,
       "reference": "LC_CoarseMineralFragments",
       "label": "Coarse Mineral Fragments",
       "parent": "LC_SoilSandDepositsSurfaceElement"
     },
     {
+      "id": 1031,
       "reference": "LC_LooseAndShiftingSand",
       "label": "Loose & Shifting Sand",
       "parent": "LC_SoilSandDepositsSurfaceElement"
     },
     {
+      "id": 1032,
       "reference": "LC_Dune",
       "label": "Dune",
       "parent": "LC_LooseAndShiftingSand"
     },
     {
+      "id": 1033,
       "reference": "LC_Deposits",
       "label": "Deposits",
       "parent": "LC_SoilSandDepositsSurfaceElement"
     },
     {
+      "id": 1034,
       "reference": "LC_InorganicDeposits",
       "label": "Inorganic Deposits",
       "parent": "LC_Deposits"
     },
     {
+      "id": 1035,
       "reference": "LC_OrganicDeposits",
       "label": "Organic Deposits",
       "parent": "LC_Deposits"
     },
     {
+      "id": 1036,
       "reference": "LC_WaterBodyAndAssociatedSurfaceElement",
       "label": "Water Body & Associated Surfaces",
       "parent": "LC_AbioticElement"
     },
     {
+      "id": 1037,
       "reference": "LC_WaterBody",
       "label": "Water Body",
       "parent": "LC_WaterBodyAndAssociatedSurfaceElement"
     },
     {
+      "id": 1038,
       "reference": "LC_Snow",
       "label": "Snow",
       "parent": "LC_WaterBodyAndAssociatedSurfaceElement"
     },
     {
+      "id": 1039,
       "reference": "LC_Ice",
       "label": "Ice",
       "parent": "LC_WaterBodyAndAssociatedSurfaceElement"
     },
     {
+      "id": 1040,
       "reference": "LC_TerrestrialIce",
       "label": "Terrestrial Ice",
       "parent": "LC_Ice"
     },
     {
+      "id": 1041,
       "reference": "LC_FloatingIce",
       "label": "Floating Ice",
       "parent": "LC_Ice"
@@ -239,6 +280,10 @@
       "label": "Drip"
     }
   ],
+  "characteristic_ids": {
+    "LC_CultivatedAndManagedVegetationCharacteristics": 100021,
+    "LC_FloristicAspectsCharacteristic": 100010
+  },
   "characteristic_hosts": {
     "LC_CultivatedAndManagedVegetationCharacteristics": [
       "LC_Algae",

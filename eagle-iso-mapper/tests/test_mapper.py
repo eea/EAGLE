@@ -705,3 +705,46 @@ def test_the_fao_sample_gets_each_block_back_as_its_own_concept():
     for block, subject in (("LC_BuiltUpSurface", "LCC-1_1_1"), ("LC_NonBuiltUpSurface", "LCC-1_1_2"), ("LC_LichenAndMoss", "LCC-2_4"),
                            ("LC_Moss", "LCC-2_4_2"), ("LC_BareSoil", "LCC-1_2_2_2"), ("LC_Soil", "LCC-1_2_2_2"), ("LC_BuildUpSurface", "LCC-1_1_1")):
         assert sssom_resolver.resolve_iso_to_eagle(block)["subject_id"] == f"eagle:{subject}", block
+
+
+# ---------------------------------------------------------------- the FAO tool joins on BlockID / CharacteristicID
+
+from src.mapping import fao  # noqa: E402
+
+
+def test_the_fao_reference_export_agrees_with_the_profile_ids():
+    """The ids come from the tool's block library; its own export pairs them with the same names. The sample is
+    from an older library: there LC_BareSoil was 1030, today 1029 (the hosted tool, lchs.fao.org, has 1029)."""
+    root = ET.parse(Path("testdata/iso/LChS_Legend.lchs.xml")).getroot()
+    pairs = {(p.findtext("BlockID"), p.findtext("BlockReference")) for p in root.iter("LC_Properties")}
+    assert pairs and {ref for i, ref in pairs if fao.block_id(ref) != int(i)} <= {"LC_BareSoil"}
+    chars = {(p.findtext("CharacteristicID"), p.findtext("CharacteristicReference")) for p in root.iter("LC_Characteristics")}
+    assert all(fao.characteristic_id(ref) == int(i) for i, ref in chars if ref in FAO_PROFILE["characteristic_ids"])
+
+
+@pytest.mark.parametrize("extensions_on", [True, False])
+def test_every_property_and_characteristic_carries_the_numeric_ids_the_tool_joins_on(extensions_on):
+    rows = [("LCC-2_1_1", "Trees", 3), ("LCC-2_2_1", "Graminoids, Grass-Like", 3), ("LCC-1_2_1_1", "Bare Rock", 1), ("LCC-3_1", "Liquid Water Bodies", 2),
+            ("LCH-5_1_4_5_4", "Sprinkler Irrigation", 3), ("LCH-5_1_6_1_1_7", "Rice Character", 3), ("LCH-8_1_4", "Scattered Pattern", 1)]
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix(rows), "M", lambda m: None, include_extensions=extensions_on))
+    props = list(root.iterfind(".//LC_Properties"))
+    assert props
+    for prop in props:
+        reference = prop.findtext("BlockReference")
+        assert prop.findtext("BlockID") == str(fao.block_id(reference)) and fao.block_id(reference), reference
+        assert [e.tag for e in prop][:3] == ["StratumID", "BlockID", "BlockReference"]  # the order of the tool's own export
+    for char in root.iterfind(".//LC_Characteristics"):
+        assert char.findtext("BlockID") == str(fao.block_id(char.findtext("BlockReference")))
+        reference = char.findtext("CharacteristicReference")
+        if reference in FAO_PROFILE["characteristic_ids"]:  # the tool's own characteristics also need their id
+            assert char.findtext("CharacteristicID") == str(fao.characteristic_id(reference))
+    species = [c for c in root.iterfind(".//LC_Characteristics") if c.find("speciesName") is not None]
+    assert species and species[0].findtext("CharacteristicID") == "100010"
+
+
+def test_the_ids_do_not_change_what_comes_back():
+    rows = [("LCC-2_4_2", "Mosses", 1), ("LCC-1_2_1_1", "Bare Rock", 2), ("LCH-5_1_4_5_4", "Sprinkler Irrigation", 3)]
+    for extensions_on in (True, False):
+        xml = run_eagle_to_iso_mapping(_matrix(rows), "M", lambda m: None, include_extensions=extensions_on)
+        back = _matrix_rows(run_iso_to_eagle_mapping(xml, lambda m: None))
+        assert str(back["LCC-2_4_2"]) == "1" and str(back["LCC-1_2_1_1"]) == "2"

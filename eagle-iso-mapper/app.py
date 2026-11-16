@@ -1,5 +1,6 @@
 import streamlit as st
 import io
+import re
 import time
 from typing import Tuple, List
 import openpyxl
@@ -114,10 +115,10 @@ if "app_ready" not in st.session_state:
             st.image("images/project-logo_small.webp", width=200)
         # 2. Text darunter
         st.markdown("<h2 style='text-align: center;'>LChS Transformation Engine</h2>", unsafe_allow_html=True)
-        st.markdown("<p style='text-align: center; opacity: 0.6;'>Initialisiere Systemressourcen...</p>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align: center; opacity: 0.6;'>Initialising App...</p>", unsafe_allow_html=True)
 
         with col2:
-            with st.spinner("Loading the mapping engine (pandas, SSSOM): the first start takes about half a minute..."):
+            with st.spinner("Loading transformation engine..."):
                 load_engine()
 
         # 4. DIE MAGIE: Wir leeren den Platzhalter.
@@ -264,7 +265,8 @@ with tab1:
             progress_slot.empty()
 
             st.session_state.mapped_data = xml_string_bytes
-            st.session_state.mapped_filename = uploaded_excel.name.replace(".xlsx", "_mapped.xml")
+            # .lchs is the native format of the FAO LChS tool: it picks the importer by the file extension (".xml" asks for a translator it does not have)
+            st.session_state.mapped_filename = uploaded_excel.name.replace(".xlsx", "_mapped.lchs")
             app_logger.log("✅ Mapping completed successfully!")
             st.success("Done!")
 
@@ -287,7 +289,7 @@ with tab2:
     with col2:
         force_hierarchical = st.checkbox("Force Hierarchical Parser", value=False, help="Use if standard detection fails")
 
-    uploaded_xml = st.file_uploader("Wähle eine LChS XML-Datei", type=["xml"], key="up_xml", on_change=clear_logs_and_data)
+    uploaded_xml = st.file_uploader("Wähle eine LChS-Datei (.lchs oder .xml)", type=["lchs", "xml"], key="up_xml", on_change=clear_logs_and_data)
 
     is_valid = False
     if uploaded_xml is not None:
@@ -310,7 +312,7 @@ with tab2:
         )
 
         st.session_state.mapped_data = result_bytes
-        st.session_state.mapped_filename = uploaded_xml.name.replace(".xml", "_mapped.xlsx")
+        st.session_state.mapped_filename = re.sub(r"\.(lchs\.xml|lchs|xml)$", "", uploaded_xml.name, flags=re.I) + "_mapped.xlsx"
         app_logger.log("✅ Mapping successfully completed!")
         st.success("Done!")
 
@@ -387,7 +389,7 @@ st.divider()
 
 st.subheader("Export")
 if st.session_state.mapped_data is not None:
-    mime_type = "application/xml" if st.session_state.mapped_filename.endswith(".xml") else "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    mime_type = "application/xml" if st.session_state.mapped_filename.endswith((".xml", ".lchs")) else "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
 
     st.download_button(
         label="⬇️ Download Mapped File",

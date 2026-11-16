@@ -275,7 +275,7 @@ def export_panel(analysis):
     st.download_button(
         "⬇ Download LChS XML",
         data=lambda: isoexport.to_lchs_xml(analysis, vocab, code, name).xml,
-        file_name=f"{state.doc_name}.lchs.xml",
+        file_name=f"{state.doc_name}.lchs",  # the FAO LChS tool picks its importer by the extension: .lchs is its native format
         mime="application/xml",
         width="stretch",
         help="ISO 19144-2 LChS XML for the FAO LChS tool. The first export after starting the app can take a while.",

@@ -53,7 +53,7 @@ The web frontend is built using Streamlit and organized into three main function
   * **Enable Fuzzy Mapping (Checkbox):** Allows the engine to automatically resolve variations like `LC_Tree` to `Trees`. It is highly recommended to keep this enabled for production files.
   * **Force Hierarchical Parser (Checkbox):** Explicitly switches the processing mode from official relational layout detection to flat hierarchical parsing.
 * **How to use:**
-  1. Upload the target LChS `.xml` file.
+  1. Upload the LChS file (`.lchs`, or `.xml`).
   2. Click **Map to EAGLE** (enabled only after verifying XML well-formedness).
   3. The runtime engine resolves abstract table IDs, normalizes messy data entries (e.g., automatically cleansing typos like `"CLC 322"` with spaces into strict `"CLC322"` keys), and routes the variables to their corresponding matrix columns.
 
