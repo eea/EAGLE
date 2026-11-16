@@ -30,6 +30,18 @@ class SSSOMResolver:
         self.prefix_map: Dict[str, str] = {}
         self.load()
 
+    _BLOCK_ALIASES = {
+        "LC_BuiltUpSurface": ("LC_BuildUpSurface",),
+        "LC_BareSoil": ("LC_Soil",),
+        "LC_VegetationElement": ("LC_Vegetation",),
+        "LC_Tree": ("LC_Trees",),
+        "LC_Shrub": ("LC_Shrubs",),
+        "LC_NaturalSurfaceElement": ("LC_NaturalSurfaces",),
+        "LC_LichenAndMoss": ("LC_LichenAndMosses",),
+        "LC_Building": ("LC_Buildings",),
+        "LC_Graminoid": ("LC_Graminoids",),
+    }
+
     def load(self):
         """Loads and parses the SSSOM YAML file using python sssom."""
         if not self.sssom_path.exists():
@@ -114,34 +126,10 @@ class SSSOMResolver:
             if not should_update:  # a broader match must not take the aliases of the exact one
                 continue
 
-            # Add common ISO variations (older files write LC_BuildUpSurface, LC_Soil, LC_Vegetation)
-            if "buildupsurface" in obj_norm.lower() or "builtupsurface" in obj_norm.lower():
-                self.reverse_map["LC_BuiltUpSurface"] = entry
-                self.reverse_map["LC_BuildUpSurface"] = entry
-            if "vegetation" in obj_norm.lower():
-                self.reverse_map["LC_VegetationElement"] = entry
-                self.reverse_map["LC_Vegetation"] = entry
-            if "soil" in obj_norm.lower():
-                self.reverse_map["LC_BareSoil"] = entry
-                self.reverse_map["LC_Soil"] = entry
-            if "tree" in obj_norm.lower():
-                self.reverse_map["LC_Trees"] = entry
-                self.reverse_map["LC_Tree"] = entry
-            if "shrub" in obj_norm.lower():
-                self.reverse_map["LC_Shrubs"] = entry
-                self.reverse_map["LC_Shrub"] = entry
-            if "naturalsurface" in obj_norm.lower():
-                self.reverse_map["LC_NaturalSurfaceElement"] = entry
-                self.reverse_map["LC_NaturalSurfaces"] = entry
-            if "lichen" in obj_norm.lower() or "moss" in obj_norm.lower():
-                self.reverse_map["LC_LichenAndMoss"] = entry
-                self.reverse_map["LC_LichenAndMosses"] = entry
-            if "building" in obj_norm.lower():
-                self.reverse_map["LC_Building"] = entry
-                self.reverse_map["LC_Buildings"] = entry
-            if "graminoid" in obj_norm.lower():
-                self.reverse_map["LC_Graminoid"] = entry
-                self.reverse_map["LC_Graminoids"] = entry
+            # Spellings older files use for a block: exact names only. A substring test ("soil" in LC_SoilSandDeposits...,
+            # "builtupsurface" in LC_NonBuiltUpSurface) made unrelated blocks take over the alias of the real one.
+            for alias in self._BLOCK_ALIASES.get(obj_norm, ()):
+                self.reverse_map[alias] = entry
 
     def resolve_block(self, code: Optional[str]) -> Tuple[Optional[Dict[str, Any]], str]:
         """The ISO block of an EAGLE concept by its CODE: its own row, else the row of the nearest ancestor

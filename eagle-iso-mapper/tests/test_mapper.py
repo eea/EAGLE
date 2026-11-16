@@ -637,3 +637,71 @@ def test_characteristics_are_attached_to_blocks_the_fao_tool_allows():
         root = ET.fromstring(run_eagle_to_iso_mapping(_matrix([("LCC-2_1_1", "Trees", 3), ("LCH-5_1_4_5_4", "Sprinkler Irrigation", 3)]), "M", lambda m: None, include_extensions=extensions_on))
         irrigation = [c for c in root.iterfind(".//LC_Characteristics") if c.find("irrigationType") is not None]
         assert irrigation and all(c.findtext("BlockReference") in hosts for c in irrigation)
+
+
+# ---------------------------------------------------------------- the exported matrix: URI, label, level and order of every row
+
+from src.mapping import concepts  # noqa: E402
+
+
+def _rows(excel_bytes):
+    ws = openpyxl.load_workbook(io.BytesIO(excel_bytes)).active
+    return [{"uri": ws.cell(r, 1).value, "code": ws.cell(r, 2).value, "label": ws.cell(r, 3).value, "level": ws.cell(r, 4).value, "values": [ws.cell(r, c).value for c in range(5, ws.max_column + 1)]} for r in range(6, ws.max_row + 1)]
+
+
+def _full_round_trip():
+    sheet = "CLC-all 3 Classes"
+    xml = run_eagle_to_iso_mapping(load_matrix(TEST_EXCEL_PATH, sheet), sheet, lambda m: None)
+    return _rows(run_iso_to_eagle_mapping(xml, lambda m: None))
+
+
+def _sample_export():
+    return _rows(run_iso_to_eagle_mapping(TEST_XML_PATH.read_bytes(), lambda m: None))
+
+
+@pytest.mark.parametrize("rows", [_full_round_trip, _sample_export])
+def test_every_exported_row_has_its_uri_label_and_level(rows):
+    for row in rows():
+        concept = concepts.lookup(row["code"])
+        assert concept, row["code"]
+        assert row["uri"] == concept["uri"] and row["uri"].startswith("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/")
+        assert row["label"] == concept["label"] and row["level"] == concept["level"] == concepts.level_of(row["code"])
+
+
+@pytest.mark.parametrize("rows", [_full_round_trip, _sample_export])
+def test_the_exported_matrix_is_in_matrix_order(rows):
+    codes = [r["code"] for r in rows()]
+    assert codes == sorted(codes, key=concepts.order_key)
+    assert [c for c in codes if c in concepts.SECTIONS] == ["LCC", "LUA", "LCH"]  # the three segment headings
+    for section in ("LCC", "LUA", "LCH"):  # a parent sits right before its children, not after all rows of its level
+        own = [c for c in codes if c.startswith(section + "-")]
+        for parent, child in zip(own, own[1:]):
+            if child.startswith(parent + "_"):
+                assert concepts.level_of(child) > concepts.level_of(parent)
+
+
+def test_order_key_keeps_parents_before_children_and_numbers_numeric():
+    shuffled = ["LCH-5_1_10", "LCC-2_2_1_1", "LUA-1_1", "LCC-2_2", "LCH-5_1_2", "LCC", "LCC-2_2_2", "LCC-2_2_1"]
+    assert sorted(shuffled, key=concepts.order_key) == ["LCC", "LCC-2_2", "LCC-2_2_1", "LCC-2_2_1_1", "LCC-2_2_2", "LUA-1_1", "LCH-5_1_2", "LCH-5_1_10"]
+
+
+def test_the_bundled_concepts_match_the_shared_vocabulary():
+    if not VOCABULARY.exists():
+        pytest.skip("shared EAGLE vocabulary JSON not found")
+    shared = {c["code"]: c for c in _json.load(open(VOCABULARY, encoding="utf-8"))["concepts"]}
+    bundled = _json.load(open(concepts.BUNDLED, encoding="utf-8"))
+    assert {c["code"] for c in bundled["concepts"]} == set(shared)
+    for c in bundled["concepts"]:
+        assert (c["uri"], c["label"], c["level"]) == (shared[c["code"]]["uri"], shared[c["code"]]["label"], shared[c["code"]]["level"]), c["code"]
+    assert all(concepts.level_of(code) == c["level"] for code, c in shared.items())  # the code tells the level
+
+
+def test_the_fao_sample_gets_each_block_back_as_its_own_concept():
+    """LC_BuiltUpSurface was read as Non-Sealed Artificial Surfaces and LC_LichenAndMoss as Mosses: aliases matched by substring."""
+    by_code = {r["code"]: r["values"] for r in _sample_export()}
+    assert by_code["LCC-1_1_1"][0:2] == [3, 0.55]  # class 112: sealed surface 30-80%
+    assert by_code["LCC-2_4"][4] == 1 and by_code["LCC-2_4_3"][4] == 1  # class 322: the compound class and Algae, each its own row
+    assert "LCC-2_4_2" not in by_code and "LCC-1_1_2" not in by_code
+    for block, subject in (("LC_BuiltUpSurface", "LCC-1_1_1"), ("LC_NonBuiltUpSurface", "LCC-1_1_2"), ("LC_LichenAndMoss", "LCC-2_4"),
+                           ("LC_Moss", "LCC-2_4_2"), ("LC_BareSoil", "LCC-1_2_2_2"), ("LC_Soil", "LCC-1_2_2_2"), ("LC_BuildUpSurface", "LCC-1_1_1")):
+        assert sssom_resolver.resolve_iso_to_eagle(block)["subject_id"] == f"eagle:{subject}", block

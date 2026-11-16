@@ -18,7 +18,7 @@ from src.python.generated.eagle_iso_models import (
     FunctionalRelationshipEnum,
     TemporalRelationshipEnum
 )
-from src.mapping import extensions
+from src.mapping import concepts, extensions
 from src.mapping.sssom_engine import sssom_resolver
 
 
@@ -356,36 +356,6 @@ class EagleExcelExporter:
     Generates standard header, concept rows across LCC, LUA, and LCH, and fills Barcode/Factor values.
     """
 
-    # Baseline EAGLE taxonomy concepts for standard matrix export
-    DEFAULT_TAXONOMY = [
-        # LCC Section
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-land-cover-components", "LCC", "Land Cover Components", 0, True),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-sealed-artificial-surfaces-and-constructions", "LCC-1_1_1", "Sealed Artificial Surfaces and Constructions", 3, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-specific-buildings", "LCC-1_1_1_1_2", "Specific Buildings", 5, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-natural-material-surfaces", "LCC-1_2", "Natural Material Surfaces", 2, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-bare-soils", "LCC-1_2_2_2", "Bare Soils", 4, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-biotic-vegetation", "LCC-2", "Biotic, Vegetation", 1, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-trees", "LCC-2_1_1", "Trees", 3, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-bushes-shrubs", "LCC-2_1_2", "Bushes, Shrubs", 3, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-herbaceous-vegetation", "LCC-2_2", "Herbaceous Vegetation", 2, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-graminoids", "LCC-2_2_1", "Graminoids, Grass-Like", 3, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-non-graminoids-forbs-ferns", "LCC-2_2_2", "Non-Graminoids, Forbs, Ferns", 3, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCC-lichens-mosses-algae", "LCC-2_4", "Lichens, Mosses, Algae", 3, False),
-        # LUA Section
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LUA-land-use-attributes", "LUA", "Land Use Attributes", 0, True),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LUA-commercial-crop-production", "LUA-1_1_1", "Commercial Crop Production", 3, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LUA-permanent-residential", "LUA-5_1", "Permanent Residential", 2, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LUA-residential-use-with-other-compatible-uses", "LUA-5_2", "Residential Use With Other Compatible Uses", 2, False),
-        # LCH Section
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-land-characteristics", "LCH", "Land Characteristics", 0, True),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-irrigation", "LCH-5_1_4_5", "Irrigation", 4, True),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-sprinkler-irrigation", "LCH-5_1_4_5_4", "Sprinkler Irrigation", 5, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-rice", "LCH-5_1_6_1_1_7", "Rice", 6, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-hops", "LCH-5_1_6_1_10_2", "Hops", 6, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-urban-context", "LCH-7_3_5", "Urban Context", 3, False),
-        ("https://dd.eionet.europa.eu/vocabulary/landcover/eagle/LCH-rural-context", "LCH-7_3_6", "Rural Context", 3, False)
-    ]
-
     def __init__(self, log_callback=print):
         self.log = log_callback
         self.workbook = openpyxl.Workbook()
@@ -443,27 +413,35 @@ class EagleExcelExporter:
             cell.font = title_font
             cell.fill = title_fill
 
-        # Build dynamic taxonomy rows: baseline + any extra components found in LandUnits
-        taxonomy = list(self.DEFAULT_TAXONOMY)
-        existing_codes = set(item[1] for item in taxonomy)
+        # The rows: the three segment headings and every concept the land units use, in the order of the EAGLE matrix
+        # (section, then the numeric segments of the code: a parent comes right before its children). URI, official
+        # label and level come from the EAGLE vocabulary (concepts.py) for every row, not just for a few.
+        wanted: Dict[str, Tuple[Optional[str], Optional[str]]] = {}
 
-        def add_row(uri, code, label, level):
-            """A concept row at the end of its section (LCC, LUA or LCH)."""
-            if code in existing_codes:
-                return
-            section = [i for i, item in enumerate(taxonomy) if item[1][:3] == code[:3]]
-            taxonomy.insert(section[-1] + 1 if section else len(taxonomy), (uri or "", code, label or code, level, False))
-            existing_codes.add(code)
-
-        def level_of(code):
-            return len(code.split("-", 1)[1].split("_")) if "-" in code else 3
+        def want(code, uri, label):
+            wanted.setdefault(code, (uri, label))
 
         for unit in land_units:
             for comp in (unit.land_cover_components or []):
-                add_row(comp.uri, self._matrix_code(comp), comp.label, level_of(self._matrix_code(comp)) if comp.code else 3)
+                want(self._matrix_code(comp), comp.uri, comp.label)
             for item in list(unit.land_use_attributes or []) + list(unit.land_characteristics or []):
                 if item.code:
-                    add_row(item.uri, item.code, item.label, level_of(item.code))
+                    want(item.code, item.uri, item.label)
+
+        taxonomy = []
+        for code in sorted(set(wanted) | set(concepts.SECTIONS), key=concepts.order_key):
+            concept = concepts.lookup(code) or {}
+            uri, label = wanted.get(code, (None, None))
+            taxonomy.append((
+                uri or concept.get("uri") or "",
+                code,
+                concept.get("label") or label or code,
+                concept.get("level", concepts.level_of(code)),
+                code in concepts.SECTIONS,
+            ))
+        missing = [code for code in wanted if not concepts.lookup(code)]
+        if missing:
+            self.log(f"{len(missing)} rows are not EAGLE codes (no URI, level from the code): {', '.join(missing[:5])}{' ...' if len(missing) > 5 else ''}")
 
         # Write taxonomy rows and values
         current_row = 6
