@@ -403,3 +403,101 @@ def test_mapping_reports_steady_progress_and_a_log_line_per_class():
 def test_progress_is_optional():
     wb = _matrix([("LCC-2_1_1", "Trees", 3)])
     assert run_eagle_to_iso_mapping(wb, "M", lambda m: None)
+
+
+# ---------------------------------------------------------------- crosswalk: blocks, rows and the reverse direction
+
+import json as _json  # noqa: E402
+import os as _os  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+
+from src.mapping.sssom_engine import sssom_resolver  # noqa: E402
+
+VOCABULARY = _Path(_os.environ.get("EAGLE_VOCABULARY") or _Path(__file__).resolve().parents[2] / "eagle-eye" / "data" / "eagle_vocabulary.json")
+
+
+def _fao_blocks():
+    root = ET.parse(Path("testdata/iso/LChS_Legend.lchs.xml")).getroot()
+    return {e.text for e in root.iter("BlockReference")}
+
+
+@pytest.mark.skipif(not VOCABULARY.exists(), reason="shared EAGLE vocabulary JSON not found (set EAGLE_VOCABULARY)")
+def test_crosswalk_rows_carry_the_label_of_their_concept():
+    """A row labelled Algae on the code of Mosses went unnoticed: check every row against the vocabulary."""
+    concepts = {c["code"]: c["label"] for c in _json.load(open(VOCABULARY, encoding="utf-8"))["concepts"]}
+    for key, row in sssom_resolver.forward_map.items():
+        if key.startswith("eagle:") and key.split(":")[1].startswith(("LCC", "LUA", "LCH")):
+            code = key.split(":")[1]
+            assert code in concepts, f"{code} is not an EAGLE code"
+            assert concepts[code].lower() == row["subject_label"].lower(), f"{code}: {row['subject_label']} vs {concepts[code]}"
+
+
+def test_land_cover_rows_only_use_blocks_the_fao_tool_exports():
+    fao = _fao_blocks()
+    for key, row in sssom_resolver.forward_map.items():
+        if key.startswith("eagle:LCC"):
+            assert row["object_id"].split(":")[1] in fao, row["object_id"]
+
+
+def test_a_concept_without_a_row_takes_the_row_of_its_nearest_ancestor():
+    entry, how = sssom_resolver.resolve_block("LCC-1_2_1_1")  # Bare Rock
+    assert how == "ancestor" and entry["object_id"].endswith("LC_NaturalSurfaceElement")
+    entry, how = sssom_resolver.resolve_block("LCC-2_4_3_2")  # Micro Algae
+    assert how == "ancestor" and entry["object_id"].endswith("LC_Algae")
+    assert sssom_resolver.resolve_block("LCC-2_4_2")[0]["subject_label"] == "Mosses"
+    assert sssom_resolver.resolve_block("LCC-3_1")[1] == "none"  # water: no FAO block is known
+    assert sssom_resolver.resolve_block("LCC-2_4_2")[1] == "exact"
+
+
+def test_generated_blocks_are_known_ones_where_the_fao_tool_has_them():
+    rows = [("LCC-1_2_1_1", "Bare Rock", 2), ("LCC-1_2_2_1", "Mineral Fragments", 2), ("LCC-1_1_1", "Sealed", 3), ("LCC-2_1_1", "Trees", 3), ("LCC-1_2_2_2", "Bare Soils", 1), ("LCC-2", "Vegetation", 3)]
+    logs = []
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix(rows), "M", logs.append, include_extensions=False))
+    blocks = [p.findtext("BlockReference") for p in root.iterfind(".//LC_Properties")]
+    assert set(blocks) <= _fao_blocks()
+    assert blocks.count("LC_NaturalSurfaceElement") == 1  # Bare Rock and Mineral Fragments: one property in the plain subset
+    assert any("share the ISO block LC_NaturalSurfaceElement" in line for line in logs)
+    assert "LC_BareSoil" in blocks and "LC_VegetationElement" in blocks and "LC_BuiltUpSurface" in blocks
+
+
+def test_extensions_keep_the_exact_concept_next_to_its_broader_block():
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix([("LCC-1_2_1_1", "Bare Rock", 2), ("LCC-1_2_1_2", "Hard Pan", 2)]), "M", lambda m: None))
+    props = list(root.iterfind(".//LC_Properties"))
+    assert [p.findtext("BlockReference") for p in props] == ["LC_NaturalSurfaceElement"] * 2
+    assert [p.findtext("EagleCode") for p in props] == ["LCC-1_2_1_1", "LCC-1_2_1_2"]
+
+
+def test_a_concept_with_no_known_block_is_reported():
+    logs = []
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix([("LCC-3_1_1_1", "Water Course", 3)]), "M", logs.append))
+    assert root.findtext(".//LC_Properties/BlockReference") == "LC_WaterCourse"
+    assert any("no ISO block is known for LCC-3_1_1_1" in line for line in logs)
+
+
+def test_round_trip_returns_the_exact_concept_not_just_its_block():
+    rows = [("LCC-1_2_1_1", "Bare Rock", 2), ("LCC-1_2_1_2", "Hard Pan", 2), ("LCC-3_1_1_1", "Water Course", 3), ("LCC-2_4_2", "Mosses", 1), ("LCC-2_4_3", "Algae", 1)]
+    xml = run_eagle_to_iso_mapping(_matrix(rows), "M", lambda m: None)
+    back = _matrix_rows(run_iso_to_eagle_mapping(xml, lambda m: None))
+    for code, _, bcv in rows:
+        assert str(back[code]) == str(bcv), code
+
+
+def test_unmatched_blocks_of_a_plain_file_get_a_row_each():
+    """They used to share the single row LCC-Custom: only the first one survived."""
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix([("LCC-2_2_1", "Graminoids, Grass-Like", 3)]), "M", lambda m: None, include_extensions=False))
+    for name in ("LC_SalineWater", "LC_PermanentSnow"):  # blocks no crosswalk row knows
+        prop = ET.SubElement(root.find("objects"), "LC_Properties")
+        for tag, text in (("StratumID", "1"), ("BlockReference", name), ("elementPresenceType", "Fixed")):
+            ET.SubElement(prop, tag).text = text
+        ET.SubElement(prop, "cover").text = "0"
+        ET.SubElement(prop, "cover").text = "100"
+    back = _matrix_rows(run_iso_to_eagle_mapping(ET.tostring(root), lambda m: None))
+    custom = [code for code in back if code.startswith("LCC-Custom")]
+    assert sorted(custom) == ["LCC-Custom-PermanentSnow", "LCC-Custom-SalineWater"]
+
+
+def test_the_reverse_direction_does_not_invent_eionet_uris():
+    xml = run_eagle_to_iso_mapping(_matrix([("LCC-2_1_1", "Trees", 3)]), "M", lambda m: None)
+    ws = openpyxl.load_workbook(io.BytesIO(run_iso_to_eagle_mapping(xml, lambda m: None))).active
+    uris = [ws.cell(r, 1).value or "" for r in range(6, ws.max_row + 1) if ws.cell(r, 2).value == "LCC-2_1_1"]
+    assert not any("dd.eionet.europa.eu" in u and u.endswith("LCC-2_1_1") for u in uris)

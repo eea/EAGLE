@@ -21,6 +21,16 @@ The generated class text says **Corine**: `class_description` is `Corine class <
 
 Matching by code matters: earlier versions matched labels by substring, so *No Irrigation* was written as irrigation, a label containing *hops* (workshops) as hops, and a land use whose label said "land cover" as a land cover component. The code prefix now decides; the label is only a fallback for rows without a code.
 
+### Land cover blocks: what the crosswalk covers
+
+The crosswalk has rows for 16 of the 55 land cover concepts and only uses block names that occur in an FAO LChS export (`LC_BuiltUpSurface`, `LC_Building`, `LC_NaturalSurfaceElement`, `LC_BareSoil`, `LC_VegetationElement`, `LC_Tree`, `LC_Shrub`, `LC_Graminoid`, `LC_Forbs`, `LC_LichenAndMoss`, `LC_Algae`). Resolution is **by EAGLE code**: a concept without a row of its own takes the row of its **nearest ancestor** (Bare Rock `LCC-1_2_1_1` → Natural Material Surfaces `LCC-1_2` → `LC_NaturalSurfaceElement`, a broader match). Labels are no longer matched by substring.
+
+* In the **plain LChS subset**, concepts that share one block are merged into one property (stated presence wins, the cover range spans them); the log says so.
+* With the **extensions**, each property also carries `EagleCode` and `EagleLabel`, so ISO ➔ EAGLE returns the exact concept and not just its block.
+* **No FAO block is known** for `LCC-1` (abiotic), `LCC-1_1` / `LCC-1_1_2` (non-sealed artificial surfaces) and `LCC-3` (water). They are written under a name derived from the label (`LC_WaterCourse`) and the log warns (`no ISO block is known for …`). The remaining gap is the list of block names of the FAO tool.
+* Fixed on 2026-11-16: the row `LCC-2_4_2` was labelled *Algae* (it is *Mosses*; Algae is `LCC-2_4_3`), and the names `LC_BuildUpSurface`, `LC_Soil`, `LC_Vegetation` were corrected to the FAO names `LC_BuiltUpSurface`, `LC_BareSoil`, `LC_VegetationElement` (older files with the old names are still read).
+* The crosswalk IDs (`eagle:LCC-1_1_1`) identify concepts **by code**. The Eionet URIs of the vocabulary are slug based and travel in the matrix (column A); the crosswalk prefix is `https://w3id.org/eagle/code/` and does not pretend to be an Eionet URI. A test checks every row against the shared vocabulary JSON (`eagle_vocabulary.json`, set `EAGLE_VOCABULARY` if it is not next to the mapper).
+
 ## 2. Cover ranges and the 100% rule
 
 **There are no `minCoverage` / `maxCoverage` elements.** ISO 19144-2 models the cover as one range; the LChS XML serialises it as two repeated `<cover>` elements, first the minimum, then the maximum percentage. The FAO reference file (`testdata/iso`) shows it: a class of "30–80% sealed" has `<cover>30</cover><cover>80</cover>`. This is taken from that file, not from the text of the standard. `LC_HorizontalPatterns` does the same for `cover` and `occurrence`.
@@ -93,6 +103,7 @@ The reverse direction reads what the forward direction writes, so the round trip
 * **Irrigation without codes** (written by another tool: only `irrigated`, `irrigationType`, `waterSource`) is read through the code lists, ignoring case, so the FAO value `Sprinkler` finds `LCH-5_1_4_5_4`. Values with no EAGLE concept map to the nearest one: `flood`, `basin`, `furrow`, `borderStrip` → gravity surface; `linearMove` → sprinkler; `microSprinkler` → drip; `other` → irrigation, method unspecified. A water source EAGLE does not know (`recycledWater`, `desalinatedWater`, `mixed`, `unknown`) is dropped.
 * **Plain FAO files**, which do not state a presence for characteristics: irrigation comes back as `2` and rice / hops as `X`, as before.
 * **Species** (`speciesName`) are matched to their EAGLE code (`Oryza sativa` → rice, `Humulus lupulus` → hops).
+* An ISO block no crosswalk row knows becomes **a matrix row of its own** (`LCC-Custom-<BlockName>`); they used to share one row, so only the first survived.
 * Matrix rows for land use and characteristics are added to their section (LCC, LUA, LCH) with the level taken from the code (`LCH-5_1_4_5_4` → 5). A precluded cover range (`0–0`) does not come back as a factor.
 
 Not read back: `functionalRelationship` / `temporalRelationship` (the matrix has no column for them) and the hierarchical (`LegendClass`) XML flavour, which has no extension elements.

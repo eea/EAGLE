@@ -6,7 +6,9 @@ mapping_date: '2026-10-14'
 mapping_provider: https://dd.eionet.europa.eu/vocabulary/landcover/eagle/
 license: https://creativecommons.org/licenses/by/4.0/
 prefixes:
-  eagle: https://dd.eionet.europa.eu/vocabulary/landcover/eagle/
+  # CURIEs `eagle:LCC-1_1_1` identify EAGLE concepts by their CODE in the matrix. The Eionet URIs of the
+  # vocabulary are slug based (.../LCC-sealed-artificial-surfaces-and-constructions) and travel in the matrix (column A).
+  eagle: https://w3id.org/eagle/code/
   iso: https://standards.isotc211.org/19144/
   skos: http://www.w3.org/2004/02/skos/core#
   semmatch: https://w3id.org/semapv/vocab/
@@ -17,18 +19,37 @@ mapping_justification: semmatch:ManualMappingCuration
 mappings:
   # -------------------------------------------------------------------------
   # LAND COVER COMPONENTS (EAGLE LCC <-> ISO 19144-2 LCML)
+  # Only block names that occur in an FAO LChS export are used (LC_BuiltUpSurface, LC_Building, LC_NaturalSurfaceElement,
+  # LC_BareSoil, LC_VegetationElement, LC_Tree, LC_Shrub, LC_Graminoid, LC_Forbs, LC_LichenAndMoss, LC_Algae).
+  # An EAGLE concept without its own row takes the row of its nearest ancestor (LCC-1_2_1_1 -> LCC-1_2), see
+  # SSSOMResolver.resolve_block. No FAO block is known for LCC-1 (abiotic), LCC-1_1 / LCC-1_1_2 (non-sealed artificial
+  # surfaces) and LCC-3 (water): those stay unmapped, and the generator warns.
   # -------------------------------------------------------------------------
   - subject_id: eagle:LCC-1_1_1
     subject_label: Sealed Artificial Surfaces and Constructions
     predicate_id: skos:exactMatch
-    object_id: iso:LC_BuildUpSurface
+    object_id: iso:LC_BuiltUpSurface
     object_label: Built Up Surface
     mapping_justification: semmatch:ManualMappingCuration
     comment: EAGLE sealed surface maps 1:1 to LCML built-up surface.
 
+  - subject_id: eagle:LCC-1_1_1_1
+    subject_label: Buildings
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Building
+    object_label: Building
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_1_1_1_1
+    subject_label: Conventional Buildings
+    predicate_id: skos:broadMatch
+    object_id: iso:LC_Building
+    object_label: Building
+    mapping_justification: semmatch:ManualMappingCuration
+
   - subject_id: eagle:LCC-1_1_1_1_2
     subject_label: Specific Buildings
-    predicate_id: skos:exactMatch
+    predicate_id: skos:broadMatch
     object_id: iso:LC_Building
     object_label: Building
     mapping_justification: semmatch:ManualMappingCuration
@@ -43,15 +64,15 @@ mappings:
   - subject_id: eagle:LCC-1_2_2_2
     subject_label: Bare Soils
     predicate_id: skos:exactMatch
-    object_id: iso:LC_Soil
+    object_id: iso:LC_BareSoil
     object_label: Bare Soil
     mapping_justification: semmatch:ManualMappingCuration
 
   - subject_id: eagle:LCC-2
     subject_label: Biotic, Vegetation
     predicate_id: skos:exactMatch
-    object_id: iso:LC_Vegetation
-    object_label: Vegetation
+    object_id: iso:LC_VegetationElement
+    object_label: Vegetation Element
     mapping_justification: semmatch:ManualMappingCuration
     comment: Top-level vegetation class match.
 
@@ -71,9 +92,9 @@ mappings:
 
   - subject_id: eagle:LCC-2_2
     subject_label: Herbaceous Vegetation
-    predicate_id: skos:exactMatch
-    object_id: iso:LC_Vegetation
-    object_label: Herbaceous Vegetation
+    predicate_id: skos:broadMatch
+    object_id: iso:LC_VegetationElement
+    object_label: Vegetation Element
     mapping_justification: semmatch:ManualMappingCuration
 
   - subject_id: eagle:LCC-2_2_1
@@ -96,8 +117,24 @@ mappings:
     object_id: iso:LC_LichenAndMoss
     object_label: Lichen and Moss
     mapping_justification: semmatch:ManualMappingCuration
+    comment: Kept as the reverse (ISO to EAGLE) target of LC_LichenAndMoss.
+
+  - subject_id: eagle:LCC-2_4_1
+    subject_label: Lichens
+    predicate_id: skos:broadMatch
+    object_id: iso:LC_LichenAndMoss
+    object_label: Lichen and Moss
+    mapping_justification: semmatch:ManualMappingCuration
 
   - subject_id: eagle:LCC-2_4_2
+    subject_label: Mosses
+    predicate_id: skos:broadMatch
+    object_id: iso:LC_LichenAndMoss
+    object_label: Lichen and Moss
+    mapping_justification: semmatch:ManualMappingCuration
+    comment: Was labelled Algae by mistake.
+
+  - subject_id: eagle:LCC-2_4_3
     subject_label: Algae
     predicate_id: skos:exactMatch
     object_id: iso:LC_Algae
@@ -173,7 +210,7 @@ mappings:
   # LAND CHARACTERISTICS (EAGLE LCH <-> ISO Extensible Codelists & Characteristics)
   # -------------------------------------------------------------------------
   - subject_id: eagle:LCH-5_1_4_5
-    subject_label: Irrigation Applied
+    subject_label: Irrigation
     predicate_id: skos:exactMatch
     object_id: iso:LC_IrrigationType
     object_label: Irrigation Type Codelist

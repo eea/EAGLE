@@ -41,7 +41,7 @@ class SSSOMResolver:
         mappings_list = raw_data.get("mappings", [])
         self.metadata = {k: v for k, v in raw_data.items() if k != "mappings"}
         self.prefix_map = self.metadata.pop("prefixes", {
-            "eagle": "https://dd.eionet.europa.eu/vocabulary/landcover/eagle/",
+            "eagle": "https://w3id.org/eagle/code/",
             "iso": "https://standards.isotc211.org/19144/",
             "skos": "http://www.w3.org/2004/02/skos/core#"
         })
@@ -110,12 +110,16 @@ class SSSOMResolver:
                 if obj_label:
                     self.reverse_map[obj_label.lower().strip()] = entry
 
-            # Add common ISO variations (e.g. LC_BuiltUpSurface -> LC_BuildUpSurface)
+            if not should_update:  # a broader match must not take the aliases of the exact one
+                continue
+
+            # Add common ISO variations (older files write LC_BuildUpSurface, LC_Soil, LC_Vegetation)
             if "buildupsurface" in obj_norm.lower() or "builtupsurface" in obj_norm.lower():
                 self.reverse_map["LC_BuiltUpSurface"] = entry
                 self.reverse_map["LC_BuildUpSurface"] = entry
             if "vegetation" in obj_norm.lower():
                 self.reverse_map["LC_VegetationElement"] = entry
+                self.reverse_map["LC_Vegetation"] = entry
             if "soil" in obj_norm.lower():
                 self.reverse_map["LC_BareSoil"] = entry
                 self.reverse_map["LC_Soil"] = entry
@@ -137,6 +141,26 @@ class SSSOMResolver:
             if "graminoid" in obj_norm.lower():
                 self.reverse_map["LC_Graminoid"] = entry
                 self.reverse_map["LC_Graminoids"] = entry
+
+    def resolve_block(self, code: Optional[str]) -> Tuple[Optional[Dict[str, Any]], str]:
+        """The ISO block of an EAGLE concept by its CODE: its own row, else the row of the nearest ancestor
+        (LCC-1_2_1_1 -> LCC-1_2_1 -> LCC-1_2). Returns (row, "exact" | "ancestor" | "none").
+
+        Labels are not used: matching them by substring mapped concepts to the wrong block."""
+        code = (code or "").strip()
+        if not code:
+            return None, "none"
+        entry = self.forward_map.get(f"eagle:{code}") or self.forward_map.get(code)
+        if entry:
+            return entry, "exact"
+        parts = code.split("_")
+        while len(parts) > 1:
+            parts.pop()
+            parent = "_".join(parts)
+            entry = self.forward_map.get(f"eagle:{parent}") or self.forward_map.get(parent)
+            if entry:
+                return entry, "ancestor"
+        return None, "none"
 
     def resolve_eagle_to_iso(self, eagle_id_or_code: str, label: Optional[str] = None) -> Optional[Dict[str, Any]]:
         """Resolves an EAGLE concept to an ISO concept."""

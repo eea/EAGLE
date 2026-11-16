@@ -121,6 +121,8 @@ class LchsXmlParser:
 
                 stratum_to_props[st_key].append({
                     "block_ref": block_ref,
+                    "eagle_code": (prop.findtext("EagleCode") or "").strip() or None,  # extension: the exact EAGLE concept
+                    "eagle_label": (prop.findtext("EagleLabel") or "").strip() or None,
                     "presence_str": presence_str,
                     "c_min": c_min,
                     "c_max": c_max
@@ -183,10 +185,14 @@ class LchsXmlParser:
                     if not block_ref or not presence_str:
                         continue
 
-                    # SSSOM Reverse lookup
-                    sssom_match = sssom_resolver.resolve_iso_to_eagle(block_ref)
-                    eagle_code = sssom_match["subject_id"] if sssom_match else None
-                    eagle_label = sssom_match["subject_label"] if sssom_match else block_ref.replace("LC_", "")
+                    # The exact EAGLE concept when the file names it (extension), else the SSSOM reverse lookup
+                    if prop.get("eagle_code"):
+                        eagle_code = f"eagle:{prop['eagle_code']}"
+                        eagle_label = prop.get("eagle_label") or prop["eagle_code"]
+                    else:
+                        sssom_match = sssom_resolver.resolve_iso_to_eagle(block_ref)
+                        eagle_code = sssom_match["subject_id"] if sssom_match else None
+                        eagle_label = sssom_match["subject_label"] if sssom_match else block_ref.replace("LC_", "")
 
                     # Map presence type & barcode enum
                     bcv_enum = sssom_resolver.map_presence_to_bcv(presence_str)
@@ -202,7 +208,7 @@ class LchsXmlParser:
                     is_water = any(term in eagle_label.lower() for term in ["water", "snow", "ice"])
 
                     comp_args = dict(
-                        uri=f"https://dd.eionet.europa.eu/vocabulary/landcover/eagle/{eagle_code.replace('eagle:', '')}" if eagle_code else None,
+                        code=eagle_code.replace("eagle:", "") if eagle_code else None,  # the Eionet URI is not derivable from the code
                         label=eagle_label,
                         bcv_operator=bcv_enum,
                         iso_presence_type=iso_presence,
@@ -313,7 +319,7 @@ class LchsXmlParser:
                 iso_presence = sssom_resolver.map_bcv_to_presence(bcv_enum.value.replace("BCV_", ""))
 
                 comp = LandCoverComponent(
-                    uri=f"https://dd.eionet.europa.eu/vocabulary/landcover/eagle/{eagle_code.replace('eagle:', '')}" if eagle_code else None,
+                    code=eagle_code.replace("eagle:", "") if eagle_code else None,
                     label=eagle_label,
                     bcv_operator=bcv_enum,
                     iso_presence_type=iso_presence,
@@ -378,6 +384,17 @@ class EagleExcelExporter:
         self.sheet = self.workbook.active
         self.sheet.title = "EAGLE Barcoding Matrix"
 
+    @staticmethod
+    def _matrix_code(comp) -> str:
+        """The matrix row code of a land cover component: its EAGLE code, else the code of the crosswalk row
+        for its label, else a row of its own (LCC-Custom-<label>); unmatched blocks used to share one row."""
+        if comp.code:
+            return comp.code
+        sssom_match = sssom_resolver.resolve_eagle_to_iso(comp.uri, comp.label)
+        if sssom_match:
+            return sssom_match["subject_id"].replace("eagle:", "")
+        return "LCC-Custom-" + re.sub(r"[^A-Za-z0-9]+", "", comp.label or "Unnamed")
+
     def generate(self, land_units: List[LandUnit]) -> bytes:
         self.log(f"Generating EAGLE Barcode Excel for {len(land_units)} Land Units...")
 
@@ -435,9 +452,7 @@ class EagleExcelExporter:
 
         for unit in land_units:
             for comp in (unit.land_cover_components or []):
-                sssom_match = sssom_resolver.resolve_eagle_to_iso(comp.uri, comp.label)
-                code = sssom_match["subject_id"].replace("eagle:", "") if sssom_match else "LCC-Custom"
-                add_row(comp.uri, code, comp.label, 3)
+                add_row(comp.uri, self._matrix_code(comp), comp.label, level_of(self._matrix_code(comp)) if comp.code else 3)
             for item in list(unit.land_use_attributes or []) + list(unit.land_characteristics or []):
                 if item.code:
                     add_row(item.uri, item.code, item.label, level_of(item.code))
@@ -466,9 +481,7 @@ class EagleExcelExporter:
                 # Check if unit has a matching component
                 matched_comp = None
                 for comp in (unit.land_cover_components or []):
-                    sssom_match = sssom_resolver.resolve_eagle_to_iso(comp.uri, comp.label)
-                    comp_code = sssom_match["subject_id"].replace("eagle:", "") if sssom_match else None
-                    if comp_code == code or (comp.label and comp.label.lower() in label.lower()):
+                    if self._matrix_code(comp) == code:
                         matched_comp = comp
                         break
 

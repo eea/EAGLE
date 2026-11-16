@@ -284,19 +284,46 @@ class LchsXmlGenerator:
     def _text(parent: ET.Element, tag: str, value) -> None:
         ET.SubElement(parent, tag).text = str(value)
 
-    def _block_reference(self, comp) -> str:
-        sssom_match = sssom_resolver.resolve_eagle_to_iso(comp.uri, comp.label)
+    def _block_reference(self, comp, unit_id: str = "", warn: bool = True) -> str:
+        """The ISO block of a land cover component: by EAGLE code (own row, else nearest ancestor), for
+        components without a code by label. A concept with no known ISO block is written under a name
+        derived from its label, and reported: the FAO tool may not know that name."""
+        if comp.code:
+            sssom_match, _ = sssom_resolver.resolve_block(comp.code)
+        else:
+            sssom_match = sssom_resolver.resolve_eagle_to_iso(comp.uri, comp.label)
         if sssom_match:
             return sssom_resolver._normalize_curie(sssom_match.get("object_id", ""))
-        # Fallback clean label
-        return f"LC_{re.sub(r'[^a-zA-Z0-9]', '', comp.label or 'Vegetation')}"
+        name = f"LC_{re.sub(r'[^a-zA-Z0-9]', '', comp.label or 'Vegetation')}"
+        if warn:
+            self.log(f"⚠️ {unit_id}: no ISO block is known for {comp.code or comp.label} ({comp.label}); written as {name}, which the FAO tool may not know")
+        return name
+
+    def _merge_by_block(self, unit_id: str, entries: list) -> list:
+        """Plain LChS subset: EAGLE concepts that share one ISO block (Bare Rock and Hard Pan are both a
+        natural surface element) become one property. A stated presence wins over an excluded one, the cover
+        range spans all of them."""
+        order = ["Fixed", "Exclusive", "Conditional", "Optional", "Precluded"]
+        merged: Dict[str, dict] = {}
+        for entry in entries:
+            kept = merged.get(entry["block"])
+            if kept is None:
+                merged[entry["block"]] = dict(entry, merged=1)
+                continue
+            kept["merged"] += 1
+            kept["presence"] = min(kept["presence"], entry["presence"], key=lambda p: order.index(p) if p in order else len(order))
+            kept["cover"] = (min(kept["cover"][0], entry["cover"][0]), max(kept["cover"][1], entry["cover"][1]))
+        for block, entry in merged.items():
+            if entry["merged"] > 1:
+                self.log(f"{unit_id}: {entry['merged']} EAGLE concepts share the ISO block {block}; merged into one property (plain LChS subset)")
+        return list(merged.values())
 
     def _host_block(self, unit: LandUnit) -> str:
         """The land cover element a characteristic is attached to: the first biotic one, else the first."""
         components = unit.land_cover_components or []
         biotic = [c for c in components if isinstance(c, BioticComponent)]
         host = (biotic or components or [None])[0]
-        return self._block_reference(host) if host else "LC_Graminoid"
+        return self._block_reference(host, unit.id, warn=False) if host else "LC_Graminoid"
 
     def _prettify(self, elem: ET.Element) -> bytes:
         rough_string = ET.tostring(elem, encoding="utf-8")
@@ -469,11 +496,22 @@ class LchsXmlGenerator:
             for warning in warnings:
                 self.log(f"⚠️ {unit.id}: {warning}")
 
-            for comp, (c_min, c_max) in zip(unit.land_cover_components, ranges):
+            entries = [
+                {"comp": comp, "block": self._block_reference(comp, unit.id), "presence": self._presence(comp), "cover": cover}
+                for comp, cover in zip(unit.land_cover_components, ranges)
+            ]
+            if not self.include_extensions:
+                entries = self._merge_by_block(unit.id, entries)
+
+            for entry in entries:
+                comp, (c_min, c_max) = entry["comp"], entry["cover"]
                 prop_elem = ET.SubElement(objects, "LC_Properties")
                 ET.SubElement(prop_elem, "StratumID").text = str(idx)
-                ET.SubElement(prop_elem, "BlockReference").text = self._block_reference(comp)
-                ET.SubElement(prop_elem, "elementPresenceType").text = self._presence(comp)
+                ET.SubElement(prop_elem, "BlockReference").text = entry["block"]
+                if self.include_extensions and comp.code:  # lets ISO -> EAGLE return the exact concept, not just its block
+                    ET.SubElement(prop_elem, "EagleCode").text = comp.code
+                    ET.SubElement(prop_elem, "EagleLabel").text = comp.label or comp.code
+                ET.SubElement(prop_elem, "elementPresenceType").text = entry["presence"]
 
                 # ISO 19144-2 models the cover as one range. LChS serialises that range as two
                 # repeated <cover> elements: the first is the minimum, the second the maximum
