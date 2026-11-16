@@ -1,0 +1,13 @@
+graph TD
+    %% Styling Definitionen
+    classDef Pydantic fill:#f9f2f4,stroke:#d396a5,stroke-width:2px;
+    classDef InputOutput fill:#e1f5fe,stroke:#81d4fa,stroke-width:2px;
+    classDef Process fill:#f1f8e9,stroke:#aed581,stroke-width:2px;
+
+    subgraph Reverse ["Pipeline 2: Reverse (EAGLE Matrix → ISO LCML)"]
+        direction LR
+        XLS_IN[/"EAGLE Matrix Excel"/]:::InputOutput -->|"1. Extract"| PARSER_XLS["EagleExcelParser"]:::Process
+        PARSER_XLS -->|"Raw Rows/Columns"| MODEL_REV{"Pydantic object model<br>@model_validator"}:::Pydantic
+        MODEL_REV -->|"2. Transform: Reconstructed ISO-Objects<br>(e.g. Factor 55 → min 30, max 80)"| EXPORT_XML["LchsXmlGenerator"]:::Process
+        EXPORT_XML -->|"3. Load"| XML_OUT[/"LChS XML Reconstructed"/]:::InputOutput
+    end
