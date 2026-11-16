@@ -272,45 +272,43 @@ class SSSOMResolver:
 
         return BarCodeValueEnum.BCV_1
 
-    def factor_to_coverage(self, factor_val: Any) -> Tuple[Optional[int], Optional[int]]:
-        """Maps EAGLE Factor back to Min/Max cover thresholds."""
-        if factor_val is None:
-            return None, None
+    # EAGLE factors known to stand for a cover interval. A factor is the middle of its interval (0.55 = 30-80%,
+    # 0.875 = 75-100%), which cannot be turned back into an interval in general: every other factor is
+    # reported and the cover is left open, instead of inventing bounds.
+    _KNOWN_FACTORS = {
+        "0.55": (30, 80), "055": (30, 80), "55": (30, 80),
+        "0.75": (75, 100), "075": (75, 100), "75": (75, 100), "075_plus": (75, 100),
+        "0.875": (75, 100), "87.5": (75, 100), "88": (75, 100),
+    }
 
+    def factor_status(self, factor_val: Any) -> Tuple[str, Optional[Tuple[int, int]]]:
+        """("none" | "neutral" | "known" | "unknown", interval). A factor of 1 is the library's default, not a cover."""
+        if factor_val is None or str(factor_val).strip() == "":
+            return "none", None
         f_str = str(factor_val).strip()
-        if f_str in ["0.55", "055", "55"]:
-            return 30, 80
-        elif f_str in ["0.75", "075", "75", "075_plus"]:
-            return 75, 100
-        elif f_str in ["0.875", "87.5", "88"]:
-            return 75, 100
-
+        if f_str in self._KNOWN_FACTORS:
+            return "known", self._KNOWN_FACTORS[f_str]
         try:
-            val = float(f_str)
-            if val < 1.0 and val > 0:
-                val = val * 100
-            int_val = int(round(val))
-            return max(0, int_val - 15), min(100, int_val + 15)
+            if float(f_str) == 1.0:
+                return "neutral", None
         except (ValueError, TypeError):
-            return None, None
+            pass
+        return "unknown", None
+
+    def factor_to_coverage(self, factor_val: Any) -> Tuple[Optional[int], Optional[int]]:
+        """Maps an EAGLE factor to min/max cover. (None, None) when it states no known interval."""
+        _, interval = self.factor_status(factor_val)
+        return interval if interval else (None, None)
 
     def coverage_to_factor(self, c_min: Optional[int], c_max: Optional[int]) -> Optional[str]:
-        """Maps Min/Max cover thresholds back to EAGLE Factor."""
+        """Maps a cover range to its EAGLE factor: the middle of the interval as a fraction (30-80% -> 0.55)."""
         if c_min is None and c_max is None:
             return None
-        if c_min == 30 and c_max == 80:
-            return "055"
-        if c_min == 75 and c_max == 100:
-            return "075"
-        if c_min == 0 and c_max in (0, 100):  # unrestricted, or precluded: no factor
+        low = 0 if c_min is None else c_min
+        high = 100 if c_max is None else c_max
+        if low == 0 and high in (0, 100):  # unrestricted, or precluded: no factor
             return None
-
-        if c_min is not None and c_max is not None:
-            avg = int((c_min + c_max) / 2)
-            return f"{avg:02d}"
-        if c_min is not None:
-            return f"{c_min:02d}"
-        return None
+        return f"{(low + high) / 200:.3f}".rstrip("0").rstrip(".")
 
 # Global instance for shared use
 sssom_resolver = SSSOMResolver()

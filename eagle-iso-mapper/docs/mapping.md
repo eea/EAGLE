@@ -17,6 +17,8 @@ Each class column of the matrix becomes one `LC_Class` with one horizontal patte
 
 Bar code values become presence types (`BCV 3` Fixed, `1` Conditional, `2`/`5` Exclusive, `X` **Precluded**). `X` is kept for land use and characteristics as well as for land cover.
 
+ISO presence types cannot tell every bar code value apart: **BCV 2 and 5 are both Exclusive, and BCV 4 (at least two) has no presence type** (it is written as Conditional). The log says so per class. With the extensions every element also carries `EagleBcv`, the bar code value itself, so ISO ➔ EAGLE returns 2, 4 and 5 exactly; the plain LChS subset cannot (5 returns as 2, 4 as 1).
+
 The generated class text says **Corine**: `class_description` is `Corine class <code>` (and EAGLE Eye's default class name is `Corine class`). The legend metadata still names the tool (`legend_author`: EAGLE ISO Mapper) as provenance.
 
 Matching by code matters: earlier versions matched labels by substring, so *No Irrigation* was written as irrigation, a label containing *hops* (workshops) as hops, and a land use whose label said "land cover" as a land cover component. The code prefix now decides; the label is only a fallback for rows without a code.
@@ -35,7 +37,7 @@ The crosswalk has rows for 16 of the 55 land cover concepts and only uses block 
 
 **There are no `minCoverage` / `maxCoverage` elements.** ISO 19144-2 models the cover as one range; the LChS XML serialises it as two repeated `<cover>` elements, first the minimum, then the maximum percentage. The FAO reference file (`testdata/iso`) shows it: a class of "30–80% sealed" has `<cover>30</cover><cover>80</cover>`. This is taken from that file, not from the text of the standard. `LC_HorizontalPatterns` does the same for `cover` and `occurrence`.
 
-EAGLE factors are turned into ranges (`055` → 30–80, `075` and `0.875` → 75–100, other values ±15 around the value).
+EAGLE factors are the middle of their cover interval: `0.55` is 30–80%, `0.875` is 75–100% (`0.75` is read as 75–100% too). Only these intervals are known. **Any other factor (the template workbook also uses 0.5 and 0.375) cannot be turned back into an interval, so the cover stays open (0–100%) and the log reports it**; the mapper used to invent ±15 around the value. A factor of `1` (the default of the CLC barcoding library) states no cover; it used to become 0–16%. In the other direction the factor is written as a number, the middle of the interval (30–80% → 0.55, 75–100% → 0.875, 25–50% → 0.375).
 
 **The covers of a stratum add up to 100%, never more.** All elements of a class share one stratum, so before writing, `src/mapping/cover.py` makes the ranges fit. A stratum can only be filled if
 
@@ -99,7 +101,7 @@ Excluded irrigation (`X`) is written with presence `Precluded`: excluding irriga
 The reverse direction reads what the forward direction writes, so the round trip keeps land use and characteristics:
 
 * **`LU_LandUse`** (by `class_id`) → land use rows of the matrix, with code, HILUCS code and presence.
-* **`LC_Characteristics` with `CharacteristicCode`** → one matrix row per code, with the presence type as bar code value (`Precluded` → `X`, `Fixed` → 3, `Conditional` → 1, `Exclusive` → 2). Exclusive comes back as `2` also where the source had `5`.
+* **`LC_Characteristics` with `CharacteristicCode`** → one matrix row per code, with the presence type as bar code value (`Precluded` → `X`, `Fixed` → 3, `Conditional` → 1, `Exclusive` → 2). With `EagleBcv` (extension output) the exact value comes back, including 4 and 5; plain LChS files, which have no such element, return Exclusive as `2` and Conditional as `1`.
 * **Irrigation without codes** (written by another tool: only `irrigated`, `irrigationType`, `waterSource`) is read through the code lists, ignoring case, so the FAO value `Sprinkler` finds `LCH-5_1_4_5_4`. Values with no EAGLE concept map to the nearest one: `flood`, `basin`, `furrow`, `borderStrip` → gravity surface; `linearMove` → sprinkler; `microSprinkler` → drip; `other` → irrigation, method unspecified. A water source EAGLE does not know (`recycledWater`, `desalinatedWater`, `mixed`, `unknown`) is dropped.
 * **Plain FAO files**, which do not state a presence for characteristics: irrigation comes back as `2` and rice / hops as `X`, as before.
 * **Species** (`speciesName`) are matched to their EAGLE code (`Oryza sativa` → rice, `Humulus lupulus` → hops).

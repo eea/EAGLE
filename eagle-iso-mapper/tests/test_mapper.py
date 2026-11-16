@@ -52,7 +52,7 @@ def test_sssom_bcv_and_coverage_mapping():
     assert c_min == 30 and c_max == 80
 
     factor = resolver.coverage_to_factor(30, 80)
-    assert factor == "055"
+    assert factor == "0.55"  # the middle of 30-80%, as EAGLE writes it
 
 
 def test_eagle_to_iso_transformation():
@@ -501,3 +501,75 @@ def test_the_reverse_direction_does_not_invent_eionet_uris():
     ws = openpyxl.load_workbook(io.BytesIO(run_iso_to_eagle_mapping(xml, lambda m: None))).active
     uris = [ws.cell(r, 1).value or "" for r in range(6, ws.max_row + 1) if ws.cell(r, 2).value == "LCC-2_1_1"]
     assert not any("dd.eionet.europa.eu" in u and u.endswith("LCC-2_1_1") for u in uris)
+
+
+# ---------------------------------------------------------------- bar code values ISO cannot tell apart, and factors
+
+def _bcv_rows():
+    return [
+        ("LCC-2_1_1", "Trees", 5),
+        ("LCC-2_2_1", "Graminoids, Grass-Like", 4),
+        ("LCC-2_1_2", "Bushes, Shrubs", 2),
+        ("LUA-1_1_1", "Commercial Crop Production", 5),
+        ("LUA-5_1", "Permanent Residential", 4),
+        ("LCH-8_1_4", "Scattered Pattern", 5),
+        ("LCH-5_1_4_5_5", "Irrigation Carousel", 5),
+        ("LCH-5_1_4_5_6", "Drip Irrigation", 2),
+        ("LCH-5_1_6_1_1_7", "Rice Character", 4),
+    ]
+
+
+def test_bcv_4_and_5_survive_the_round_trip_with_the_extensions():
+    rows = _bcv_rows()
+    xml = run_eagle_to_iso_mapping(_matrix(rows), "M", lambda m: None)
+    back = _matrix_rows(run_iso_to_eagle_mapping(xml, lambda m: None))
+    for code, _, bcv in rows:
+        assert str(back[code]) == str(bcv), code
+
+
+def test_irrigation_concepts_with_different_bcv_are_written_apart():
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix(_bcv_rows()), "M", lambda m: None))
+    irrigation = _irrigation(root)
+    assert sorted(c.findtext("EagleBcv") for c in irrigation) == ["2", "5"]  # both Exclusive, but not the same bar code value
+
+
+def test_bcv_losses_are_reported_and_the_plain_subset_says_so():
+    logs = []
+    run_eagle_to_iso_mapping(_matrix(_bcv_rows()), "M", logs.append)
+    assert any("BCV 4" in line and "written as Conditional" in line and "EagleBcv" in line for line in logs)
+    plain = []
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix(_bcv_rows()), "M", plain.append, include_extensions=False))
+    assert any("BCV 5" in line and "like BCV 2" in line for line in plain)
+    assert any("BCV 4" in line for line in plain)
+    assert root.find(".//EagleBcv") is None  # the plain subset carries no extension elements
+
+
+def test_a_factor_of_one_states_no_cover():
+    """The CLC barcoding library has factor 1.0 on every row: that must not become a cover of 0-16%."""
+    for factor in ("1", "1.0", 1, 1.0):
+        assert sssom_resolver.factor_to_coverage(factor) == (None, None)
+        assert sssom_resolver.factor_status(factor)[0] == "neutral"
+
+
+def test_an_unknown_factor_leaves_the_cover_open_and_is_reported():
+    assert sssom_resolver.factor_to_coverage("0.375") == (None, None)  # used in the template workbook, no interval known
+    logs = []
+    rows = [("LCC-2_1_1", "Trees", 3)]
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix(rows, factor_for={"LCC-2_1_1": 0.375}), "M", logs.append))
+    assert [c.text for c in root.find(".//LC_Properties").findall("cover")] == ["0", "100"]
+    assert any("factor 0.375" in line and "no known cover interval" in line for line in logs)
+
+
+def test_known_factors_round_trip_as_the_middle_of_their_interval():
+    for factor, interval in (("0.55", (30, 80)), ("0.875", (75, 100))):
+        assert sssom_resolver.factor_to_coverage(factor) == interval
+        assert sssom_resolver.coverage_to_factor(*interval) == factor
+    assert sssom_resolver.coverage_to_factor(25, 50) == "0.375"
+    assert sssom_resolver.coverage_to_factor(0, 100) is None and sssom_resolver.coverage_to_factor(0, 0) is None
+
+
+def test_the_matrix_gets_the_factor_as_a_number():
+    wb = _matrix([("LCC-1_1_1", "Sealed Artificial Surfaces and Constructions", 3)], factor_for={"LCC-1_1_1": 0.875})
+    ws = openpyxl.load_workbook(io.BytesIO(run_iso_to_eagle_mapping(run_eagle_to_iso_mapping(wb, "M", lambda m: None), lambda m: None))).active
+    factors = {ws.cell(r, 2).value: ws.cell(r, 6).value for r in range(6, ws.max_row + 1)}
+    assert factors["LCC-1_1_1"] == 0.875  # was "075": the bound 75-100 does not identify the factor

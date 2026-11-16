@@ -123,6 +123,7 @@ class LchsXmlParser:
                     "block_ref": block_ref,
                     "eagle_code": (prop.findtext("EagleCode") or "").strip() or None,  # extension: the exact EAGLE concept
                     "eagle_label": (prop.findtext("EagleLabel") or "").strip() or None,
+                    "eagle_bcv": (prop.findtext("EagleBcv") or "").strip() or None,
                     "presence_str": presence_str,
                     "c_min": c_min,
                     "c_max": c_max
@@ -145,6 +146,7 @@ class LchsXmlParser:
                     "codes": [e.text.strip() for e in char.findall("CharacteristicCode") if e.text and e.text.strip()],
                     "uri": char.findtext("CharacteristicURI"),
                     "presence": char.findtext("elementPresenceType"),
+                    "eagle_bcv": char.findtext("EagleBcv"),
                     "irrigated": {"true": True, "false": False}.get(irrigated),
                     "irrigation_types": [e.text for e in char.findall("irrigationType") if e.text],
                     "water_sources": [e.text for e in char.findall("waterSource") if e.text],
@@ -195,7 +197,7 @@ class LchsXmlParser:
                         eagle_label = sssom_match["subject_label"] if sssom_match else block_ref.replace("LC_", "")
 
                     # Map presence type & barcode enum
-                    bcv_enum = sssom_resolver.map_presence_to_bcv(presence_str)
+                    bcv_enum = self._exact_bcv(prop.get("eagle_bcv")) or sssom_resolver.map_presence_to_bcv(presence_str)
                     iso_presence = sssom_resolver.map_bcv_to_presence(bcv_enum.value.replace("BCV_", ""))
 
                     # Deduplicate components
@@ -245,11 +247,17 @@ class LchsXmlParser:
         return land_units
 
     @staticmethod
-    def _presence_fields(presence: Optional[str]) -> Dict[str, Any]:
+    def _exact_bcv(text: Optional[str]):
+        """The bar code value an extension file states (EagleBcv), which ISO presence types cannot carry (2 vs 5, 4)."""
+        key = f"BCV_{(text or '').strip().upper()}"
+        return BarCodeValueEnum[key] if key in BarCodeValueEnum.__members__ else None
+
+    @staticmethod
+    def _presence_fields(presence: Optional[str], eagle_bcv: Optional[str] = None) -> Dict[str, Any]:
         """BCV and ISO presence of an element that states its presence type; nothing for plain LChS ones."""
         if not presence or not presence.strip():
             return {}
-        bcv = sssom_resolver.map_presence_to_bcv(presence.strip())
+        bcv = LchsXmlParser._exact_bcv(eagle_bcv) or sssom_resolver.map_presence_to_bcv(presence.strip())
         return {"bcv_operator": bcv, "iso_presence_type": sssom_resolver.map_bcv_to_presence(bcv.value.replace("BCV_", ""))}
 
     def _land_use(self, use: ET.Element) -> LandUseAttribute:
@@ -263,12 +271,12 @@ class LchsXmlParser:
             hilucs_code=use.findtext("hilucsCode"),
             functional_relationship=enum_value(FunctionalRelationshipEnum, use.findtext("functionalRelationship")),
             temporal_relationship=enum_value(TemporalRelationshipEnum, use.findtext("temporalRelationship")),
-            **self._presence_fields(use.findtext("elementPresenceType")),
+            **self._presence_fields(use.findtext("elementPresenceType"), use.findtext("EagleBcv")),
         )
 
     def _characteristics(self, char: Dict[str, Any]) -> List[LandCharacteristic]:
         """The EAGLE land characteristics one LC_Characteristics element stands for."""
-        presence = self._presence_fields(char.get("presence"))
+        presence = self._presence_fields(char.get("presence"), char.get("eagle_bcv"))
         precluded = (char.get("presence") or "").strip() == "Precluded"
         result: List[LandCharacteristic] = []
         is_irrigation = char.get("ref") == extensions.IRRIGATION_CLASS or bool(char.get("irrigation_types")) or char.get("irrigated") is not None or bool(char.get("water_sources"))
@@ -496,7 +504,7 @@ class EagleExcelExporter:
                     # Factor
                     factor = sssom_resolver.coverage_to_factor(matched_comp.min_cover, matched_comp.max_cover)
                     if factor:
-                        self.sheet.cell(row=current_row, column=col_factor, value=factor)
+                        self.sheet.cell(row=current_row, column=col_factor, value=float(factor))
 
                 # Land use and characteristics are matched by EAGLE code
                 for item in list(unit.land_use_attributes or []) + list(unit.land_characteristics or []):

@@ -160,6 +160,8 @@ class EagleXslxParser:
                 sssom_match = sssom_resolver.resolve_eagle_to_iso(code_str, label_str)
                 iso_presence = sssom_resolver.map_bcv_to_presence(barcode_str)
                 cov_min, cov_max = sssom_resolver.factor_to_coverage(factor_str)
+                if sssom_resolver.factor_status(factor_str)[0] == "unknown" and code_str.upper().startswith("LCC"):
+                    self.log(f"\u26a0\ufe0f {class_data['code']}: factor {factor_str} of {code_str} has no known cover interval; cover left open")
 
                 bcv_enum = None
                 bcv_key = f"BCV_{barcode_str.upper()}"
@@ -281,6 +283,24 @@ class LchsXmlGenerator:
         return getattr(presence, "value", str(presence)) if presence else "Fixed"
 
     @staticmethod
+    def _eagle_bcv(item) -> Optional[str]:
+        """The bar code value as written in the matrix ("1".."5", "X"): ISO presence types cannot tell 2 from 5."""
+        bcv = getattr(item, "bcv_operator", None)
+        return getattr(bcv, "value", str(bcv)).replace("BCV_", "") if bcv else None
+
+    def _report_bcv_losses(self, land_units: List[LandUnit]) -> None:
+        """BCV 4 has no ISO presence type, BCV 5 is the same as 2 in the plain subset: say so, per class."""
+        for unit in land_units:
+            items = list(unit.land_cover_components or []) + list(unit.land_use_attributes or []) + list(unit.land_characteristics or [])
+            four = [i.code or i.label for i in items if self._eagle_bcv(i) == "4"]
+            five = [i.code or i.label for i in items if self._eagle_bcv(i) == "5"]
+            kept = " (the exact value is kept in EagleBcv)" if self.include_extensions else ""
+            if four:
+                self.log(f"\u26a0\ufe0f {unit.id}: BCV 4 (at least two) has no ISO presence type, written as Conditional{kept}: {', '.join(four[:6])}{' ...' if len(four) > 6 else ''}")
+            if five and not self.include_extensions:
+                self.log(f"\u26a0\ufe0f {unit.id}: BCV 5 (only this one) is written as Exclusive like BCV 2 in the plain subset: {len(five)} elements")
+
+    @staticmethod
     def _text(parent: ET.Element, tag: str, value) -> None:
         ET.SubElement(parent, tag).text = str(value)
 
@@ -332,7 +352,7 @@ class LchsXmlGenerator:
 
     # ------------------------------------------------------------------ characteristics
 
-    def _floristic_aspect(self, objects: ET.Element, idx: int, host: str, species: str, presence: Optional[str] = None) -> None:
+    def _floristic_aspect(self, objects: ET.Element, idx: int, host: str, species: str, presence: Optional[str] = None, bcv: Optional[str] = None) -> None:
         elem = ET.SubElement(objects, "LC_Characteristics")
         self._text(elem, "StratumID", idx)
         self._text(elem, "BlockReference", host)
@@ -340,6 +360,8 @@ class LchsXmlGenerator:
         self._text(elem, "CharacteristicLabel", "Floristic Aspects")
         if presence:
             self._text(elem, "elementPresenceType", presence)
+        if bcv:
+            self._text(elem, "EagleBcv", bcv)
         self._text(elem, "speciesName", species)
 
     def _write_lcml_characteristics(self, objects: ET.Element, idx: int, unit: LandUnit) -> None:
@@ -368,7 +390,7 @@ class LchsXmlGenerator:
             species = extensions.species(char.code)
             klass = extensions.characteristic_class(char.code)
             if species:
-                self._floristic_aspect(objects, idx, host, species, self._presence(char))
+                self._floristic_aspect(objects, idx, host, species, self._presence(char), self._eagle_bcv(char))
             elif klass == extensions.IRRIGATION_CLASS:
                 irrigation.append(char)
             else:
@@ -382,13 +404,15 @@ class LchsXmlGenerator:
                 if char.uri:
                     self._text(elem, "CharacteristicURI", char.uri)
                 self._text(elem, "elementPresenceType", self._presence(char))
-        by_presence: Dict[str, list] = {}
+                if self._eagle_bcv(char):
+                    self._text(elem, "EagleBcv", self._eagle_bcv(char))
+        by_bcv: Dict[str, list] = {}
         for char in irrigation:
-            by_presence.setdefault(self._presence(char), []).append(char)
-        for presence, members in by_presence.items():
-            self._write_irrigation(objects, idx, host, members, presence)
+            by_bcv.setdefault(self._eagle_bcv(char) or self._presence(char), []).append(char)
+        for bcv, members in by_bcv.items():
+            self._write_irrigation(objects, idx, host, members, self._presence(members[0]), self._eagle_bcv(members[0]))
 
-    def _write_irrigation(self, objects: ET.Element, idx: int, host: str, members: list, presence: str) -> None:
+    def _write_irrigation(self, objects: ET.Element, idx: int, host: str, members: list, presence: str, bcv: Optional[str] = None) -> None:
         precluded = presence == "Precluded"
         facts = [extensions.irrigation(c.code) or {} for c in members]
         types = list(dict.fromkeys(f["irrigationType"] for f in facts if "irrigationType" in f))
@@ -411,6 +435,8 @@ class LchsXmlGenerator:
         for char in members:
             self._text(elem, "CharacteristicCode", char.code)
         self._text(elem, "elementPresenceType", presence)
+        if bcv:
+            self._text(elem, "EagleBcv", bcv)
         if irrigated is not None:
             self._text(elem, "irrigated", str(irrigated).lower())
         for value in types:
@@ -431,6 +457,8 @@ class LchsXmlGenerator:
         if lua.uri:
             self._text(elem, "LandUseURI", lua.uri)
         self._text(elem, "elementPresenceType", self._presence(lua))
+        if self._eagle_bcv(lua):
+            self._text(elem, "EagleBcv", self._eagle_bcv(lua))
         for tag, value in (("functionalRelationship", lua.functional_relationship), ("temporalRelationship", lua.temporal_relationship)):
             if value:
                 self._text(elem, tag, getattr(value, "value", value))
@@ -453,6 +481,7 @@ class LchsXmlGenerator:
 
         self.log(f"Generating ISO 19144 XML for {len(land_units)} Land Units...")
         self.progress(0.0, "Writing classes, patterns and strata")
+        self._report_bcv_losses(land_units)
 
         # 1. Classes
         for idx, unit in enumerate(land_units, 1):
@@ -497,7 +526,7 @@ class LchsXmlGenerator:
                 self.log(f"⚠️ {unit.id}: {warning}")
 
             entries = [
-                {"comp": comp, "block": self._block_reference(comp, unit.id), "presence": self._presence(comp), "cover": cover}
+                {"comp": comp, "block": self._block_reference(comp, unit.id), "presence": self._presence(comp), "bcv": self._eagle_bcv(comp), "cover": cover}
                 for comp, cover in zip(unit.land_cover_components, ranges)
             ]
             if not self.include_extensions:
@@ -512,6 +541,8 @@ class LchsXmlGenerator:
                     ET.SubElement(prop_elem, "EagleCode").text = comp.code
                     ET.SubElement(prop_elem, "EagleLabel").text = comp.label or comp.code
                 ET.SubElement(prop_elem, "elementPresenceType").text = entry["presence"]
+                if self.include_extensions and entry["bcv"]:
+                    ET.SubElement(prop_elem, "EagleBcv").text = entry["bcv"]
 
                 # ISO 19144-2 models the cover as one range. LChS serialises that range as two
                 # repeated <cover> elements: the first is the minimum, the second the maximum
