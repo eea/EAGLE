@@ -41,7 +41,7 @@ def test_sssom_bcv_and_coverage_mapping():
     # Presence mappings
     assert resolver.map_bcv_to_presence("3") == ISOPresenceEnum.Fixed
     assert resolver.map_bcv_to_presence("2") == ISOPresenceEnum.Exclusive
-    assert resolver.map_bcv_to_presence("1") == ISOPresenceEnum.Conditional
+    assert resolver.map_bcv_to_presence("1") == ISOPresenceEnum.ConditionalTemporal
 
     # Reverse presence mappings
     assert resolver.map_presence_to_bcv("Fixed") == BarCodeValueEnum.BCV_3
@@ -165,7 +165,7 @@ def test_other_characteristics_are_written_with_their_class_and_presence():
     root = _xml([("LCC-2_2_1", "Graminoids, Grass-Like", 3), ("LCH-8_1_4", "Scattered Pattern", 1), ("LCH-4_2_4", "Perennial Water Regime", "X")])
     by_code = {c.findtext("CharacteristicCode"): c for c in root.iterfind(".//LC_Characteristics")}
     assert by_code["LCH-8_1_4"].findtext("CharacteristicReference") == "LC_GeneralCharacteristic"
-    assert by_code["LCH-8_1_4"].findtext("elementPresenceType") == "Conditional"
+    assert by_code["LCH-8_1_4"].findtext("elementPresenceType") == "Conditional Temporal"
     assert by_code["LCH-8_1_4"].findtext("BlockReference") == "LC_Graminoid"
     assert by_code["LCH-4_2_4"].findtext("CharacteristicReference") == "LC_WaterRegimeCharacteristic"
     assert by_code["LCH-4_2_4"].findtext("elementPresenceType") == "Precluded"
@@ -416,9 +416,12 @@ from src.mapping.sssom_engine import sssom_resolver  # noqa: E402
 VOCABULARY = _Path(_os.environ.get("EAGLE_VOCABULARY") or _Path(__file__).resolve().parents[2] / "eagle-eye" / "data" / "eagle_vocabulary.json")
 
 
+FAO_PROFILE = _json.load(open(Path("src/mapping/fao_lchs_profile.json"), encoding="utf-8"))
+
+
 def _fao_blocks():
-    root = ET.parse(Path("testdata/iso/LChS_Legend.lchs.xml")).getroot()
-    return {e.text for e in root.iter("BlockReference")}
+    """The block library of the FAO LChS tool (scripts/extract_fao_profile.py)."""
+    return {b["reference"] for b in FAO_PROFILE["blocks"]}
 
 
 @pytest.mark.skipif(not VOCABULARY.exists(), reason="shared EAGLE vocabulary JSON not found (set EAGLE_VOCABULARY)")
@@ -440,38 +443,39 @@ def test_land_cover_rows_only_use_blocks_the_fao_tool_exports():
 
 
 def test_a_concept_without_a_row_takes_the_row_of_its_nearest_ancestor():
-    entry, how = sssom_resolver.resolve_block("LCC-1_2_1_1")  # Bare Rock
-    assert how == "ancestor" and entry["object_id"].endswith("LC_NaturalSurfaceElement")
+    entry, how = sssom_resolver.resolve_block("LCC-1_2_2_1_1")  # Boulders, Stones
+    assert how == "ancestor" and entry["object_id"].endswith("LC_CoarseMineralFragments")
     entry, how = sssom_resolver.resolve_block("LCC-2_4_3_2")  # Micro Algae
     assert how == "ancestor" and entry["object_id"].endswith("LC_Algae")
-    assert sssom_resolver.resolve_block("LCC-2_4_2")[0]["subject_label"] == "Mosses"
-    assert sssom_resolver.resolve_block("LCC-3_1")[1] == "none"  # water: no FAO block is known
-    assert sssom_resolver.resolve_block("LCC-2_4_2")[1] == "exact"
+    entry, how = sssom_resolver.resolve_block("LCC-2_4_2")
+    assert how == "exact" and entry["subject_label"] == "Mosses" and entry["object_id"].endswith("LC_Moss")
+    assert sssom_resolver.resolve_block("LCC-9_9")[1] == "none"
 
 
 def test_generated_blocks_are_known_ones_where_the_fao_tool_has_them():
-    rows = [("LCC-1_2_1_1", "Bare Rock", 2), ("LCC-1_2_2_1", "Mineral Fragments", 2), ("LCC-1_1_1", "Sealed", 3), ("LCC-2_1_1", "Trees", 3), ("LCC-1_2_2_2", "Bare Soils", 1), ("LCC-2", "Vegetation", 3)]
+    rows = [("LCC-1_2_2_1_1", "Boulders, Stones", 2), ("LCC-1_2_2_1_2", "Pebbles, Gravel, Tuff", 2), ("LCC-1_1_1", "Sealed", 3), ("LCC-2_1_1", "Trees", 3), ("LCC-1_2_2_2", "Bare Soils", 1), ("LCC-2", "Vegetation", 3)]
     logs = []
     root = ET.fromstring(run_eagle_to_iso_mapping(_matrix(rows), "M", logs.append, include_extensions=False))
     blocks = [p.findtext("BlockReference") for p in root.iterfind(".//LC_Properties")]
     assert set(blocks) <= _fao_blocks()
-    assert blocks.count("LC_NaturalSurfaceElement") == 1  # Bare Rock and Mineral Fragments: one property in the plain subset
-    assert any("share the ISO block LC_NaturalSurfaceElement" in line for line in logs)
+    assert blocks.count("LC_CoarseMineralFragments") == 1  # Boulders and Pebbles: one property in the plain subset
+    assert any("share the ISO block LC_CoarseMineralFragments" in line for line in logs)
     assert "LC_BareSoil" in blocks and "LC_VegetationElement" in blocks and "LC_BuiltUpSurface" in blocks
 
 
 def test_extensions_keep_the_exact_concept_next_to_its_broader_block():
-    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix([("LCC-1_2_1_1", "Bare Rock", 2), ("LCC-1_2_1_2", "Hard Pan", 2)]), "M", lambda m: None))
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix([("LCC-1_2_2_1_1", "Boulders, Stones", 2), ("LCC-1_2_2_1_2", "Pebbles, Gravel, Tuff", 2)]), "M", lambda m: None))
     props = list(root.iterfind(".//LC_Properties"))
-    assert [p.findtext("BlockReference") for p in props] == ["LC_NaturalSurfaceElement"] * 2
-    assert [p.findtext("EagleCode") for p in props] == ["LCC-1_2_1_1", "LCC-1_2_1_2"]
+    assert [p.findtext("BlockReference") for p in props] == ["LC_CoarseMineralFragments"] * 2
+    assert [p.findtext("EagleCode") for p in props] == ["LCC-1_2_2_1_1", "LCC-1_2_2_1_2"]
 
 
 def test_a_concept_with_no_known_block_is_reported():
+    """Every EAGLE land cover concept has a block now; a code outside the vocabulary still gets a warning."""
     logs = []
-    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix([("LCC-3_1_1_1", "Water Course", 3)]), "M", logs.append))
-    assert root.findtext(".//LC_Properties/BlockReference") == "LC_WaterCourse"
-    assert any("no ISO block is known for LCC-3_1_1_1" in line for line in logs)
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix([("LCC-9_9", "Mystery Surface", 3)]), "M", logs.append))
+    assert root.findtext(".//LC_Properties/BlockReference") == "LC_MysterySurface"
+    assert any("no ISO block is known for LCC-9_9" in line for line in logs)
 
 
 def test_round_trip_returns_the_exact_concept_not_just_its_block():
@@ -573,3 +577,63 @@ def test_the_matrix_gets_the_factor_as_a_number():
     ws = openpyxl.load_workbook(io.BytesIO(run_iso_to_eagle_mapping(run_eagle_to_iso_mapping(wb, "M", lambda m: None), lambda m: None))).active
     factors = {ws.cell(r, 2).value: ws.cell(r, 6).value for r in range(6, ws.max_row + 1)}
     assert factors["LCC-1_1_1"] == 0.875  # was "075": the bound 75-100 does not identify the factor
+
+
+# ---------------------------------------------------------------- the FAO tool's own vocabulary
+
+def test_every_land_cover_concept_has_a_block_of_the_fao_tool():
+    if not VOCABULARY.exists():
+        pytest.skip("shared EAGLE vocabulary JSON not found")
+    fao = _fao_blocks()
+    concepts = [c["code"] for c in _json.load(open(VOCABULARY, encoding="utf-8"))["concepts"] if c["block"] == "LCC" and c["code"] != "LCC"]
+    assert len(concepts) == 55
+    for code in concepts:
+        entry, how = sssom_resolver.resolve_block(code)
+        assert entry and entry["object_id"].split(":")[1] in fao, code
+
+
+def test_the_fao_reference_export_only_uses_what_the_profile_knows():
+    root = ET.parse(Path("testdata/iso/LChS_Legend.lchs.xml")).getroot()
+    assert {e.text for e in root.iter("BlockReference")} <= _fao_blocks()
+    labels = {p["label"] for p in FAO_PROFILE["element_presence_types"]}
+    assert {e.text for e in root.iter("elementPresenceType")} <= labels
+    assert labels == {"Fixed", "Exclusive", "Conditional Temporal", "Precluded"}
+
+
+def test_only_presence_types_of_the_fao_tool_are_written():
+    rows = [("LCC-2_1_1", "Trees", 1), ("LCC-2_1_2", "Bushes", 2), ("LCC-2_2_1", "Graminoids", 3), ("LCC-1_2_2_2", "Bare Soils", "X"),
+            ("LCC-2_2_2", "Forbs", 4), ("LCC-2_4_3", "Algae", 5), ("LUA-1_1_1", "Crops", 1), ("LCH-8_1_4", "Scattered Pattern", 1)]
+    allowed = {p["label"] for p in FAO_PROFILE["element_presence_types"]}
+    for extensions_on in (True, False):
+        root = ET.fromstring(run_eagle_to_iso_mapping(_matrix(rows), "M", lambda m: None, include_extensions=extensions_on))
+        assert {e.text for e in root.iter("elementPresenceType")} <= allowed
+    props = {p.findtext("BlockReference"): p.findtext("elementPresenceType") for p in root.iterfind(".//LC_Properties")}
+    assert props["LC_Tree"] == "Conditional Temporal" and props["LC_BareSoil"] == "Precluded"
+    assert props["LC_Forbs"] == "Exclusive"  # BCV 4: a group of alternatives, the minimum of two is not expressible
+
+
+def test_older_files_with_a_plain_conditional_are_still_read():
+    xml = run_eagle_to_iso_mapping(_matrix([("LCC-2_2_1", "Graminoids", 3), ("LCC-2_1_1", "Trees", 1)]), "M", lambda m: None, include_extensions=False)
+    for label in ("Conditional Temporal", "ConditionalTemporal", "Conditional", "Optional"):
+        old = xml.replace(b"Conditional Temporal", label.encode())
+        assert str(_matrix_rows(run_iso_to_eagle_mapping(old, lambda m: None))["LCC-2_1_1"]) == "1", label
+
+
+def test_the_plain_subset_writes_the_irrigation_types_of_the_fao_tool():
+    rows = [("LCC-2_2_1", "Graminoids", 3)] + [(c, c, 2) for c in ("LCH-5_1_4_5_3", "LCH-5_1_4_5_4", "LCH-5_1_4_5_5", "LCH-5_1_4_5_6", "LCH-5_1_4_5_7", "LCH-5_1_4_5_8")]
+    logs = []
+    root = ET.fromstring(run_eagle_to_iso_mapping(_matrix(rows), "M", logs.append, include_extensions=False))
+    written = [e.text for e in root.iter("irrigationType")]
+    labels = {o["label"] for o in FAO_PROFILE["irrigation_types"]}
+    assert sorted(written) == ["Drip", "Sprinkler", "Surface"] and set(written) <= labels  # one each, not six
+    assert any("manual irrigation has no FAO irrigation type" in line for line in logs)
+    back = _matrix_rows(run_iso_to_eagle_mapping(ET.tostring(root), lambda m: None))
+    assert {"LCH-5_1_4_5_3", "LCH-5_1_4_5_4", "LCH-5_1_4_5_6"} <= set(back)  # surface, sprinkler, drip come back
+
+
+def test_characteristics_are_attached_to_blocks_the_fao_tool_allows():
+    hosts = set(FAO_PROFILE["characteristic_hosts"]["LC_CultivatedAndManagedVegetationCharacteristics"])
+    for extensions_on in (True, False):
+        root = ET.fromstring(run_eagle_to_iso_mapping(_matrix([("LCC-2_1_1", "Trees", 3), ("LCH-5_1_4_5_4", "Sprinkler Irrigation", 3)]), "M", lambda m: None, include_extensions=extensions_on))
+        irrigation = [c for c in root.iterfind(".//LC_Characteristics") if c.find("irrigationType") is not None]
+        assert irrigation and all(c.findtext("BlockReference") in hosts for c in irrigation)

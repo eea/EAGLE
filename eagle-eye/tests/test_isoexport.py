@@ -44,7 +44,7 @@ def test_lchs_xml_from_the_mapper():
     assert cls.find("class_map_code").text == "C99" and cls.find("class_name").text == "Test class"
     presence = {p.find("BlockReference").text: p.find("elementPresenceType").text for p in root.iterfind(".//LC_Properties")}
     assert presence["LC_Graminoid"] == "Fixed"  # grassland: a plainly stated element, BCV 3
-    assert presence["LC_Tree"] == "Conditional"  # "may also occur": BCV 1
+    assert presence["LC_Tree"] == "Conditional Temporal"  # "may also occur": BCV 1, the FAO tool has no plain Conditional
     assert "Precluded" in presence.values()  # "without bare soil": BCV X must not become "Exclusive"
     assert "Exclusive" not in presence.values()
 

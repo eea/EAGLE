@@ -277,10 +277,18 @@ class LchsXmlGenerator:
         self.progress = progress_callback or (lambda fraction, message: None)
         self.include_extensions = include_extensions
 
+    # The element presence types of the FAO LChS tool (fao_lchs_profile.json). There is no plain "Conditional": its
+    # own export writes "Conditional Temporal" for optional elements. Older enum values are written that way too.
+    _PRESENCE_LABELS = {
+        "Fixed": "Fixed", "Exclusive": "Exclusive", "Precluded": "Precluded",
+        "ConditionalTemporal": "Conditional Temporal", "Conditional": "Conditional Temporal", "Optional": "Conditional Temporal",
+    }
+
     @staticmethod
     def _presence(item) -> str:
         presence = getattr(item, "iso_presence_type", None)
-        return getattr(presence, "value", str(presence)) if presence else "Fixed"
+        value = getattr(presence, "value", str(presence)) if presence else "Fixed"
+        return LchsXmlGenerator._PRESENCE_LABELS.get(value, value)
 
     @staticmethod
     def _eagle_bcv(item) -> Optional[str]:
@@ -323,7 +331,7 @@ class LchsXmlGenerator:
         """Plain LChS subset: EAGLE concepts that share one ISO block (Bare Rock and Hard Pan are both a
         natural surface element) become one property. A stated presence wins over an excluded one, the cover
         range spans all of them."""
-        order = ["Fixed", "Exclusive", "Conditional", "Optional", "Precluded"]
+        order = ["Fixed", "Exclusive", "Conditional Temporal", "Precluded"]
         merged: Dict[str, dict] = {}
         for entry in entries:
             kept = merged.get(entry["block"])
@@ -365,19 +373,29 @@ class LchsXmlGenerator:
         self._text(elem, "speciesName", species)
 
     def _write_lcml_characteristics(self, objects: ET.Element, idx: int, unit: LandUnit) -> None:
-        """Plain LCML subset: irrigation (as the FAO cultivated & managed vegetation characteristic), rice, hops."""
+        """Plain LCML subset: irrigation (as the FAO cultivated & managed vegetation characteristic), rice, hops.
+        The FAO tool knows three irrigation types (Surface, Sprinkler, Drip): the EAGLE methods are written as the
+        nearest of them, once each; a method without one (manual, unspecified) is written without a type."""
+        written = set()
         for char in unit.land_characteristics or []:
             if self._presence(char) == "Precluded":
                 continue  # the plain profile cannot say "no sprinkler irrigation"
             species = extensions.species(char.code)
             if extensions.states_irrigation(char.code):
+                method = extensions.irrigation(char.code)["irrigationType"]
+                fao_type = extensions.fao_irrigation_type(method)
+                if (fao_type or method) in written:
+                    continue
+                written.add(fao_type or method)
+                if not fao_type:
+                    self.log(f"{unit.id}: {method} irrigation has no FAO irrigation type (Surface, Sprinkler, Drip); written without a type")
                 irr_elem = ET.SubElement(objects, "LC_Characteristics")
                 self._text(irr_elem, "StratumID", idx)
                 self._text(irr_elem, "BlockReference", "LC_Graminoid")
                 self._text(irr_elem, "CharacteristicReference", "LC_CultivatedAndManagedVegetationCharacteristics")
                 self._text(irr_elem, "CharacteristicLabel", "Cultivated & Managed Vegetation")
-                irr_type = extensions.irrigation(char.code)["irrigationType"]
-                self._text(irr_elem, "irrigationType", irr_type[:1].upper() + irr_type[1:])
+                if fao_type:
+                    self._text(irr_elem, "irrigationType", fao_type)
             elif species:
                 self._floristic_aspect(objects, idx, "LC_Graminoid", species)
 

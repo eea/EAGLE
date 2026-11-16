@@ -21,6 +21,12 @@ def load() -> Dict[str, Any]:
         for key, code_list in (("irrigationType", "IrrigationType"), ("waterSource", "WaterSource")):
             if key in attrs and attrs[key] not in data["code_lists"][code_list]:
                 raise ValueError(f"{EXTENSIONS_PATH.name}: {code} uses {attrs[key]!r}, which is not in the {code_list} code list")
+    for value, fao in data.get("fao_irrigation_type", {}).items():
+        if value not in data["code_lists"]["IrrigationType"]:
+            raise ValueError(f"{EXTENSIONS_PATH.name}: fao_irrigation_type {value!r} is not in the IrrigationType code list")
+    for value, code in data.get("fao_irrigation_reverse", {}).items():
+        if code not in data["irrigation"]:
+            raise ValueError(f"{EXTENSIONS_PATH.name}: fao_irrigation_reverse {value!r} -> {code!r} is not a known code")
     for value, code in data.get("reverse_irrigation_type", {}).items():
         if value not in data["code_lists"]["IrrigationType"] or code not in data["irrigation"]:
             raise ValueError(f"{EXTENSIONS_PATH.name}: reverse_irrigation_type {value!r} -> {code!r} is not a known value and code")
@@ -68,6 +74,7 @@ def irrigation_codes(irrigated: Optional[bool], irrigation_types, water_sources,
     data = load()
     by_type = {a["irrigationType"].lower(): code for code, a in data.get("irrigation", {}).items() if "irrigationType" in a}
     by_type.update({v.lower(): code for v, code in data.get("reverse_irrigation_type", {}).items()})
+    by_type.update({v.lower(): code for v, code in data.get("fao_irrigation_reverse", {}).items()})
     by_source = {a["waterSource"].lower(): code for code, a in data.get("irrigation", {}).items() if "waterSource" in a}
     codes = [by_type[t.strip().lower()] for t in irrigation_types if t and t.strip().lower() in by_type]
     codes += [by_source[w.strip().lower()] for w in water_sources if w and w.strip().lower() in by_source]
@@ -80,3 +87,8 @@ def species_code(name: Optional[str]) -> Optional[str]:
     """The EAGLE code of a floristic species name (XML -> EAGLE), compared ignoring case."""
     wanted = (name or "").strip().lower()
     return next((code for code, species_name in load().get("species", {}).items() if species_name.lower() == wanted), None)
+
+
+def fao_irrigation_type(value: Optional[str]) -> Optional[str]:
+    """The FAO LChS irrigation type (Surface, Sprinkler, Drip) of a code list value, or None."""
+    return load().get("fao_irrigation_type", {}).get(value or "")

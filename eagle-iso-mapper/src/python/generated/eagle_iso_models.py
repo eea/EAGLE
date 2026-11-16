@@ -120,9 +120,13 @@ class ISOPresenceEnum(str, Enum):
     """
     Mandatory presence (maps to BCV 3)
     """
+    ConditionalTemporal = "ConditionalTemporal"
+    """
+    Conditional temporal presence, the FAO LChS tool's presence type for optional elements (BCV 1)
+    """
     Conditional = "Conditional"
     """
-    Conditional presence
+    Conditional presence (older files; read as ConditionalTemporal)
     """
     Optional = "Optional"
     """

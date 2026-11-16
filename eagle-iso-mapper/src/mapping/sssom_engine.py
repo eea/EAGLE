@@ -99,9 +99,10 @@ class SSSOMResolver:
             existing = self.reverse_map.get(obj_id)
             should_update = True
             if existing:
-                if existing.get("predicate_id") == "skos:exactMatch" and pred != "skos:exactMatch":
+                rank = {"skos:exactMatch": 3, "skos:closeMatch": 2}  # exact beats close beats broad; equal: the later row
+                if rank.get(pred, 1) < rank.get(existing.get("predicate_id"), 1):
                     should_update = False
-                elif existing.get("subject_id") == "eagle:BCV-2" and sub_id == "eagle:BCV-5":
+                elif existing.get("subject_id") == "eagle:BCV-2" and sub_id in ("eagle:BCV-4", "eagle:BCV-5"):
                     should_update = False
 
             if should_update:
@@ -234,21 +235,21 @@ class SSSOMResolver:
         # Fallback heuristics
         if val_str in ["3", "BCV_3"]:
             return ISOPresenceEnum.Fixed
-        elif val_str in ["2", "5", "BCV_2", "BCV_5"]:
+        elif val_str in ["2", "4", "5", "BCV_2", "BCV_4", "BCV_5"]:
             return ISOPresenceEnum.Exclusive
         elif val_str in ["1", "BCV_1"]:
-            return ISOPresenceEnum.Conditional
+            return ISOPresenceEnum.ConditionalTemporal
         elif val_str.upper() in ["X", "BCV_X"]:
             return ISOPresenceEnum.Precluded if "Precluded" in ISOPresenceEnum.__members__ else ISOPresenceEnum.Exclusive
 
-        return ISOPresenceEnum.Conditional
+        return ISOPresenceEnum.ConditionalTemporal
 
     def map_presence_to_bcv(self, presence_val: Any) -> BarCodeValueEnum:
         """Maps ISO Presence Type back to EAGLE BarCodeValueEnum."""
         if not presence_val:
             return BarCodeValueEnum.BCV_1
 
-        val_str = getattr(presence_val, "value", str(presence_val)).strip()
+        val_str = getattr(presence_val, "value", str(presence_val)).strip().replace(" ", "")  # "Conditional Temporal"
 
         # Check in SSSOM reverse index
         for prefix in [f"iso:PresenceType_{val_str}", f"PresenceType_{val_str}", val_str]:

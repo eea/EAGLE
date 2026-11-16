@@ -15,9 +15,20 @@ Each class column of the matrix becomes one `LC_Class` with one horizontal patte
 | `LUA-…` land use attributes | `LU_LandUse` | extension only |
 | all other `LCH-…` | `LC_Characteristics` with a characteristic class and `CharacteristicCode` | extension only |
 
-Bar code values become presence types (`BCV 3` Fixed, `1` Conditional, `2`/`5` Exclusive, `X` **Precluded**). `X` is kept for land use and characteristics as well as for land cover.
+Bar code values become the **element presence types of the FAO LChS tool**, which are only `Fixed`, `Exclusive`, `Conditional Temporal` and `Precluded` (there is no plain "Conditional"; the tool's own export writes *Conditional Temporal* for optional elements):
 
-ISO presence types cannot tell every bar code value apart: **BCV 2 and 5 are both Exclusive, and BCV 4 (at least two) has no presence type** (it is written as Conditional). The log says so per class. With the extensions every element also carries `EagleBcv`, the bar code value itself, so ISO ➔ EAGLE returns 2, 4 and 5 exactly; the plain LChS subset cannot (5 returns as 2, 4 as 1).
+| BCV (manual D3-1a, table 3) | Meaning | Presence type |
+|---|---|---|
+| `3` | cumulative mandatory (AND): all must be present | Fixed |
+| `1` | optional, can occur as typical | **Conditional Temporal** |
+| `2` | selective mandatory (EITHER-OR): at least one of the group | Exclusive |
+| `4` | paired mandatory: at least two of the group | Exclusive (the minimum of two is not expressible) |
+| `5` | exclusive mandatory (NOTHING-BUT): the only element of its block | Exclusive |
+| `X` | excluded by definition | **Precluded** |
+
+`X` is kept for land use and characteristics as well as for land cover. Files that still say `Conditional` or `Optional` are read as BCV 1.
+
+ISO presence types cannot tell every bar code value apart: **BCV 2, 4 and 5 are all Exclusive**. The log says so per class. With the extensions every element also carries `EagleBcv`, the bar code value itself, so ISO ➔ EAGLE returns 2, 4 and 5 exactly; the plain LChS subset cannot (all three return as 2).
 
 The generated class text says **Corine**: `class_description` is `Corine class <code>` (and EAGLE Eye's default class name is `Corine class`). The legend metadata still names the tool (`legend_author`: EAGLE ISO Mapper) as provenance.
 
@@ -25,12 +36,12 @@ Matching by code matters: earlier versions matched labels by substring, so *No I
 
 ### Land cover blocks: what the crosswalk covers
 
-The crosswalk has rows for 16 of the 55 land cover concepts and only uses block names that occur in an FAO LChS export (`LC_BuiltUpSurface`, `LC_Building`, `LC_NaturalSurfaceElement`, `LC_BareSoil`, `LC_VegetationElement`, `LC_Tree`, `LC_Shrub`, `LC_Graminoid`, `LC_Forbs`, `LC_LichenAndMoss`, `LC_Algae`). Resolution is **by EAGLE code**: a concept without a row of its own takes the row of its **nearest ancestor** (Bare Rock `LCC-1_2_1_1` → Natural Material Surfaces `LCC-1_2` → `LC_NaturalSurfaceElement`, a broader match). Labels are no longer matched by substring.
+Every one of the 55 EAGLE land cover concepts has a block of the FAO LChS tool: the crosswalk has a row for 39 of them, the others take the row of their **nearest ancestor** (Boulders `LCC-1_2_2_1_1` → Mineral Fragments `LCC-1_2_2_1` → `LC_CoarseMineralFragments`). The block names, their hierarchy and the presence and irrigation types come from the tool itself (`src/mapping/fao_lchs_profile.json`, extracted from the tool's `DataSources` by `scripts/extract_fao_profile.py`), and the tests check every row against it. `exactMatch` rows are a block of the same meaning, `closeMatch` nearly the same (Consolidated Surfaces → Rocks Surface), `broadMatch` a broader block (Sand, Grit → Soils & Sand Deposits Surface). Labels are not used for matching.
 
 * In the **plain LChS subset**, concepts that share one block are merged into one property (stated presence wins, the cover range spans them); the log says so.
 * With the **extensions**, each property also carries `EagleCode` and `EagleLabel`, so ISO ➔ EAGLE returns the exact concept and not just its block.
-* **No FAO block is known** for `LCC-1` (abiotic), `LCC-1_1` / `LCC-1_1_2` (non-sealed artificial surfaces) and `LCC-3` (water). They are written under a name derived from the label (`LC_WaterCourse`) and the log warns (`no ISO block is known for …`). The remaining gap is the list of block names of the FAO tool.
-* Fixed on 2026-11-16: the row `LCC-2_4_2` was labelled *Algae* (it is *Mosses*; Algae is `LCC-2_4_3`), and the names `LC_BuildUpSurface`, `LC_Soil`, `LC_Vegetation` were corrected to the FAO names `LC_BuiltUpSurface`, `LC_BareSoil`, `LC_VegetationElement` (older files with the old names are still read).
+* A code outside the EAGLE vocabulary has no block: it is written under a name derived from its label and the log warns (`no ISO block is known for …`). Characteristics (irrigation, species) are attached to a vegetation block, the only blocks the FAO tool allows them on.
+* Fixed on 2026-11-16: the row `LCC-2_4_2` was labelled *Algae* (it is *Mosses*; Algae is `LCC-2_4_3`), the names `LC_BuildUpSurface`, `LC_Soil`, `LC_Vegetation` were corrected to `LC_BuiltUpSurface`, `LC_BareSoil`, `LC_VegetationElement` (older files with the old names are still read), and the presence type of optional elements is `Conditional Temporal`, not `Conditional`.
 * The crosswalk IDs (`eagle:LCC-1_1_1`) identify concepts **by code**. The Eionet URIs of the vocabulary are slug based and travel in the matrix (column A); the crosswalk prefix is `https://w3id.org/eagle/code/` and does not pretend to be an Eionet URI. A test checks every row against the shared vocabulary JSON (`eagle_vocabulary.json`, set `EAGLE_VOCABULARY` if it is not next to the mapper).
 
 ## 2. Cover ranges and the 100% rule
@@ -94,14 +105,14 @@ Excluded irrigation (`X`) is written with presence `Precluded`: excluding irriga
 
 ### Plain LChS subset
 
-`include_extensions=False` (the checkbox *Include land use and all land characteristics* in the web app) writes only land cover plus irrigation, rice and hops in the FAO form (`LC_CultivatedAndManagedVegetationCharacteristics` with `irrigationType`, capitalised as in the FAO export). Precluded characteristics are skipped, since the plain profile cannot say "no sprinkler irrigation".
+`include_extensions=False` (the checkbox *Include land use and all land characteristics* in the web app) writes only land cover plus irrigation, rice and hops in the FAO form (`LC_CultivatedAndManagedVegetationCharacteristics` with `irrigationType`). The FAO tool knows three irrigation types, **Surface, Sprinkler and Drip**: gravity surface irrigation is written as Surface, sprinkler and carousel as Sprinkler, drip and subsurface drip as Drip, once each; manual or unspecified irrigation has no FAO type and is written without one. Precluded characteristics are skipped, since the plain profile cannot say "no sprinkler irrigation".
 
 ## 4. ISO ➔ EAGLE
 
 The reverse direction reads what the forward direction writes, so the round trip keeps land use and characteristics:
 
 * **`LU_LandUse`** (by `class_id`) → land use rows of the matrix, with code, HILUCS code and presence.
-* **`LC_Characteristics` with `CharacteristicCode`** → one matrix row per code, with the presence type as bar code value (`Precluded` → `X`, `Fixed` → 3, `Conditional` → 1, `Exclusive` → 2). With `EagleBcv` (extension output) the exact value comes back, including 4 and 5; plain LChS files, which have no such element, return Exclusive as `2` and Conditional as `1`.
+* **`LC_Characteristics` with `CharacteristicCode`** → one matrix row per code, with the presence type as bar code value (`Precluded` → `X`, `Fixed` → 3, `Conditional Temporal` → 1, `Exclusive` → 2). With `EagleBcv` (extension output) the exact value comes back, including 4 and 5; plain LChS files, which have no such element, return Exclusive as `2` and Conditional as `1`.
 * **Irrigation without codes** (written by another tool: only `irrigated`, `irrigationType`, `waterSource`) is read through the code lists, ignoring case, so the FAO value `Sprinkler` finds `LCH-5_1_4_5_4`. Values with no EAGLE concept map to the nearest one: `flood`, `basin`, `furrow`, `borderStrip` → gravity surface; `linearMove` → sprinkler; `microSprinkler` → drip; `other` → irrigation, method unspecified. A water source EAGLE does not know (`recycledWater`, `desalinatedWater`, `mixed`, `unknown`) is dropped.
 * **Plain FAO files**, which do not state a presence for characteristics: irrigation comes back as `2` and rice / hops as `X`, as before.
 * **Species** (`speciesName`) are matched to their EAGLE code (`Oryza sativa` → rice, `Humulus lupulus` → hops).
@@ -115,6 +126,9 @@ Not read back: `functionalRelationship` / `temporalRelationship` (the matrix has
 * Whether the **FAO LChS tool imports** the extension elements is untested. That is what the plain-subset switch is for.
 * The stratum rule in [section 2](#2-cover-ranges-and-the-100-rule) is an interpretation to confirm with the EAGLE expert, in particular counting conditional minima and treating exclusive elements as alternatives.
 * `LU_LandUse` and the characteristic classes are named in the style of ISO 19144 (`LC_…`, `LU_…`) but are not defined by any published schema; agree names and structure before exchanging the files.
+* **The factor column** is not defined in the bar coding manual (D3-1a) or the thematic guidance (D3-1b); only 0.55 (30-80%) and 0.875 (75-100%) are treated as known intervals. The template workbook also uses 0.5 and 0.375, and the CLC barcoding library has 1.0 everywhere. Ask the EAGLE expert for the factor table; each further factor is one line in `sssom_engine.py`.
+* **BCV 1 as *Conditional Temporal*** follows the FAO tool's own reference export (optional trees and shrubs of CLC 322) and is the only non-mandatory presence type the tool offers; it is not a statement that optional elements are temporal. **BCV 4 and 5 as Exclusive** is our reading of manual table 3 (a group of alternatives; the only element of its block). Both are for the EAGLE expert to confirm.
+* The `closeMatch` and `broadMatch` rows (for example Open Sealed Surfaces → Non-Built-Up Surface) are our judgement of the FAO block library, not a published crosswalk.
 * The irrigation list is a proposal: `gravitySurface`, `manual` and `unspecified` were added, and `LC_GeneralCharacteristic` was added as a fifth characteristic class because most EAGLE characteristics (built-up, physical, spatial, status) fit none of the four proposed ones.
 
 ## 6. Web app

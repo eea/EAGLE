@@ -64,6 +64,25 @@ reverse_irrigation_type:
   microSprinkler: LCH-5_1_4_5_6
   other: LCH-5_1_4_5_2
 
+# The FAO LChS tool knows three irrigation types only (surface, sprinkler, drip): what the plain LChS subset writes.
+# Values without an entry (manual, unspecified, other) are written without a type.
+fao_irrigation_type:
+  flood: Surface
+  basin: Surface
+  furrow: Surface
+  borderStrip: Surface
+  gravitySurface: Surface
+  sprinkler: Sprinkler
+  centerPivot: Sprinkler
+  linearMove: Sprinkler
+  drip: Drip
+  microSprinkler: Drip
+  subsurfaceDrip: Drip
+
+# What the FAO value of a plain LChS file means in EAGLE (sprinkler and drip are the codes above).
+fao_irrigation_reverse:
+  surface: LCH-5_1_4_5_3
+
 # EAGLE land characteristic -> species of an LCML floristic aspect (written by the plain LCML subset too).
 species:
   LCH-5_1_6_1_1_7: Oryza sativa      # Rice Character

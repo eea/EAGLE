@@ -18,20 +18,32 @@ mapping_justification: semmatch:ManualMappingCuration
 # Crosswalk Mappings
 mappings:
   # -------------------------------------------------------------------------
-  # LAND COVER COMPONENTS (EAGLE LCC <-> ISO 19144-2 LCML)
-  # Only block names that occur in an FAO LChS export are used (LC_BuiltUpSurface, LC_Building, LC_NaturalSurfaceElement,
-  # LC_BareSoil, LC_VegetationElement, LC_Tree, LC_Shrub, LC_Graminoid, LC_Forbs, LC_LichenAndMoss, LC_Algae).
-  # An EAGLE concept without its own row takes the row of its nearest ancestor (LCC-1_2_1_1 -> LCC-1_2), see
-  # SSSOMResolver.resolve_block. No FAO block is known for LCC-1 (abiotic), LCC-1_1 / LCC-1_1_2 (non-sealed artificial
-  # surfaces) and LCC-3 (water): those stay unmapped, and the generator warns.
+  # LAND COVER COMPONENTS (EAGLE LCC <-> ISO 19144-2 LCML, FAO LChS block library)
+  # Every object is a block of the FAO LChS tool (src/mapping/fao_lchs_profile.json, checked by the tests).
+  # An EAGLE concept without a row of its own takes the row of its nearest ancestor (LCC-1_2_1_1 -> LCC-1_2_1),
+  # see SSSOMResolver.resolve_block. closeMatch: nearly the same, broadMatch: the FAO block is broader.
   # -------------------------------------------------------------------------
+  - subject_id: eagle:LCC-1
+    subject_label: Abiotic, Non-Vegetated Surfaces and Objects
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_AbioticElement
+    object_label: Abiotic Surfaces
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_1
+    subject_label: Artificial Surfaces and Constructions
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_ArtificialSurfaceElement
+    object_label: Artificial Surfaces
+    mapping_justification: semmatch:ManualMappingCuration
+
   - subject_id: eagle:LCC-1_1_1
     subject_label: Sealed Artificial Surfaces and Constructions
     predicate_id: skos:exactMatch
     object_id: iso:LC_BuiltUpSurface
-    object_label: Built Up Surface
+    object_label: Built-Up Surface
     mapping_justification: semmatch:ManualMappingCuration
-    comment: EAGLE sealed surface maps 1:1 to LCML built-up surface.
+    comment: EAGLE sealed surface maps to the LCML built-up surface.
 
   - subject_id: eagle:LCC-1_1_1_1
     subject_label: Buildings
@@ -54,11 +66,97 @@ mappings:
     object_label: Building
     mapping_justification: semmatch:ManualMappingCuration
 
+  - subject_id: eagle:LCC-1_1_1_2
+    subject_label: Specific Structures and Facilities
+    predicate_id: skos:closeMatch
+    object_id: iso:LC_OtherConstruction
+    object_label: Other Construction
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_1_1_3
+    subject_label: Open Sealed Surfaces
+    predicate_id: skos:broadMatch
+    object_id: iso:LC_NonBuiltUpSurface
+    object_label: Non-Built-Up Surface
+    mapping_justification: semmatch:ManualMappingCuration
+    comment: Whether the surface is sealed cannot be expressed on LC_NonBuiltUpSurface.
+
+  - subject_id: eagle:LCC-1_1_2
+    subject_label: Non-Sealed Artificial Surfaces
+    predicate_id: skos:closeMatch
+    object_id: iso:LC_NonBuiltUpSurface
+    object_label: Non-Built-Up Surface
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_1_2_2
+    subject_label: Waste Materials
+    predicate_id: skos:closeMatch
+    object_id: iso:LC_DumpSite
+    object_label: Dump Site
+    mapping_justification: semmatch:ManualMappingCuration
+
   - subject_id: eagle:LCC-1_2
     subject_label: Natural Material Surfaces
     predicate_id: skos:exactMatch
     object_id: iso:LC_NaturalSurfaceElement
-    object_label: Natural Surface Element
+    object_label: Natural Surfaces
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_2_1
+    subject_label: Consolidated Surfaces
+    predicate_id: skos:closeMatch
+    object_id: iso:LC_RocksSurfaceElement
+    object_label: Rocks Surface
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_2_1_1
+    subject_label: Bare Rock
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_BareRock
+    object_label: Bare Rock
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_2_1_2
+    subject_label: Hard Pan
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Hardpan
+    object_label: Hardpan
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_2_2
+    subject_label: Unconsolidated Surfaces
+    predicate_id: skos:closeMatch
+    object_id: iso:LC_SoilSandDepositsSurfaceElement
+    object_label: Soils & Sand Deposits Surface
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_2_2_1
+    subject_label: Mineral Fragments
+    predicate_id: skos:closeMatch
+    object_id: iso:LC_CoarseMineralFragments
+    object_label: Coarse Mineral Fragments
+    mapping_justification: semmatch:ManualMappingCuration
+    comment: "Coarse fragments only; sand, clay and silt below take the broader soil and sand block."
+
+  - subject_id: eagle:LCC-1_2_2_1_3
+    subject_label: Sand, Grit
+    predicate_id: skos:broadMatch
+    object_id: iso:LC_SoilSandDepositsSurfaceElement
+    object_label: Soils & Sand Deposits Surface
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_2_2_1_4
+    subject_label: Clay, Silt
+    predicate_id: skos:broadMatch
+    object_id: iso:LC_SoilSandDepositsSurfaceElement
+    object_label: Soils & Sand Deposits Surface
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_2_2_1_5
+    subject_label: Mixed Unsorted Material
+    predicate_id: skos:broadMatch
+    object_id: iso:LC_SoilSandDepositsSurfaceElement
+    object_label: Soils & Sand Deposits Surface
     mapping_justification: semmatch:ManualMappingCuration
 
   - subject_id: eagle:LCC-1_2_2_2
@@ -68,40 +166,68 @@ mappings:
     object_label: Bare Soil
     mapping_justification: semmatch:ManualMappingCuration
 
+  - subject_id: eagle:LCC-1_2_2_3
+    subject_label: Natural Deposits
+    predicate_id: skos:closeMatch
+    object_id: iso:LC_Deposits
+    object_label: Deposits
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_2_2_3_1
+    subject_label: Inorganic Deposits
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_InorganicDeposits
+    object_label: Inorganic Deposits
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-1_2_2_3_2
+    subject_label: Organic Deposits, Peat
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_OrganicDeposits
+    object_label: Organic Deposits
+    mapping_justification: semmatch:ManualMappingCuration
+
   - subject_id: eagle:LCC-2
     subject_label: Biotic, Vegetation
     predicate_id: skos:exactMatch
     object_id: iso:LC_VegetationElement
-    object_label: Vegetation Element
+    object_label: Vegetation
     mapping_justification: semmatch:ManualMappingCuration
     comment: Top-level vegetation class match.
+
+  - subject_id: eagle:LCC-2_1
+    subject_label: Woody Vegetation
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_WoodyGrowthForm
+    object_label: Woody Growth Forms
+    mapping_justification: semmatch:ManualMappingCuration
 
   - subject_id: eagle:LCC-2_1_1
     subject_label: Trees
     predicate_id: skos:exactMatch
     object_id: iso:LC_Tree
-    object_label: Tree
+    object_label: Trees
     mapping_justification: semmatch:ManualMappingCuration
 
   - subject_id: eagle:LCC-2_1_2
     subject_label: Bushes, Shrubs
     predicate_id: skos:exactMatch
     object_id: iso:LC_Shrub
-    object_label: Shrub
+    object_label: Shrubs
     mapping_justification: semmatch:ManualMappingCuration
 
   - subject_id: eagle:LCC-2_2
     subject_label: Herbaceous Vegetation
-    predicate_id: skos:broadMatch
-    object_id: iso:LC_VegetationElement
-    object_label: Vegetation Element
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_HerbaceousGrowthForm
+    object_label: Herbaceous Growth Forms
     mapping_justification: semmatch:ManualMappingCuration
 
   - subject_id: eagle:LCC-2_2_1
     subject_label: Graminoids, Grass-Like
     predicate_id: skos:exactMatch
     object_id: iso:LC_Graminoid
-    object_label: Graminoid
+    object_label: Graminoids
     mapping_justification: semmatch:ManualMappingCuration
 
   - subject_id: eagle:LCC-2_2_2
@@ -111,34 +237,69 @@ mappings:
     object_label: Forbs
     mapping_justification: semmatch:ManualMappingCuration
 
+  - subject_id: eagle:LCC-2_3
+    subject_label: Succulents, Cacti
+    predicate_id: skos:broadMatch
+    object_id: iso:LC_GrowthForm
+    object_label: Growth Forms
+    mapping_justification: semmatch:ManualMappingCuration
+    comment: The FAO tool has no block of its own for succulents.
+
   - subject_id: eagle:LCC-2_4
     subject_label: Lichens, Mosses, Algae
-    predicate_id: skos:exactMatch
+    predicate_id: skos:closeMatch
     object_id: iso:LC_LichenAndMoss
-    object_label: Lichen and Moss
+    object_label: Lichen & Mosses
     mapping_justification: semmatch:ManualMappingCuration
-    comment: Kept as the reverse (ISO to EAGLE) target of LC_LichenAndMoss.
+    comment: The EAGLE group also holds algae.
 
   - subject_id: eagle:LCC-2_4_1
     subject_label: Lichens
-    predicate_id: skos:broadMatch
-    object_id: iso:LC_LichenAndMoss
-    object_label: Lichen and Moss
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Lichen
+    object_label: Lichen
     mapping_justification: semmatch:ManualMappingCuration
 
   - subject_id: eagle:LCC-2_4_2
     subject_label: Mosses
-    predicate_id: skos:broadMatch
-    object_id: iso:LC_LichenAndMoss
-    object_label: Lichen and Moss
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Moss
+    object_label: Mosses
     mapping_justification: semmatch:ManualMappingCuration
-    comment: Was labelled Algae by mistake.
 
   - subject_id: eagle:LCC-2_4_3
     subject_label: Algae
     predicate_id: skos:exactMatch
     object_id: iso:LC_Algae
     object_label: Algae
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-3
+    subject_label: Water
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_WaterBodyAndAssociatedSurfaceElement
+    object_label: Water Body & Associated Surfaces
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-3_1
+    subject_label: Liquid Water Bodies
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_WaterBody
+    object_label: Water Body
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-3_2_1
+    subject_label: Snow
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Snow
+    object_label: Snow
+    mapping_justification: semmatch:ManualMappingCuration
+
+  - subject_id: eagle:LCC-3_2_2
+    subject_label: Ice, Glaciers
+    predicate_id: skos:exactMatch
+    object_id: iso:LC_Ice
+    object_label: Ice
     mapping_justification: semmatch:ManualMappingCuration
 
   # -------------------------------------------------------------------------
@@ -155,9 +316,10 @@ mappings:
   - subject_id: eagle:BCV-1
     subject_label: Optional / Typical Occurrence
     predicate_id: skos:broadMatch
-    object_id: iso:PresenceType_Conditional
-    object_label: Conditional Presence
+    object_id: iso:PresenceType_ConditionalTemporal
+    object_label: Conditional Temporal Presence
     mapping_justification: semmatch:LogicalReasoning
+    comment: The FAO LChS tool has no plain Conditional; its reference export uses "Conditional Temporal" for optional elements.
 
   - subject_id: eagle:BCV-2
     subject_label: Selective Mandatory (EITHER-OR)
@@ -173,6 +335,14 @@ mappings:
     object_id: iso:PresenceType_Exclusive
     object_label: Exclusive Presence
     mapping_justification: semmatch:LogicalReasoning
+
+  - subject_id: eagle:BCV-4
+    subject_label: Paired Mandatory (AT LEAST TWO)
+    predicate_id: skos:broadMatch
+    object_id: iso:PresenceType_Exclusive
+    object_label: Exclusive Presence
+    mapping_justification: semmatch:LogicalReasoning
+    comment: A group of alternatives of which at least two must occur; Exclusive keeps the group, not the minimum of two (the exact value travels as EagleBcv).
 
   - subject_id: eagle:BCV-X
     subject_label: Explicitly Excluded

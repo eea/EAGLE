@@ -1,0 +1,272 @@
+{
+  "source": "FAO LChS tool, public/components/DataSources (LC_Blocks, LC_Options, Block_Block_LookUp, Block_Characteristic-LookUp)",
+  "blocks": [
+    {
+      "reference": "LC_VegetationElement",
+      "label": "Vegetation",
+      "parent": null
+    },
+    {
+      "reference": "LC_AbioticElement",
+      "label": "Abiotic Surfaces",
+      "parent": null
+    },
+    {
+      "reference": "LC_GrowthForm",
+      "label": "Growth Forms",
+      "parent": "LC_VegetationElement"
+    },
+    {
+      "reference": "LC_WoodyGrowthForm",
+      "label": "Woody Growth Forms",
+      "parent": "LC_GrowthForm"
+    },
+    {
+      "reference": "LC_Tree",
+      "label": "Trees",
+      "parent": "LC_WoodyGrowthForm"
+    },
+    {
+      "reference": "LC_Shrub",
+      "label": "Shrubs",
+      "parent": "LC_WoodyGrowthForm"
+    },
+    {
+      "reference": "LC_HerbaceousGrowthForm",
+      "label": "Herbaceous Growth Forms",
+      "parent": "LC_GrowthForm"
+    },
+    {
+      "reference": "LC_Forbs",
+      "label": "Forbs",
+      "parent": "LC_HerbaceousGrowthForm"
+    },
+    {
+      "reference": "LC_Graminoid",
+      "label": "Graminoids",
+      "parent": "LC_HerbaceousGrowthForm"
+    },
+    {
+      "reference": "LC_LichenAndMoss",
+      "label": "Lichen & Mosses",
+      "parent": "LC_GrowthForm"
+    },
+    {
+      "reference": "LC_Lichen",
+      "label": "Lichen",
+      "parent": "LC_LichenAndMoss"
+    },
+    {
+      "reference": "LC_Moss",
+      "label": "Mosses",
+      "parent": "LC_LichenAndMoss"
+    },
+    {
+      "reference": "LC_Algae",
+      "label": "Algae",
+      "parent": "LC_GrowthForm"
+    },
+    {
+      "reference": "LC_ArtificialSurfaceElement",
+      "label": "Artificial Surfaces",
+      "parent": "LC_AbioticElement"
+    },
+    {
+      "reference": "LC_NonBuiltUpSurface",
+      "label": "Non-Built-Up Surface",
+      "parent": "LC_ArtificialSurfaceElement"
+    },
+    {
+      "reference": "LC_DumpSite",
+      "label": "Dump Site",
+      "parent": "LC_NonBuiltUpSurface"
+    },
+    {
+      "reference": "LC_Extraction",
+      "label": "Extraction",
+      "parent": "LC_NonBuiltUpSurface"
+    },
+    {
+      "reference": "LC_BuiltUpSurface",
+      "label": "Built-Up Surface",
+      "parent": "LC_ArtificialSurfaceElement"
+    },
+    {
+      "reference": "LC_NonLinearSurface",
+      "label": "Non-Linear Surface",
+      "parent": "LC_BuiltUpSurface"
+    },
+    {
+      "reference": "LC_Building",
+      "label": "Building",
+      "parent": "LC_NonLinearSurface"
+    },
+    {
+      "reference": "LC_OtherConstruction",
+      "label": "Other Construction",
+      "parent": "LC_NonLinearSurface"
+    },
+    {
+      "reference": "LC_OtherArtificialSurface",
+      "label": "Other Artificial Surface",
+      "parent": "LC_NonLinearSurface"
+    },
+    {
+      "reference": "LC_LinearSurface",
+      "label": "Linear Surface",
+      "parent": "LC_BuiltUpSurface"
+    },
+    {
+      "reference": "LC_NaturalSurfaceElement",
+      "label": "Natural Surfaces",
+      "parent": "LC_AbioticElement"
+    },
+    {
+      "reference": "LC_RocksSurfaceElement",
+      "label": "Rocks Surface",
+      "parent": "LC_NaturalSurfaceElement"
+    },
+    {
+      "reference": "LC_BareRock",
+      "label": "Bare Rock",
+      "parent": "LC_RocksSurfaceElement"
+    },
+    {
+      "reference": "LC_Hardpan",
+      "label": "Hardpan",
+      "parent": "LC_RocksSurfaceElement"
+    },
+    {
+      "reference": "LC_SoilSandDepositsSurfaceElement",
+      "label": "Soils & Sand Deposits Surface",
+      "parent": "LC_NaturalSurfaceElement"
+    },
+    {
+      "reference": "LC_BareSoil",
+      "label": "Bare Soil",
+      "parent": "LC_SoilSandDepositsSurfaceElement"
+    },
+    {
+      "reference": "LC_CoarseMineralFragments",
+      "label": "Coarse Mineral Fragments",
+      "parent": "LC_SoilSandDepositsSurfaceElement"
+    },
+    {
+      "reference": "LC_LooseAndShiftingSand",
+      "label": "Loose & Shifting Sand",
+      "parent": "LC_SoilSandDepositsSurfaceElement"
+    },
+    {
+      "reference": "LC_Dune",
+      "label": "Dune",
+      "parent": "LC_LooseAndShiftingSand"
+    },
+    {
+      "reference": "LC_Deposits",
+      "label": "Deposits",
+      "parent": "LC_SoilSandDepositsSurfaceElement"
+    },
+    {
+      "reference": "LC_InorganicDeposits",
+      "label": "Inorganic Deposits",
+      "parent": "LC_Deposits"
+    },
+    {
+      "reference": "LC_OrganicDeposits",
+      "label": "Organic Deposits",
+      "parent": "LC_Deposits"
+    },
+    {
+      "reference": "LC_WaterBodyAndAssociatedSurfaceElement",
+      "label": "Water Body & Associated Surfaces",
+      "parent": "LC_AbioticElement"
+    },
+    {
+      "reference": "LC_WaterBody",
+      "label": "Water Body",
+      "parent": "LC_WaterBodyAndAssociatedSurfaceElement"
+    },
+    {
+      "reference": "LC_Snow",
+      "label": "Snow",
+      "parent": "LC_WaterBodyAndAssociatedSurfaceElement"
+    },
+    {
+      "reference": "LC_Ice",
+      "label": "Ice",
+      "parent": "LC_WaterBodyAndAssociatedSurfaceElement"
+    },
+    {
+      "reference": "LC_TerrestrialIce",
+      "label": "Terrestrial Ice",
+      "parent": "LC_Ice"
+    },
+    {
+      "reference": "LC_FloatingIce",
+      "label": "Floating Ice",
+      "parent": "LC_Ice"
+    }
+  ],
+  "element_presence_types": [
+    {
+      "option": "fixed",
+      "label": "Fixed"
+    },
+    {
+      "option": "exclusive",
+      "label": "Exclusive"
+    },
+    {
+      "option": "conditionalTemporal",
+      "label": "Conditional Temporal"
+    },
+    {
+      "option": "precluded",
+      "label": "Precluded"
+    }
+  ],
+  "irrigation_types": [
+    {
+      "option": "surface",
+      "label": "Surface"
+    },
+    {
+      "option": "sprinkler",
+      "label": "Sprinkler"
+    },
+    {
+      "option": "drip",
+      "label": "Drip"
+    }
+  ],
+  "characteristic_hosts": {
+    "LC_CultivatedAndManagedVegetationCharacteristics": [
+      "LC_Algae",
+      "LC_Forbs",
+      "LC_Graminoid",
+      "LC_GrowthForm",
+      "LC_HerbaceousGrowthForm",
+      "LC_Lichen",
+      "LC_LichenAndMoss",
+      "LC_Moss",
+      "LC_Shrub",
+      "LC_Tree",
+      "LC_VegetationElement",
+      "LC_WoodyGrowthForm"
+    ],
+    "LC_FloristicAspectsCharacteristic": [
+      "LC_Algae",
+      "LC_Forbs",
+      "LC_Graminoid",
+      "LC_GrowthForm",
+      "LC_HerbaceousGrowthForm",
+      "LC_Lichen",
+      "LC_LichenAndMoss",
+      "LC_Moss",
+      "LC_Shrub",
+      "LC_Tree",
+      "LC_VegetationElement",
+      "LC_WoodyGrowthForm"
+    ]
+  }
+}
