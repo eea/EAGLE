@@ -70,9 +70,8 @@ def slug(label: str) -> str:
 
 
 EXAMPLES = load_examples()  # config/examples: read on every run, so new files show up at once
-first_label = next(iter(EXAMPLES), "")
-state.setdefault("doc", EXAMPLES.get(first_label, ""))
-state.setdefault("doc_name", slug(first_label) or "class-description")
+state.setdefault("doc", "")  # the page starts empty: load an example, upload a file or paste a text
+state.setdefault("doc_name", "class-description")
 state.setdefault("mode", ANNOTATED)
 state.setdefault("selection", None)  # {entries: [keys], mention: id | None}
 state.setdefault("pending", None)  # {start, end}: text marked by the user, waiting for a class
@@ -300,6 +299,9 @@ def export_panel(analysis):
     plan = isoexport.plan_export(analysis, vocab)
     name = st.text_input("Class name", state.doc_name, key=f"export_name_{state.doc_name}")
     code = st.text_input("Class code", "", placeholder="e.g. CLC321 (default: derived from the name)", key=f"export_code_{state.doc_name}")
+    if not plan.written:
+        st.caption("Nothing to export yet: no bar coded elements.")
+        return
     st.caption(f"{len(plan.written)} bar coded elements are sent to the eagle-iso-mapper.")
     for note in plan.notes:
         st.caption(f"⚠️ {note}")
@@ -330,29 +332,6 @@ left, middle, right = st.columns([1.1, 1.15, 1.25], gap="medium")
 
 with left:
     st.subheader("Description", anchor=False)
-    st.segmented_control("View", [ANNOTATED, EDIT], key="mode", label_visibility="collapsed")
-
-    if state.mode == EDIT:
-        st.text_area(
-            "Text",
-            value=state.doc,
-            key="editor",
-            height=PANE_HEIGHT - 80,
-            label_visibility="collapsed",
-            placeholder="Paste a class definition here, then press Ctrl+Enter…",
-            on_change=commit_editor,
-        )
-        text_event = None
-    else:
-        text_event = annotator(payload, "text", selected, key="text-pane", pending=state.pending)
-
-    words = len(state.doc.split())
-    manual_count = sum(1 for m in analysis.mentions for i in m.items if i.origin != "automatic")
-    st.caption(
-        f"{words} words · {len(analysis.mentions)} highlights" + (f" · {manual_count} changed by hand" if manual_count else "")
-        + " · click a highlight to change its class, select text to add one"
-    )
-
     upload_col, sample_col = st.columns([3, 2], vertical_alignment="bottom")
     upload_col.file_uploader(
         f"Upload a text file ({', '.join('.' + t for t in SUPPORTED_TYPES)})",
@@ -374,6 +353,32 @@ with left:
         st.error(state.upload_error)
     if state.notice:
         st.warning(state.notice)
+    st.segmented_control("View", [ANNOTATED, EDIT], key="mode", label_visibility="collapsed")
+
+    if state.mode == EDIT:
+        st.text_area(
+            "Text",
+            value=state.doc,
+            key="editor",
+            height=PANE_HEIGHT - 80,
+            label_visibility="collapsed",
+            placeholder="Paste a class definition here, then press Ctrl+Enter…",
+            on_change=commit_editor,
+        )
+        text_event = None
+    else:
+        text_event = annotator(payload, "text", selected, key="text-pane", pending=state.pending)
+
+    words = len(state.doc.split())
+    manual_count = sum(1 for m in analysis.mentions for i in m.items if i.origin != "automatic")
+    if words:
+        st.caption(
+            f"{words} words · {len(analysis.mentions)} highlights" + (f" · {manual_count} changed by hand" if manual_count else "")
+            + " · click a highlight to change its class, select text to add one"
+        )
+    else:
+        st.caption("Load an example or upload a file above, or switch to Edit and paste a description.")
+
 
 with middle:
     st.subheader("EAGLE classes", anchor=False)

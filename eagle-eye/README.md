@@ -42,7 +42,8 @@ Tests: `uv run pytest` (they include the bar coding manual's worked examples)
 
 The *Example* menu lists the `.txt` and `.md` files in `config/examples/`; choosing one
 replaces the description. The file name (without extension) is the label, the list is
-sorted by name, and the first example is shown when the app starts. The folder is read on
+sorted by name. The page starts with an empty description, so a first visit is quick and
+visitors choose what to look at. The folder is read on
 every interaction, so adding, editing or removing a file needs no restart. Files starting
 with `.` or `_`, README files and empty files are skipped. Set `EAGLE_EYE_EXAMPLES_DIR` to
 read another folder (e.g. a mounted volume on a hosted deployment).

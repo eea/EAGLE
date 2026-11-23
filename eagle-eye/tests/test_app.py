@@ -6,6 +6,7 @@ import pytest
 from streamlit.testing.v1 import AppTest
 
 from eagle_eye.analysis import analyze
+from tests.texts import NATURAL_GRASSLAND
 
 APP = str(Path(__file__).resolve().parent.parent / "app.py")
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
@@ -19,7 +20,9 @@ def fixture_examples(monkeypatch):
 
 @pytest.fixture
 def app():
+    """The page with the natural grassland text loaded (it starts empty)."""
     at = AppTest.from_file(APP, default_timeout=120)
+    at.session_state["doc"] = NATURAL_GRASSLAND
     at.run()
     assert not at.exception
     return at
@@ -114,8 +117,6 @@ def example_box(at):
 def test_examples_come_from_the_examples_folder(app):
     box = example_box(app)
     assert list(box.options) == ["CLC 3.2.1 Natural grassland", "CLC 321 Natural grassland (illustrated guide)"]
-    # the first one is shown at start
-    assert app.session_state["doc"].startswith("Class Definition 3.2.1 Natural grassland")
 
 
 def test_choosing_an_example_replaces_the_description(app):
@@ -166,3 +167,15 @@ def test_password_protects_the_app(monkeypatch):
     next(b for b in at.button if b.label == "Enter").click().run()
     assert not at.exception and not any(t.label == "Password" for t in at.text_input)
     assert at.selectbox  # the app itself
+
+
+def test_the_page_starts_empty_with_the_loaders_above_the_text():
+    at = AppTest.from_file(APP, default_timeout=120)
+    at.run()
+    assert not at.exception
+    assert at.session_state["doc"] == ""
+    assert any("Load an example or upload a file" in c.value for c in at.caption)
+    # nothing to export yet, and no highlight to change
+    assert not [s for s in at.selectbox if s.key and s.key.startswith("pick_")]
+    # the examples are there to choose from
+    assert list(example_box(at).options) == ["CLC 3.2.1 Natural grassland", "CLC 321 Natural grassland (illustrated guide)"]

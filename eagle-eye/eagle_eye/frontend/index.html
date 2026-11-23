@@ -178,7 +178,7 @@ function renderText(root, payload) {
   const text = payload.text;
   if (!text.trim()) {
     doc.classList.add("empty");
-    doc.textContent = "Paste or upload a land cover / land use description to see it annotated here.";
+    doc.textContent = "Load an example or upload a file above, or switch to Edit and paste a land cover / land use description. It is annotated here.";
     root.append(doc);
     return;
   }
