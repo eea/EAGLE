@@ -119,6 +119,20 @@ For the "Natural Grassland" definition this gives the manual's own bar code: gra
 rocky areas / trees / shrubs / scattered / nature conservation / shrub clearance 1, and
 drained / irrigated / fertilized X. Parameter values (*more than 50 %*) are not bar coded.
 
+**Manual and CLCplus practice.** The manual takes an element that the text states plainly,
+with no cue, as defining (3, shown as *assumed*), and EAGLE Eye follows it. The CLCplus Core
+barcodes of the CLC classes (`../eagle-barcoding-results`) differ for elements the guide names
+in its *applicable for* and *includes* lists: 2 was the most common value there (38 % and 31 %
+of the cases, against 20 % for 3). That is a tendency by one author, and these barcodes need
+not aim at describing the text; so the value is not changed. Each affected class carries a
+note (help bubble, "CLCplus practice" column of the details table) with what the CLCplus
+barcodes would give. `uv run python scripts/evaluate_library.py --lists` reproduces the
+figures, and without `--lists` compares EAGLE Eye with the whole library.
+
+**Value 2 needs a partner.** The manual says selective (either-or) values never stand alone.
+If only one element has 2, its reasons say so; the value is kept, since the missing partner is
+more likely an element the tool did not find than a wrong value.
+
 **Sections of the CLC illustrated guide (`eagle_eye/sections.py`).** The guide writes every
 class in the same structure; its headings change how the wording below them is read:
 
@@ -159,7 +173,7 @@ eagle_eye/extractor.py  step 1: matching, overlap resolution, data model
 eagle_eye/resolver.py   step 2: concrete class, confidence, reasons
 eagle_eye/analysis.py   text in, annotated analysis (class pane entries) out, manual overrides applied
 eagle_eye/barcode.py    step 3: bar code values from the logic of the text
-eagle_eye/sections.py   CLC guide sections (not applicable for, excludes, generalisation, particularities)
+eagle_eye/sections.py   CLC guide sections (not applicable for, excludes, generalisation, particularities, lists)
 eagle_eye/overrides.py  manual corrections anchored to spans of the text
 eagle_eye/isoexport.py  ISO 19144-2 LChS XML via the eagle-iso-mapper
 eagle_eye/lexicon.py    curated rules

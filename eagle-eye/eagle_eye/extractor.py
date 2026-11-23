@@ -52,6 +52,10 @@ class Item:
     bcv: str | None = None  # bar code value suggested from the text: X, 1, 2, 3, 4, 5
     bcv_reasons: list[str] = field(default_factory=list)
     bcv_basis: str = "cue"  # cue (explicit wording) | assumed (no cue) | manual
+    # What the CLCplus barcodes would give instead of the value above (see eagle_eye.analysis.CLCPLUS_LISTS); a note only.
+    other_bcv: str | None = None
+    other_label: str = ""
+    other_note: str = ""
 
 
 @dataclass
@@ -97,6 +101,9 @@ class Entry:
     bcv: str | None = None
     bcv_reasons: list[str] = field(default_factory=list)
     bcv_basis: str = "cue"
+    other_bcv: str | None = None
+    other_label: str = ""
+    other_note: str = ""
 
 
 @dataclass
@@ -155,6 +162,9 @@ class Analysis:
                     "bcv": e.bcv,
                     "bcvReasons": e.bcv_reasons,
                     "bcvBasis": e.bcv_basis,
+                    "otherBcv": e.other_bcv,
+                    "otherLabel": e.other_label,
+                    "otherNote": e.other_note,
                 }
                 for e in self.entries
             ],

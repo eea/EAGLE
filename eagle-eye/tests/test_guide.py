@@ -4,6 +4,7 @@ import pytest
 
 from eagle_eye.analysis import analyze
 from eagle_eye.extractor import extract
+from eagle_eye.overrides import Override
 from tests.texts import NATURAL_GRASSLAND, NATURAL_GRASSLAND_GUIDE
 from eagle_eye.sections import EXCLUDED, GENERALISATION, PARTICULARITY, find_sections
 from eagle_eye.textnorm import lemma
@@ -129,3 +130,60 @@ def test_inflected_forms_reach_the_eagle_label():
     # label "Afforestation" (LCH-5_2_10_4)
     hits = {m.items[0].code for m in analyze("The land was afforested in 1990.").mentions if m.items}
     assert "LCH-5_2_10_4" in hits
+
+
+# ---------------------------------------------------------------- manual and expert reading of lists
+
+AIRPORT = """Airports installations.
+This class is applicable for:
+- civil airports with sealed runway;
+This class includes:
+- terminals, hangars and buildings;
+- technical installations (radars, antennas, towers);
+This class is not applicable for:
+- sport airports in agriculture and forestry.
+"""
+
+
+def plain(analysis, word):
+    return next(i for m in analysis.mentions if m.text.lower() == word for i in m.items if i.code)
+
+
+def test_lists_are_found_only_on_request():
+    assert [s.kind for s in find_sections(AIRPORT)] == [EXCLUDED]
+    assert [s.kind for s in find_sections(AIRPORT, lists=True)] == ["applicable", "includes", EXCLUDED]
+
+
+def test_the_manual_value_is_kept_and_the_clcplus_practice_noted():
+    analysis = analyze(AIRPORT)
+    item = plain(analysis, "buildings")
+    assert (item.bcv, item.bcv_basis) == ("3", "assumed")
+    assert (item.other_bcv, item.other_label) == ("2", "CLCplus practice")
+    assert "of 64 cases" in item.other_note and "follows the bar coding manual" in item.other_note
+    entry = next(e for e in analysis.entries if e.code == item.code)
+    assert (entry.bcv, entry.other_bcv, entry.other_label) == ("3", "2", "CLCplus practice")
+
+
+def test_no_note_for_cues_exclusions_and_the_definition():
+    analysis = analyze(AIRPORT)
+    for word in ("agriculture", "forestry", "airports"):  # excluded, or in the definition sentence
+        assert plain(analysis, word).other_bcv is None
+    cue = analyze("This class includes:\n- trees, e.g. oaks and shrubs.")
+    shrubs = plain(cue, "shrubs")  # "e.g." is an explicit cue (optional, 1)
+    assert (shrubs.bcv, shrubs.bcv_basis, shrubs.other_bcv) == ("1", "cue", None)
+
+
+def test_text_without_lists_has_no_note():
+    assert all(i.other_bcv is None for m in analyze(NATURAL_GRASSLAND).mentions for i in m.items)
+
+
+def test_value_2_alone_is_flagged_but_kept():
+    pair = analyze("Land with trees or shrubs.")
+    assert [e.bcv for e in pair.entries] == ["2", "2"]
+    assert not any("selective" in r for e in pair.entries for r in e.bcv_reasons)
+
+    start = "Land with trees.".index("trees")
+    forced = analyze("Land with trees.", overrides=[Override(start, start + 5, "trees", "bcv", "2")])
+    (entry,) = forced.entries
+    assert entry.bcv == "2" and any("selective" in r for r in entry.bcv_reasons)
+    assert any("selective" in r for m in forced.mentions for i in m.items for r in i.bcv_reasons)

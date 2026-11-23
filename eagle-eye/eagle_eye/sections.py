@@ -22,6 +22,10 @@ from dataclasses import dataclass
 EXCLUDED = "excluded"
 GENERALISATION = "generalisation"
 PARTICULARITY = "particularity"
+# Lists the guide gives its elements in. They do not change the reading by the manual; the note on
+# CLCplus practice (see eagle_eye.analysis) looks at them.
+APPLICABLE = "applicable"
+INCLUDES = "includes"
 
 _HEADINGS = (
     (EXCLUDED, r"this\s+class\s+is\s+not\s+applicable\s+for"),
@@ -34,6 +38,7 @@ _HEADINGS = (
     (None, r"this\s+class\s+includes"),
     (None, r"typical\s+visible\s+characteristics"),
 )
+_LIST_KINDS = {5: APPLICABLE, 6: APPLICABLE, 7: INCLUDES}  # index into _HEADINGS
 _HEADING = re.compile(
     r"(?<![\w-])(?P<title>" + "|".join(f"(?P<h{i}>{p})" for i, (_, p) in enumerate(_HEADINGS)) + r")\s*:",
     re.IGNORECASE,
@@ -55,13 +60,15 @@ class Section:
     end: int
 
 
-def find_sections(text: str) -> list[Section]:
-    """The sections that change how their wording is read, each up to the next heading."""
+def find_sections(text: str, lists: bool = False) -> list[Section]:
+    """The sections that change how their wording is read, each up to the next heading.
+
+    With `lists`, the "applicable for" and "includes" lists are returned too."""
     marks = [(m.start(), m.end(), next(i for i in range(len(_HEADINGS)) if m.group(f"h{i}")), m.group("title")) for m in _HEADING.finditer(text)]
     titles = {m.start() for m in _CLASS_TITLE.finditer(text)}
     sections = []
     for start, after, which, title in marks:
-        kind = _HEADINGS[which][0]
+        kind = _HEADINGS[which][0] or (_LIST_KINDS.get(which) if lists else None)
         if kind is None:
             continue
         # A particularity has headings of its own ("This heading is applicable for", "This class

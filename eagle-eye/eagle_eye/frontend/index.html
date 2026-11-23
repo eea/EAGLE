@@ -229,10 +229,16 @@ const BCV_MEANING = {
   5: "exclusive mandatory (only this one)",
 };
 
+function basisNote(e) {
+  if (e.bcvBasis === "assumed") return " (assumed: no cue in the text)";
+  if (e.bcvBasis === "manual") return " (set manually)";
+  return "";
+}
+
 function bcvBadge(e) {
   const badge = el("span", `bcv bcv-${e.bcv}`, `BCV ${e.bcv}`);
   if (e.bcvBasis === "assumed") badge.classList.add("assumed");
-  badge.title = `${BCV_MEANING[e.bcv] || ""}${e.bcvBasis === "assumed" ? " (assumed: no cue in the text)" : e.bcvBasis === "manual" ? " (set manually)" : ""}`;
+  badge.title = `${BCV_MEANING[e.bcv] || ""}${basisNote(e)}`;
   return badge;
 }
 
@@ -263,9 +269,15 @@ function popContent(e) {
   if (e.bcv) {
     section(`Bar code value ${e.bcv}`);
     const bcv = el("ul");
-    bcv.append(el("li", "", `${BCV_MEANING[e.bcv]}${e.bcvBasis === "assumed" ? " (assumed: no cue in the text)" : e.bcvBasis === "manual" ? " (set manually)" : ""}`));
+    bcv.append(el("li", "", `${BCV_MEANING[e.bcv]}${basisNote(e)}`));
     for (const r of e.bcvReasons) bcv.append(el("li", "", r));
     pop.append(bcv);
+    if (e.otherBcv) {  // what the CLCplus barcodes give instead: a note, the value shown stays the manual's
+      section(`${e.otherLabel}: ${e.otherBcv}`);
+      const other = el("ul");
+      other.append(el("li", "", `${BCV_MEANING[e.otherBcv]}. ${e.otherNote}`));
+      pop.append(other);
+    }
   }
   if (e.definition) {
     section("EAGLE definition");

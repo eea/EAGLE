@@ -400,6 +400,7 @@ with right:
                 "text": m.text,
                 "EAGLE class": f"{item.code} {vocab.get(item.code).label}" if item.code else "–",
                 "BCV": item.bcv or "–",
+                "CLCplus practice": item.other_bcv or "–",
                 "confidence": item.confidence,
                 "type": m.block,
                 "section": (m.section_title + (" (not counted)" if m.muted else "")) if m.section else "–",

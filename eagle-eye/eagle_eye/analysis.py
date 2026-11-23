@@ -6,10 +6,17 @@ from . import barcode
 from .extractor import Analysis, Entry, Item, Mention, extract
 from .overrides import Override
 from .resolver import DOMAIN_NAMES, Resolver
-from .sections import EXCLUDED, GENERALISATION, PARTICULARITY, find_sections, section_of
+from .sections import APPLICABLE, EXCLUDED, GENERALISATION, INCLUDES, PARTICULARITY, find_sections, section_of
 from .vocabulary import BLOCKS, Vocabulary, load_vocabulary
 
 DEFINITION_LIMIT = 420
+
+# What the CLCplus Core barcodes of the CLC classes (eagle-barcoding-results) do with an element that the
+# text states plainly, without a cue, inside one of the guide's lists. EAGLE Eye follows the bar coding
+# manual (such an element is defining, 3, shown as "assumed") and only notes the other practice.
+# list heading -> (value most often given, elements of that kind with that value, all elements of that kind)
+# in the 44 CLC barcodes; reproduce with `uv run python scripts/evaluate_library.py --lists`
+CLCPLUS_LISTS = {APPLICABLE: ("2", 25, 66), INCLUDES: ("2", 20, 64)}
 
 
 def _definition(vocab: Vocabulary, code: str) -> str:
@@ -22,6 +29,40 @@ def _definition(vocab: Vocabulary, code: str) -> str:
     if concept.excludes:
         text += f" Excludes: {concept.excludes}"
     return text.strip()
+
+
+def _note_clcplus_practice(text: str, mentions: list[Mention]) -> None:
+    """Note what the CLCplus barcodes give to plainly stated elements in the guide's lists."""
+    lists = [s for s in find_sections(text, lists=True) if s.kind in CLCPLUS_LISTS]
+    for m in mentions:
+        section = section_of(lists, m.start) if m.section is None and not m.muted else None
+        if section is None:
+            continue
+        value, hits, total = CLCPLUS_LISTS[section.kind]
+        for item in m.items:
+            if not item.code or item.negated or item.bcv_basis != "assumed" or item.bcv != "3" or vocab_is_parameter(item.code):
+                continue
+            item.other_bcv, item.other_label = value, "CLCplus practice"
+            item.other_note = (
+                f"In the CLCplus Core barcodes of the CLC classes, elements named in '{section.title}' lists "
+                f"got {value} in {hits} of {total} cases ({hits / total:.0%}), the most common value. "
+                "EAGLE Eye follows the bar coding manual."
+            )
+
+
+SELECTIVE_ALONE = "bar code value 2 is selective: the manual wants at least one other element with 2, but none was found"
+
+
+def _check_selective(mentions: list[Mention], entries: list[Entry]) -> None:
+    """Value 2 (either-or) never stands alone. If only one element has it, say so; the value is kept."""
+    twos = [e for e in entries if e.bcv == "2" and not e.negated]
+    if len(twos) != 1:
+        return
+    twos[0].bcv_reasons = [*twos[0].bcv_reasons, SELECTIVE_ALONE]
+    for m in mentions:
+        for item in m.items:
+            if item.code == twos[0].code and item.bcv == "2" and not m.muted and SELECTIVE_ALONE not in item.bcv_reasons:
+                item.bcv_reasons = [*item.bcv_reasons, SELECTIVE_ALONE]
 
 
 def _entries(mentions: list[Mention], vocab: Vocabulary) -> list[Entry]:
@@ -55,6 +96,7 @@ def _entries(mentions: list[Mention], vocab: Vocabulary) -> list[Entry]:
                 entry.bcv is None or barcode.STRENGTH.get(item.bcv, 0) > barcode.STRENGTH.get(entry.bcv, 0) or item.bcv_basis == "manual"
             ):
                 entry.bcv, entry.bcv_reasons, entry.bcv_basis = item.bcv, item.bcv_reasons, item.bcv_basis
+                entry.other_bcv, entry.other_label, entry.other_note = item.other_bcv, item.other_label, item.other_note
             if item.score > entry.score:
                 entry.score, entry.confidence, entry.reasons = item.score, item.confidence, item.reasons
             if m.applies_to is not None and not entry.applies_to:
@@ -169,6 +211,7 @@ def _apply_bcv(mentions: list[Mention], ov: Override) -> None:
         return
     item = target.items[ov.index]
     item.bcv, item.bcv_basis, item.bcv_reasons = ov.code, "manual", ["set manually"]
+    item.other_bcv, item.other_label, item.other_note = None, "", ""
     item.negated = ov.code == "X"
 
 
@@ -180,7 +223,9 @@ def analyze(text: str, vocab: Vocabulary | None = None, overrides: list[Override
         mentions = _apply_overrides(text, mentions, overrides, vocab)
     barcode.assign(text, mentions)
     _apply_sections(text, mentions)
+    _note_clcplus_practice(text, mentions)
     for ov in (o for o in overrides or () if o.action == "bcv"):
         _apply_bcv(mentions, ov)
     entries = _entries(mentions, vocab)
+    _check_selective(mentions, entries)
     return Analysis(text, mentions, entries, _summary(entries, vocab))

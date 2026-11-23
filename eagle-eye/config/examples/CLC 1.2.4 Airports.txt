@@ -1,0 +1,19 @@
+Definition:
+Airports installations: runways, buildings and associated land. This class is assigned for any kind of ground facilities that serve airborne transportation.
+This class is applicable for:
+- civil and military airports with sealed runway;
+- sport airports with concrete or asphalt runways;
+- flying schools used for pilot’s training programme of civil aviation;
+- abandoned airports where artificial structures are still present and no evidence of other use is recognizable.
+This class includes:
+- take-off and landing runways (concrete, asphalt)
+- terminals, hangars, service and storing buildings and in-door spaces;
+- technical installations (radars, antennas, towers);
+- parking lots and lay-by areas;
+- adjacent grass areas, or dispersed trees and shrubs within fenced buffer zone of airport.
+This class is not applicable for:
+- airports with non-sealed (usually grass-covered) runways used for sports, agriculture and forestry (e.g. spreading of fertilizers and chemical materials) (class 142).
+- military airfields without sealed runway as part of military infrastructure (class 121);
+- abandoned airports where artificial structures are no longer visible and evidence of other use is recognizable (class according to actual cover/use).
+This class excludes:
+-
