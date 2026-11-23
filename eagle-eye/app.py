@@ -23,6 +23,10 @@ st.markdown(
     .ee-muted { color: var(--text-color); opacity: .65; }
     .ee-chip { border: 1px solid rgba(128,128,128,.4); border-radius: 999px; padding: 1px 10px; margin-left: 4px;
                background: rgba(128,128,128,.12); cursor: help; white-space: nowrap; }
+    /* the upload box is as high as the Example menu next to it; its hints are in the tooltip */
+    [data-testid="stFileUploaderDropzoneInstructions"] { display: none; }
+    [data-testid="stFileUploaderDropzone"] { padding: 0; min-height: 2.5rem; height: 2.5rem; align-items: center; box-sizing: border-box; }
+    [data-testid="stFileUploaderDropzone"] button { min-height: 2.5rem; margin: 0; }
     </style>""",
     unsafe_allow_html=True,
 )
@@ -197,8 +201,22 @@ def load_models():
 
 
 vocab = load_models()
-analysis = analyze(state.doc, vocab, state.overrides)
-payload = analysis.to_payload()
+
+PANE_HEIGHT = 700  # px: the text, the class pane and the details table share it
+
+# The three columns and their headers come first, so the page has its shape while the analysis runs;
+# the slots show a spinner in the classes and details panes until their content is built.
+left, middle, right = st.columns([1.1, 1.15, 1.25], gap="medium")
+left.subheader("Description", anchor=False)
+middle.subheader("EAGLE classes", anchor=False)
+classes_slot = middle.empty()
+right.subheader("Highlight details", anchor=False)
+details_slot = right.empty()
+
+with classes_slot, st.spinner("Annotating and building the EAGLE classes…"):
+    with details_slot, st.spinner("Building the highlight details…"):
+        analysis = analyze(state.doc, vocab, state.overrides)
+        payload = analysis.to_payload()
 
 if state.pending and state.pending["end"] > len(state.doc):
     state.pending = None
@@ -326,18 +344,14 @@ def download_button(analysis, code: str, name: str):
 
 # ---------------------------------------------------------------- page
 
-PANE_HEIGHT = 700  # px: the text, the class pane and the details table share it
-
-left, middle, right = st.columns([1.1, 1.15, 1.25], gap="medium")
-
 with left:
-    st.subheader("Description", anchor=False)
     upload_col, sample_col = st.columns([3, 2], vertical_alignment="bottom")
     upload_col.file_uploader(
-        f"Upload a text file ({', '.join('.' + t for t in SUPPORTED_TYPES)})",
+        "Upload Markdown or Text",
         type=SUPPORTED_TYPES,
         key="upload",
         on_change=load_upload,
+        help=f"Upload a text file ({', '.join('.' + t for t in SUPPORTED_TYPES)}, up to 200 MB). Its text replaces the description.",
     )
     sample_col.selectbox(
         "Example",
@@ -381,7 +395,6 @@ with left:
 
 
 with middle:
-    st.subheader("EAGLE classes", anchor=False)
     context_col, export_col = st.columns([3, 2], vertical_alignment="center")
     summary = payload["summary"]
     if summary["domains"]:
@@ -398,7 +411,6 @@ with middle:
     class_event = annotator(payload, "classes", selected, key="class-pane")
 
 with right:
-    st.subheader("Highlight details", anchor=False)
     st.dataframe(
         [
             {
