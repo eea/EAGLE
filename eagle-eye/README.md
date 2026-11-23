@@ -27,6 +27,17 @@ uv run streamlit run app.py
 
 Tests: `uv run pytest` (they include the bar coding manual's worked examples)
 
+## Hosted deployment (e.g. render.com)
+
+* **Password.** Set the environment variable `APP_PASSWORD` and visitors must enter it
+  before anything of the app is shown (`eagle_eye/auth.py`). Without the variable the app is
+  open, which is what you want for local runs. There is no default password. It is one
+  shared password, a barrier against casual visitors and not a user management.
+* **Loading.** A small server needs a while to start: the page shows its title at once with
+  a spinner while the analysis code is imported and the vocabulary and language models are
+  loaded (once per server start). The XML converter loads in the background; until it is
+  ready the *Export XML* panel says so and shows the download button as soon as it can.
+
 ## Examples
 
 The *Example* menu lists the `.txt` and `.md` files in `config/examples/`; choosing one

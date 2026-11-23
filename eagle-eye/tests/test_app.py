@@ -137,3 +137,32 @@ def test_a_new_file_in_the_folder_shows_up_and_loads(app, tmp_path, monkeypatch)
     assert list(example_box(app).options) == ["Wetland"]
     example_box(app).select("Wetland").run()
     assert app.session_state["doc"] == "Reed beds along a lake."
+
+
+# ---------------------------------------------------------------- password
+
+
+def test_without_a_password_variable_the_app_is_open(app):
+    assert not app.text_input or all(t.label != "Password" for t in app.text_input)
+    assert app.session_state["doc"]
+
+
+def test_password_protects_the_app(monkeypatch):
+    monkeypatch.setenv("APP_PASSWORD", "s3cret")
+    at = AppTest.from_file(APP, default_timeout=120)
+    at.run()
+    assert not at.exception
+    # the login form only: nothing of the analysis is rendered
+    assert [t.label for t in at.text_input] == ["Password"]
+    assert not at.selectbox
+
+    at.text_input[0].set_value("wrong")
+    next(b for b in at.button if b.label == "Enter").click().run()
+    assert at.error and "Wrong password" in at.error[0].value
+    assert not at.selectbox
+    assert at.session_state["password"] == ""  # the entry is not kept
+
+    at.text_input[0].set_value("s3cret")
+    next(b for b in at.button if b.label == "Enter").click().run()
+    assert not at.exception and not any(t.label == "Password" for t in at.text_input)
+    assert at.selectbox  # the app itself

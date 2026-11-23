@@ -8,14 +8,7 @@ import re
 
 import streamlit as st
 
-from eagle_eye.analysis import analyze
-from eagle_eye import isoexport
-from eagle_eye.overrides import Override, clear_bcv, put, reanchor, remove, reset
-from eagle_eye.readers import SUPPORTED_TYPES, read_upload
-from eagle_eye.resolver import Resolver
-from eagle_eye.examples import examples_dir, load_examples
-from eagle_eye.ui import annotator
-from eagle_eye.vocabulary import load_vocabulary
+from eagle_eye.auth import check_password  # light: the heavy imports follow once the page is on screen
 
 st.set_page_config(page_title="EAGLE Eye", page_icon="🦅", layout="wide", initial_sidebar_state="collapsed")
 
@@ -33,6 +26,41 @@ st.markdown(
     </style>""",
     unsafe_allow_html=True,
 )
+
+
+if not check_password():  # APP_PASSWORD switches it on; without it the app is open
+    st.stop()
+
+# The title comes first, so a visitor sees the page at once while the rest loads below.
+st.title("🦅 EAGLE Eye", anchor=False)
+st.markdown(
+    '<div class="ee-legend">'
+    '<span><i style="background:var(--ee-lcc)"></i>Land Cover (LCC)</span>'
+    '<span><i style="background:var(--ee-lua)"></i>Land Use (LUA)</span>'
+    '<span><i style="background:var(--ee-lch)"></i>Land Characteristics (LCH)</span>'
+    "</div>",
+    unsafe_allow_html=True,
+)
+
+with st.spinner("Starting EAGLE Eye… the first visit after a restart takes a moment."):
+    # importing the analysis code (stemmer, language tools, the XML converter) takes a few seconds on a small server
+    from eagle_eye.analysis import analyze
+    from eagle_eye import isoexport
+    from eagle_eye.overrides import Override, clear_bcv, put, reanchor, remove, reset
+    from eagle_eye.readers import SUPPORTED_TYPES, read_upload
+    from eagle_eye.resolver import Resolver
+    from eagle_eye.examples import examples_dir, load_examples
+    from eagle_eye.ui import annotator
+    from eagle_eye.vocabulary import load_vocabulary
+
+
+@st.cache_resource
+def warm_up_export() -> bool:
+    isoexport.warm_up()  # the mapper takes many seconds to import: start now, not at the first export
+    return True
+
+
+warm_up_export()
 
 ANNOTATED, EDIT = "🖍️ Annotated", "✏️ Edit"
 
@@ -53,14 +81,6 @@ state.setdefault("pick_round", 0)  # new key for the class picker after each use
 state.setdefault("reselect", None)  # (start, end) of the highlight to select after the next analysis
 state.setdefault("notice", None)
 
-
-@st.cache_resource
-def warm_up_export() -> bool:
-    isoexport.warm_up()  # the mapper takes many seconds to import: start now, not at the first export
-    return True
-
-
-warm_up_export()
 
 BCV_OPTIONS = ["automatic", "X", "1", "2", "3", "4", "5"]
 BCV_NAMES = {
@@ -166,7 +186,18 @@ def reset_current():
 
 # ---------------------------------------------------------------- analysis
 
-vocab = load_vocabulary()
+@st.cache_resource(show_spinner="Loading the EAGLE vocabulary and language models… the first visit after a restart takes a moment.")
+def load_models():
+    """Everything the first analysis needs: vocabulary, definition index, stemmer, regexes, picker list.
+
+    The spinner shows only while this runs, i.e. once per server start."""
+    vocab = load_vocabulary()
+    analyze("Natural grassland with scattered trees, not irrigated.", vocab)  # builds the lazy parts
+    picker_options()
+    return vocab
+
+
+vocab = load_models()
 analysis = analyze(state.doc, vocab, state.overrides)
 payload = analysis.to_payload()
 
@@ -272,27 +303,26 @@ def export_panel(analysis):
     st.caption(f"{len(plan.written)} bar coded elements are sent to the eagle-iso-mapper.")
     for note in plan.notes:
         st.caption(f"⚠️ {note}")
+    # While the mapper is still being imported (slow on a small server) this part checks every
+    # 2 seconds and swaps the notice for the download button as soon as the mapper is ready.
+    st.fragment(run_every=None if isoexport.ready() else 2)(download_button)(analysis, code, name)
+
+
+def download_button(analysis, code: str, name: str):
+    if not isoexport.ready():
+        st.info("⏳ The XML converter is still loading (this takes a while on the server). The download button appears here when it is ready.")
+        return
     st.download_button(
         "⬇ Download LChS XML",
         data=lambda: isoexport.to_lchs_xml(analysis, vocab, code, name).xml,
         file_name=f"{state.doc_name}.lchs",  # the FAO LChS tool picks its importer by the extension: .lchs is its native format
         mime="application/xml",
         width="stretch",
-        help="ISO 19144-2 LChS XML for the FAO LChS tool. The first export after starting the app can take a while.",
+        help="ISO 19144-2 LChS XML for the FAO LChS tool.",
     )
 
 
 # ---------------------------------------------------------------- page
-
-st.title("🦅 EAGLE Eye", anchor=False)
-st.markdown(
-    '<div class="ee-legend">'
-    '<span><i style="background:var(--ee-lcc)"></i>Land Cover (LCC)</span>'
-    '<span><i style="background:var(--ee-lua)"></i>Land Use (LUA)</span>'
-    '<span><i style="background:var(--ee-lch)"></i>Land Characteristics (LCH)</span>'
-    "</div>",
-    unsafe_allow_html=True,
-)
 
 PANE_HEIGHT = 700  # px: the text, the class pane and the details table share it
 

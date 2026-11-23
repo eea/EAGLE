@@ -53,8 +53,16 @@ class IsoExport:
     plan: ExportPlan
 
 
+_loaded = threading.Event()  # set once the mapper has been imported
+
+
 def available() -> bool:
     return (ISO_MAPPER_DIR / "src" / "mapping" / "eagle_to_iso.py").exists()
+
+
+def ready() -> bool:
+    """True once the mapper is imported, i.e. an export no longer waits for it."""
+    return _loaded.is_set()
 
 
 def _mapper():
@@ -70,6 +78,7 @@ def _mapper():
         sys.path.append(str(ISO_MAPPER_DIR))
     from src.mapping.eagle_to_iso import run_eagle_to_iso_mapping
 
+    _loaded.set()
     return run_eagle_to_iso_mapping
 
 
